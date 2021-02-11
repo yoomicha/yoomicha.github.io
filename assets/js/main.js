@@ -1,200 +1,190 @@
 /*
-	Phantom by HTML5 UP
+	Hyperspace by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
 (function($) {
 
-	skel.breakpoints({
-		xlarge:	'(max-width: 1680px)',
-		large:	'(max-width: 1280px)',
-		medium:	'(max-width: 980px)',
-		small:	'(max-width: 736px)',
-		xsmall:	'(max-width: 480px)'
-	});
+	var	$window = $(window),
+		$body = $('body'),
+		$sidebar = $('#sidebar');
 
-	$(function() {
+	// Breakpoints.
+		breakpoints({
+			xlarge:   [ '1281px',  '1680px' ],
+			large:    [ '981px',   '1280px' ],
+			medium:   [ '737px',   '980px'  ],
+			small:    [ '481px',   '736px'  ],
+			xsmall:   [ null,      '480px'  ]
+		});
 
-		var	$window = $(window),
-			$body = $('body');
+	// Hack: Enable IE flexbox workarounds.
+		if (browser.name == 'ie')
+			$body.addClass('is-ie');
 
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+	// Play initial animations on page load.
+		$window.on('load', function() {
+			window.setTimeout(function() {
+				$body.removeClass('is-preload');
+			}, 100);
+		});
 
-			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
-			});
+	// Forms.
 
-		// Touch?
-			if (skel.vars.mobile)
-				$body.addClass('is-touch');
+		// Hack: Activate non-input submits.
+			$('form').on('click', '.submit', function(event) {
 
-		// Forms.
-			var $form = $('form');
-
-			// Auto-resizing textareas.
-				$form.find('textarea').each(function() {
-
-					var $this = $(this),
-						$wrapper = $('<div class="textarea-wrapper"></div>'),
-						$submits = $this.find('input[type="submit"]');
-
-					$this
-						.wrap($wrapper)
-						.attr('rows', 1)
-						.css('overflow', 'hidden')
-						.css('resize', 'none')
-						.on('keydown', function(event) {
-
-							if (event.keyCode == 13
-							&&	event.ctrlKey) {
-
-								event.preventDefault();
-								event.stopPropagation();
-
-								$(this).blur();
-
-							}
-
-						})
-						.on('blur focus', function() {
-							$this.val($.trim($this.val()));
-						})
-						.on('input blur focus --init', function() {
-
-							$wrapper
-								.css('height', $this.height());
-
-							$this
-								.css('height', 'auto')
-								.css('height', $this.prop('scrollHeight') + 'px');
-
-						})
-						.on('keyup', function(event) {
-
-							if (event.keyCode == 9)
-								$this
-									.select();
-
-						})
-						.triggerHandler('--init');
-
-					// Fix.
-						if (skel.vars.browser == 'ie'
-						||	skel.vars.mobile)
-							$this
-								.css('max-height', '10em')
-								.css('overflow-y', 'auto');
-
-				});
-
-			// Fix: Placeholder polyfill.
-				$form.placeholder();
-
-		// Prioritize "important" elements on medium.
-			skel.on('+medium -medium', function() {
-				$.prioritize(
-					'.important\\28 medium\\29',
-					skel.breakpoint('medium').active
-				);
-			});
-
-		// Menu.
-			var $menu = $('#menu');
-
-			$menu.wrapInner('<div class="inner"></div>');
-
-			$menu._locked = false;
-
-			$menu._lock = function() {
-
-				if ($menu._locked)
-					return false;
-
-				$menu._locked = true;
-
-				window.setTimeout(function() {
-					$menu._locked = false;
-				}, 350);
-
-				return true;
-
-			};
-
-			$menu._show = function() {
-
-				if ($menu._lock())
-					$body.addClass('is-menu-visible');
-
-			};
-
-			$menu._hide = function() {
-
-				if ($menu._lock())
-					$body.removeClass('is-menu-visible');
-
-			};
-
-			$menu._toggle = function() {
-
-				if ($menu._lock())
-					$body.toggleClass('is-menu-visible');
-
-			};
-
-			$menu
-				.appendTo($body)
-				.on('click', function(event) {
+				// Stop propagation, default.
 					event.stopPropagation();
-				})
-				.on('click', 'a', function(event) {
-
-					var href = $(this).attr('href');
-
 					event.preventDefault();
-					event.stopPropagation();
 
-					// Hide.
-						$menu._hide();
+				// Submit form.
+					$(this).parents('form').submit();
 
-					// Redirect.
-						if (href == '#menu')
+			});
+
+	// Sidebar.
+		if ($sidebar.length > 0) {
+
+			var $sidebar_a = $sidebar.find('a');
+
+			$sidebar_a
+				.addClass('scrolly')
+				.on('click', function() {
+
+					var $this = $(this);
+
+					// External link? Bail.
+						if ($this.attr('href').charAt(0) != '#')
 							return;
 
-						window.setTimeout(function() {
-							window.location.href = href;
-						}, 350);
+					// Deactivate all links.
+						$sidebar_a.removeClass('active');
+
+					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
+						$this
+							.addClass('active')
+							.addClass('active-locked');
 
 				})
-				.append('<a class="close" href="#menu">Close</a>');
+				.each(function() {
 
-			$body
-				.on('click', 'a[href="#menu"]', function(event) {
+					var	$this = $(this),
+						id = $this.attr('href'),
+						$section = $(id);
 
-					event.stopPropagation();
-					event.preventDefault();
+					// No section for this link? Bail.
+						if ($section.length < 1)
+							return;
 
-					// Toggle.
-						$menu._toggle();
+					// Scrollex.
+						$section.scrollex({
+							mode: 'middle',
+							top: '-20vh',
+							bottom: '-20vh',
+							initialize: function() {
 
-				})
-				.on('click', function(event) {
+								// Deactivate section.
+									$section.addClass('inactive');
 
-					// Hide.
-						$menu._hide();
+							},
+							enter: function() {
 
-				})
-				.on('keydown', function(event) {
+								// Activate section.
+									$section.removeClass('inactive');
 
-					// Hide on escape.
-						if (event.keyCode == 27)
-							$menu._hide();
+								// No locked links? Deactivate all links and activate this section's one.
+									if ($sidebar_a.filter('.active-locked').length == 0) {
+
+										$sidebar_a.removeClass('active');
+										$this.addClass('active');
+
+									}
+
+								// Otherwise, if this section's link is the one that's locked, unlock it.
+									else if ($this.hasClass('active-locked'))
+										$this.removeClass('active-locked');
+
+							}
+						});
 
 				});
 
-	});
+		}
+
+	// Scrolly.
+		$('.scrolly').scrolly({
+			speed: 1000,
+			offset: function() {
+
+				// If <=large, >small, and sidebar is present, use its height as the offset.
+					if (breakpoints.active('<=large')
+					&&	!breakpoints.active('<=small')
+					&&	$sidebar.length > 0)
+						return $sidebar.height();
+
+				return 0;
+
+			}
+		});
+
+	// Spotlights.
+		$('.spotlights > section')
+			.scrollex({
+				mode: 'middle',
+				top: '-10vh',
+				bottom: '-10vh',
+				initialize: function() {
+
+					// Deactivate section.
+						$(this).addClass('inactive');
+
+				},
+				enter: function() {
+
+					// Activate section.
+						$(this).removeClass('inactive');
+
+				}
+			})
+			.each(function() {
+
+				var	$this = $(this),
+					$image = $this.find('.image'),
+					$img = $image.find('img'),
+					x;
+
+				// Assign image.
+					$image.css('background-image', 'url(' + $img.attr('src') + ')');
+
+				// Set background position.
+					if (x = $img.data('position'))
+						$image.css('background-position', x);
+
+				// Hide <img>.
+					$img.hide();
+
+			});
+
+	// Features.
+		$('.features')
+			.scrollex({
+				mode: 'middle',
+				top: '-20vh',
+				bottom: '-20vh',
+				initialize: function() {
+
+					// Deactivate section.
+						$(this).addClass('inactive');
+
+				},
+				enter: function() {
+
+					// Activate section.
+						$(this).removeClass('inactive');
+
+				}
+			});
 
 })(jQuery);
