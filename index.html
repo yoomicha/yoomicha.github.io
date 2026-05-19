@@ -14,22 +14,22 @@
     <style>
         .box.style2 {position: relative;z-index: 1;}
 		.button.cute-round {
-    		border-radius: 50px !important;
-    		font-size: 0.75em !important;      /* 글자 크기를 살짝 줄여 버튼 자체를 컴팩트하게 만듭니다 */
-    		padding: 0.4em 1.5em !important;   /* 위아래, 좌우 여백을 대폭 줄여 크기를 반으로 만듭니다 */
-    		background-color: #4A90E2 !important; 
+    		border-radius: 50px !important;    /* 동글동글한 라운드 유지 */
+    		font-size: 0.95em !important;      /* 글자 크기를 살짝 키워 시인성을 높입니다 */
+    		padding: 0.65em 2.2em !important;  /* 위아래, 좌우 여백을 넓혀 버튼 볼륨감을 120% 키웁니다 */
+    		background-color: #4A90E2 !important; /* 청량한 하늘색 */
     		color: #ffffff !important;
     		border: none !important;
-    		box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2) !important; /* 작아진 버튼에 맞게 그림자도 슬림하게 */
+    		box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3) !important; /* 크기에 맞춘 은은한 그림자 */
     		transition: all 0.3s ease !important;
-		}
+			}
 
-    /* 마우스를 올렸을 때 효과 */
-    .button.cute-round:hover {
-        background-color: #357ABD !important;
-        transform: translateY(-2px); /* 살짝 위로 떠오르는 효과 */
-        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4) !important;
-    }
+		/* 마우스를 올렸을 때 효과 */
+		.button.cute-round:hover {
+    		background-color: #357ABD !important;
+    		transform: translateY(-2px); 
+    		box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4) !important;
+		}
     </style>
 	</head>
 	<body class="is-preload">
@@ -63,7 +63,9 @@
     							<p>Contact me through email by clicking <a href="mailto:yoomi.cha@utexas.edu">here</a>.</p>
     							<p>You can visit my LinkedIn profile <a href="https://www.linkedin.com/in/yoomi-cha-512851137/">here</a>.</p>
 							</header>
-							<a href="#highlights" class="button large scrolly cute-round">Go to Highlights</a>
+							<p style="margin-top: 5px; margin-bottom: 0;">
+    							<a href="#highlights" class="button large scrolly cute-round" style="margin-top: -10px !important;">Go to Highlights</a>
+							</p>
 						</div>
 					</div>
 				</div>
