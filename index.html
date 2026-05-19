@@ -36,35 +36,43 @@
     		transform: translateY(-2px); 
     		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
 			}
-		/* Go to Top 버튼 스타일 */
+
+		/* Go to Top 버튼 스타일 완벽 보정 */
 			#scroll-top-btn {
-    		display: none;               /* 처음에는 숨겨둠 (스크롤하면 JS로 나타남) */
+    		display: none;               /* 처음에는 숨김 */
     		position: fixed;             /* 화면에 고정 */
     		bottom: 30px;                /* 밑에서 30px 띄움 */
     		right: 30px;                 /* 오른쪽에서 30px 띄움 */
-    		z-index: 9999;               /* 최상단에 위치 */
-    		width: 50px;                 /* 버튼 가로 크기 */
-    		height: 50px;                /* 버튼 세로 크기 */
-    		background-color: #111111 !important; /* 아까 맞춘 메인 검정색 */
-    		color: #ffffff !important;   /* 화살표 색상 */
-    		border: none !important;
-    		border-radius: 50% !important; /* 완벽한 동그라미 */
-    		font-size: 20px !important;  /* 화살표 크기 */
-    		cursor: pointer;
+    		z-index: 9999;               /* 다른 요소보다 항상 위에 배치 */
+    
+   	 	/* 완벽한 동그라미 규격 고정 */
+    		width: 50px !important;                 
+    		height: 50px !important;                
+    		border-radius: 50% !important; 
+    
+    		background-color: #111111 !important; /* 시크한 블랙 */
+    		color: #ffffff !important;            /* 화살표는 화이트 */
+    		text-decoration: none !important;     /* 꺾쇠 밑에 생기는 링크 밑줄 제거 */
+    
+    	/* 꺾쇠 크기 및 정중앙 정렬을 위한 마법의 3줄 */
+    		font-size: 24px !important;  
+    		font-weight: bold !important;
+    		display: inline-flex !important;
+    		align-items: center !important;
+    		justify-content: center !important;
+    
     		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     		transition: all 0.3s ease;
-    
-    	/* 화살표 기호를 정중앙에 배치 */
-    		align-items: center;
-    		justify-content: center;
 			}
 
 		/* 마우스 올렸을 때 효과 */
 			#scroll-top-btn:hover {
-    		background-color: #333333 !important; /* 메인 버튼과 똑같이 진한 회색 */
-    		transform: translateY(-5px);         /* 살짝 위로 뿅 뜨는 효과 */
+    		background-color: #333333 !important; /* 마우스 올리면 진한 회색 */
+    		transform: translateY(-5px);          /* 위로 살짝 뿅 뜨는 효과 */
+    		color: #ffffff !important;
     		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-			}		
+			}
+		
     </style>
 	</head>
 	<body class="is-preload">
@@ -466,30 +474,21 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 		<!-- top button -->
-		<button id="scroll-top-btn" onclick="scrollToTop()" title="Go to top">▲</button>
+			<a id="scroll-top-btn" href="#top" title="Go to top">︿</a>
 			<script>
-    		// 화면에 버튼을 가져옵니다
-   			 const scrollTopBtn = document.getElementById("scroll-top-btn");
+    		const scrollTopBtn = document.getElementById("scroll-top-btn");
 
-    		// 사용자가 스크롤을 하면 scrollFunction을 실행합니다
+    		// 사용자가 스크롤을 내리는지 감지합니다
     		window.onscroll = function() { scrollFunction() };
 
-   			 function scrollFunction() 
-			 {
-        	// 300px 이상 스크롤 다운되면 버튼을 보여주고(flex), 아니면 숨깁니다(none)
-        		if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {scrollTopBtn.style.display = "flex";} 
-				else {
-            			scrollTopBtn.style.display = "none";
-        			 }
-   			 }
-
-    		// 버튼을 누르면 부드럽게 맨 위로 스크롤하는 함수
-    		function scrollToTop() {
-        		window.scrollTo({
-            	top: 0,
-            	behavior: 'smooth' // 부드러운 스크롤 효과
-        			});
-    			}
+    		function scrollFunction() {
+        		// 화면이 위에서부터 300px 이상 내려오면 버튼을 보여주고, 아니면 다시 숨깁니다
+        		if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            	scrollTopBtn.style.display = "inline-flex"; /* 2단계 CSS 정렬과 맞추기 위해 inline-flex로 표시 */
+        		} else {
+            		scrollTopBtn.style.display = "none";
+        		}
+    		}
 			</script>
 					
 	</body>
