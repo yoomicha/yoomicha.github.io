@@ -12,10 +12,23 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
     <style>
-        .box.style2 {
-            position: relative;
-            z-index: 1;
-        }
+        .box.style2 {position: relative;z-index: 1;}
+		.button.cute-round {
+        border-radius: 50px !important;    /* 모서리를 완전한 타원형으로 */
+        padding: 0.75em 2.5em !important;  /* 좌우 여백을 넓혀 동글한 느낌 강조 */
+        background-color: #4A90E2 !important; /* 부드러운 파스텔톤 블루 */
+        color: #ffffff !important;
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3) !important; /* 은은한 푸른 그림자 */
+        transition: all 0.3s ease !important;
+    }
+
+    /* 마우스를 올렸을 때 효과 */
+    .button.cute-round:hover {
+        background-color: #357ABD !important;
+        transform: translateY(-2px); /* 살짝 위로 떠오르는 효과 */
+        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4) !important;
+    }
     </style>
 	</head>
 	<body class="is-preload">
