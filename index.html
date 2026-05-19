@@ -15,25 +15,26 @@
         .box.style2 {position: relative;z-index: 1;}
 		.button.cute-round {
     		border-radius: 50px !important;    
-    		background-color: #4A90E2 !important; 
+    		background-color: #111111 !important; /* 청량한 하늘색에서 시크한 검정색으로 변경 */
     		color: #ffffff !important;
     		border: none !important;
-    		box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3) !important; 
+    		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important; /* 검정 버튼에 맞춘 은은한 어두운 그림자 */
     		transition: all 0.3s ease !important;
     
-   			 /* 템플릿의 크기/글자 간섭을 완벽히 차단하는 마법의 삼총사 */
-    		font-size: 20px !important;         /* em 대신 절대 단위인 px로 두 버튼의 글자 크기를 강제 고정 */
-    		padding: 10px 32px !important;      /* 위아래(12px), 좌우(30px) 패딩을 px로 똑같이 주입 */
-    		line-height: 1.2 !important;        /* 텍스트가 차지하는 세로 정렬 높이를 동일하게 고정 */   
+    		/* 기존 20px 크기 및 정렬 유지 */
+    		font-size: 20px !important;         
+    		padding: 12px 32px !important;      
+    		line-height: 1.2 !important;        
+    
     		display: inline-block !important;
-    		height: auto !important;            /* 템플릿 고유의 버튼 높이 설정을 무력화 */
+    		height: auto !important;            
 			}
 
 		/* 마우스를 올렸을 때 효과 */
 		.button.cute-round:hover {
-    		background-color: #357ABD !important;
+    		background-color: #333333 !important; /* 마우스를 올리면 세련된 진한 회색으로 변합니다 */
     		transform: translateY(-2px); 
-    		box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4) !important;
+    		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
 			}
     </style>
 	</head>
