@@ -2444,3 +2444,8 @@ input, select, textarea {
 					}
 
 	}
+
+.box.style2 {
+    position: relative;
+    z-index: 1;
+}
