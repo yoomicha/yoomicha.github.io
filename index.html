@@ -15,15 +15,18 @@
         .box.style2 {position: relative;z-index: 1;}
 		.button.cute-round {
     		border-radius: 50px !important;    
-    		font-size: 0.95em !important;      
-    		padding: 0.65em 2.2em !important;  /* 위아래 높이를 0.65em으로 완벽히 통일하고, 좌우 여백은 2.2em으로 넉넉하게 줍니다 */
     		background-color: #4A90E2 !important; 
     		color: #ffffff !important;
     		border: none !important;
     		box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3) !important; 
     		transition: all 0.3s ease !important;
+    
+   			 /* 템플릿의 크기/글자 간섭을 완벽히 차단하는 마법의 삼총사 */
+    		font-size: 14px !important;         /* em 대신 절대 단위인 px로 두 버튼의 글자 크기를 강제 고정 */
+    		padding: 12px 30px !important;      /* 위아래(12px), 좌우(30px) 패딩을 px로 똑같이 주입 */
+    		line-height: 1.2 !important;        /* 텍스트가 차지하는 세로 정렬 높이를 동일하게 고정 */   
     		display: inline-block !important;
-    		line-height: 1 !important;         /* 내부 글자 정렬 기준을 맞추어 높이가 어긋나지 않게 고정합니다 */
+    		height: auto !important;            /* 템플릿 고유의 버튼 높이 설정을 무력화 */
 			}
 
 		/* 마우스를 올렸을 때 효과 */
