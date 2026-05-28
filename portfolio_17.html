@@ -1,12 +1,17 @@
-
+		
 <!DOCTYPE HTML>
 <html>
+
 <head>
 	<title>YoomiCha Portfolio</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+	<link rel="icon" href="favicon.png" type="image/x-icon" />
 </head>
+	<head>
+
 
 
 							<!-- Nav -->
@@ -14,6 +19,7 @@
         				<ul class="container">
                   <li><a href="index.html#top">Home</a></li>
                   <li><a href="index.html#work">About</a></li>
+				  <li><a href="index.html#highlights">Highlights</a></li>
                   <li><a href="index.html#portfolio">Projects</a></li>
         				</ul>
         			</nav>
@@ -23,13 +29,24 @@
 
 		<!-- Main -->
 
-
+    <article class="wrapper style2">
+      <div class="container">
 					<div style="text-align:left">
 
-						 <center><img src="portfolio/pic15.png" style="width:100%;height:auto;"></center>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+            <link rel="stylesheet" href="assets/css/main.css" />
 
-				 	</div>
+					 <div class="inner">
 
+						 <h1><strong>Next SFDC(Salesforce) Renewals Console Proposal</strong></h1>
+             <h3><br>Cisco | 2023-2024</h3>
+             <center><br><img src="images/files/C360,O360/O360.png" style="width:100%;height:auto;"></center>
+
+			<center>
+    		<br>
+    		<div id="pdf-container" style="width: 100%; max-width: 900px; margin: 0 auto;"></div>
+			</center>
 
 						<!-- Footer -->
 
@@ -43,11 +60,47 @@
 
 		<!-- Scripts -->
 
-      <script src="assets/js/jquery.min.js"></script>
-		  <script src="assets/js/skel.min.js"></script>
-		  <script src="assets/js/util.js"></script>
-		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
-  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+        
+        // PDF 파일 경로
+        const url = 'images/files/GroupingLogic/01_Grouping Logic.pdf'; 
+        const container = document.getElementById('pdf-container');
+
+        pdfjsLib.getDocument(url).promise.then(pdf => {
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                pdf.getPage(pageNum).then(page => {
+                    const canvas = document.createElement('canvas');
+                    canvas.style.display = 'block';
+                    canvas.style.width = '100%';
+                    canvas.style.marginBottom = '20px';
+                    container.appendChild(canvas);
+
+                    const context = canvas.getContext('2d');
+                    const viewport = page.getViewport({ scale: 1.5 }); // 선명도 조절
+
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    page.render(renderContext);
+                });
+            }
+        }).catch(error => {
+            console.error('PDF 로딩 중 에러 발생: ', error);
+        });
+    </script>
+
+</article>
+</div>
+</body>
 </html>
