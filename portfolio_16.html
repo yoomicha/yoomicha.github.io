@@ -65,42 +65,41 @@
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
     
     // 두 개의 PDF 파일 경로 설정
-    const firstPdfUrl = 'images/files/ConnectedInsights/Connected Insights_Report.pdf'; 
+const pdfUrl = 'images/files/ConnectedInsights/Connected Insights_Report.pdf';
+const container = document.getElementById('pdf-container');
 
-	const container = document.getElementById('pdf-container');
+// PDF 로드 및 전체 페이지 렌더링
+pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+    // 전체 페이지를 모두 보여주도록 설정
+    const totalPagesToShow = pdf.numPages;
 
-    // PDF 로드 및 전체 페이지 렌더링
-    pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
-        // 전체 페이지를 모두 보여주도록 설정
-        const totalPagesToShow = pdf.numPages;
+    // 페이지를 1페이지부터 순서대로 그리기 위한 Promise 체인
+    let chain = Promise.resolve();
 
-        // 페이지를 1페이지부터 순서대로 그리기 위한 Promise 체인
-        let chain = Promise.resolve();
+    for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
+        chain = chain.then(() => pdf.getPage(pageNum).then(page => {
+            const canvas = document.createElement('canvas');
+            canvas.style.display = 'block';
+            canvas.style.width = '100%';
+            canvas.style.marginBottom = '20px';
+            container.appendChild(canvas);
 
-        for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
-            chain = chain.then(() => pdf.getPage(pageNum).then(page => {
-                const canvas = document.createElement('canvas');
-                canvas.style.display = 'block';
-                canvas.style.width = '100%';
-                canvas.style.marginBottom = '20px';
-                container.appendChild(canvas);
+            const context = canvas.getContext('2d');
+            const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
 
-                const context = canvas.getContext('2d');
-                const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
 
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                return page.render(renderContext).promise;
-            }));
-        }
-    }).catch(error => {
-        console.error('PDF 로딩 중 에러 발생: ', error);
-    });
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            return page.render(renderContext).promise;
+        }));
+    }
+}).catch(error => {
+    console.error('PDF 로딩 중 에러 발생: ', error);
+});
 </script>
 
 </body>
