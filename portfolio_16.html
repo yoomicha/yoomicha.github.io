@@ -1,4 +1,4 @@
-
+		
 <!DOCTYPE HTML>
 <html>
 
@@ -7,6 +7,8 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+	<link rel="icon" href="favicon.png" type="image/x-icon" />
 </head>
 	<head>
 
@@ -17,6 +19,7 @@
         				<ul class="container">
                   <li><a href="index.html#top">Home</a></li>
                   <li><a href="index.html#work">About</a></li>
+				  <li><a href="index.html#highlights">Highlights</a></li>
                   <li><a href="index.html#portfolio">Projects</a></li>
         				</ul>
         			</nav>
@@ -36,76 +39,69 @@
 
 					 <div class="inner">
 
-						 <h1><strong>Trio 8300 </strong></h1>
-             <h3><br>Poly | Jul 2018 - Jun 2019</h3>
-             <br> <a href="https://www.poly.com/us/en/products/phones/trio/trio-8300"> -> Go to Trio 8300 Website Link </a>
-             <center><br><a href="https://www.poly.com/us/en/products/phones/trio/trio-8300"><img src="images/files/trio_product.png" style="width:100%;height:auto;"></center></a>
-               <div style="text-align:left">
-               <h2><br><br><br><br>Goals<h2>
-               </div>
-                 <div style="text-align:justify">
-                   <ul><span style="margin:5px"> </span>
-                     <li>Designing User Interface(UI) and Graphic User Interface(GUI) of a button interaction product which has 2.5" screen </li>
-                     <li>Interactions should be based on a touch based screen product - Trio 8800</li>
-                     <li>Designs should keep Poly Identity </li>
-                   </ul>
-                 </div>
+						 <h1><strong>SFDC Renewals Console Projects</strong></h1>
+             <h3><br>Cisco | 2022-2025</h3>
 
-                 <div style="text-align:left">
-                 <h2><br><br>Roles<h2>
-                 </div>
-                   <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-                       <li>Managing project </li>
-                       <li>Reporting to a design team manager</li>
-                       <li>Co-working with a developer, marketers, product manager, and a sales department</li>
-                       <li>Designing UI of the product</li>
-                       <li>Creating Usability Test Prototype</li>
-                     </ul>
-                   </div>
+<br>
+    <div id="pdf-container" style="width: 100%; max-width: 900px; margin: 0 auto;"></div>
 
+    <footer>
+        <ul class="copyright" style="text-align: center;">
+            &copy; YoomiCha. All rights reserved
+        </ul>
+    </footer>
 
-                   <div style="text-align:left">
-                   <h2><br><br>Process<h2>
-                   </div>
-                     <div style="text-align:justify">
-         	             <br><center><img src="images/files/trio_process.png" style="width:75%;height:auto;"></center>
-                     </div>
+    </div>
+						
+</article>
 
-                     <h2><br><br>Outputs<h2>
-                     </div>
-                       <div style="text-align:justify">
-                         <ul><span style="margin:5px"> </span>
-                           <li><strong>User Interface Design:</strong> All screens of Trio 8300 using Sketch</li>
-                           <li><strong>Graphic User Interface Design:</strong> Library asset,icons,components using Adobe Photoshop, Illustrater</li>
-                           <li><strong>Prototype:</strong> Working prototype using Sketch</li>
-                           <li><strong>Presentation:</strong> Concept delivery file, Final product introduction file</li>
-                           <li><strong>Example file:</strong> Sketch Prototype Image</li>
-                           <center><img src="images/files/trio_prototype.png" style="width:75%;height:auto;"></center>
-                         </ul>
-                       </div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
-						 </div>
-				 	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    
+    // 두 개의 PDF 파일 경로 설정
+    const firstPdfUrl = 'images/files/ConnectedInsights/Connected Insights_Report.pdf'; 
 
+	const container = document.getElementById('pdf-container');
 
-						<!-- Footer -->
+    // PDF 로드 및 전체 페이지 렌더링
+    pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+        // 전체 페이지를 모두 보여주도록 설정
+        const totalPagesToShow = pdf.numPages;
 
-            <footer>
-  							<ul class="copyright" align="center">
-  							&copy;YoomiCha. All rights reserved
-  							</ul>
-  					</footer>
+        // 페이지를 1페이지부터 순서대로 그리기 위한 Promise 체인
+        let chain = Promise.resolve();
 
-		 </div>
+        for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
+            chain = chain.then(() => pdf.getPage(pageNum).then(page => {
+                const canvas = document.createElement('canvas');
+                canvas.style.display = 'block';
+                canvas.style.width = '100%';
+                canvas.style.marginBottom = '20px';
+                container.appendChild(canvas);
 
-		<!-- Scripts -->
+                const context = canvas.getContext('2d');
+                const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
 
-      <script src="assets/js/jquery.min.js"></script>
-		  <script src="assets/js/skel.min.js"></script>
-		  <script src="assets/js/util.js"></script>
-		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
 
-  </body>
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                return page.render(renderContext).promise;
+            }));
+        }
+    }).catch(error => {
+        console.error('PDF 로딩 중 에러 발생: ', error);
+    });
+</script>
+
+</body>
 </html>
