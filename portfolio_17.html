@@ -74,7 +74,10 @@
         const container = document.getElementById('pdf-container');
 
         pdfjsLib.getDocument(url).promise.then(pdf => {
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+            // 전체 페이지 수에서 마지막 3페이지를 뺀 만큼만 지정
+            const totalPagesToShow = pdf.numPages - 3;
+
+            for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
                 pdf.getPage(pageNum).then(page => {
                     const canvas = document.createElement('canvas');
                     canvas.style.display = 'block';
@@ -83,7 +86,7 @@
                     container.appendChild(canvas);
 
                     const context = canvas.getContext('2d');
-                    const viewport = page.getViewport({ scale: 1.5 }); // 선명도 조절
+                    const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
 
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
