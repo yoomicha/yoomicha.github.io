@@ -41,7 +41,7 @@
 
 						 <h1><strong>Next SFDC(Salesforce) Renewals Console Proposal</strong></h1>
              <h3><br>Cisco | 2023-2024</h3>
-             <center><br><img src="images/files/C360,O360/O360.png" style="width:100%;height:auto;"></center>
+             <center><br><img src="images/files/GroupingLogic/GroupingLogic.png" style="width:100%;height:auto;"></center>
 
 			<center>
     		<br>
@@ -60,50 +60,61 @@
 
 		<!-- Scripts -->
 
-<script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    
+    // 1. 보여줄 PDF 파일 경로들 설정
+    const firstPdfUrl = 'images/files/GroupingLogic/01_Grouping Logic.pdf'; 
+    const secondPdfUrl = 'images/files/GroupingLogic/02_Grouping Logic.pdf'; // <-- 두 번째 PDF 파일명으로 수정하세요!
+    
+    const container = document.getElementById('pdf-container');
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-        
-        // PDF 파일 경로
-        const url = 'images/files/GroupingLogic/01_Grouping Logic.pdf'; 
-        const container = document.getElementById('pdf-container');
+    // 공통 페이지 렌더링 함수
+    function renderPdfPages(pdf, totalPages) {
+        let chain = Promise.resolve();
 
-        pdfjsLib.getDocument(url).promise.then(pdf => {
-            // 전체 페이지 수에서 마지막 3페이지를 뺀 만큼만 지정
-            const totalPagesToShow = pdf.numPages - 3;
+        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+            chain = chain.then(() => pdf.getPage(pageNum).then(page => {
+                const canvas = document.createElement('canvas');
+                canvas.style.display = 'block';
+                canvas.style.width = '100%';
+                canvas.style.marginBottom = '20px';
+                container.appendChild(canvas);
 
-            for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
-                pdf.getPage(pageNum).then(page => {
-                    const canvas = document.createElement('canvas');
-                    canvas.style.display = 'block';
-                    canvas.style.width = '100%';
-                    canvas.style.marginBottom = '20px';
-                    container.appendChild(canvas);
+                const context = canvas.getContext('2d');
+                const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
 
-                    const context = canvas.getContext('2d');
-                    const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
 
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                return page.render(renderContext).promise;
+            }));
+        }
+        return chain;
+    }
 
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport
-                    };
-                    page.render(renderContext);
-                });
-            }
-        }).catch(error => {
-            console.error('PDF 로딩 중 에러 발생: ', error);
-        });
-    </script>
+    // 첫 번째 PDF 로드 -> 완료 후 두 번째 PDF 연속 로드
+    pdfjsLib.getDocument(firstPdfUrl).promise.then(pdf1 => {
+        // 첫 번째 PDF는 마지막 3페이지 제외
+        const pagesToShow1 = pdf1.numPages - 3;
+        return renderPdfPages(pdf1, pagesToShow1);
+    }).then(() => {
+        // 첫 번째 PDF 출력이 완료되면 두 번째 PDF 로드
+        return pdfjsLib.getDocument(secondPdfUrl).promise;
+    }).then(pdf2 => {
+        // 두 번째 PDF는 전체 페이지를 다 보여줌 (전체 출력)
+        return renderPdfPages(pdf2, pdf2.numPages);
+    }).catch(error => {
+        console.error('PDF 로딩 중 에러 발생: ', error);
+    });
+</script>
 
 </article>
 </div>
 </body>
 </html>
+		  
