@@ -17,9 +17,12 @@
     --faint:#9aa1ab;
     --rule:#e7e9ec;
     --accent:#0c60ff;
-    --maxw:1080px;
+    --hero-bg:#111318;
+    --hero-muted:#9298a3;
+    --maxw:760px;
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{
     margin:0;
     background:var(--bg);
@@ -31,207 +34,270 @@
   a{color:inherit; text-decoration:none;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
 
-  nav.site-nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--rule);
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--hero-bg);
+    color:#fff;
+    padding:72px 24px 40px;
+    text-align:center;
   }
-  nav.site-nav ul{
-    max-width:var(--maxw); margin:0 auto; padding:0 24px;
-    display:flex; gap:28px; list-style:none;
-    height:60px; align-items:center;
-  }
-  nav.site-nav a{
-    text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
-  }
-  nav.site-nav a.active{color:var(--ink); font-weight:700;}
-  nav.site-nav a:hover{color:var(--ink);}
-
-  .hero{padding:56px 0 8px;}
   .hero h1{
-    font-size:clamp(28px,4vw,38px); font-weight:800; letter-spacing:-0.01em;
-    margin:0 0 12px;
+    font-size:clamp(26px,3.4vw,32px);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin:0 0 18px;
   }
-  .hero p{color:var(--muted); font-size:16px; max-width:560px; margin:0;}
+  .hero .line{
+    font-size:14px;
+    color:var(--hero-muted);
+    margin:0 0 6px;
+  }
+  .hero .line a{
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    padding-bottom:1px;
+  }
+  .hero-nav{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:32px;
+  }
+  .hero-nav a{
+    font-size:14px;
+    font-weight:600;
+    color:var(--hero-muted);
+    padding-bottom:8px;
+  }
+  .hero-nav a.active{
+    color:#fff;
+    border-bottom:2px solid #fff;
+  }
 
-  .eyebrow{
-    font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--faint); margin:0 0 18px;
+  /* ---------- Section headings ---------- */
+  .section-heading{
+    text-align:center;
+    font-size:15px;
+    font-weight:700;
+    color:var(--ink);
+    margin:0 0 40px;
   }
-  section{padding:44px 0;}
+  section{padding:64px 0;}
   section.rule-top{border-top:1px solid var(--rule);}
 
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
+  /* ---------- Featured Work (large stacked cards) ---------- */
+  .featured-list{
+    display:flex;
+    flex-direction:column;
+    gap:56px;
   }
-  @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:600px){ .grid{grid-template-columns:1fr;} }
-
-  .card{
-    display:block;
-    border:1px solid var(--rule);
+  .feature-card{display:block;}
+  .feature-card .thumb{
     border-radius:10px;
     overflow:hidden;
+    background:#f3f4f6;
+    border:1px solid var(--rule);
+  }
+  .feature-card .thumb img{width:100%; display:block;}
+  .feature-card h3{
+    font-size:16px; font-weight:700; margin:18px 0 4px;
+  }
+  .feature-card p{font-size:13px; color:var(--muted); margin:0;}
+  .feature-card .company{color:var(--ink); font-weight:600;}
+
+  /* ---------- Past Work (grid) ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px 24px;
+  }
+  @media (max-width:600px){ .grid{grid-template-columns:1fr;} }
+
+  .card{display:block;}
+  .card .thumb{
+    aspect-ratio:4/3;
+    background:#f3f4f6;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid var(--rule);
     transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
   }
-  .card:hover{
+  .card:hover .thumb{
     transform:translateY(-3px);
     box-shadow:0 12px 24px rgba(15,23,42,.08);
     border-color:#d8dce1;
   }
-  .card .thumb{
-    aspect-ratio:4/3;
-    background:#f3f4f6;
-    overflow:hidden;
-  }
   .card .thumb img{width:100%; height:100%; object-fit:cover; display:block;}
-  .card .info{padding:16px 18px 18px;}
-  .card h3{font-size:15px; font-weight:700; margin:0 0 6px; line-height:1.35;}
+  .card h3{font-size:14px; font-weight:700; margin:14px 0 4px; line-height:1.35;}
   .card p{font-size:13px; color:var(--muted); margin:0;}
   .card .company{color:var(--ink); font-weight:600;}
 
+  /* ---------- Footer ---------- */
   footer{
-    border-top:1px solid var(--rule); margin-top:20px;
-    padding:32px 0 64px; text-align:center;
-    color:var(--faint); font-size:13px;
+    border-top:1px solid var(--rule);
+    padding:32px 0 64px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding-left:24px;
+    padding-right:24px;
+    font-size:13px;
+    color:var(--muted);
   }
+  footer .brand{font-weight:700; color:var(--ink);}
+
+  .back-to-top{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    padding:10px 16px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    box-shadow:0 8px 20px rgba(15,23,42,.08);
+    z-index:60;
+  }
+  .back-to-top:hover{border-color:#d8dce1;}
 </style>
 </head>
-<body>
+<body id="top">
 
-<nav class="site-nav">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html" class="active">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="images/docs/YoomiCha_Resume.pdf" target="_blank">Résumé</a></li>
-  </ul>
-</nav>
+<div class="hero">
+  <h1>Yoomi Cha</h1>
+  <p class="line">Product Design at <a href="#">Cisco</a> · Based in TX · Parsons, BFA</p>
+  <p class="line">Previously at Samsung Techwin · Poly · UT Austin</p>
+  <nav class="hero-nav">
+    <a href="work.html" class="active">Work</a>
+    <a href="images/docs/YoomiCha_Resume.pdf" target="_blank">Résumé</a>
+    <a href="about.html">About</a>
+  </nav>
+</div>
 
 <div class="wrap">
 
-  <div class="hero">
-    <h1>Work</h1>
-    <p>Enterprise SaaS and AI product design across Cisco, Samsung Techwin, Poly, and research work from UT Austin.</p>
-  </div>
-
   <section>
-    <p class="eyebrow">Highlights</p>
-    <div class="grid">
-      <a class="card" href="portfolio_21.html">
+    <p class="section-heading">Featured Work</p>
+    <div class="featured-list">
+
+      <a class="feature-card" href="portfolio_21.html">
         <div class="thumb"><img src="images/pic21.png" alt="Security MFA Bypass Request"></div>
-        <div class="info">
-          <h3>Security MFA Bypass Request</h3>
-          <p>Product Designer, 2026 · <span class="company">Cisco</span></p>
-        </div>
+        <h3>Security MFA Bypass Request</h3>
+        <p>Product Designer, 2026 · <span class="company">Cisco</span></p>
       </a>
-      <a class="card" href="portfolio_20.html">
+
+      <a class="feature-card" href="portfolio_20.html">
         <div class="thumb"><img src="images/pic20.png" alt="SFDC Renewals AI Support - C360, O360"></div>
-        <div class="info">
-          <h3>SFDC Renewals AI Support — C360, O360</h3>
-          <p>Product Designer, 2025 · <span class="company">Cisco</span></p>
-        </div>
+        <h3>SFDC Renewals AI Support — C360, O360</h3>
+        <p>Product Designer, 2025 · <span class="company">Cisco</span></p>
       </a>
-      <a class="card" href="portfolio_18.html">
+
+      <a class="feature-card" href="portfolio_18.html">
         <div class="thumb"><img src="images/pic18.png" alt="Sales AI Assistant Proposal"></div>
-        <div class="info">
-          <h3>Sales AI Assistant Proposal</h3>
-          <p>Product Designer, 2024–2025 · <span class="company">Cisco</span></p>
-        </div>
+        <h3>Sales AI Assistant Proposal</h3>
+        <p>Product Designer, 2024–2025 · <span class="company">Cisco</span></p>
       </a>
+
     </div>
   </section>
 
   <section class="rule-top">
-    <p class="eyebrow">All Projects</p>
+    <p class="section-heading">Past Work</p>
     <div class="grid">
 
-      <a class="card" href="portfolio_21.html">
-        <div class="thumb"><img src="images/pic21.png" alt=""></div>
-        <div class="info"><h3>Security MFA Bypass Request</h3><p>Product Designer, 2026 · <span class="company">Cisco</span></p></div>
-      </a>
-      <a class="card" href="portfolio_20.html">
-        <div class="thumb"><img src="images/pic20.png" alt=""></div>
-        <div class="info"><h3>SFDC Renewals AI Support — C360, O360</h3><p>Product Designer, 2025 · <span class="company">Cisco</span></p></div>
-      </a>
       <a class="card" href="portfolio_19.html">
         <div class="thumb"><img src="images/pic19.png" alt=""></div>
-        <div class="info"><h3>2025 AI Hackathon — Top 10</h3><p>Product Designer, 2025 · <span class="company">Cisco</span></p></div>
-      </a>
-      <a class="card" href="portfolio_18.html">
-        <div class="thumb"><img src="images/pic18.png" alt=""></div>
-        <div class="info"><h3>Sales AI Assistant Proposal</h3><p>Product Designer, 2024–2025 · <span class="company">Cisco</span></p></div>
+        <h3>2025 AI Hackathon — Top 10</h3>
+        <p>Product Designer, 2025 · <span class="company">Cisco</span></p>
       </a>
       <a class="card" href="portfolio_17.html">
         <div class="thumb"><img src="images/pic17.png" alt=""></div>
-        <div class="info"><h3>Next SFDC Renewals Console Proposal</h3><p>UX Designer, 2023–2024 · <span class="company">Cisco</span></p></div>
+        <h3>Next SFDC Renewals Console Proposal</h3>
+        <p>UX Designer, 2023–2024 · <span class="company">Cisco</span></p>
       </a>
       <a class="card" href="portfolio_16.html">
         <div class="thumb"><img src="images/pic16.png" alt=""></div>
-        <div class="info"><h3>SFDC Renewals Console Projects</h3><p>UX Designer, 2022–2025 · <span class="company">Cisco</span></p></div>
+        <h3>SFDC Renewals Console Projects</h3>
+        <p>UX Designer, 2022–2025 · <span class="company">Cisco</span></p>
       </a>
       <a class="card" href="portfolio_1.html">
         <div class="thumb"><img src="images/pic01.png" alt=""></div>
-        <div class="info"><h3>Smart Conference Phone Trio 8300</h3><p>UX Designer, Released 2019 · <span class="company">Poly</span></p></div>
+        <h3>Smart Conference Phone Trio 8300</h3>
+        <p>UX Designer, Released 2019 · <span class="company">Poly</span></p>
       </a>
       <a class="card" href="portfolio_2.html">
         <div class="thumb"><img src="images/pic02.png" alt=""></div>
-        <div class="info"><h3>Opioid Overdose Prevention</h3><p>Voluntary project, submitted to UXPA · <span class="company">UT Austin</span></p></div>
+        <h3>Opioid Overdose Prevention</h3>
+        <p>Voluntary project, submitted to UXPA · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_3.html">
         <div class="thumb"><img src="images/pic03.png" alt=""></div>
-        <div class="info"><h3>Research for a Dual Screen Device</h3><p>Graduate capstone with Dell · <span class="company">UT Austin</span></p></div>
+        <h3>Research for a Dual Screen Device</h3>
+        <p>Graduate capstone with Dell · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_4.html">
         <div class="thumb"><img src="images/pic04.png" alt=""></div>
-        <div class="info"><h3>Outfit App Research & Design</h3><p>Information Architecture and Design · <span class="company">UT Austin</span></p></div>
+        <h3>Outfit App Research & Design</h3>
+        <p>Information Architecture and Design · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_5.html">
         <div class="thumb"><img src="images/pic05.png" alt=""></div>
-        <div class="info"><h3>Greenbud App Research & Design</h3><p>Interaction Design · <span class="company">UT Austin</span></p></div>
+        <h3>Greenbud App Research & Design</h3>
+        <p>Interaction Design · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_6.html">
         <div class="thumb"><img src="images/pic06.png" alt=""></div>
-        <div class="info"><h3>Designing Self Diagnosis Web</h3><p>Rapid Prototyping / Lean UX · <span class="company">UT Austin</span></p></div>
+        <h3>Designing Self Diagnosis Web</h3>
+        <p>Rapid Prototyping / Lean UX · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_8.html">
         <div class="thumb"><img src="images/pic07.png" alt=""></div>
-        <div class="info"><h3>Redesigning I-School Website</h3><p>Voluntary project with I-School · <span class="company">UT Austin</span></p></div>
+        <h3>Redesigning I-School Website</h3>
+        <p>Voluntary project with I-School · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_8.html">
         <div class="thumb"><img src="images/pic08.png" alt=""></div>
-        <div class="info"><h3>HRC Exhibition AR/VR App</h3><p>Rapid Prototyping / Lean UX · <span class="company">UT Austin</span></p></div>
+        <h3>HRC Exhibition AR/VR App</h3>
+        <p>Rapid Prototyping / Lean UX · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_9.html">
         <div class="thumb"><img src="images/pic09.png" alt=""></div>
-        <div class="info"><h3>Improving the 'Air' Main Page — Research & Design</h3><p>UX Design Intern · <span class="company">TCEQ</span></p></div>
+        <h3>Improving the 'Air' Main Page — Research & Design</h3>
+        <p>UX Design Intern · <span class="company">TCEQ</span></p>
       </a>
       <a class="card" href="portfolio_10.html">
         <div class="thumb"><img src="images/pic10.png" alt=""></div>
-        <div class="info"><h3>Eye Tracking Experiment Research</h3><p>Advanced Human-Computer Interaction · <span class="company">UT Austin</span></p></div>
+        <h3>Eye Tracking Experiment Research</h3>
+        <p>Advanced Human-Computer Interaction · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_11.html">
         <div class="thumb"><img src="images/pic11.png" alt=""></div>
-        <div class="info"><h3>Redesigning CapMetro App</h3><p>Human-Computer Interaction · <span class="company">UT Austin</span></p></div>
+        <h3>Redesigning CapMetro App</h3>
+        <p>Human-Computer Interaction · <span class="company">UT Austin</span></p>
       </a>
       <a class="card" href="portfolio_12.html">
         <div class="thumb"><img src="images/pic12.png" alt=""></div>
-        <div class="info"><h3>Wisent Toolbox Web/Mobile</h3><p>Senior UX Designer · <span class="company">Samsung Techwin</span></p></div>
+        <h3>Wisent Toolbox Web/Mobile</h3>
+        <p>Senior UX Designer · <span class="company">Samsung Techwin</span></p>
       </a>
       <a class="card" href="portfolio_13.html">
         <div class="thumb"><img src="images/pic13.png" alt=""></div>
-        <div class="info"><h3>Smart Security Manager</h3><p>Senior UX Designer · <span class="company">Samsung Techwin</span></p></div>
+        <h3>Smart Security Manager</h3>
+        <p>Senior UX Designer · <span class="company">Samsung Techwin</span></p>
       </a>
       <a class="card" href="portfolio_14.html">
         <div class="thumb"><img src="images/pic14.png" alt=""></div>
-        <div class="info"><h3>SSM Module Type</h3><p>Senior UX Designer · <span class="company">Samsung Techwin</span></p></div>
+        <h3>SSM Module Type</h3>
+        <p>Senior UX Designer · <span class="company">Samsung Techwin</span></p>
       </a>
       <a class="card" href="portfolio_15.html">
         <div class="thumb"><img src="images/pic15.png" alt=""></div>
-        <div class="info"><h3>Vertical Market Solution</h3><p>Senior UX Designer · <span class="company">Samsung Techwin</span></p></div>
+        <h3>Vertical Market Solution</h3>
+        <p>Senior UX Designer · <span class="company">Samsung Techwin</span></p>
       </a>
 
     </div>
@@ -239,7 +305,13 @@
 
 </div>
 
-<footer>© Yoomi Cha. All rights reserved.</footer>
+<footer>
+  <span class="brand">Yoomi Cha</span>
+  <span>yoomi.design@gmail.com</span>
+  <span>2026</span>
+</footer>
+
+<a class="back-to-top" href="#top">↑ Back to Top</a>
 
 </body>
 </html>
