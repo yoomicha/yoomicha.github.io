@@ -1,4 +1,4 @@
-	
+		
 <!DOCTYPE HTML>
 <html>
 
@@ -29,101 +29,78 @@
 
 		<!-- Main -->
 
-<article class="wrapper style2">
-        <div class="container">
-            <div class="inner">
-                <div style="text-align:left">
-                    <h1><strong>Security MFA Bypass Request</strong></h1>
-                    <h3 style="margin-top: 10px;">Cisco | 2026</h3>
-                </div>
-                
-                <div style="text-align:center; margin: 30px 0;">
-                    <video src="images/files/MFABypass/MyRequest_Validation.mp4" style="width: 100%; height: auto;" autoplay loop muted playsinline></video>
-                </div>
-
-                <div style="text-align:left; margin-top: 40px;">
-                    <h2>Framing the Problem</h2>
-                </div>
-                <div style="text-align:justify">
-                    <ul style="margin-top: 10px;">
-                        <li>Define general account & MFA bypass request life-cycle</li>
-                        <li>Define request submission process flow</li>
-                        <li>Define requirements</li>
-                    </ul>
-					<center><br><img src="images/files/MFABypass/FramingtheProblem.png" style="width:100%;height:auto;"></center>
-
-                </div>
-
-				<div style="text-align: left; margin-top: 40px;">
-    				<h2>Goal</h2>
-				</div>
-				<div style="text-align: justify">
-    				<ul style="margin-top: 10px;">
-        				<li>Enhancing the overall user journey for the MFA Bypass request process and improving MFA Bypass Approval form.</li>
-    				</ul>
-				</div>
-								   
-				<div style="text-align: left; margin-top: 40px;">
-    				<h2>Role</h2>
-				</div>
-				<div style="text-align: justify">
-    				<ul style="margin-top: 10px;">
-        				<li>Owned the end-to-end UX design process from discovery to high-fidelity prototyping.</li>
-        				<li>Facilitated internal design feedback sessions and cross-functional alignments with the Security Engineering team.</li>
-        				<li>Synthesized stakeholder feedback into iterative product updates.</li>
-    				</ul>
-				</div>
-						
-				<div style="text-align: left; margin-top: 40px;">
-    				<h2>Key Impact</h2>
-				</div>
-				<div style="text-align: justify">
-    				<ul style="margin-top: 10px;">
-        				<li><strong>Optimized Governance:</strong> Balanced strict security protocols with developer velocity by implementing a secure, low-visibility entry point.</li>
-        				<li><strong>Frictionless Workflow:</strong> Eliminated manual data entry via smart automation (AD/ESP integration), substantially reducing form drop-off rates for valid use cases.</li>
-        				<li><strong>Proactive Support:</strong> Guided unqualified users to alternative authentication options instantly, preventing redundant operational support tickets.</li>
-    				</ul>
-				</div>
-					 
+    <article class="wrapper style2">
+      <div class="container">
 					<div style="text-align:left">
-   					 <h2><br><br>Deliverables</h2> 
-					</div>
-					<div style="text-align:justify">
-   	 					<ul>
-        					<span style="margin:5px"></span>
-        					<li>Finalized the high-fidelity prototype through multiple rounds of internal and external feedback sessions</li>
-    					</ul>
-						<center><br><img src="images/files/MFABypass/Deliverables.png" style="width:100%;height:auto;"></center>
 
-					</div>
-					 
-					<div style="text-align:left; margin-top:40px;">
-    					<h2>Learning</h2>
-					</div>
-					<div style="text-align:justify">
-   	 					<ul style="margin-top:10px;">
-        					<li><strong>Balancing Enterprise Security with Frictionless UX:</strong> Designing the MFA Bypass workflow taught me how to strictly adhere to enterprise security compliance while minimizing user friction. I learned that clear data hierarchy in forms is critical when users are under high-stress, time-sensitive situations.</li>
-        					<li><strong>Cross-Functional Alignment in Technical Domains:</strong> Collaborating closely with the Security Engineering team highlighted the importance of translating complex technical requirements into intuitive user flows. Utilizing Jira Align and Confluence helped synchronize stakeholder feedback, ensuring the final prototype met both engineering constraints and user needs.</li>
-    					</ul>                  
-					</div>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+            <link rel="stylesheet" href="assets/css/main.css" />
 
-						<!-- Footer -->
+					 <div class="inner">
 
-            <footer>
-  							<ul class="copyright" align="center">
-  							&copy;YoomiCha. All rights reserved
-  							</ul>
-  					</footer>
+						 <h1><strong>Security MFA Bypass Request</strong></h1>
+             <h3><br>Cisco | 2026</h3>
 
-		 </div>
+<br>
+    <div id="pdf-container" style="width: 100%; max-width: 900px; margin: 0 auto;"></div>
 
-		<!-- Scripts -->
+    <footer>
+        <ul class="copyright" style="text-align: center;">
+            &copy; YoomiCha. All rights reserved
+        </ul>
+    </footer>
 
-      <script src="assets/js/jquery.min.js"></script>
-		  <script src="assets/js/skel.min.js"></script>
-		  <script src="assets/js/util.js"></script>
-		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+    </div>
+						
+</article>
 
-  </body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    
+    // PDF 파일 경로 설정 (실제 파일 경로로 교체해주세요)
+const pdfUrl = 'images/files/MFABypass/MFABypass_Report.pdf';
+const container = document.getElementById('pdf-container');
+
+// PDF 로드 및 전체 페이지 렌더링
+pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+    // 전체 페이지를 모두 보여주도록 설정
+    const totalPagesToShow = pdf.numPages;
+
+    // 페이지를 1페이지부터 순서대로 그리기 위한 Promise 체인
+    let chain = Promise.resolve();
+
+    for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
+        chain = chain.then(() => pdf.getPage(pageNum).then(page => {
+            const canvas = document.createElement('canvas');
+            canvas.style.display = 'block';
+            canvas.style.width = '100%';
+            canvas.style.marginBottom = '20px';
+            container.appendChild(canvas);
+
+            const context = canvas.getContext('2d');
+            const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            return page.render(renderContext).promise;
+        }));
+    }
+}).catch(error => {
+    console.error('PDF 로딩 중 에러 발생: ', error);
+});
+</script>
+
+</body>
 </html>
