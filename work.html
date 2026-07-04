@@ -85,14 +85,25 @@
   section{padding:64px 0;}
   section.rule-top{border-top:1px solid var(--rule);}
 
-  /* ---------- Featured Work (same card layout as Past Work) ---------- */
-  .grid-featured{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:32px 24px;
+  /* ---------- Featured Work (large stacked cards) ---------- */
+  .featured-list{
+    display:flex;
+    flex-direction:column;
+    gap:56px;
   }
-  @media (max-width:900px){ .grid-featured{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:600px){ .grid-featured{grid-template-columns:1fr;} }
+  .feature-card{display:block;}
+  .feature-card .thumb{
+    border-radius:10px;
+    overflow:hidden;
+    background:#f3f4f6;
+    border:1px solid var(--rule);
+  }
+  .feature-card .thumb img{width:100%; display:block;}
+  .feature-card h3{
+    font-size:16px; font-weight:700; margin:18px 0 4px;
+  }
+  .feature-card p{font-size:13px; color:var(--muted); margin:0;}
+  .feature-card .company{color:var(--ink); font-weight:600;}
 
   /* ---------- Past Work (grid) ---------- */
   .grid{
@@ -171,24 +182,24 @@
 
   <section>
     <p class="section-heading">Featured Work</p>
-    <div class="grid-featured">
+    <div class="featured-list">
 
-      <a class="card" href="portfolio_16.html">
+      <a class="feature-card" href="portfolio_16.html">
         <div class="thumb"><img src="images/pic16.png" alt="SFDC Renewals Console Projects"></div>
         <h3>SFDC Renewals Console Projects</h3>
         <p>UX Designer, 2022–2025 · <span class="company">Cisco</span></p>
       </a>
 
-      <a class="card" href="portfolio_21.html">
-        <div class="thumb"><img src="images/pic21.png" alt="Security MFA Bypass Request"></div>
-        <h3>Security MFA Bypass Request</h3>
-        <p>Product Designer, 2026 · <span class="company">Cisco</span></p>
-      </a>
-
-      <a class="card" href="portfolio_18.html">
+      <a class="feature-card" href="portfolio_18.html">
         <div class="thumb"><img src="images/pic18.png" alt="Sales AI Assistant Proposal"></div>
         <h3>Sales AI Assistant Proposal</h3>
         <p>Product Designer, 2024–2025 · <span class="company">Cisco</span></p>
+      </a>
+
+      <a class="feature-card" href="portfolio_21.html">
+        <div class="thumb"><img src="images/pic21.png" alt="Security MFA Bypass Request"></div>
+        <h3>Security MFA Bypass Request</h3>
+        <p>Product Designer, 2026 · <span class="company">Cisco</span></p>
       </a>
 
     </div>
