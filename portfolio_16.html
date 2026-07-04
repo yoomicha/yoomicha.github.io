@@ -1,106 +1,489 @@
-		
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-	<title>YoomiCha Portfolio</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-	<link rel="icon" href="favicon.png" type="image/x-icon" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Renewal Risk 2.0 — Connected Insights Popup | Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#15171c;
+    --muted:#6b7280;
+    --faint:#9aa1ab;
+    --rule:#e7e9ec;
+    --accent:#0c60ff;
+    --accent-soft:#eaf1ff;
+    --navy:#0c1d4d;
+    --navy-2:#132a63;
+    --radius:10px;
+    --maxw:980px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  nav.site-nav ul{
+    max-width:var(--maxw); margin:0 auto; padding:0 24px;
+    display:flex; gap:28px; list-style:none;
+    height:60px; align-items:center;
+  }
+  nav.site-nav a{
+    text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
+    transition:color .15s ease;
+  }
+  nav.site-nav a:hover{color:var(--ink);}
+
+  /* EYEBROW / LABELS */
+  .eyebrow{
+    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 10px;
+  }
+
+  /* HERO */
+  .hero{padding:72px 0 0;}
+  .hero h1{
+    font-size:clamp(28px,4vw,40px);
+    font-weight:800; letter-spacing:-0.01em;
+    margin:0 0 14px; line-height:1.15;
+  }
+  .hero .sub{
+    color:var(--muted); font-size:17px; max-width:640px; margin:0 0 40px;
+  }
+
+  .hero-visual{
+    background:var(--accent);
+    border-radius:16px;
+    padding:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:56px;
+  }
+  .hero-visual img{
+    width:100%; display:block; border-radius:6px;
+    box-shadow:0 12px 28px rgba(0,0,0,.18);
+  }
+  @media (max-width:720px){ .hero-visual{grid-template-columns:1fr;} }
+
+  /* META ROW: overview / role / timeline */
+  .meta-row{
+    display:grid; grid-template-columns:1.6fr 1fr; gap:48px;
+    padding-bottom:56px;
+  }
+  .meta-row p{margin:0; color:var(--muted); font-size:15px;}
+  .meta-cols{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .meta-cols div p{color:var(--ink); font-weight:500; font-size:15px;}
+  @media (max-width:720px){ .meta-row{grid-template-columns:1fr; gap:28px;} }
+
+  /* STAT ROW */
+  .stat-row{
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    display:grid; grid-template-columns:repeat(4,1fr);
+    padding:36px 0;
+    margin-bottom:56px;
+  }
+  .stat{padding:0 20px; border-left:1px solid var(--rule);}
+  .stat:first-child{border-left:none; padding-left:0;}
+  .stat .num{
+    font-size:clamp(26px,3.4vw,34px); font-weight:800; letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .stat .label{
+    margin-top:6px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+  }
+  @media (max-width:720px){
+    .stat-row{grid-template-columns:1fr 1fr; row-gap:24px;}
+    .stat:nth-child(3){border-left:none;}
+  }
+
+  /* SECTION GENERAL */
+  section{padding:64px 0;}
+  section.tight{padding:40px 0;}
+  h2.section-title{
+    font-size:26px; font-weight:800; letter-spacing:-0.01em; margin:0 0 14px;
+  }
+  .section-lede{color:var(--muted); font-size:16px; max-width:680px; margin:0 0 32px;}
+  .rule{border:none; border-top:1px solid var(--rule); margin:0;}
+
+  /* DARK BAND */
+  .band{
+    background:linear-gradient(160deg,var(--navy),var(--navy-2));
+    color:#fff; border-radius:16px; padding:56px 48px;
+    margin:56px 0;
+  }
+  .band h2{font-size:30px; font-weight:800; margin:0 0 10px;}
+  .band p{color:#b9c3e0; max-width:560px; margin:0; font-size:15px;}
+
+  /* PARAGRAPH BLOCK */
+  .prose{max-width:680px; color:var(--ink); font-size:16px;}
+  .prose p{margin:0 0 20px;}
+  .prose p:last-child{margin-bottom:0;}
+
+  /* FEEDBACK / QUOTE CALLOUT */
+  .callout{
+    border-left:2px solid var(--accent);
+    padding:4px 0 4px 20px; margin:28px 0;
+  }
+  .callout .tag{
+    font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:6px;
+  }
+  .callout p{margin:0; color:var(--muted); font-size:14.5px;}
+
+  .quote{
+    background:var(--navy); color:#fff; border-radius:12px;
+    padding:28px 26px; font-size:16px; line-height:1.55;
+    max-width:420px;
+  }
+  .quote .who{margin-top:16px; font-size:13px; color:#9fb0dd;}
+
+  /* FINDING BLOCK (two column) */
+  .finding{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:40px;
+    padding:44px 0; border-top:1px solid var(--rule);
+    align-items:start;
+  }
+  .finding h3{font-size:19px; font-weight:700; margin:0 0 4px;}
+  .finding .kicker{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 8px;}
+  .finding p{color:var(--muted); font-size:15px; margin:0 0 14px;}
+  .finding img{width:100%; border-radius:8px; border:1px solid var(--rule);}
+  @media (max-width:800px){ .finding{grid-template-columns:1fr;} }
+
+  /* IMAGE FRAME (wide, standalone) */
+  .frame{margin:40px 0;}
+  .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+
+  /* TABLE */
+  table.data{
+    width:100%; border-collapse:collapse; font-size:14px; margin:24px 0 8px;
+  }
+  table.data th{
+    text-align:left; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--faint); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--rule);
+  }
+  table.data td{
+    padding:10px 12px; border-bottom:1px solid var(--rule); color:var(--ink);
+  }
+  table.data tr:nth-child(even) td{background:#fafafa;}
+
+  /* RECOMMENDATION TABLE */
+  .rec-table{margin-top:16px;}
+  .rec-row{
+    display:grid; grid-template-columns:.9fr 1.1fr 1.2fr; gap:24px;
+    padding:22px 0; border-top:1px solid var(--rule);
+  }
+  .rec-row .col-label{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-bottom:6px;}
+  .rec-row p{font-size:14.5px; color:var(--ink); margin:0;}
+  .rec-row .discuss{color:var(--muted); font-size:13.5px;}
+  @media (max-width:800px){ .rec-row{grid-template-columns:1fr; gap:6px;} }
+
+  /* RATING BAR */
+  .rating-wrap{display:flex; align-items:center; gap:24px; margin:24px 0;}
+  .rating-num{font-size:44px; font-weight:800; letter-spacing:-0.02em;}
+  .rating-sub{color:var(--muted); font-size:14px; max-width:260px;}
+
+  /* NEXT STEPS GRID */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:24px;}
+  .grid2 h4{font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--faint); margin:0 0 12px;}
+  .grid2 ul{margin:0; padding-left:18px; color:var(--ink); font-size:15px;}
+  .grid2 li{margin-bottom:10px;}
+  @media (max-width:720px){ .grid2{grid-template-columns:1fr;} }
+
+  footer{
+    border-top:1px solid var(--rule); margin-top:40px;
+    padding:32px 0 64px;
+    display:flex; justify-content:space-between; align-items:center;
+    color:var(--faint); font-size:13px;
+  }
+  footer .next{color:var(--accent); font-weight:600; text-decoration:none;}
+</style>
 </head>
-	<head>
+<body>
 
+<nav id="nav" class="site-nav">
+  <ul>
+    <li><a href="index.html#top">Home</a></li>
+    <li><a href="index.html#work">About</a></li>
+    <li><a href="index.html#highlights">Highlights</a></li>
+    <li><a href="index.html#portfolio">Projects</a></li>
+  </ul>
+</nav>
 
+<div class="wrap hero">
+  <h1>Renewal Risk 2.0 — Connected Insights Popup</h1>
+  <p class="sub">A research study testing whether a line-item-level risk score and popup give Cisco's renewal and customer success teams enough confidence to act on renewal risk — without a training session.</p>
 
-							<!-- Nav -->
-              <nav id="nav">
-        				<ul class="container">
-                  <li><a href="index.html#top">Home</a></li>
-                  <li><a href="index.html#work">About</a></li>
-				  <li><a href="index.html#highlights">Highlights</a></li>
-                  <li><a href="index.html#portfolio">Projects</a></li>
-        				</ul>
-        			</nav>
-						</div>
+  <div class="hero-visual">
+    <img src="images/hero-1.jpg" alt="Renewal Risk column in the Renewals Console" />
+    <img src="images/hero-2.jpg" alt="Connected Insights popup showing risk detail" />
+  </div>
 
-
-
-		<!-- Main -->
-
-    <article class="wrapper style2">
-      <div class="container">
-					<div style="text-align:left">
-
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-            <link rel="stylesheet" href="assets/css/main.css" />
-
-					 <div class="inner">
-
-						 <h1><strong>SFDC Renewals Console Projects</strong></h1>
-             <h3><br>Cisco | 2022-2025</h3>
-
-<br>
-    <div id="pdf-container" style="width: 100%; max-width: 900px; margin: 0 auto;"></div>
-
-    <footer>
-        <ul class="copyright" style="text-align: center;">
-            &copy; YoomiCha. All rights reserved
-        </ul>
-    </footer>
-
+  <div class="meta-row">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <p>Renewal Risk 2.0 predicts risk at the deal <em>and</em> line-item level using an AI/ML scoring model, surfaced through a Connected Insights popup inside the Renewals Console. Before shipping the redesign, we needed to know whether renewal and CS teams actually trusted the score — and whether they could act on it without help.</p>
     </div>
-						
-</article>
+    <div class="meta-cols">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>UX Designer, Research Lead</p>
+      </div>
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <p>Nov 2023 – Feb 2024</p>
+      </div>
+    </div>
+  </div>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num">5,000+</div>
+      <div class="label">Users</div>
+    </div>
+    <div class="stat">
+      <div class="num">150+</div>
+      <div class="label">Countries</div>
+    </div>
+    <div class="stat">
+      <div class="num">200M+</div>
+      <div class="label">Deals</div>
+    </div>
+    <div class="stat">
+      <div class="num">5%&nbsp;↑</div>
+      <div class="label">ARR impact</div>
+    </div>
+  </div>
+</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-<script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-    
-    // 두 개의 PDF 파일 경로 설정
-const pdfUrl = 'images/files/ConnectedInsights/Connected Insights_Report.pdf';
-const container = document.getElementById('pdf-container');
+<div class="wrap">
 
-// PDF 로드 및 전체 페이지 렌더링
-pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
-    // 전체 페이지를 모두 보여주도록 설정
-    const totalPagesToShow = pdf.numPages;
+  <section class="tight">
+    <p class="eyebrow">Renewals Console</p>
+    <h2 class="section-title">What we set out to learn</h2>
+    <div class="prose">
+      <p>Renewal Risk is scored two ways in the console — a bubble on the Renewal Risk column, and a Connected Insights popup that breaks the score down by risk factor, action plan, and contact history. Renewal and customer success teams manage renewals across 150+ countries and 200M+ deals, so a scoring model that isn't trusted just gets ignored.</p>
+      <p>We ran 40-minute sessions with 10 participants — renewal managers, customer success executives and specialists — across the Americas, EMEA, and APJC, to see how they actually used Renewal Risk today, and to test the new Connected Insights concepts against real workflows.</p>
+    </div>
+  </section>
 
-    // 페이지를 1페이지부터 순서대로 그리기 위한 Promise 체인
-    let chain = Promise.resolve();
+  <div class="frame">
+    <img src="images/popup-detail.jpg" alt="Connected Insights popup detail view" />
+    <div class="cap">Connected Insights popup — risk factors, action plan, and contacts in one view</div>
+  </div>
 
-    for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
-        chain = chain.then(() => pdf.getPage(pageNum).then(page => {
-            const canvas = document.createElement('canvas');
-            canvas.style.display = 'block';
-            canvas.style.width = '100%';
-            canvas.style.marginBottom = '20px';
-            container.appendChild(canvas);
+  <section>
+    <p class="eyebrow">The Approach</p>
+    <h2 class="section-title">10 users, 3 regions, one prototype</h2>
+    <div class="prose">
+      <p>Each session covered current workflow and usage of Renewal Risk, then a walkthrough of the proposed design in Figma. Participants ranged from 2 to 26 years at Cisco, spanning renewal, customer success, and specialist roles.</p>
+    </div>
+    <table class="data">
+      <tr><th>#</th><th>Title</th><th>Region</th><th>Years at Cisco</th></tr>
+      <tr><td>1</td><td>Renewal Manager</td><td>Americas (US)</td><td>2</td></tr>
+      <tr><td>2</td><td>Renewal Manager</td><td>EMEA</td><td>8</td></tr>
+      <tr><td>3</td><td>Customer Success Executive</td><td>Americas (US)</td><td>12</td></tr>
+      <tr><td>4</td><td>Renewal Specialist</td><td>Americas (US)</td><td>2</td></tr>
+      <tr><td>5</td><td>Customer Success Executive</td><td>Americas (US)</td><td>3</td></tr>
+      <tr><td>6</td><td>Customer Success Specialist</td><td>Americas (US)</td><td>12</td></tr>
+      <tr><td>7</td><td>Customer Success Executive</td><td>Americas (US)</td><td>3</td></tr>
+      <tr><td>8</td><td>Leader, Renewal Specialist</td><td>EMEA</td><td>26</td></tr>
+      <tr><td>9</td><td>Success Program Manager</td><td>EMEA</td><td>3</td></tr>
+      <tr><td>10</td><td>Renewal Specialist</td><td>APJC</td><td>4</td></tr>
+    </table>
+  </section>
 
-            const context = canvas.getContext('2d');
-            const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
+  <section class="tight">
+    <p class="eyebrow">Key Takeaways</p>
+    <h2 class="section-title">The popup was useful — once people got past the trust barrier</h2>
+    <div class="rating-wrap">
+      <div class="rating-num">4.6<span style="font-size:20px;color:var(--muted);">/5</span></div>
+      <div class="rating-sub">Average usefulness rating across all 10 participants, regardless of role.</div>
+    </div>
+    <div class="prose">
+      <p>Most participants found the risk detail, action plan, and contacts genuinely helpful once they used it. But two habits got in the way early on: people clicked the deal link before they clicked the risk bubble, and several doubted the score's accuracy until they understood how it was calculated.</p>
+    </div>
+  </section>
 
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+  <hr class="rule" />
 
-            const renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            return page.render(renderContext).promise;
-        }));
-    }
-}).catch(error => {
-    console.error('PDF 로딩 중 에러 발생: ', error);
-});
-</script>
+  <div class="finding">
+    <div>
+      <p class="kicker">Finding 1</p>
+      <h3>Users hesitated to use Renewal Risk</h3>
+      <p>Use cases varied by role, but most participants rarely relied on Renewal Risk day to day — largely because they doubted the model's accuracy and defaulted to asking a customer or partner directly instead.</p>
+      <div class="callout">
+        <div class="tag">Recommendation</div>
+        <p>Surface a brief explanation of how the risk model works, plus feedback or collaboration history (like Customer Pulse), so the score carries context — not just a number — regardless of role.</p>
+      </div>
+    </div>
+    <div class="quote">
+      "It's linked to the customer success dashboard and there is some telemetry going wrong… so what I'm doing is, I just go to the customer or partner to ask."
+      <div class="who">— Participant 10, Renewal Specialist</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Finding 2</p>
+      <h3>Users clicked Deal ID instead of the risk bubble</h3>
+      <p>Faced with the Renewal Risk column, most people's first instinct was to click the deal ID or opportunity name — not the bubble that opens Connected Insights. It's the habit the console already trained them to have.</p>
+      <div class="callout">
+        <div class="tag">Recommendation</div>
+        <p>Introduce new functions in place, not just in training. A lightweight "what's new" popup on login teaches the new interaction the moment it matters.</p>
+      </div>
+    </div>
+    <div class="quote">
+      "I would click into the opportunity. I don't know, probably on the deal ID, or the opportunity name."
+      <div class="who">— Participant 1, Renewal Manager</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Finding 3</p>
+      <h3>Users expected the status column to be clickable</h3>
+      <p>Participants tried clicking directly on the risk status (High, Medium) in the Top Risk Factors table, following the mental model set by the popup's main page — not the separate Guide links meant to explain it.</p>
+      <img src="images/recommended-steps.jpg" alt="Recommended next steps moved beside the status column" />
+    </div>
+    <div>
+      <div class="callout">
+        <div class="tag">Recommendation</div>
+        <p>Keep the behavior pattern consistent: move Recommended Steps next to Status, or make the status column itself clickable.</p>
+      </div>
+      <div class="prose" style="margin-top:16px;">
+        <p style="font-size:14px;">"I would then probably go to status and click on it — see if it were hyperlinked or something."<br><span style="color:var(--faint);">— Participant 5, Customer Success Executive</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Finding 4</p>
+      <h3>Terminology didn't match across the interface</h3>
+      <p>"Ok" and "Good" in Top Risk Factors status, "High" and "Highest" in Risk Summary impact — inconsistent terms across roles left people unsure what standard was actually being used.</p>
+      <div class="callout">
+        <div class="tag">Recommendation</div>
+        <p>Rather than force one vocabulary across every role, add info icons and tooltips that explain each term in place, and tighten definitions like "All Explanations."</p>
+      </div>
+    </div>
+    <img src="images/example-tooltip.jpg" alt="Tooltip explaining terminology on hover" />
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Finding 5</p>
+      <h3>Users wanted to sort by what mattered to them</h3>
+      <p>7 of 10 participants prioritized their work the same way: high ATR, earliest expiration date, high Renewal Risk. Without sorting, they had to scan manually every time.</p>
+      <div class="callout">
+        <div class="tag">Recommendation</div>
+        <p>Add a quick sort next to Deal ID for Renewal Risk, ATR, and Expiration Date — in both the console and the popup.</p>
+      </div>
+    </div>
+    <div class="quote">
+      "Is there a way to filter or order high to low? That would be helpful."
+      <div class="who">— Participant 3, Customer Success Executive</div>
+    </div>
+  </div>
+
+  <div class="band">
+    <h2>Consider the bigger picture</h2>
+    <p>All 10 participants passed UAT. The clearest risk wasn't the design — it was rollout: without WalkMe or an in-product guide, even a well-tested popup needed a plan for how people would discover it.</p>
+  </div>
+
+  <section class="tight">
+    <p class="eyebrow">Findings & Recommendations</p>
+    <h2 class="section-title">What the stakeholders decided</h2>
+    <div class="rec-table">
+      <div class="rec-row">
+        <div><p class="col-label">Finding</p><p>Users doubted the risk model's accuracy.</p></div>
+        <div><p class="col-label">Recommendation</p><p>Explain how the model works; surface Customer Pulse history for added trust.</p></div>
+        <div><p class="col-label">Discussion</p><p class="discuss">Explanations exist and can ship within days. Customer Pulse integration targeted for March, aligned with the CS team.</p></div>
+      </div>
+      <div class="rec-row">
+        <div><p class="col-label">Finding</p><p>Users click Deal ID instead of the risk bubble.</p></div>
+        <div><p class="col-label">Recommendation</p><p>Introduce new functions in-product with a "what's new" style guide.</p></div>
+        <div><p class="col-label">Discussion</p><p class="discuss">No existing framework — WalkMe proposed. Video training and phased geo rollout planned alongside the Feb release.</p></div>
+      </div>
+      <div class="rec-row">
+        <div><p class="col-label">Finding</p><p>Users expect the status column to be clickable.</p></div>
+        <div><p class="col-label">Recommendation</p><p>Move Recommended Steps beside Status; keep interaction patterns consistent.</p></div>
+        <div><p class="col-label">Discussion</p><p class="discuss">Agreed on the sequence: Status → focus area → who to contact → Guide's next step.</p></div>
+      </div>
+      <div class="rec-row">
+        <div><p class="col-label">Finding</p><p>Terminology is inconsistent across roles.</p></div>
+        <div><p class="col-label">Recommendation</p><p>Add tooltips; standardize what each term and color means.</p></div>
+        <div><p class="col-label">Discussion</p><p class="discuss">95% of users don't use tooltip icons today — design fix prioritized over training. Standards to be defined with the header team.</p></div>
+      </div>
+      <div class="rec-row">
+        <div><p class="col-label">Finding</p><p>Users want high-risk, high-ATR items sorted to the top.</p></div>
+        <div><p class="col-label">Recommendation</p><p>Add sorting by Renewal Risk, ATR, and Expiration Date.</p></div>
+        <div><p class="col-label">Discussion</p><p class="discuss">Sorting targeted for the March release, alongside customizable, reorderable columns.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Next Steps</p>
+    <h2 class="section-title">Where this left off</h2>
+    <div class="grid2">
+      <div>
+        <h4>What worked</h4>
+        <ul>
+          <li>10 users across multiple roles and geographies, with real product management engagement</li>
+          <li>Feedback landed with enough runway to inform design before development</li>
+          <li>Every participant passed the UAT test</li>
+        </ul>
+      </div>
+      <div>
+        <h4>What's next</h4>
+        <ul>
+          <li>Coordinate recommendations with the team already building the risk model</li>
+          <li>Build artifacts that clearly explain Renewal Risk and its inputs</li>
+          <li>Extend research to other roles using the same underlying content</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight" style="padding-bottom:0;">
+    <p class="eyebrow">What the work required</p>
+    <h2 class="section-title">Designing trust into a number</h2>
+    <div class="prose">
+      <p>A risk score is only as useful as people's willingness to act on it. The real design problem here wasn't the popup's layout — it was closing the gap between what the model calculated and what a renewal manager was willing to believe. Clarity about how a number was reached turned out to matter more than the number itself.</p>
+      <p>This report fed directly into the Feb 2024 release plan, and opened a second question the team is still working through: how to keep terminology, color, and interaction patterns consistent as more risk signals get added to the console over time.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+    <span>© Yoomi Cha. All rights reserved.</span>
+    <span>2024</span>
+  </div>
+</footer>
 
 </body>
 </html>
