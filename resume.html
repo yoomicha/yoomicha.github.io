@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Résumé — Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<link rel="icon" href="favicon.png" type="image/x-icon" />
+<style>
+  :root{
+    --bg:#ffffff;
+    --hero-bg:#111318;
+    --hero-muted:#9298a3;
+    --ink:#15171c;
+    --muted:#6b7280;
+    --faint:#9aa1ab;
+    --rule:#e7e9ec;
+    --accent:#0c60ff;
+    --maxw:1000px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.65;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- Hero (shared) ---------- */
+  .hero{
+    background:var(--hero-bg);
+    color:#fff;
+    padding:72px 24px 40px;
+    text-align:center;
+  }
+  .hero h1{
+    font-size:clamp(26px,3.4vw,32px);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin:0 0 18px;
+  }
+  .hero .line{
+    font-size:14px;
+    color:var(--hero-muted);
+    margin:0 0 6px;
+  }
+  .hero .line a{
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    padding-bottom:1px;
+  }
+  .hero-nav{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:32px;
+  }
+  .hero-nav a{
+    font-size:14px;
+    font-weight:600;
+    color:var(--hero-muted);
+    padding-bottom:8px;
+  }
+  .hero-nav a.active{
+    color:#fff;
+    border-bottom:2px solid #fff;
+  }
+
+  /* ---------- Résumé layout ---------- */
+  .resume{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:56px;
+    padding:56px 0 72px;
+  }
+  @media (max-width:760px){ .resume{grid-template-columns:1fr;} }
+
+  .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 14px;
+  }
+
+  .pdf-btn{
+    display:flex; align-items:center; gap:10px;
+    border:1px solid var(--rule); border-radius:10px;
+    padding:14px 18px;
+    font-size:14px; font-weight:600;
+    margin-bottom:36px;
+  }
+  .pdf-btn:hover{border-color:#d8dce1;}
+  .pdf-btn .icon{
+    width:26px; height:26px; border-radius:50%;
+    background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; flex-shrink:0;
+  }
+  .pdf-btn span.label{border-bottom:1px solid var(--rule); padding-bottom:1px;}
+
+  .side-block{margin-bottom:32px;}
+  .side-block:last-child{margin-bottom:0;}
+  .side-block h3{font-size:16px; font-weight:700; margin:0 0 4px;}
+  .side-block p.meta{font-size:14px; color:var(--muted); margin:0;}
+  .side-block ul{list-style:none; margin:0; padding:0;}
+  .side-block ul li{font-size:14px; color:var(--muted); padding:3px 0;}
+  hr.divider{border:none; border-top:1px solid var(--rule); margin:32px 0;}
+
+  .exp-entry{margin-bottom:40px;}
+  .exp-entry:last-child{margin-bottom:0;}
+  .exp-entry .role{font-size:15px; margin:0 0 4px;}
+  .exp-entry .role strong{font-weight:700;}
+  .exp-entry .role .title{color:var(--muted); font-weight:500;}
+  .exp-entry .dates{font-size:13.5px; font-style:italic; color:var(--faint); margin:0 0 12px;}
+  .exp-entry .desc{font-size:14.5px; color:var(--muted); margin:0;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--rule);
+    padding:32px 0 64px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding-left:24px;
+    padding-right:24px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  footer .brand{font-weight:700; color:var(--ink);}
+
+  .back-to-top{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    padding:10px 16px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    box-shadow:0 8px 20px rgba(15,23,42,.08);
+    z-index:60;
+  }
+  .back-to-top:hover{border-color:#d8dce1;}
+</style>
+</head>
+<body id="top">
+
+<div class="hero">
+  <h1>Yoomi Cha</h1>
+  <p class="line">Product Design at <a href="#">Cisco</a> · Based in TX · Parsons, BFA</p>
+  <p class="line">Previously at Samsung Techwin · Poly · UT Austin</p>
+  <nav class="hero-nav">
+    <a href="work.html">Work</a>
+    <a href="resume.html" class="active">Résumé</a>
+    <a href="about.html">About</a>
+  </nav>
+</div>
+
+<div class="wrap">
+  <div class="resume">
+
+    <!-- Sidebar -->
+    <aside>
+      <a class="pdf-btn" href="images/docs/YoomiCha_Resume.pdf" target="_blank">
+        <span class="icon">↓</span>
+        <span class="label">Download PDF</span>
+      </a>
+
+      <div class="side-block">
+        <p class="eyebrow">Education</p>
+        <h3>University of Texas at Austin</h3>
+        <p class="meta">MS, Information Studies, HCI</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="side-block">
+        <p class="eyebrow">Skills</p>
+        <ul>
+          <li>Information Architecture</li>
+          <li>Interaction Design</li>
+          <li>End-to-End Product Design</li>
+          <li>User Research & Usability Testing</li>
+          <li>Persona & Journey Mapping</li>
+          <li>Heuristic Evaluation</li>
+          <li>Wireframing & Rapid Prototyping</li>
+          <li>AI / Human-AI Interaction</li>
+          <li>Enterprise SaaS Strategy</li>
+          <li>Data-driven Design</li>
+          <li>Lean/Agile UX Methodologies</li>
+          <li>Design Sprints</li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <div class="side-block">
+        <p class="eyebrow">Design Tools</p>
+        <ul>
+          <li>Figma</li>
+          <li>Miro</li>
+          <li>Jira</li>
+          <li>Confluence</li>
+          <li>Qualtrics</li>
+          <li>UserTesting.com</li>
+          <li>Adobe Creative Suite</li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <div class="side-block">
+        <p class="eyebrow">Front-End</p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main: Experience -->
+    <main>
+      <p class="eyebrow">Experience</p>
+
+      <div class="exp-entry">
+        <p class="role"><strong>Cisco</strong> <span class="title">Senior UX Designer</span></p>
+        <p class="dates">Feb '22 – Present</p>
+        <p class="desc">Designed enterprise experiences across Cisco's Renewals and Security platforms, including an MFA bypass request tool, AI-powered SFDC Renewals support (C360, O360), and a sales AI assistant proposal. Led design for the Renewals Console redesign and placed top 10 in Cisco's 2025 AI Hackathon. Collaborated cross-functionally with product managers, engineers, and researchers to modernize internal tooling and access governance.</p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>Poly</strong> <span class="title">UX Designer</span></p>
+        <p class="dates">Jul '18 – Jun '19</p>
+        <p class="desc">Designed the Smart Conference Phone Trio 8300, released in 2019. Worked across hardware and software touchpoints to shape the on-device experience for enterprise conferencing.</p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>Texas Commission on Environmental Quality</strong> <span class="title">UX Design Intern</span></p>
+        <p class="dates">Jun '17 – Aug '17</p>
+        <p class="desc">Researched and redesigned the "Air" section of the agency's main site, improving findability of air quality data and resources for public users.</p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>Samsung Techwin</strong> <span class="title">Senior UX Designer</span></p>
+        <p class="dates">Jan '11 – Jun '16</p>
+        <p class="desc">Led UX for the Wisent Toolbox web/mobile suite, Smart Security Manager, SSM Module Type, and Vertical Market Solution product lines. Filed 9 security-related patents covering monitoring methods and camera control systems, including fisheye and D-PTZ monitoring apparatus.</p>
+      </div>
+    </main>
+
+  </div>
+</div>
+
+<footer>
+  <span class="brand">Yoomi Cha</span>
+  <span>yoomi.design@gmail.com</span>
+  <span>2026</span>
+</footer>
+
+<a class="back-to-top" href="#top">↑ Back to Top</a>
+
+</body>
+</html>
