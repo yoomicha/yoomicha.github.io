@@ -1,511 +1,94 @@
 <!DOCTYPE HTML>
-<!--
-	Miniport by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>YoomiCha Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-    <style>
-        .box.style2 {position: relative;z-index: 1;overflow: hidden !important; /* 이미지와 텍스트가 박스 아웃라인 밖으로 삐져나가지 않도록 잘라냄 */}
-		.button.cute-round {
-    		border-radius: 50px !important;    
-    		background-color: #111111 !important; /* 청량한 하늘색에서 시크한 검정색으로 변경 */
-    		color: #ffffff !important;
-    		border: none !important;
-    		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important; /* 검정 버튼에 맞춘 은은한 어두운 그림자 */
-    		transition: all 0.3s ease !important;
-    
-    		/* 기존 20px 크기 및 정렬 유지 */
-    		font-size: 20px !important;         
-    		padding: 12px 32px !important;      
-    		line-height: 1.2 !important;        
-    
-    		display: inline-block !important;
-    		height: auto !important;            
-			}
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<link rel="icon" href="favicon.png" type="image/x-icon" />
+<style>
+  :root{
+    --bg:#101314;
+    --white:#f5f6f7;
+    --muted:#8b929c;
+    --muted-2:#6b727c;
+    --accent:#3fa6ff;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:24px;
+  }
+  .stage{
+    text-align:center;
+    max-width:720px;
+  }
+  h1{
+    font-size:clamp(34px,6vw,52px);
+    font-weight:800;
+    letter-spacing:-0.01em;
+    margin:0 0 28px;
+  }
+  .sub{
+    font-size:17px;
+    color:var(--muted);
+    margin:0 0 10px;
+    line-height:1.7;
+  }
+  .sub a{
+    color:var(--muted);
+    text-decoration:underline;
+    text-decoration-color:var(--muted-2);
+    text-underline-offset:3px;
+    transition:color .15s ease;
+  }
+  .sub a:hover{color:var(--white);}
+  .nav-row{
+    margin-top:56px;
+    display:flex;
+    justify-content:center;
+    gap:36px;
+  }
+  .nav-row a{
+    font-size:16px;
+    text-decoration:none;
+    color:var(--muted);
+    font-weight:500;
+    transition:color .15s ease;
+  }
+  .nav-row a.active{
+    color:var(--white);
+    font-weight:700;
+  }
+  .nav-row a:hover{color:var(--white);}
+</style>
+</head>
+<body>
 
-		/* 마우스를 올렸을 때 효과 */
-		.button.cute-round:hover {
-    		background-color: #333333 !important; /* 마우스를 올리면 세련된 진한 회색으로 변합니다 */
-    		transform: translateY(-2px); 
-    		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
-			}
+  <div class="stage">
+    <h1>Yoomi Cha</h1>
 
-		/* Go to Top 버튼 스타일 완벽 보정 */
-		#scroll-top-btn {
-    		display: none !important;     /* 처음에는 무조건 숨김 */
-    		position: fixed;             /* 화면에 고정 */
-    		bottom: 30px;                /* 밑에서 30px 띄움 */
-    		right: 30px;                 /* 오른쪽에서 30px 띄움 */
-    		z-index: 9999;               /* 다른 요소보다 항상 위에 배치 */
-    
-    	/* 완벽한 동그라미 규격 고정 */
-    		width: 50px !important;
-    		height: 50px !important;
-    		border-radius: 50% !important;
-    		background-color: #111111 !important; /* 블랙 */
-    		color: #ffffff !important;            /* 화살표 화이트 */
-    		text-decoration: none !important;     /* 링크 밑줄 제거 */
-    
-    	/* 꺾쇠 정중앙 정렬을 위한 Flex 설정 */
-    		display: inline-flex !important;
-    		align-items: center !important;
-    		justify-content: center !important;
-    
-    	/* 텍스트 위치 미세 조정 */
-    		font-size: 22px !important;
-    		font-weight: bold !important;
-    		line-height: 1 !important;
-    		padding: 0 0 5px 0 !important;       /* 꺾쇠가 아래로 처지는 걸 막기 위해 바닥 패딩 살짝 부여 */
-    
-    		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    		transition: all 0.3s ease;
-			}
+    <p class="sub">Senior Product Designer at <a href="https://www.cisco.com" target="_blank" rel="noopener">Cisco</a> / Based in TX / UT Austin, MS HCI</p>
+    <p class="sub">Previously at Samsung Techwin / Poly / TCEQ</p>
 
-		/* 마우스 올렸을 때 효과 */
-			#scroll-top-btn:hover {
-    		background-color: #333333 !important;
-    		transform: translateY(-5px);          /* 위로 살짝 뜨는 효과 */
-    		color: #ffffff !important;
-    		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-			}
-		
-    </style>
-		<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-		<link rel="icon" href="favicon.png" type="image/x-icon" />
-	</head>
-	<body class="is-preload">
+    <div class="nav-row">
+      <a href="work.html" class="active">Work</a>
+      <a href="images/docs/YoomiCha_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
 
-		<!-- Nav -->
-		<nav id="nav">
-			<ul class="container">
-				<li><a href="#top">Home</a></li>
-				<li><a href="#work">About</a></li>
-				<li><a href="#highlights">Highlights</a></li> 
-				<li><a href="#portfolio">Projects</a></li>
-			</ul>
-		</nav>
-
-		<!-- Home -->
-			<article id="top" class="wrapper style1">
-				<div class="container">
-					<div class="row">
-						<div class="col-4 col-5-large col-12-medium">
-							<span class="image fit"><img src="images/pic00.png" alt="" /></span>
-						</div>
-						<div class="col-8 col-7-large col-12-medium">
-							<header>
-								<h1>Hello, I am <strong>Yoomi Cha</strong>.</h1>
-							</header>
-							<header>
-								<p style="font-size: 1em !important; line-height: 1.8; margin-bottom: 0.5em; color: #000000 !important;">
-    								I am a Senior Product Designer with <strong>10+ years of experience leading complex enterprise SaaS and AI-driven experiences end-to-end</strong> at global technology leaders like <u>Cisco</u> and <u>Samsung</u>. I specialize in <u>transforming ambiguous product strategies into scalable, data-driven design solutions through collaborative user research and cross-functional leadership.</u> Driven by a passion for innovation, <strong>I hold 9 security-related patents</strong> and a proven track record of aligning complex stakeholder environments to deliver high-impact digital products.
-								</p>
-    							<p style="font-size: 1em !important; line-height: 1.8; margin-bottom: 0.5em;">
-        							Contact me through email by clicking <a href="mailto:yoomi.cha@utexas.edu">here</a>.
-   	 							</p>
-    							<p style="font-size: 1em !important; line-height: 1.8; margin-bottom: 0;">
-        							You can visit my LinkedIn profile <a href="https://www.linkedin.com/in/yoomi-cha-512851137/">here</a>.
-    							</p>
-							</header>
-								<p style="margin-top: 5px; margin-bottom: 0;">
-    								<a href="#highlights" class="button large scrolly cute-round" style="margin-top: -10px !important;">Go to Highlights</a>
-								</p>
-						</div>
-					</div>
-				</div>
-			</article>
-
-		<!-- Work -->
-			<article id="work" class="wrapper style1" style="padding-top: 3em !important;">
-				<div class="container">
-					<header>
-						<h2>About Me</h2>
-<br>
-				<div style="text-align:center">
-  					<a name="resume"></a>
-  						<p style="margin-top: 0; margin-bottom: 0;">
-    					<a href="images/docs/YoomiCha_Resume.pdf" target="_blank" class="button cute-round" width="50%" style="margin: 5px 15px;">Open Resume</a>
-  					</p>
-				</div>
-			</header>
-
-
-
-				<div style="text-align:left">
-												<h3>Education</h3>
-
-				</div>
-											<div style="text-align:justify">
-
-												<ul><span style="margin:6px"> </span>
-													<li><u> Aug.2016 - May.2018 </u>
-														<br><strong>University of Texas at Austin</strong> - Master of Science,Information Studies, HCI</li>
-													<li><u> Mar 2005 - Feb 2011 </u>
-														<br><strong>Handong Global University</strong> - Bachelor of Engineering in Product Design and Visual Design of Industrial Design</li>
-											  </ul>
-											</div>
-											<div style="text-align:left">
-
-											<h3><br><br>Work Experiences</h3>
-											</div>
-						<div style="text-align:justify">
-
-								<ul><span style="margin:5px"> </span>
-									<li><u> Feb.2022 - Now  </u>
-										<br><strong>Cisco - Senior UX designer</strong></li>
-									<li><u> Jul.2018 - June.2019 </u>
-										<br><strong>Poly - UX designer</strong></li>
-									<li><u> Jun 2017 - Aug 2017 </u>
-										<br><strong>Texas Commission on Environmental Quality - UX Designer Intern</strong> </li>
-									<li><u> Jan 2011 - Jun 2016 </u>
-										<br><strong>Samsung Techwin (Currently Hanwha Techwin) - Senior UX Designer</strong> </li>
-									</ul>
-						</div>
-
-				<div style="text-align:left">
-
-											<h3><br><br>Patents</h3>
-				</div>
-											<div style="text-align:justify">
-
-												<ul><span style="margin:5px"> </span>
-													<li><u> 22.Jul.2016 </u>
-													<br><strong>International Patent, No. PCT/KR2016/0069056</strong> <a href="https://patents.google.com/patent/KR20170138721A/en"> (Link)</a></li>
-													<span style="margin:5px">“The Apparatus And The System For Monitoring : Fisheye” Kyongjeon Jeong , Yoomi Cha </span>
-
-													<li><u> 28.Jun.2016 </u>
-													<br><strong>International Patent, No. PCT/KR2016/0069056</strong> <a href="https://patents.google.com/patent/KR20170136904A/en"> (Link)</a></li>
-													<span style="margin:5px">“The Apparatus And The System For Monitoring : D-PTZ” Yoomi Cha, Kyongjeon Jeong </span>
-
-													<li><u> 08.Jun.2016 </u>
-													<br><strong>Korean Patent, Patent No. 10-2016-0070880</strong></li>
-													<span style="margin:5px">“The Apparatus And The System For Monitoring : Fisheye” Kyongjeon Jeong , Yoomi Cha </span>
-
-													<li><u> 02.Jun.2016 </u>
-													<br><strong>Korean Patent, Patent No. 10-2016-0069056</strong></li>
-													<span style="margin:5px">“The Apparatus And The System For Monitoring : D-PTZ” Yoomi Cha, Kyongjeon Jeong </span>
-
-													<li><u> 14.Oct.2014 </u>
-													<br><strong>China Patent, CN 201410542143</strong>  <a href="https://patents.google.com/patent/CN104581043A"> (Link)</a></li>
-													<span style="margin:5px">“监视方法“ Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim  </span>
-
-													<li><u> 01.Oct.2014 </u>
-													<br><strong>US Patent Application No. 14/503,627</strong>  <a href="https://patents.google.com/patent/US20150106721"> (Link)</a></li>
-													<span style="margin:5px">“Monitoring Method” Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim </span>
-
-													<li><u> 14.Oct.2013 </u>
-													<br><strong>Korean Patent, Patent No. 10-2013-0122218</strong>  <a href="https://drive.google.com/file/d/1a8OeiYoncgsaWE21P4HI19nNbUyh2uiw/view"> (Link)</a></li>
-													<span style="margin:5px">"Method for Monitoring: 3D Log Listing” Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim </span>
-
-													<li><u> 14.Oct.2013 </u>
-													<br><strong>Korean Patent, Patent No. 10-2013-0122217</strong>  <a href="https://drive.google.com/file/d/1NY5zCQoLJL840KfH2SK4js-rOvXwdBax/view"> (Link)</a></li>
-													<span style="margin:5px">"Method for Monitoring: Icon Log Listing“ Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim </span>
-
-													<li><u> 20.Dec.2012 </u>
-													<br><strong>Korean Patent, Patent No. 10-2012-0149754</strong>  <a href="https://drive.google.com/file/d/1Jj0ws3l-GDFBLHlUMC8Mq4Pds-SZtKND/view"> (Link)</a></li>
-													<span style="margin:5px">"Method for Controlling Preset” Yoomi Cha  </span>
-
-												</ul>
-											</div>
-
-		<div style="text-align:left">
-    		<h3><br><br>Skills & Expertise</h3>
-		</div>
-		<div style="text-align:justify">
-    		<ul>
-        		<span style="margin:5px"></span>
-        	<li>
-            	<strong>Core UX Expertise</strong><br>
-            Information Architecture, Interaction Design, End-to-End Product Design, User Research & Usability Testing, Persona & Journey Mapping, Heuristic Evaluation, Wireframing & Rapid Prototyping
-       		</li>
-        	<p>
-        		<li>
-            		<strong>AI & Strategic UX</strong><br>
-            		AI UX/Interaction Design, Human-AI Interaction, Dashboard-driven AI Experiences, Enterprise SaaS Strategy, Data-driven Design, Lean/Agile UX Methodologies, Design Sprints
-       			</li>
-        	</p>
-        	<p>
-        		<li>
-            		<strong>Design & Collaboration Tools</strong><br>
-            		Figma, Miro, Jira, Confluence, Qualtrics, UserTesting.com, Adobe Creative Suite (Photoshop, Illustrator, After Effects), HTML/CSS
-        		</li>
-        	</p>
-   		 </ul>
-		</div>
-								<br />
-
-<!-- Highlights -->
-<article id="highlights" class="wrapper style1" style="padding-top: 3em !important;">
-	<div class="container">
-		<header>
-			<h2>Highlights</h2>
-		</header>
-		<div class="row">
-			<div class="col-4 col-6-medium col-12-small">
-				<article class="box style2">
-					<a href="portfolio_21.html" class="image featured"><img src="images/pic21.png" alt="" /></a>
-					<h3><a href="portfolio_21.html">Security MFA Bypass Request</a></h3>
-					<p>Product Designer, 2026, </p>
-					Cisco
-				</article>
-			</div>
-			<div class="col-4 col-6-medium col-12-small">
-				<article class="box style2">
-					<a href="portfolio_20.html" class="image featured"><img src="images/pic20.png" alt="" /></a>
-					<h3><a href="portfolio_20.html">SFDC Renewals AI Support-C360,O360</a></h3>
-					<p>Product Designer, 2025, </p>
-					Cisco
-				</article>
-			</div>
-			<div class="col-4 col-6-medium col-12-small">
-				<article class="box style2">
-					<a href="portfolio_18.html" class="image featured"><img src="images/pic18.png" alt="" /></a>
-					<h3><a href="portfolio_18.html">Sales AI Assistant Proposal</a></h3>
-					<p>Product Designer, 2024-2025, </p>
-					Cisco
-				</article>
-			</div>
-		</div>
-	</div>
-</article>
-
-
-		<!-- Portfolio -->
-			<article id="portfolio" class="wrapper style1" style="padding-top: 3em !important;">
-				<div class="container">
-					<header>
-						<h2>List of Projects</h2>
-
-					</header>
-
-
-					<div class="row">
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_21.html" class="image featured"><img src="images/pic21.png" alt="" /></a>
-								<h3><a href="portfolio_21.html">Security MFA Bypass Request</a></h3>
-								<p>Product Designer, 2026, </p>
-								Cisco
-							</article>
-						</div>						
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_20.html" class="image featured"><img src="images/pic20.png" alt="" /></a>
-								<h3><a href="portfolio_20.html">SFDC Renewals AI Support-C360,O360</a></h3>
-								<p>Product Designer, 2025, </p>
-								Cisco
-							</article>
-						</div>
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_19.html" class="image featured"><img src="images/pic19.png" alt="" /></a>
-								<h3><a href="portfolio_19.html">2025 AI Hackathon - Top10</a></h3>
-								<p>Product Designer, 2025, </p>
-								Cisco
-							</article>
-						</div>						
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_18.html" class="image featured"><img src="images/pic18.png" alt="" /></a>
-								<h3><a href="portfolio_18.html">Sales AI Assiatant Proposal</a></h3>
-								<p>Product Designer, 2024-2025, </p>
-								Cisco
-							</article>
-						</div>
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_17.html" class="image featured"><img src="images/pic17.png" alt="" /></a>
-								<h3><a href="portfolio_17.html">Next SFDC Renewals Console Proposal</a></h3>
-								<p>UX Designer, 2023-2024, </p>
-								Cisco
-							</article>
-						</div>						
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_16.html" class="image featured"><img src="images/pic16.png" alt="" /></a>
-								<h3><a href="portfolio_16.html">SFDC Renewals Console Projects</a></h3>
-								<p>UX Designer, 2022-2025, </p>
-								Cisco
-							</article>
-						</div>
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_1.html" class="image featured"><img src="images/pic01.png" alt="" /></a>
-								<h3><a href="portfolio_1.html">Smart Conference Phone Trio 8300</a></h3>
-								<p>UX Designer, Released in 2019, </p>
-								Poly
-							</article>
-						</div>
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_2.html" class="image featured"><img src="images/pic02.png" alt="" /></a>
-								<h3><a href="portfolio_2.html">Opioid Overdose Prevention</a></h3>
-								<p>Voluntary Project-Submitted to UXPA, UT Austin</p>
-							</article>
-						</div>
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_3.html" class="image featured"><img src="images/pic03.png" alt="" /></a>
-								<h3><a href="portfolio_3.html">Research for a Dual Screen Device</a></h3>
-								<p>Graduate Capstone Project with Dell, </p>
-								UT Austin
-							</article>
-						</div>
-
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_4.html" class="image featured"><img src="images/pic04.png" alt="" /></a>
-								<h3><a href="portfolio_4.html">Outfit App Research & Design</a></h3>
-								<p>Info Architecture and Design,</p>
-								   UT Austin
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_5.html" class="image featured"><img src="images/pic05.png" alt="" /></a>
-								<h3><a href="portfolio_5.html">Greenbud App Research & Design</a></h3>
-								<p>Interaction Design</p>
-								UT Austin
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_6.html" class="image featured"><img src="images/pic06.png" alt="" /></a>
-								<h3><a href="portfolio_6.html">Designing Self Diagnosis Web</a></h3>
-								<p>Rapid Prototyping/Lean UX Methodology, UT Austin </p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_7.html" class="image featured"><img src="images/pic07.png" alt="" /></a>
-								<h3><a href="portfolio_8.html">Redesigning I-School Website</a></h3>
-								<p>Voluntary Project with I-School,</p>
-									 UT Austin
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_8.html" class="image featured"><img src="images/pic08.png" alt="" /></a>
-								<h3><a href="portfolio_8.html">HRC Exhibition AR/VR App</a></h3>
-								<p>Rapid Prototyping/Lean UX Methodology, UT Austin</p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="portfolio_9.html" class="image featured"><img src="images/pic09.png" alt="" /></a>
-								<h3><a href="portfolio_9.html">For Improving 'Air' Main Page Research & Design</a></h3>
-								<p>UX Design Intern, Texas Commission on Environmental Quality</p>
-
-							</article>
-						</div>
-						<div class="row">
-							<div class="col-4 col-6-medium col-12-small">
-								<article class="box style2">
-									<a href="portfolio_10.html" class="image featured"><img src="images/pic10.png" alt="" /></a>
-									<h3><a href="portfolio_10.html">Eye Tracking Experiment Research</a></h3>
-									<p>Advanced Human-Computer Interaction, UT Austin</p>
-
-								</article>
-							</div>
-							<div class="col-4 col-6-medium col-12-small">
-								<article class="box style2">
-									<a href="portfolio_11.html" class="image featured"><img src="images/pic11.png" alt="" /></a>
-									<h3><a href="portfolio_11.html">Redesigning CapMetro App</a></h3>
-									<p>Human-Computer Interaction,</p>
-									UT Austin
-								</article>
-							</div>
-							<div class="col-4 col-6-medium col-12-small">
-								<article class="box style2">
-									<a href="portfolio_12.html" class="image featured"><img src="images/pic12.png" alt="" /></a>
-									<h3><a href="portfolio_12.html">Wisent Toolbox Web/Mobile</a></h3>
-									<p>Senior UX Designer,</p>
-									Samsung Techwin
-								</article>
-							</div>
-							<div class="row">
-								<div class="col-4 col-6-medium col-12-small">
-									<article class="box style2">
-										<a href="portfolio_13.html" class="image featured"><img src="images/pic13.png" alt="" /></a>
-										<h3><a href="portfolio_13.html">Smart Security Manager</a></h3>
-										<p>Senior UX Designer,</p>
-										Samsung Techwin
-									</article>
-								</div>
-								<div class="col-4 col-6-medium col-12-small">
-									<article class="box style2">
-										<a href="portfolio_14.html" class="image featured"><img src="images/pic14.png" alt="" /></a>
-										<h3><a href="portfolio_14.html">SSM Module Type</a></h3>
-										<p>Senior UX Designer,</p>
-										Samsung Techwin
-									</article>
-								</div>
-								<div class="col-4 col-6-medium col-12-small">
-									<article class="box style2">
-										<a href="portfolio_15.html" class="image featured"><img src="images/pic15.png" alt="" /></a>
-										<h3><a href="portfolio_15.html">Vertical Market Solution</a></h3>
-										<p>Senior UX Designer,</p>
-										Samsung Techwin
-									</article>
-								</div>
-					</div>
-				</div>
-			</article>
-
-
-		<!-- Contact -->
-
-					<footer>
-							<ul class="copyright" align="center">
-							&copy;YoomiCha. All rights reserved
-							</ul>
-					</footer>
-
-</div>
-
-
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-		<!-- top button -->
-			<a id="scroll-top-btn" href="#top" title="Go to top">︿</a>
-			<script>
-				const scrollTopBtn = document.getElementById("scroll-top-btn");
-
-			// 사용자가 스크롤을 내리는지 감지
-				window.onscroll = function() { scrollFunction() };
-
-				function scrollFunction() {
-    			// 300px 이상 내려오면 버튼을 보여주고, 아니면 다시 숨깁니다
-    			if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        		// CSS의 !important display:none을 깨고 flex로 보여줍니다.
-        		scrollTopBtn.style.setProperty("display", "inline-flex", "important");
-    			} else {
-        		scrollTopBtn.style.setProperty("display", "none", "important");
-    				}
-				}
-			</script>
-					
-	</body>
+</body>
 </html>
