@@ -1,31 +1,49 @@
-	
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>YoomiCha Portfolio</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-	<link rel="icon" href="favicon.png" type="image/x-icon" />
-</head>
-	<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Security MFA Bypass Request | Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
 <style>
   :root{
+    --bg:#ffffff;
     --ink:#15171c;
     --muted:#6b7280;
+    --faint:#9aa1ab;
     --rule:#e7e9ec;
+    --accent:#0c60ff;
+    --accent-soft:#eaf1ff;
+    --navy:#0c1d4d;
+    --navy-2:#132a63;
+    --radius:10px;
+    --maxw:980px;
   }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
   nav.site-nav{
     position:sticky; top:0; z-index:50;
     background:rgba(255,255,255,.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--rule);
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   nav.site-nav .nav-inner{
-    max-width:980px; margin:0 auto; padding:0 24px;
+    max-width:var(--maxw); margin:0 auto; padding:0 24px;
     display:flex; align-items:center; justify-content:space-between;
     height:60px;
   }
@@ -42,6 +60,104 @@
     transition:color .15s ease;
   }
   nav.site-nav a:hover{color:var(--ink);}
+
+  /* EYEBROW / LABELS */
+  .eyebrow{
+    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 10px;
+  }
+
+  /* HERO */
+  .hero{padding:72px 0 0;}
+  .hero h1{
+    font-size:clamp(28px,4vw,40px);
+    font-weight:800; letter-spacing:-0.01em;
+    margin:0 0 14px; line-height:1.15;
+  }
+  .hero .sub{
+    color:var(--muted); font-size:17px; max-width:640px; margin:0 0 40px;
+  }
+
+  .hero-visual{
+    background:#f3f4f6;
+    border:1px solid var(--rule);
+    border-radius:16px;
+    padding:20px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+    margin-bottom:56px;
+  }
+  .hero-visual img, .hero-visual video{
+    width:100%; display:block; border-radius:6px;
+    box-shadow:0 12px 28px rgba(15,23,42,.10);
+  }
+
+  /* META ROW: overview / role / timeline */
+  .meta-row{
+    display:grid; grid-template-columns:1.6fr 1fr; gap:48px;
+    padding-bottom:56px;
+  }
+  .meta-row p{margin:0; color:var(--muted); font-size:15px;}
+  .meta-cols{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .meta-cols div p{color:var(--ink); font-weight:500; font-size:15px;}
+  @media (max-width:720px){ .meta-row{grid-template-columns:1fr; gap:28px;} }
+
+  /* SECTION GENERAL */
+  section{padding:64px 0;}
+  section.tight{padding:40px 0;}
+  h2.section-title{
+    font-size:26px; font-weight:800; letter-spacing:-0.01em; margin:0 0 14px;
+  }
+  .section-lede{color:var(--muted); font-size:16px; max-width:680px; margin:0 0 32px;}
+  .rule{border:none; border-top:1px solid var(--rule); margin:0;}
+
+  /* DARK BAND */
+  .band{
+    background:linear-gradient(160deg,var(--navy),var(--navy-2));
+    color:#fff; border-radius:16px; padding:56px 48px;
+    margin:56px 0;
+  }
+  .band h2{font-size:30px; font-weight:800; margin:0 0 10px;}
+  .band p{color:#b9c3e0; max-width:560px; margin:0; font-size:15px;}
+
+  /* PARAGRAPH BLOCK */
+  .prose{max-width:680px; color:var(--ink); font-size:16px;}
+  .prose p{margin:0 0 20px;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose ul{padding-left:20px; margin:0 0 20px;}
+  .prose li{margin-bottom:8px; color:var(--ink);}
+
+  /* FEEDBACK / QUOTE CALLOUT */
+  .callout{
+    border-left:2px solid var(--accent);
+    padding:4px 0 4px 20px; margin:28px 0;
+  }
+  .callout .tag{
+    font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:6px;
+  }
+  .callout p{margin:0; color:var(--muted); font-size:14.5px;}
+
+  /* IMAGE FRAME (wide, standalone) */
+  .frame{margin:40px 0;}
+  .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+
+  /* NEXT STEPS GRID (2 or 3 col) */
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:24px;}
+  .grid3 .card{border:1px solid var(--rule); border-radius:12px; padding:22px;}
+  .grid3 h4{font-size:15px; font-weight:700; margin:0 0 8px;}
+  .grid3 p{font-size:14px; color:var(--muted); margin:0;}
+  @media (max-width:800px){ .grid3{grid-template-columns:1fr;} }
+
+  footer{
+    border-top:1px solid var(--rule); margin-top:40px;
+    padding:32px 0 64px;
+    display:flex; justify-content:space-between; align-items:center;
+    color:var(--faint); font-size:13px;
+  }
+  footer .next{color:var(--accent); font-weight:600; text-decoration:none;}
 
   .back-to-top{
     position:fixed;
@@ -61,7 +177,6 @@
     visibility:hidden;
     transform:translateY(8px);
     transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   .back-to-top.visible{
     opacity:1;
@@ -70,13 +185,9 @@
   }
   .back-to-top:hover{border-color:#d8dce1;}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="top">
 
-
-
-							<!-- Nav -->
 <nav id="nav" class="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">Yoomi Cha</a>
@@ -87,110 +198,126 @@
     </ul>
   </div>
 </nav>
-						</div>
 
+<div class="wrap hero">
+  <h1>Security MFA Bypass Request</h1>
+  <p class="sub">A secure, low-visibility path for handling legitimate MFA bypass requests — balancing strict enterprise security protocols with a frictionless path for developers and support teams.</p>
 
+  <div class="hero-visual">
+    <video src="images/files/MFABypass/MyRequest_Validation.mp4" autoplay loop muted playsinline></video>
+  </div>
 
-		<!-- Main -->
+  <div class="meta-row">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <p>The MFA Bypass request workflow needed to serve two audiences at once: security engineering, who required strict governance over every exception, and the requesters themselves, who needed a fast, low-friction way to submit a valid request without getting lost in the wrong process. This project redesigned that request and approval journey end to end.</p>
+    </div>
+    <div class="meta-cols">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>Product Designer</p>
+      </div>
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <p>Cisco, 2026</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<article class="wrapper style2">
-        <div class="container">
-            <div class="inner">
-                <div style="text-align:left">
-                    <h1><strong>Security MFA Bypass Request</strong></h1>
-                    <h3 style="margin-top: 10px;">Cisco | 2026</h3>
-                </div>
-                
-                <div style="text-align:center; margin: 30px 0;">
-                    <video src="images/files/MFABypass/MyRequest_Validation.mp4" style="width: 100%; height: auto;" autoplay loop muted playsinline></video>
-                </div>
+<div class="wrap">
 
-                <div style="text-align:left; margin-top: 40px;">
-                    <h2>Framing the Problem</h2>
-                </div>
-                <div style="text-align:justify">
-                    <ul style="margin-top: 10px;">
-                        <li>Define general account & MFA bypass request life-cycle</li>
-                        <li>Define request submission process flow</li>
-                        <li>Define requirements</li>
-                    </ul>
-					<center><br><img src="images/files/MFABypass/FramingtheProblem.png" style="width:100%;height:auto;"></center>
+  <section class="tight">
+    <p class="eyebrow">Framing the Problem</p>
+    <h2 class="section-title">Defining a request life-cycle that didn't exist yet</h2>
+    <div class="prose">
+      <ul>
+        <li>Define the general account & MFA bypass request life-cycle</li>
+        <li>Define the request submission process flow</li>
+        <li>Define requirements</li>
+      </ul>
+    </div>
+  </section>
 
-                </div>
+  <div class="frame">
+    <img src="images/files/MFABypass/FramingtheProblem.png" alt="Framing the MFA Bypass problem" />
+  </div>
 
-				<div style="text-align: left; margin-top: 40px;">
-    				<h2>Goal</h2>
-				</div>
-				<div style="text-align: justify">
-    				<ul style="margin-top: 10px;">
-        				<li>Enhancing the overall user journey for the MFA Bypass request process and improving MFA Bypass Approval form.</li>
-    				</ul>
-				</div>
-								   
-				<div style="text-align: left; margin-top: 40px;">
-    				<h2>Role</h2>
-				</div>
-				<div style="text-align: justify">
-    				<ul style="margin-top: 10px;">
-        				<li>Owned the end-to-end UX design process from discovery to high-fidelity prototyping.</li>
-        				<li>Facilitated internal design feedback sessions and cross-functional alignments with the Security Engineering team.</li>
-        				<li>Synthesized stakeholder feedback into iterative product updates.</li>
-    				</ul>
-				</div>
-						
-				<div style="text-align: left; margin-top: 40px;">
-    				<h2>Key Impact</h2>
-				</div>
-				<div style="text-align: justify">
-    				<ul style="margin-top: 10px;">
-        				<li><strong>Optimized Governance:</strong> Balanced strict security protocols with developer velocity by implementing a secure, low-visibility entry point.</li>
-        				<li><strong>Frictionless Workflow:</strong> Eliminated manual data entry via smart automation (AD/ESP integration), substantially reducing form drop-off rates for valid use cases.</li>
-        				<li><strong>Proactive Support:</strong> Guided unqualified users to alternative authentication options instantly, preventing redundant operational support tickets.</li>
-    				</ul>
-				</div>
-					 
-					<div style="text-align:left">
-   					 <h2><br><br>Deliverables</h2> 
-					</div>
-					<div style="text-align:justify">
-   	 					<ul>
-        					<span style="margin:5px"></span>
-        					<li>Finalized the high-fidelity prototype through multiple rounds of internal and external feedback sessions</li>
-    					</ul>
-						<center><br><img src="images/files/MFABypass/Deliverables.png" style="width:100%;height:auto;"></center>
+  <section>
+    <p class="eyebrow">Goal</p>
+    <h2 class="section-title">A better journey, not just a better form</h2>
+    <div class="prose">
+      <p>Enhance the overall user journey for the MFA Bypass request process, and improve the MFA Bypass Approval form itself — so the right requests move quickly and the wrong ones get redirected before they become tickets.</p>
+    </div>
+  </section>
 
-					</div>
-					 
-					<div style="text-align:left; margin-top:40px;">
-    					<h2>Learning</h2>
-					</div>
-					<div style="text-align:justify">
-   	 					<ul style="margin-top:10px;">
-        					<li><strong>Balancing Enterprise Security with Frictionless UX:</strong> Designing the MFA Bypass workflow taught me how to strictly adhere to enterprise security compliance while minimizing user friction. I learned that clear data hierarchy in forms is critical when users are under high-stress, time-sensitive situations.</li>
-        					<li><strong>Cross-Functional Alignment in Technical Domains:</strong> Collaborating closely with the Security Engineering team highlighted the importance of translating complex technical requirements into intuitive user flows. Utilizing Jira Align and Confluence helped synchronize stakeholder feedback, ensuring the final prototype met both engineering constraints and user needs.</li>
-    					</ul>                  
-					</div>
+  <section class="tight">
+    <p class="eyebrow">Role</p>
+    <h2 class="section-title">Owning it from discovery to delivery</h2>
+    <div class="prose">
+      <ul>
+        <li>Owned the end-to-end UX design process from discovery to high-fidelity prototyping</li>
+        <li>Facilitated internal design feedback sessions and cross-functional alignment with the Security Engineering team</li>
+        <li>Synthesized stakeholder feedback into iterative product updates</li>
+      </ul>
+    </div>
+  </section>
 
-						<!-- Footer -->
+  <section>
+    <p class="eyebrow">Key Impact</p>
+    <h2 class="section-title">Security and speed, not security or speed</h2>
+    <div class="grid3">
+      <div class="card">
+        <h4>Optimized governance</h4>
+        <p>Balanced strict security protocols with developer velocity by implementing a secure, low-visibility entry point.</p>
+      </div>
+      <div class="card">
+        <h4>Frictionless workflow</h4>
+        <p>Eliminated manual data entry via smart automation (AD/ESP integration), substantially reducing form drop-off for valid use cases.</p>
+      </div>
+      <div class="card">
+        <h4>Proactive support</h4>
+        <p>Guided unqualified users to alternative authentication options instantly, preventing redundant operational support tickets.</p>
+      </div>
+    </div>
+  </section>
 
-            <footer>
-  							<ul class="copyright" align="center">
-  							&copy;YoomiCha. All rights reserved
-  							</ul>
-  					</footer>
+  <section class="tight">
+    <p class="eyebrow">Deliverables</p>
+    <h2 class="section-title">A prototype refined through feedback</h2>
+    <div class="prose">
+      <p>Finalized the high-fidelity prototype through multiple rounds of internal and external feedback sessions.</p>
+    </div>
+  </section>
 
-		 </div>
+  <div class="frame">
+    <img src="images/files/MFABypass/Deliverables.png" alt="Final MFA Bypass deliverables" />
+  </div>
 
-		<!-- Scripts -->
+  <div class="band">
+    <h2>Clarity is what makes a form fast</h2>
+    <p>Clear data hierarchy matters most when people are filling out a form under stress. Designing for the MFA Bypass workflow meant treating that hierarchy — not the number of fields — as the real usability problem.</p>
+  </div>
 
-      <script src="assets/js/jquery.min.js"></script>
-		  <script src="assets/js/skel.min.js"></script>
-		  <script src="assets/js/util.js"></script>
-		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+  <section class="tight" style="padding-bottom:0;">
+    <p class="eyebrow">Learning</p>
+    <h2 class="section-title">Security engineering as a design partner</h2>
+    <div class="prose">
+      <p><strong>Balancing enterprise security with frictionless UX:</strong> designing the MFA Bypass workflow taught me how to strictly adhere to enterprise security compliance while minimizing user friction. Clear data hierarchy in forms is critical when users are under high-stress, time-sensitive situations.</p>
+      <p><strong>Cross-functional alignment in technical domains:</strong> collaborating closely with the Security Engineering team highlighted the importance of translating complex technical requirements into intuitive user flows. Using Jira Align and Confluence helped synchronize stakeholder feedback, ensuring the final prototype met both engineering constraints and user needs.</p>
+    </div>
+  </section>
 
-  
-<a class="back-to-top" id="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+    <span>© Yoomi Cha. All rights reserved.</span>
+    <span>2026</span>
+  </div>
+</footer>
+
+<a class="back-to-top" id="back-to-top" href="#top">↑ Back to Top</a>
 
 <script>
   var backToTop = document.getElementById('back-to-top');
