@@ -1,82 +1,88 @@
-		
 <!DOCTYPE HTML>
 <html>
 
 <head>
-	<title>YoomiCha Portfolio</title>
+	<title>2025 AI Hackathon — Top 10 | Yoomi Cha</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-	<link rel="icon" href="favicon.png" type="image/x-icon" />
-</head>
-	<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
+    --bg:#ffffff;
     --ink:#15171c;
     --muted:#6b7280;
+    --faint:#9aa1ab;
     --rule:#e7e9ec;
+    --maxw:980px;
   }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
   nav.site-nav{
     position:sticky; top:0; z-index:50;
     background:rgba(255,255,255,.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--rule);
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   nav.site-nav .nav-inner{
-    max-width:980px; margin:0 auto; padding:0 24px;
+    max-width:var(--maxw); margin:0 auto; padding:0 24px;
     display:flex; align-items:center; justify-content:space-between;
     height:60px;
   }
-  nav.site-nav .brand{
-    text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);
-  }
-  nav.site-nav ul{
-    margin:0; padding:0;
-    display:flex; gap:28px; list-style:none;
-    align-items:center;
-  }
-  nav.site-nav a{
-    text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
-    transition:color .15s ease;
-  }
+  nav.site-nav .brand{ text-decoration:none; font-size:15px; font-weight:700; color:var(--ink); }
+  nav.site-nav ul{ margin:0; padding:0; display:flex; gap:28px; list-style:none; align-items:center; }
+  nav.site-nav a{ text-decoration:none; font-size:14px; font-weight:500; color:var(--muted); transition:color .15s ease; }
   nav.site-nav a:hover{color:var(--ink);}
 
+  .eyebrow{
+    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 10px;
+  }
+
+  .hero{padding:72px 0 40px;}
+  .hero h1{ font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.01em; margin:0 0 14px; line-height:1.15; }
+  .hero .sub{ color:var(--muted); font-size:17px; max-width:640px; margin:0; }
+
+  .frame{
+    background:#f3f4f6; border:1px solid var(--rule); border-radius:16px;
+    padding:20px; margin:16px 0 40px;
+  }
+  .frame video{ width:100%; display:block; border-radius:6px; box-shadow:0 12px 28px rgba(15,23,42,.10); }
+  .frame canvas{ box-shadow:0 12px 28px rgba(15,23,42,.10); border-radius:6px; }
+
+  footer{
+    border-top:1px solid var(--rule); margin-top:40px;
+    padding:32px 0 64px; display:flex; justify-content:space-between; align-items:center;
+    color:var(--faint); font-size:13px;
+  }
+
   .back-to-top{
-    position:fixed;
-    right:24px;
-    bottom:24px;
-    background:#fff;
-    border:1px solid var(--rule);
-    border-radius:999px;
-    padding:10px 16px;
-    font-size:13px;
-    font-weight:600;
-    color:var(--ink);
-    text-decoration:none;
-    box-shadow:0 8px 20px rgba(15,23,42,.08);
-    z-index:60;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(8px);
+    position:fixed; right:24px; bottom:24px; background:#fff;
+    border:1px solid var(--rule); border-radius:999px; padding:10px 16px;
+    font-size:13px; font-weight:600; color:var(--ink); text-decoration:none;
+    box-shadow:0 8px 20px rgba(15,23,42,.08); z-index:60;
+    opacity:0; visibility:hidden; transform:translateY(8px);
     transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
-  .back-to-top.visible{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-  }
+  .back-to-top.visible{ opacity:1; visibility:visible; transform:translateY(0); }
   .back-to-top:hover{border-color:#d8dce1;}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="top">
 
-
-
-							<!-- Nav -->
 <nav id="nav" class="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">Yoomi Cha</a>
@@ -87,59 +93,40 @@
     </ul>
   </div>
 </nav>
-						</div>
 
+<div class="wrap hero">
+  <h1>2025 AI Hackathon — Top 10</h1>
+  <p class="sub">Cisco | 2025 — placed in the Top 10 at Cisco IT's 2025 AI Hackathon. Demo and full submission deck below.</p>
+</div>
 
+<div class="wrap">
+  <div class="frame">
+    <video src="images/files/AIHackathon/AI_Hackathon2025.mp4" autoplay loop muted playsinline></video>
+  </div>
+  <div class="frame">
+    <div id="pdf-container" style="width:100%;"></div>
+  </div>
+</div>
 
-		<!-- Main -->
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+    <span>© Yoomi Cha. All rights reserved.</span>
+    <span>2025</span>
+  </div>
+</footer>
 
-    <article class="wrapper style2">
-      <div class="container">
-					<div style="text-align:left">
-
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-            <link rel="stylesheet" href="assets/css/main.css" />
-
-					 <div class="inner">
-
-						 <h1><strong>2025 AI Hackathon - Top10</strong></h1>
-             <h3><br>Cisco | 2025</h3>
-
-                <div style="text-align:center; margin: 30px 0;">
-                    <video src="images/files/AIHackathon/AI_Hackathon2025.mp4" style="width: 100%; height: auto;" autoplay loop muted playsinline></video>>
-                </div>						 
-						 
-
-<br>
-    <div id="pdf-container" style="width: 100%; max-width: 900px; margin: 0 auto;"></div>
-
-    <footer>
-        <ul class="copyright" style="text-align: center;">
-            &copy; YoomiCha. All rights reserved
-        </ul>
-    </footer>
-
-    </div>
-						
-</article>
-
-</script>
+<a class="back-to-top" id="back-to-top" href="#top">↑ Back to Top</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 <script>
-    // PDF.js 워커 연결
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-    
-    // 실제 보여줄 PDF 파일 경로 (파일 이름과 경로가 맞는지 꼭 확인해 주세요!)
-    const pdfUrl = 'images/files/AIHackathon/CiscoIT_Hackathon2025.pdf'; 
+
+    const pdfUrl = 'images/files/AIHackathon/CiscoIT_Hackathon2025.pdf';
     const container = document.getElementById('pdf-container');
 
-    // PDF 로드 및 전체 페이지 차례대로 렌더링
     pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
         const totalPagesToShow = pdf.numPages;
         let chain = Promise.resolve();
-
         for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
             chain = chain.then(() => pdf.getPage(pageNum).then(page => {
                 const canvas = document.createElement('canvas');
@@ -149,33 +136,26 @@
                 container.appendChild(canvas);
 
                 const context = canvas.getContext('2d');
-                const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
+                const viewport = page.getViewport({ scale: 1.5 });
 
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
 
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                return page.render(renderContext).promise;
+                return page.render({ canvasContext: context, viewport: viewport }).promise;
             }));
         }
     }).catch(error => {
         console.error('PDF 로딩 에러: ', error);
     });
-</script>
-<a class="back-to-top" id="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
 
-<script>
-  var backToTop = document.getElementById('back-to-top');
-  window.addEventListener('scroll', function(){
-    if (window.scrollY > 400) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
-  });
+    var backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
 </script>
 
 </body>

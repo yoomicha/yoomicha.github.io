@@ -1,82 +1,135 @@
-	
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>YoomiCha Portfolio</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-	<link rel="icon" href="favicon.png" type="image/x-icon" />
-</head>
-	<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SFDC Renewals AI Support — C360, O360 | Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
 <style>
   :root{
+    --bg:#ffffff;
     --ink:#15171c;
     --muted:#6b7280;
+    --faint:#9aa1ab;
     --rule:#e7e9ec;
+    --accent:#0c60ff;
+    --navy:#0c1d4d;
+    --navy-2:#132a63;
+    --maxw:980px;
   }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
   nav.site-nav{
     position:sticky; top:0; z-index:50;
     background:rgba(255,255,255,.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--rule);
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   nav.site-nav .nav-inner{
-    max-width:980px; margin:0 auto; padding:0 24px;
+    max-width:var(--maxw); margin:0 auto; padding:0 24px;
     display:flex; align-items:center; justify-content:space-between;
     height:60px;
   }
-  nav.site-nav .brand{
-    text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);
-  }
-  nav.site-nav ul{
-    margin:0; padding:0;
-    display:flex; gap:28px; list-style:none;
-    align-items:center;
-  }
-  nav.site-nav a{
-    text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
-    transition:color .15s ease;
-  }
+  nav.site-nav .brand{ text-decoration:none; font-size:15px; font-weight:700; color:var(--ink); }
+  nav.site-nav ul{ margin:0; padding:0; display:flex; gap:28px; list-style:none; align-items:center; }
+  nav.site-nav a{ text-decoration:none; font-size:14px; font-weight:500; color:var(--muted); transition:color .15s ease; }
   nav.site-nav a:hover{color:var(--ink);}
 
+  .eyebrow{
+    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 10px;
+  }
+
+  .hero{padding:72px 0 0;}
+  .hero h1{ font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.01em; margin:0 0 14px; line-height:1.15; }
+  .hero .sub{ color:var(--muted); font-size:17px; max-width:640px; margin:0 0 40px; }
+
+  .hero-visual{
+    background:#f3f4f6; border:1px solid var(--rule); border-radius:16px;
+    padding:20px; margin-bottom:56px;
+  }
+  .hero-visual img{ width:100%; display:block; border-radius:6px; box-shadow:0 12px 28px rgba(15,23,42,.10); }
+
+  .meta-row{ display:grid; grid-template-columns:1.6fr 1fr; gap:48px; padding-bottom:56px; }
+  .meta-row p{ margin:0; color:var(--muted); font-size:15px; }
+  .meta-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .meta-cols div p{ color:var(--ink); font-weight:500; font-size:15px; }
+  @media (max-width:720px){ .meta-row{grid-template-columns:1fr; gap:28px;} }
+
+  .stat-row{
+    border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+    display:grid; grid-template-columns:repeat(3,1fr);
+    padding:36px 0; margin-bottom:56px;
+  }
+  .stat{padding:0 20px; border-left:1px solid var(--rule);}
+  .stat:first-child{border-left:none; padding-left:0;}
+  .stat .num{ font-size:clamp(26px,3.4vw,34px); font-weight:800; letter-spacing:-0.02em; font-variant-numeric:tabular-nums; }
+  .stat .label{ margin-top:6px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  @media (max-width:720px){ .stat-row{grid-template-columns:1fr; row-gap:24px;} .stat{border-left:none; padding-left:0;} }
+
+  section{padding:64px 0;}
+  section.tight{padding:40px 0;}
+  h2.section-title{ font-size:26px; font-weight:800; letter-spacing:-0.01em; margin:0 0 14px; }
+  .rule{border:none; border-top:1px solid var(--rule); margin:0;}
+
+  .prose{max-width:680px; color:var(--ink); font-size:16px;}
+  .prose p{margin:0 0 20px;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose ul{padding-left:20px; margin:0 0 20px;}
+  .prose li{margin-bottom:8px; color:var(--ink);}
+
+  .frame{margin:40px 0;}
+  .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame video{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:24px;}
+  .grid3 .card{border:1px solid var(--rule); border-radius:12px; padding:22px;}
+  .grid3 h4{font-size:15px; font-weight:700; margin:0 0 8px;}
+  .grid3 p{font-size:14px; color:var(--muted); margin:0;}
+  @media (max-width:800px){ .grid3{grid-template-columns:1fr;} }
+
+  .band{
+    background:linear-gradient(160deg,var(--navy),var(--navy-2));
+    color:#fff; border-radius:16px; padding:56px 48px; margin:56px 0;
+  }
+  .band h2{font-size:30px; font-weight:800; margin:0 0 10px;}
+  .band p{color:#b9c3e0; max-width:560px; margin:0; font-size:15px;}
+
+  footer{
+    border-top:1px solid var(--rule); margin-top:40px;
+    padding:32px 0 64px; display:flex; justify-content:space-between; align-items:center;
+    color:var(--faint); font-size:13px;
+  }
+
   .back-to-top{
-    position:fixed;
-    right:24px;
-    bottom:24px;
-    background:#fff;
-    border:1px solid var(--rule);
-    border-radius:999px;
-    padding:10px 16px;
-    font-size:13px;
-    font-weight:600;
-    color:var(--ink);
-    text-decoration:none;
-    box-shadow:0 8px 20px rgba(15,23,42,.08);
-    z-index:60;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(8px);
+    position:fixed; right:24px; bottom:24px; background:#fff;
+    border:1px solid var(--rule); border-radius:999px; padding:10px 16px;
+    font-size:13px; font-weight:600; color:var(--ink); text-decoration:none;
+    box-shadow:0 8px 20px rgba(15,23,42,.08); z-index:60;
+    opacity:0; visibility:hidden; transform:translateY(8px);
     transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
-  .back-to-top.visible{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-  }
+  .back-to-top.visible{ opacity:1; visibility:visible; transform:translateY(0); }
   .back-to-top:hover{border-color:#d8dce1;}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="top">
 
-
-
-							<!-- Nav -->
 <nav id="nav" class="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">Yoomi Cha</a>
@@ -87,111 +140,137 @@
     </ul>
   </div>
 </nav>
-						</div>
 
+<div class="wrap hero">
+  <h1>SFDC Renewals AI Support — C360, O360</h1>
+  <p class="sub">An AI-powered conversational assistant paired with a data-driven dashboard, designed to turn fragmented customer insights into one unified, accessible experience for the renewals workflow.</p>
 
+  <div class="hero-visual">
+    <img src="images/files/C360,O360/O360.png" alt="O360 renewals dashboard" />
+  </div>
 
-		<!-- Main -->
+  <div class="meta-row">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <p>Renewals teams struggled with delayed access to critical customer data, fragmented across multiple disparate systems. That gap caused workflow inefficiencies, high cognitive overload, and delayed customer response times — ultimately impacting business productivity and revenue opportunities.</p>
+    </div>
+    <div class="meta-cols">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>Product Designer</p>
+      </div>
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <p>Cisco, 2025</p>
+      </div>
+    </div>
+  </div>
 
-    <article class="wrapper style2">
-      <div class="container">
-					<div style="text-align:left">
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num">20%</div>
+      <div class="label">Time saved</div>
+    </div>
+    <div class="stat">
+      <div class="num">7+</div>
+      <div class="label">Steps removed</div>
+    </div>
+    <div class="stat">
+      <div class="num">3+</div>
+      <div class="label">Tools consolidated</div>
+    </div>
+  </div>
+</div>
 
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-            <link rel="stylesheet" href="assets/css/main.css" />
+<div class="wrap">
 
-					 <div class="inner">
+  <section class="tight">
+    <p class="eyebrow">Goal</p>
+    <h2 class="section-title">One conversation instead of four dashboards</h2>
+    <div class="prose">
+      <p>Transform fragmented customer insights into an intuitive, unified experience by designing an AI-powered conversational assistant integrated with a data-driven dashboard — significantly accelerating information accessibility and streamlining the renewals workflow.</p>
+    </div>
+  </section>
 
-						 <h1><strong>SFDC Renewals AI Support-C360,O360</strong></h1>
-             <h3><br>Cisco | 2025</h3>
-             <center><br><img src="images/files/C360,O360/O360.png" style="width:100%;height:auto;"></center>
-               <div style="text-align:left">
-               <h2><br><br><br><br>Problem<h2>
-               </div>
-                 <div style="text-align:justify">
-                   <ul><span style="margin:5px; list-style: none; padding-left: 0;"> </span>
-                     <li>Renewals teams struggled with delayed access to critical customer data, which was fragmented across multiple disparate systems. This information gap caused significant workflow inefficiencies, high cognitive overload, and delayed customer response times, ultimately impacting overall business productivity and revenue opportunities.</li> 
-                 </div>
+  <section>
+    <p class="eyebrow">Role</p>
+    <h2 class="section-title">Leading design from concept to delivery</h2>
+    <div class="prose">
+      <ul>
+        <li>Led end-to-end UX design from concept to final delivery</li>
+        <li>Collaborated cross-functionally with PMs, engineering, and business stakeholders to align product strategy</li>
+        <li>Conducted user interviews and synthesized research data into actionable design solutions</li>
+        <li>Designed high-fidelity prototypes and validated usability through iterative testing</li>
+      </ul>
+    </div>
+  </section>
 
-               <h2><br><br><br><br>Goal<h2>
-               </div>
-                 <div style="text-align:justify">
-                   <ul><span style="margin:5px; list-style: none; padding-left: 0;"> </span>
-                     <li>To transform fragmented customer insights into an intuitive, unified experience by designing an AI-powered conversational assistant integrated with a data-driven dashboard, significantly accelerating information accessibility and streamlining the renewals workflow.</li> 
-                 </div>
-				   
-				   
-				<div style="text-align:left">
-                 	<h2><br><br>Role<h2>
-                 </div>
-                 <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-                       <li>Led end-to-end UX design from concept to final delivery.</li>
-					   <li>Collaborated cross-functionally with PMs, Engineering, and Business stakeholders to align product strategy.</li>
-                       <li>Conducted user interviews and synthesized research data into actionable design solutions.</li>
-                       <li>Designed high-fidelity prototypes and validated usability through iterative testing.</li>                      
-                     </ul>
-                   </div>				   
+  <section class="tight">
+    <p class="eyebrow">Key Impact</p>
+    <h2 class="section-title">Less hunting, more deciding</h2>
+    <div class="grid3">
+      <div class="card">
+        <h4>Time savings</h4>
+        <p>Eliminating the need to search multiple sources for customer information saves users 20% of their valuable time.</p>
+      </div>
+      <div class="card">
+        <h4>Improved user experience</h4>
+        <p>Users receive customer information directly instead of hunting for it — reducing the workflow by at least 7 steps.</p>
+      </div>
+      <div class="card">
+        <h4>Reduced cognitive overload</h4>
+        <p>Consolidating insights into a single view eliminates the need to manage 3+ separate tools.</p>
+      </div>
+      <div class="card">
+        <h4>Enhanced efficiency</h4>
+        <p>Streamlined access to information supports faster response times and improved customer interactions.</p>
+      </div>
+      <div class="card">
+        <h4>Increased productivity</h4>
+        <p>Freed from administrative burdens, users can focus more on revenue-driving activities like growing ARR.</p>
+      </div>
+      <div class="card">
+        <h4>Consolidated access</h4>
+        <p>Users no longer switch between multiple tools to gather customer data, simplifying their day-to-day tasks.</p>
+      </div>
+    </div>
+  </section>
 
-				<div style="text-align:left">
-                 <h2><br><br>Key Impact<h2>
-                 </div>
-                   <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-                       <li><strong>Time Savings:</strong> By eliminating the need to search multiple sources for customer information, users save 20% of their valuable time.</li>
-                       <li><strong>Improved User Experience:</strong> Users receive customer information directly without needing to "hunt" for it. By reducing the workflow by at least 7 steps, the design ensures a seamless, frictionless, and highly efficient user experience.</li>
-					   <li><strong>Reduced Cognitive Overload:</strong> Consolidating insights into a single view eliminates the need to manage 3+ separate tools, substantially reducing mental fatigue and supporting better decision-making.</li>
-					   <li><strong>Enhanced Efficiency:</strong> Streamlined access to information supports faster response times and improved customer interactions.</li>
-					   <li><strong>Increased Productivity and Focus:</strong> Freed from administrative burdens, users can concentrate more on activities that drive revenue growth, such as increasing Annual Recurring Revenue (ARR).</li>
-					   <li><strong>Consolidated Access:</strong> Users do not have to switch between multiple tools to gather customer data, which simplifies their tasks and reduces complexity.</li>
-                     </ul>
-                   </div>			
-					 
-				<div style="text-align: left;">
-    				<h2><br><br>Prototypes</h2>
-				</div>
-				<div style="text-align: justify;">
-    				<ul>
-        				<span style="margin: 5px"></span>
-        				<li><strong>Final:</strong> Refined through multiple user interviews and internal/external stakeholder feedback</li>
-   				 	</ul>
-    				<div style="text-align: center; margin-top: 20px;">
-        				<video src="images/files/C360,O360/C360.mp4" style="width: 100%; max-width: 900px; height: auto;" autoplay loop muted playsinline></video>
-    			</div>
+  <section>
+    <p class="eyebrow">Prototypes</p>
+    <h2 class="section-title">The final experience</h2>
+    <div class="prose">
+      <p><strong>Final:</strong> refined through multiple user interviews and internal/external stakeholder feedback.</p>
+    </div>
+    <div class="frame">
+      <video src="images/files/C360,O360/C360.mp4" autoplay loop muted playsinline></video>
+    </div>
+  </section>
 
-					 
-                 <div style="text-align:left">
-                 <h2><br><br>Learning<h2>
-                 </div>
-                   <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-						<li><strong>Empowering Users via Proactive AI Prompting:</strong> Conducting deep-dive user interviews allowed me to uncover latent user needs and translate them into actionable, context-aware AI prompt suggestions. This proactive approach bridged the gap between raw AI capabilities and practical user workflows, ensuring the assistant delivered immediate, high-value assistance.</li>
-                        <li><strong>Driving a Unified AI Experience:</strong> Designing the Renewals AI Support console highlighted the critical need for systemic consistency. Moving forward, integrating these insights with the Sales AI Assistant and other customer-facing consoles will be essential to delivering a seamless, cohesive, and scalable AI experience across the entire enterprise ecosystem.</li>
-                     </ul>                  
-				</div>
+  <div class="band">
+    <h2>Consistency is the real AI feature</h2>
+    <p>Designing the Renewals AI Support console highlighted the need for systemic consistency. Integrating these insights with the Sales AI Assistant and other customer-facing consoles is what will make the AI experience feel cohesive across the enterprise.</p>
+  </div>
 
+  <section class="tight" style="padding-bottom:0;">
+    <p class="eyebrow">Learning</p>
+    <h2 class="section-title">Prompting is a design material</h2>
+    <div class="prose">
+      <p><strong>Empowering users via proactive AI prompting:</strong> deep-dive user interviews surfaced latent user needs and let me translate them into actionable, context-aware AI prompt suggestions — bridging the gap between raw AI capabilities and practical user workflows.</p>
+      <p><strong>Driving a unified AI experience:</strong> this project made clear how much systemic consistency matters. Moving forward, integrating these insights with the Sales AI Assistant and other customer-facing consoles will be essential to a seamless, cohesive AI experience across the enterprise.</p>
+    </div>
+  </section>
 
-						<!-- Footer -->
+</div>
 
-            <footer>
-  							<ul class="copyright" align="center">
-  							&copy;YoomiCha. All rights reserved
-  							</ul>
-  					</footer>
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+    <span>© Yoomi Cha. All rights reserved.</span>
+    <span>2025</span>
+  </div>
+</footer>
 
-		 </div>
-
-		<!-- Scripts -->
-
-      <script src="assets/js/jquery.min.js"></script>
-		  <script src="assets/js/skel.min.js"></script>
-		  <script src="assets/js/util.js"></script>
-		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-
-  
-<a class="back-to-top" id="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
+<a class="back-to-top" id="back-to-top" href="#top">↑ Back to Top</a>
 
 <script>
   var backToTop = document.getElementById('back-to-top');

@@ -64,6 +64,19 @@
     transform:translateY(0);
   }
   .back-to-top:hover{border-color:#d8dce1;}
+
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px; margin:0 auto; padding:0 24px;}
+  .frame{margin:56px 0;}
+  .frame img{
+    width:100%; display:block; border-radius:10px;
+    border:1px solid var(--rule);
+    box-shadow:0 12px 28px rgba(15,23,42,.10);
+  }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,11 +103,11 @@
 		<!-- Main -->
 
 
-					<div style="text-align:left">
-
-						 <center><img src="portfolio/pic07.png" style="width:100%;height:auto;"></center>
-
-				 	</div>
+					<div class="wrap">
+  <div class="frame">
+    <img src="portfolio/pic07.png" alt="">
+  </div>
+</div>
 
 
 						<!-- Footer -->

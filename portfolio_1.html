@@ -1,82 +1,121 @@
-
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>YoomiCha Portfolio</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-	<link rel="icon" href="favicon.png" type="image/x-icon" />
-</head>
-	<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trio 8300 | Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
 <style>
   :root{
+    --bg:#ffffff;
     --ink:#15171c;
     --muted:#6b7280;
+    --faint:#9aa1ab;
     --rule:#e7e9ec;
+    --accent:#0c60ff;
+    --navy:#0c1d4d;
+    --navy-2:#132a63;
+    --maxw:980px;
   }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
   nav.site-nav{
     position:sticky; top:0; z-index:50;
     background:rgba(255,255,255,.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--rule);
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   nav.site-nav .nav-inner{
-    max-width:980px; margin:0 auto; padding:0 24px;
+    max-width:var(--maxw); margin:0 auto; padding:0 24px;
     display:flex; align-items:center; justify-content:space-between;
     height:60px;
   }
-  nav.site-nav .brand{
-    text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);
-  }
-  nav.site-nav ul{
-    margin:0; padding:0;
-    display:flex; gap:28px; list-style:none;
-    align-items:center;
-  }
-  nav.site-nav a{
-    text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
-    transition:color .15s ease;
-  }
+  nav.site-nav .brand{ text-decoration:none; font-size:15px; font-weight:700; color:var(--ink); }
+  nav.site-nav ul{ margin:0; padding:0; display:flex; gap:28px; list-style:none; align-items:center; }
+  nav.site-nav a{ text-decoration:none; font-size:14px; font-weight:500; color:var(--muted); transition:color .15s ease; }
   nav.site-nav a:hover{color:var(--ink);}
 
+  .eyebrow{
+    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 10px;
+  }
+
+  .hero{padding:72px 0 0;}
+  .hero h1{ font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.01em; margin:0 0 14px; line-height:1.15; }
+  .hero .sub{ color:var(--muted); font-size:17px; max-width:640px; margin:0 0 24px; }
+  .hero .ext-link{
+    display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600;
+    color:var(--accent); text-decoration:none; margin-bottom:32px;
+  }
+
+  .hero-visual{
+    background:#f3f4f6; border:1px solid var(--rule); border-radius:16px;
+    padding:20px; margin-bottom:56px;
+  }
+  .hero-visual img{ width:100%; display:block; border-radius:6px; box-shadow:0 12px 28px rgba(15,23,42,.10); }
+
+  .meta-row{ display:grid; grid-template-columns:1.6fr 1fr; gap:48px; padding-bottom:56px; }
+  .meta-row p{ margin:0; color:var(--muted); font-size:15px; }
+  .meta-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .meta-cols div p{ color:var(--ink); font-weight:500; font-size:15px; }
+  @media (max-width:720px){ .meta-row{grid-template-columns:1fr; gap:28px;} }
+
+  section{padding:64px 0;}
+  section.tight{padding:40px 0;}
+  h2.section-title{ font-size:26px; font-weight:800; letter-spacing:-0.01em; margin:0 0 14px; }
+  .rule{border:none; border-top:1px solid var(--rule); margin:0;}
+
+  .prose{max-width:680px; color:var(--ink); font-size:16px;}
+  .prose p{margin:0 0 20px;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose ul{padding-left:20px; margin:0 0 20px;}
+  .prose li{margin-bottom:8px; color:var(--ink);}
+
+  .frame{margin:40px 0;}
+  .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+
+  .band{
+    background:linear-gradient(160deg,var(--navy),var(--navy-2));
+    color:#fff; border-radius:16px; padding:56px 48px; margin:56px 0;
+  }
+  .band h2{font-size:30px; font-weight:800; margin:0 0 10px;}
+  .band p{color:#b9c3e0; max-width:560px; margin:0; font-size:15px;}
+
+  footer{
+    border-top:1px solid var(--rule); margin-top:40px;
+    padding:32px 0 64px; display:flex; justify-content:space-between; align-items:center;
+    color:var(--faint); font-size:13px;
+  }
+
   .back-to-top{
-    position:fixed;
-    right:24px;
-    bottom:24px;
-    background:#fff;
-    border:1px solid var(--rule);
-    border-radius:999px;
-    padding:10px 16px;
-    font-size:13px;
-    font-weight:600;
-    color:var(--ink);
-    text-decoration:none;
-    box-shadow:0 8px 20px rgba(15,23,42,.08);
-    z-index:60;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(8px);
+    position:fixed; right:24px; bottom:24px; background:#fff;
+    border:1px solid var(--rule); border-radius:999px; padding:10px 16px;
+    font-size:13px; font-weight:600; color:var(--ink); text-decoration:none;
+    box-shadow:0 8px 20px rgba(15,23,42,.08); z-index:60;
+    opacity:0; visibility:hidden; transform:translateY(8px);
     transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
-  .back-to-top.visible{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-  }
+  .back-to-top.visible{ opacity:1; visibility:visible; transform:translateY(0); }
   .back-to-top:hover{border-color:#d8dce1;}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="top">
 
-
-
-							<!-- Nav -->
 <nav id="nav" class="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">Yoomi Cha</a>
@@ -87,95 +126,102 @@
     </ul>
   </div>
 </nav>
-						</div>
 
+<div class="wrap hero">
+  <h1>Trio 8300</h1>
+  <p class="sub">UI and GUI design for Poly's Trio 8300 — a button-interaction conference phone with a 2.5" screen, extending the touch-based experience of the Trio 8800 to a smaller, simpler device while keeping the Poly identity intact.</p>
+  <a class="ext-link" href="https://www.poly.com/us/en/products/phones/trio/trio-8300" target="_blank">→ Go to Trio 8300 product page</a>
 
+  <div class="hero-visual">
+    <a href="https://www.poly.com/us/en/products/phones/trio/trio-8300" target="_blank">
+      <img src="images/files/trio_product.png" alt="Poly Trio 8300 conference phone" />
+    </a>
+  </div>
 
-		<!-- Main -->
+  <div class="meta-row">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <p>The Trio 8300 needed its own UI and GUI for a button-driven, 2.5" screen — designed so the interaction model still felt like family to the touch-based Trio 8800, without borrowing a touch interface the hardware couldn't support.</p>
+    </div>
+    <div class="meta-cols">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>UX Designer</p>
+      </div>
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <p>Jul 2018 – Jun 2019</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <article class="wrapper style2">
-      <div class="container">
-					<div style="text-align:left">
+<div class="wrap">
 
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-            <link rel="stylesheet" href="assets/css/main.css" />
+  <section class="tight">
+    <p class="eyebrow">Goals</p>
+    <h2 class="section-title">Designing for a button, not a touchscreen</h2>
+    <div class="prose">
+      <ul>
+        <li>Design the UI and GUI of a button-interaction product with a 2.5" screen</li>
+        <li>Base interactions on a touch-based screen product — the Trio 8800</li>
+        <li>Keep the designs consistent with Poly's identity</li>
+      </ul>
+    </div>
+  </section>
 
-					 <div class="inner">
+  <section>
+    <p class="eyebrow">Roles</p>
+    <h2 class="section-title">Owning the design, end to end</h2>
+    <div class="prose">
+      <ul>
+        <li>Managing the project</li>
+        <li>Reporting to the design team manager</li>
+        <li>Co-working with a developer, marketers, a product manager, and the sales department</li>
+        <li>Designing the UI of the product</li>
+        <li>Creating the usability test prototype</li>
+      </ul>
+    </div>
+  </section>
 
-						 <h1><strong>Trio 8300 </strong></h1>
-             <h3><br>Poly | Jul 2018 - Jun 2019</h3>
-             <br> <a href="https://www.poly.com/us/en/products/phones/trio/trio-8300"> -> Go to Trio 8300 Website Link </a>
-             <center><br><a href="https://www.poly.com/us/en/products/phones/trio/trio-8300"><img src="images/files/trio_product.png" style="width:100%;height:auto;"></center></a>
-               <div style="text-align:left">
-               <h2><br><br><br><br>Goals<h2>
-               </div>
-                 <div style="text-align:justify">
-                   <ul><span style="margin:5px"> </span>
-                     <li>Designing User Interface(UI) and Graphic User Interface(GUI) of a button interaction product which has 2.5" screen </li>
-                     <li>Interactions should be based on a touch based screen product - Trio 8800</li>
-                     <li>Designs should keep Poly Identity </li>
-                   </ul>
-                 </div>
+  <div class="frame">
+    <img src="images/files/trio_process.png" alt="Trio 8300 design process" />
+    <div class="cap">Design process, from concept through to final UI</div>
+  </div>
 
-                 <div style="text-align:left">
-                 <h2><br><br>Roles<h2>
-                 </div>
-                   <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-                       <li>Managing project </li>
-                       <li>Reporting to a design team manager</li>
-                       <li>Co-working with a developer, marketers, product manager, and a sales department</li>
-                       <li>Designing UI of the product</li>
-                       <li>Creating Usability Test Prototype</li>
-                     </ul>
-                   </div>
+  <section class="tight">
+    <p class="eyebrow">Outputs</p>
+    <h2 class="section-title">What shipped</h2>
+    <div class="prose">
+      <ul>
+        <li><strong>User Interface Design:</strong> all screens of the Trio 8300, designed in Sketch</li>
+        <li><strong>Graphic User Interface Design:</strong> library assets, icons, and components using Adobe Photoshop and Illustrator</li>
+        <li><strong>Prototype:</strong> a working prototype built in Sketch</li>
+        <li><strong>Presentation:</strong> concept delivery file and final product introduction file</li>
+      </ul>
+    </div>
+  </section>
 
+  <div class="frame" style="margin-top:0;">
+    <img src="images/files/trio_prototype.png" alt="Trio 8300 Sketch prototype" />
+    <div class="cap">Example file — Sketch prototype</div>
+  </div>
 
-                   <div style="text-align:left">
-                   <h2><br><br>Process<h2>
-                   </div>
-                     <div style="text-align:justify">
-         	             <br><center><img src="images/files/trio_process.png" style="width:75%;height:auto;"></center>
-                     </div>
+  <div class="band">
+    <h2>Keeping a family feeling across form factors</h2>
+    <p>The real constraint wasn't the smaller screen — it was making a button-driven device feel like it belonged to the same family as its touch-based sibling, without pretending it had touch capabilities it didn't.</p>
+  </div>
 
-                     <h2><br><br>Outputs<h2>
-                     </div>
-                       <div style="text-align:justify">
-                         <ul><span style="margin:5px"> </span>
-                           <li><strong>User Interface Design:</strong> All screens of Trio 8300 using Sketch</li>
-                           <li><strong>Graphic User Interface Design:</strong> Library asset,icons,components using Adobe Photoshop, Illustrater</li>
-                           <li><strong>Prototype:</strong> Working prototype using Sketch</li>
-                           <li><strong>Presentation:</strong> Concept delivery file, Final product introduction file</li>
-                           <li><strong>Example file:</strong> Sketch Prototype Image</li>
-                           <center><img src="images/files/trio_prototype.png" style="width:75%;height:auto;"></center>
-                         </ul>
-                       </div>
+</div>
 
-						 </div>
-				 	</div>
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+    <span>© Yoomi Cha. All rights reserved.</span>
+    <span>2019</span>
+  </div>
+</footer>
 
-
-						<!-- Footer -->
-
-            <footer>
-  							<ul class="copyright" align="center">
-  							&copy;YoomiCha. All rights reserved
-  							</ul>
-  					</footer>
-
-		 </div>
-
-		<!-- Scripts -->
-
-      <script src="assets/js/jquery.min.js"></script>
-		  <script src="assets/js/skel.min.js"></script>
-		  <script src="assets/js/util.js"></script>
-		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-
-  
-<a class="back-to-top" id="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
+<a class="back-to-top" id="back-to-top" href="#top">↑ Back to Top</a>
 
 <script>
   var backToTop = document.getElementById('back-to-top');
