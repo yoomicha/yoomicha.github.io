@@ -1,31 +1,49 @@
-	
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>YoomiCha Portfolio</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-	<link rel="icon" href="favicon.png" type="image/x-icon" />
-</head>
-	<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sales AI Assistant Proposal | Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
 <style>
   :root{
+    --bg:#ffffff;
     --ink:#15171c;
     --muted:#6b7280;
+    --faint:#9aa1ab;
     --rule:#e7e9ec;
+    --accent:#0c60ff;
+    --accent-soft:#eaf1ff;
+    --navy:#0c1d4d;
+    --navy-2:#132a63;
+    --radius:10px;
+    --maxw:980px;
   }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
   nav.site-nav{
     position:sticky; top:0; z-index:50;
     background:rgba(255,255,255,.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--rule);
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   nav.site-nav .nav-inner{
-    max-width:980px; margin:0 auto; padding:0 24px;
+    max-width:var(--maxw); margin:0 auto; padding:0 24px;
     display:flex; align-items:center; justify-content:space-between;
     height:60px;
   }
@@ -42,6 +60,157 @@
     transition:color .15s ease;
   }
   nav.site-nav a:hover{color:var(--ink);}
+
+  /* EYEBROW / LABELS */
+  .eyebrow{
+    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 10px;
+  }
+
+  /* HERO */
+  .hero{padding:72px 0 0;}
+  .hero h1{
+    font-size:clamp(28px,4vw,40px);
+    font-weight:800; letter-spacing:-0.01em;
+    margin:0 0 14px; line-height:1.15;
+  }
+  .hero .sub{
+    color:var(--muted); font-size:17px; max-width:640px; margin:0 0 40px;
+  }
+
+  .hero-visual{
+    background:#f3f4f6;
+    border:1px solid var(--rule);
+    border-radius:16px;
+    padding:20px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+    margin-bottom:56px;
+  }
+  .hero-visual img{
+    width:100%; display:block; border-radius:6px;
+    box-shadow:0 12px 28px rgba(15,23,42,.10);
+  }
+
+  /* META ROW: overview / role / timeline */
+  .meta-row{
+    display:grid; grid-template-columns:1.6fr 1fr; gap:48px;
+    padding-bottom:56px;
+  }
+  .meta-row p{margin:0; color:var(--muted); font-size:15px;}
+  .meta-cols{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .meta-cols div p{color:var(--ink); font-weight:500; font-size:15px;}
+  @media (max-width:720px){ .meta-row{grid-template-columns:1fr; gap:28px;} }
+
+  /* STAT ROW */
+  .stat-row{
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    display:grid; grid-template-columns:repeat(4,1fr);
+    padding:36px 0;
+    margin-bottom:56px;
+  }
+  .stat{padding:0 20px; border-left:1px solid var(--rule);}
+  .stat:first-child{border-left:none; padding-left:0;}
+  .stat .num{
+    font-size:clamp(26px,3.4vw,34px); font-weight:800; letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .stat .label{
+    margin-top:6px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+  }
+  @media (max-width:720px){
+    .stat-row{grid-template-columns:1fr 1fr; row-gap:24px;}
+    .stat:nth-child(3){border-left:none;}
+  }
+
+  /* SECTION GENERAL */
+  section{padding:64px 0;}
+  section.tight{padding:40px 0;}
+  h2.section-title{
+    font-size:26px; font-weight:800; letter-spacing:-0.01em; margin:0 0 14px;
+  }
+  .section-lede{color:var(--muted); font-size:16px; max-width:680px; margin:0 0 32px;}
+  .rule{border:none; border-top:1px solid var(--rule); margin:0;}
+
+  /* DARK BAND */
+  .band{
+    background:linear-gradient(160deg,var(--navy),var(--navy-2));
+    color:#fff; border-radius:16px; padding:56px 48px;
+    margin:56px 0;
+  }
+  .band h2{font-size:30px; font-weight:800; margin:0 0 10px;}
+  .band p{color:#b9c3e0; max-width:560px; margin:0; font-size:15px;}
+
+  /* PARAGRAPH BLOCK */
+  .prose{max-width:680px; color:var(--ink); font-size:16px;}
+  .prose p{margin:0 0 20px;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose ul{padding-left:20px; margin:0 0 20px;}
+  .prose li{margin-bottom:8px; color:var(--ink);}
+
+  /* FEEDBACK / QUOTE CALLOUT */
+  .callout{
+    border-left:2px solid var(--accent);
+    padding:4px 0 4px 20px; margin:28px 0;
+  }
+  .callout .tag{
+    font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:6px;
+  }
+  .callout p{margin:0; color:var(--muted); font-size:14.5px;}
+
+  /* FINDING BLOCK (two column) */
+  .finding{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:40px;
+    padding:44px 0; border-top:1px solid var(--rule);
+    align-items:start;
+  }
+  .finding h3{font-size:19px; font-weight:700; margin:0 0 4px;}
+  .finding .kicker{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 8px;}
+  .finding p{color:var(--muted); font-size:15px; margin:0 0 14px;}
+  .finding img{width:100%; border-radius:8px; border:1px solid var(--rule);}
+  @media (max-width:800px){ .finding{grid-template-columns:1fr;} }
+
+  /* IMAGE FRAME (wide, standalone) */
+  .frame{margin:40px 0;}
+  .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+
+  /* TABLE */
+  table.data{
+    width:100%; border-collapse:collapse; font-size:14px; margin:24px 0 8px;
+  }
+  table.data th{
+    text-align:left; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--faint); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--rule);
+  }
+  table.data td{
+    padding:10px 12px; border-bottom:1px solid var(--rule); color:var(--ink);
+  }
+  table.data tr:nth-child(even) td{background:#fafafa;}
+
+  /* NEXT STEPS GRID (2 or 3 col) */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:24px;}
+  .grid2 h4{font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--faint); margin:0 0 12px;}
+  .grid2 ul{margin:0; padding-left:18px; color:var(--ink); font-size:15px;}
+  .grid2 li{margin-bottom:10px;}
+  @media (max-width:720px){ .grid2{grid-template-columns:1fr;} }
+
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:24px;}
+  .grid3 .card{border:1px solid var(--rule); border-radius:12px; padding:22px;}
+  .grid3 h4{font-size:15px; font-weight:700; margin:0 0 8px;}
+  .grid3 p{font-size:14px; color:var(--muted); margin:0;}
+  @media (max-width:800px){ .grid3{grid-template-columns:1fr;} }
+
+  footer{
+    border-top:1px solid var(--rule); margin-top:40px;
+    padding:32px 0 64px;
+    display:flex; justify-content:space-between; align-items:center;
+    color:var(--faint); font-size:13px;
+  }
+  footer .next{color:var(--accent); font-weight:600; text-decoration:none;}
 
   .back-to-top{
     position:fixed;
@@ -61,7 +230,6 @@
     visibility:hidden;
     transform:translateY(8px);
     transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   .back-to-top.visible{
     opacity:1;
@@ -70,13 +238,9 @@
   }
   .back-to-top:hover{border-color:#d8dce1;}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="top">
 
-
-
-							<!-- Nav -->
 <nav id="nav" class="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">Yoomi Cha</a>
@@ -87,130 +251,176 @@
     </ul>
   </div>
 </nav>
-						</div>
 
+<div class="wrap hero">
+  <h1>Sales AI Assistant Proposal</h1>
+  <p class="sub">A proposal for an AI chat interface that unifies fragmented customer data across Cisco's 30+ internal seller tools — designed to cut the time sellers spend hunting for information before they can act on it.</p>
 
+  <div class="hero-visual">
+    <img src="images/files/SalesAI/SalesAI_Main.png" alt="Sales AI Assistant chat interface" />
+  </div>
 
-		<!-- Main -->
+  <div class="meta-row">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <p>Cisco sellers spend nearly 20% of their time searching for accurate, holistic customer and solution information scattered across 30+ internal tools. This proposal explores an AI chat interface — backed by user, customer, solution, and enablement agents — that surfaces that information in one place, reducing the workflow by at least 7 steps.</p>
+    </div>
+    <div class="meta-cols">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>Product Designer</p>
+      </div>
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <p>2024 – 2025</p>
+      </div>
+    </div>
+  </div>
 
-    <article class="wrapper style2">
-      <div class="container">
-					<div style="text-align:left">
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num">30+</div>
+      <div class="label">Tools unified</div>
+    </div>
+    <div class="stat">
+      <div class="num">20%</div>
+      <div class="label">Time spent searching</div>
+    </div>
+    <div class="stat">
+      <div class="num">12</div>
+      <div class="label">User interviews</div>
+    </div>
+    <div class="stat">
+      <div class="num">4</div>
+      <div class="label">Core use cases</div>
+    </div>
+  </div>
+</div>
 
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-            <link rel="stylesheet" href="assets/css/main.css" />
+<div class="wrap">
 
-					 <div class="inner">
+  <section class="tight">
+    <p class="eyebrow">Framing the Problem</p>
+    <h2 class="section-title">Sellers were stuck stitching together 30+ tools</h2>
+    <div class="prose">
+      <p><strong>Q.</strong> What percentage of your working time do you spend looking for information? <strong>A.</strong> At Cisco, sellers spend nearly 20% of their time looking for accurate, holistic information about customers and solutions across 30+ internal tools.</p>
+      <div class="callout">
+        <div class="tag">How might we</div>
+        <p>Unify fragmented customer data to enable more efficient and effective customer engagement for Cisco sellers?</p>
+      </div>
+    </div>
+  </section>
 
-						 <h1><strong>Sales AI Assistant Proposal </strong></h1>
-             <h3><br>Cisco | 2024 - 2025</h3>
-             <center><br><img src="images/files/SalesAI/SalesAI_Main.png" style="width:100%;height:auto;"></center>
-               <div style="text-align:left">
-               <h2><br><br><br><br>Framing the Problem<h2>
-               </div>
-                 <div style="text-align:justify">
-                   <ul><span style="margin:5px; list-style: none; padding-left: 0;"> </span>
-                     <li><strong>Q.</strong> What percentage of your working time do you spend looking for information?</li> 
-                     <li><strong>A.</strong> At Cisco, sellers spend nearly 20% of their time looking for accurate, holistic information about customers and solutions across 30+ internal tools.</li>
-                     <li><strong>How Might We</strong> unify fragmented customer data to enable more efficient & effective customer engagement for Cisco sellers?</li>
-                   </ul>
-                 </div>
+  <section>
+    <p class="eyebrow">Collaborators</p>
+    <h2 class="section-title">A cross-functional team, end to end</h2>
+    <div class="prose">
+      <p>I led end-to-end UX design — facilitating stakeholder workshops, synthesizing user insights, defining the product vision, and developing high-fidelity prototypes — alongside the following partners.</p>
+    </div>
+    <table class="data">
+      <tr><th>Team</th><th>Contribution</th></tr>
+      <tr><td>Business team</td><td>Product vision & prioritization</td></tr>
+      <tr><td>Dev team</td><td>Technical feasibility & build</td></tr>
+      <tr><td>Content designer</td><td>Conversational content & tone</td></tr>
+      <tr><td>UX researchers</td><td>Generative research & synthesis</td></tr>
+      <tr><td>UX designers</td><td>End-to-end design & prototyping</td></tr>
+    </table>
+  </section>
 
-				<div style="text-align:left">
-                 	<h2><br><br>Collaborators<h2>
-                 </div>
-                 <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-                       <li>Business team</li>
-                       <li>Dev team</li>
-                       <li>Content designer</li>
-                       <li>UX researchers</li>
-                       <li>UX designers (Led end-to-end UX design, facilitated stakeholder workshops, synthesized user insights, defined product vision, and developed high-fidelity prototypes)</li>
-                     </ul>
-                   </div>				   
+  <section class="tight">
+    <p class="eyebrow">Direction</p>
+    <h2 class="section-title">One chat interface, embedded everywhere</h2>
+    <div class="prose">
+      <p><strong>Business vision:</strong> an AI chat interface embedded across 30+ tools. <strong>Agentic orchestration:</strong> user, customer, solution, and enablement agents working together to provide access to disparate data via chat.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h4>Extract data-driven insights</h4>
+        <p>Uncover systemic seller pain points and workflows.</p>
+      </div>
+      <div class="card">
+        <h4>Deliver seamless MVP experiences</h4>
+        <p>Validate core chat functionalities in high-priority environments.</p>
+      </div>
+      <div class="card">
+        <h4>Explore advanced AI use cases</h4>
+        <p>Identify high-impact opportunities for agentic orchestration.</p>
+      </div>
+      <div class="card">
+        <h4>Architect for scalability</h4>
+        <p>Design future-proof frameworks adaptable across 30+ internal enterprise tools.</p>
+      </div>
+    </div>
+  </section>
 
-				<div style="text-align:left">
-                 <h2><br><br>Direction<h2>
-                 </div>
-                   <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-                       <li><strong>Business Vision:</strong> AI chat interface embedded across 30+ tools</li>
-                       <li><strong>Agentic Orchestration:</strong> User, customer, solution & enablement agents -> provide access to disparate data via chat</li>
-                       <li><strong>Tasks:</strong>
-    				   		<ul style="margin-left: 20px; list-style-type: circle;">
-        						<li><strong>Extract Data-Driven Insights:</strong> Uncover systemic seller pain points and workflows.</li>
-        						<li><strong>Deliver Seamless MVP Experiences:</strong> Validate core chat functionalities in high-priority environments.</li>
-        						<li><strong>Explore Advanced AI Use Cases:</strong> Identify high-impact opportunities for agentic orchestration.</li>
-        						<li><strong>Architect for Scalability:</strong> Design future-proof frameworks adaptable across 30+ internal enterprise tools.</li>
-    						</ul>
-						</li>
-                     </ul>
-                   </div>			
-					 
-                 <div style="text-align:left">
-                 <h2><br><br>Insights<h2>
-                 </div>
-                   <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-                       <li>Review data-related painpoints</li>
-                       <li>Humans and the loop</li>
-                       <li>4 core use cases</li>
-					   <li>Generative Research</li>
-					   <li>Art of Possible Workshop with stakeholders</li>
-                      </ul>
-                     <div style="text-align:justify">
-         	             <br><center><img src="images/files/SalesAI/Insights.png" style="width:100%;height:auto;"></center>
-                     </div>
-                   </div>
-					 
-                   <div style="text-align:left">
-                   <h2><br><br>Solutions<h2>
-                   </div>
- 					<div style="text-align:justify">
-                     	<ul><span style="margin:5px"> </span>
-                       		<li>Usability Testing</li>
-                       		<li>Short-Term MVP</li>
-                       		<li>Mid/Long-Term MVP</li>
-                      	</ul>
-                     	<div style="text-align:justify">
-         	             	<br><center><img src="images/files/SalesAI/Solutions.png" style="width:100%;height:auto;"></center>
-                     	</div>
-                   	</div>
+  <div class="frame">
+    <img src="images/files/SalesAI/Insights.png" alt="Data-related pain points mapped across the selling motion" />
+    <div class="cap">Collective pain points by persona across the selling motion</div>
+  </div>
 
-                 <div style="text-align:left">
-                 <h2><br><br>Learning<h2>
-                 </div>
-                   <div style="text-align:justify">
-                     <ul><span style="margin:5px"> </span>
-						<li><strong>The Power of Researcher Partnership:</strong> Collaborating closely with UX researchers proved essential in transforming raw data into actionable, high-impact design strategies. This cross-functional partnership allowed for deeper empathy with users and ensured that product decisions were rooted in validated insights rather than assumptions.</li>
-                        <li><strong>Embracing Diverse Perspectives for Robust UX:</strong> Synthesizing contrasting and diverse opinions from engineering, security, and product teams significantly refined the solution. Welcoming these varied viewpoints helped identify edge cases early on and led to a more balanced, compliant, and inclusive user experience.</li>
-                     </ul>
-                   </div>
-					   
-				</div>
+  <section>
+    <p class="eyebrow">Insights</p>
+    <h2 class="section-title">Four core use cases emerged</h2>
+    <div class="prose">
+      <ul>
+        <li>Reviewing data-related pain points across the selling motion</li>
+        <li>Calibrating how much of the workflow should be human-in-the-loop vs. automated</li>
+        <li>Four core use cases: finding customer data, insight-based prioritization, showcasing value, automating redundancy</li>
+        <li>Generative research: RFP generation process, 12 moderated user interviews</li>
+        <li>An Art of Possible workshop with stakeholders to pressure-test the vision</li>
+      </ul>
+      <p>Findings from the generative research: complexity varied greatly (20–400 questions) with high compliance risk, meaning data must be verified; short timelines created high risk of dead loss; and primitive workarounds already existed, varying by team.</p>
+    </div>
+  </section>
 
+  <div class="frame">
+    <img src="images/files/SalesAI/Solutions.png" alt="Solutions explored for the Sales AI Assistant" />
+    <div class="cap">Usability testing and MVP scoping for the Sales AI Assistant</div>
+  </div>
 
-						<!-- Footer -->
+  <section class="tight">
+    <p class="eyebrow">Solutions</p>
+    <h2 class="section-title">From usability testing to a phased MVP</h2>
+    <div class="grid3">
+      <div class="card">
+        <h4>Usability testing</h4>
+        <p>RITE-style rapid iterative testing to catch issues early and validate direction with real sellers.</p>
+      </div>
+      <div class="card">
+        <h4>Short-term MVP</h4>
+        <p>A scalable chat interface focused on foundational decisions: branding, design system alignment, and defining UI conventions.</p>
+      </div>
+      <div class="card">
+        <h4>Mid/long-term MVP</h4>
+        <p>A canvas experience supporting complex collaboration and formatting, with proactive, context-aware insights.</p>
+      </div>
+    </div>
+  </section>
 
-            <footer>
-  							<ul class="copyright" align="center">
-  							&copy;YoomiCha. All rights reserved
-  							</ul>
-  					</footer>
+  <div class="band">
+    <h2>Trust needed a researcher in the loop</h2>
+    <p>Collaborating closely with UX researchers turned raw data into actionable, high-impact design strategies — and welcoming contrasting opinions from engineering, security, and product surfaced edge cases early, leading to a more balanced, compliant experience.</p>
+  </div>
 
-		 </div>
+  <section class="tight" style="padding-bottom:0;">
+    <p class="eyebrow">Learning</p>
+    <h2 class="section-title">Designing one voice across a fragmented ecosystem</h2>
+    <div class="prose">
+      <p><strong>The power of researcher partnership:</strong> collaborating closely with UX researchers proved essential in transforming raw data into actionable, high-impact design strategies. This cross-functional partnership allowed for deeper empathy with users and ensured product decisions were rooted in validated insights rather than assumptions.</p>
+      <p><strong>Embracing diverse perspectives for robust UX:</strong> synthesizing contrasting opinions from engineering, security, and product teams significantly refined the solution. Welcoming these varied viewpoints helped identify edge cases early and led to a more balanced, compliant, and inclusive experience. Moving forward, integrating these insights with the Renewals AI Support console and other customer-facing surfaces will be essential to a seamless, cohesive AI experience across the enterprise.</p>
+    </div>
+  </section>
 
-		<!-- Scripts -->
+</div>
 
-      <script src="assets/js/jquery.min.js"></script>
-		  <script src="assets/js/skel.min.js"></script>
-		  <script src="assets/js/util.js"></script>
-		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+    <span>© Yoomi Cha. All rights reserved.</span>
+    <span>2025</span>
+  </div>
+</footer>
 
-  
-<a class="back-to-top" id="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
+<a class="back-to-top" id="back-to-top" href="#top">↑ Back to Top</a>
 
 <script>
   var backToTop = document.getElementById('back-to-top');
