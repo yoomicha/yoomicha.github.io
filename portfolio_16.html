@@ -42,10 +42,18 @@
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--rule);
   }
-  nav.site-nav ul{
+  nav.site-nav .nav-inner{
     max-width:var(--maxw); margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  nav.site-nav .brand{
+    text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);
+  }
+  nav.site-nav ul{
+    margin:0; padding:0;
     display:flex; gap:28px; list-style:none;
-    height:60px; align-items:center;
+    align-items:center;
   }
   nav.site-nav a{
     text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
@@ -223,12 +231,14 @@
 <body>
 
 <nav id="nav" class="site-nav">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="images/docs/YoomiCha_Resume.pdf" target="_blank">Résumé</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Yoomi Cha</a>
+    <ul>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="wrap hero">
