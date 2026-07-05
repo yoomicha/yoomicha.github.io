@@ -84,11 +84,24 @@
   /* ---------- Résumé layout ---------- */
   .resume{
     display:grid;
-    grid-template-columns:280px 1fr;
+    grid-template-columns:1fr 280px;
     gap:56px;
     padding:56px 0 72px;
+    align-items:start;
   }
   @media (max-width:760px){ .resume{grid-template-columns:1fr;} }
+
+  .resume > aside{
+    position:sticky;
+    top:24px;
+  }
+  @media (max-width:760px){ .resume > aside{position:static;} }
+
+  .section-divider{
+    border:none;
+    border-top:1px solid var(--rule);
+    margin:48px 0;
+  }
 
   .eyebrow{
     font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
@@ -111,13 +124,13 @@
   }
   .pdf-btn span.label{border-bottom:1px solid var(--rule); padding-bottom:1px;}
 
-  .side-block{margin-bottom:32px;}
-  .side-block:last-child{margin-bottom:0;}
-  .side-block h3{font-size:16px; font-weight:700; margin:0 0 4px;}
-  .side-block p.meta{font-size:14px; color:var(--muted); margin:0;}
+  hr.divider{border:none; border-top:1px solid var(--rule); margin:24px 0;}
+
+  .side-block{margin-bottom:0;}
   .side-block ul{list-style:none; margin:0; padding:0;}
   .side-block ul li{font-size:14px; color:var(--muted); padding:3px 0;}
-  hr.divider{border:none; border-top:1px solid var(--rule); margin:32px 0;}
+  .skill-cat{font-size:13px; font-weight:700; color:var(--ink); margin:18px 0 6px;}
+  .skill-cat:first-of-type{margin-top:0;}
 
   .exp-entry{margin-bottom:40px;}
   .exp-entry:last-child{margin-bottom:0;}
@@ -126,29 +139,6 @@
   .exp-entry .role .title{color:var(--muted); font-weight:500;}
   .exp-entry .dates{font-size:13.5px; font-style:italic; color:var(--faint); margin:0 0 12px;}
   .exp-entry .desc{font-size:14.5px; color:var(--muted); margin:0;}
-
-  /* ---------- Extra sections (moved from About) ---------- */
-  .extra-section{padding:56px 0; border-top:1px solid var(--rule);}
-  .extra-section h2{font-size:18px; font-weight:700; color:var(--ink); margin:0 0 22px;}
-
-  .entry{display:grid; grid-template-columns:170px 1fr; gap:20px; margin-bottom:22px;}
-  .entry:last-child{margin-bottom:0;}
-  .entry .when{color:var(--faint); font-size:13px; padding-top:2px;}
-  .entry .what strong{font-size:15px; display:block; margin-bottom:2px; color:var(--ink);}
-  .entry .what span{color:var(--muted); font-size:14px; display:block;}
-  @media (max-width:600px){ .entry{grid-template-columns:1fr; gap:4px;} }
-
-  .patent{margin-bottom:20px; font-size:14px;}
-  .patent:last-child{margin-bottom:0;}
-  .patent .when{color:var(--faint); font-size:12.5px;}
-  .patent .when a{color:var(--faint); font-size:12.5px; text-decoration:underline;}
-  .patent .title{font-weight:600; margin:4px 0; color:var(--ink);}
-  .patent .who{color:var(--muted); font-size:13.5px;}
-
-  .skill-group{margin-bottom:20px;}
-  .skill-group:last-child{margin-bottom:0;}
-  .skill-group h3{font-size:14px; margin:0 0 6px; color:var(--ink);}
-  .skill-group p{color:var(--muted); font-size:14.5px; margin:0;}
 
   /* ---------- Footer ---------- */
   footer{
@@ -179,6 +169,15 @@
     color:var(--ink);
     box-shadow:0 8px 20px rgba(15,23,42,.08);
     z-index:60;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
+  }
+  .back-to-top.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
   }
   .back-to-top:hover{border-color:#d8dce1;}
 </style>
@@ -202,66 +201,7 @@
 <div class="wrap">
   <div class="resume">
 
-    <!-- Sidebar -->
-    <aside>
-      <a class="pdf-btn" href="images/docs/YoomiCha_Resume.pdf" target="_blank">
-        <span class="icon">↓</span>
-        <span class="label">Download PDF</span>
-      </a>
-
-      <div class="side-block">
-        <p class="eyebrow">Education</p>
-        <h3>University of Texas at Austin</h3>
-        <p class="meta">MS, Information Studies, HCI</p>
-      </div>
-
-      <hr class="divider">
-
-      <div class="side-block">
-        <p class="eyebrow">Skills</p>
-        <ul>
-          <li>Information Architecture</li>
-          <li>Interaction Design</li>
-          <li>End-to-End Product Design</li>
-          <li>User Research & Usability Testing</li>
-          <li>Persona & Journey Mapping</li>
-          <li>Heuristic Evaluation</li>
-          <li>Wireframing & Rapid Prototyping</li>
-          <li>AI / Human-AI Interaction</li>
-          <li>Enterprise SaaS Strategy</li>
-          <li>Data-driven Design</li>
-          <li>Lean/Agile UX Methodologies</li>
-          <li>Design Sprints</li>
-        </ul>
-      </div>
-
-      <hr class="divider">
-
-      <div class="side-block">
-        <p class="eyebrow">Design Tools</p>
-        <ul>
-          <li>Figma</li>
-          <li>Miro</li>
-          <li>Jira</li>
-          <li>Confluence</li>
-          <li>Qualtrics</li>
-          <li>UserTesting.com</li>
-          <li>Adobe Creative Suite</li>
-        </ul>
-      </div>
-
-      <hr class="divider">
-
-      <div class="side-block">
-        <p class="eyebrow">Front-End</p>
-        <ul>
-          <li>HTML5</li>
-          <li>CSS3</li>
-        </ul>
-      </div>
-    </aside>
-
-    <!-- Main: Experience -->
+    <!-- Main -->
     <main>
       <p class="eyebrow">Experience</p>
 
@@ -288,118 +228,135 @@
         <p class="dates">Jan '11 – Jun '16</p>
         <p class="desc">Led UX for the Wisent Toolbox web/mobile suite, Smart Security Manager, SSM Module Type, and Vertical Market Solution product lines. Filed 9 security-related patents covering monitoring methods and camera control systems, including fisheye and D-PTZ monitoring apparatus.</p>
       </div>
+
+      <hr class="section-divider">
+
+      <p class="eyebrow">Education</p>
+
+      <div class="exp-entry">
+        <p class="role"><strong>University of Texas at Austin</strong> <span class="title">Master of Science, Information Studies, HCI</span></p>
+        <p class="dates">2016 – 2018</p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>Handong Global University</strong> <span class="title">Bachelor of Engineering, Product & Visual Design, Industrial Design</span></p>
+        <p class="dates">2005 – 2011</p>
+      </div>
+
+      <hr class="section-divider">
+
+      <p class="eyebrow">Patents</p>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"The Apparatus And The System For Monitoring: Fisheye"</strong> <span class="title">International Patent, No. PCT/KR2016/0069056</span></p>
+        <p class="dates">22 Jul 2016</p>
+        <p class="desc">Kyongjeon Jeong, Yoomi Cha · <a href="https://patents.google.com/patent/KR20170138721A/en" target="_blank" style="text-decoration:underline;">Link</a></p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"The Apparatus And The System For Monitoring: D-PTZ"</strong> <span class="title">International Patent, No. PCT/KR2016/0069056</span></p>
+        <p class="dates">28 Jun 2016</p>
+        <p class="desc">Yoomi Cha, Kyongjeon Jeong · <a href="https://patents.google.com/patent/KR20170136904A/en" target="_blank" style="text-decoration:underline;">Link</a></p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"The Apparatus And The System For Monitoring: Fisheye"</strong> <span class="title">Korean Patent, No. 10-2016-0070880</span></p>
+        <p class="dates">08 Jun 2016</p>
+        <p class="desc">Kyongjeon Jeong, Yoomi Cha</p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"The Apparatus And The System For Monitoring: D-PTZ"</strong> <span class="title">Korean Patent, No. 10-2016-0069056</span></p>
+        <p class="dates">08 Jun 2016</p>
+        <p class="desc">Yoomi Cha, Kyongjeon Jeong</p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"监视方法" (Monitoring Method)</strong> <span class="title">China Patent, CN 201410542143</span></p>
+        <p class="dates">14 Oct 2014</p>
+        <p class="desc">Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim · <a href="https://patents.google.com/patent/CN104581043A" target="_blank" style="text-decoration:underline;">Link</a></p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"Monitoring Method"</strong> <span class="title">US Patent Application No. 14/503,627</span></p>
+        <p class="dates">01 Oct 2014</p>
+        <p class="desc">Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim · <a href="https://patents.google.com/patent/US20150106721" target="_blank" style="text-decoration:underline;">Link</a></p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"Method for Monitoring: 3D Log Listing"</strong> <span class="title">Korean Patent, No. 10-2013-0122218</span></p>
+        <p class="dates">14 Oct 2013</p>
+        <p class="desc">Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim · <a href="https://drive.google.com/file/d/1a8OeiYoncgsaWE21P4HI19nNbUyh2uiw/view" target="_blank" style="text-decoration:underline;">Link</a></p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"Method for Monitoring: Icon Log Listing"</strong> <span class="title">Korean Patent, No. 10-2013-0122217</span></p>
+        <p class="dates">14 Oct 2013</p>
+        <p class="desc">Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim · <a href="https://drive.google.com/file/d/1NY5zCQoLJL840KfH2SK4js-rOvXwdBax/view" target="_blank" style="text-decoration:underline;">Link</a></p>
+      </div>
+
+      <div class="exp-entry">
+        <p class="role"><strong>"Method for Controlling Preset"</strong> <span class="title">Korean Patent, No. 10-2012-0149754</span></p>
+        <p class="dates">20 Dec 2012</p>
+        <p class="desc">Yoomi Cha · <a href="https://drive.google.com/file/d/1Jj0ws3l-GDFBLHlUMC8Mq4Pds-SZtKND/view" target="_blank" style="text-decoration:underline;">Link</a></p>
+      </div>
     </main>
 
+    <!-- Sidebar -->
+    <aside>
+      <a class="pdf-btn" href="images/docs/YoomiCha_Resume.pdf" target="_blank">
+        <span class="icon">↓</span>
+        <span class="label">Download PDF</span>
+      </a>
+
+      <hr class="divider">
+
+      <div class="side-block">
+        <p class="eyebrow">Skills</p>
+
+        <p class="skill-cat">Core UX</p>
+        <ul>
+          <li>Information Architecture</li>
+          <li>Interaction Design</li>
+          <li>End-to-End Product Design</li>
+          <li>User Research & Usability Testing</li>
+          <li>Persona & Journey Mapping</li>
+          <li>Heuristic Evaluation</li>
+          <li>Wireframing & Rapid Prototyping</li>
+        </ul>
+
+        <p class="skill-cat">AI & Strategic UX</p>
+        <ul>
+          <li>AI UX/Interaction Design</li>
+          <li>Human-AI Interaction</li>
+          <li>Dashboard-driven AI Experiences</li>
+          <li>Enterprise SaaS Strategy</li>
+          <li>Data-driven Design</li>
+          <li>Lean/Agile UX Methodologies</li>
+          <li>Design Sprints</li>
+        </ul>
+
+        <p class="skill-cat">Design & Collaboration Tools</p>
+        <ul>
+          <li>Figma</li>
+          <li>Miro</li>
+          <li>Jira</li>
+          <li>Confluence</li>
+          <li>Qualtrics</li>
+          <li>UserTesting.com</li>
+          <li>Adobe Creative Suite (Photoshop, Illustrator, After Effects)</li>
+          <li>HTML/CSS</li>
+        </ul>
+
+        <p class="skill-cat">Front-End</p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+        </ul>
+      </div>
+    </aside>
+
   </div>
-
-  <section class="extra-section">
-    <p class="eyebrow">Work Experience</p>
-    <div class="entry">
-      <div class="when">Feb 2022 – Now</div>
-      <div class="what"><strong>Cisco</strong><span>Senior UX Designer</span></div>
-    </div>
-    <div class="entry">
-      <div class="when">Jul 2018 – Jun 2019</div>
-      <div class="what"><strong>Poly</strong><span>UX Designer</span></div>
-    </div>
-    <div class="entry">
-      <div class="when">Jun 2017 – Aug 2017</div>
-      <div class="what"><strong>Texas Commission on Environmental Quality</strong><span>UX Designer Intern</span></div>
-    </div>
-    <div class="entry">
-      <div class="when">Jan 2011 – Jun 2016</div>
-      <div class="what"><strong>Samsung Techwin</strong> <span>(now Hanwha Techwin)</span><span>Senior UX Designer</span></div>
-    </div>
-  </section>
-
-  <section class="extra-section">
-    <p class="eyebrow">Education</p>
-    <div class="entry">
-      <div class="when">2016 – 2018</div>
-      <div class="what"><strong>University of Texas at Austin</strong><span>Master of Science, Information Studies, HCI</span></div>
-    </div>
-    <div class="entry">
-      <div class="when">2005 – 2011</div>
-      <div class="what"><strong>Handong Global University</strong><span>Bachelor of Engineering, Product & Visual Design, Industrial Design</span></div>
-    </div>
-  </section>
-
-  <section class="extra-section">
-    <p class="eyebrow">Patents</p>
-
-    <div class="patent">
-      <div class="when">22 Jul 2016 — International Patent, No. PCT/KR2016/0069056 · <a href="https://patents.google.com/patent/KR20170138721A/en" target="_blank">Link</a></div>
-      <div class="title">"The Apparatus And The System For Monitoring: Fisheye"</div>
-      <div class="who">Kyongjeon Jeong, Yoomi Cha</div>
-    </div>
-
-    <div class="patent">
-      <div class="when">28 Jun 2016 — International Patent, No. PCT/KR2016/0069056 · <a href="https://patents.google.com/patent/KR20170136904A/en" target="_blank">Link</a></div>
-      <div class="title">"The Apparatus And The System For Monitoring: D-PTZ"</div>
-      <div class="who">Yoomi Cha, Kyongjeon Jeong</div>
-    </div>
-
-    <div class="patent">
-      <div class="when">08 Jun 2016 — Korean Patent, No. 10-2016-0070880</div>
-      <div class="title">"The Apparatus And The System For Monitoring: Fisheye"</div>
-      <div class="who">Kyongjeon Jeong, Yoomi Cha</div>
-    </div>
-
-    <div class="patent">
-      <div class="when">08 Jun 2016 — Korean Patent, No. 10-2016-0069056</div>
-      <div class="title">"The Apparatus And The System For Monitoring: D-PTZ"</div>
-      <div class="who">Yoomi Cha, Kyongjeon Jeong</div>
-    </div>
-
-    <div class="patent">
-      <div class="when">14 Oct 2014 — China Patent, CN 201410542143 · <a href="https://patents.google.com/patent/CN104581043A" target="_blank">Link</a></div>
-      <div class="title">"监视方法" (Monitoring Method)</div>
-      <div class="who">Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim</div>
-    </div>
-
-    <div class="patent">
-      <div class="when">01 Oct 2014 — US Patent Application No. 14/503,627 · <a href="https://patents.google.com/patent/US20150106721" target="_blank">Link</a></div>
-      <div class="title">"Monitoring Method"</div>
-      <div class="who">Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim</div>
-    </div>
-
-    <div class="patent">
-      <div class="when">14 Oct 2013 — Korean Patent, No. 10-2013-0122218 · <a href="https://drive.google.com/file/d/1a8OeiYoncgsaWE21P4HI19nNbUyh2uiw/view" target="_blank">Link</a></div>
-      <div class="title">"Method for Monitoring: 3D Log Listing"</div>
-      <div class="who">Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim</div>
-    </div>
-
-    <div class="patent">
-      <div class="when">14 Oct 2013 — Korean Patent, No. 10-2013-0122217 · <a href="https://drive.google.com/file/d/1NY5zCQoLJL840KfH2SK4js-rOvXwdBax/view" target="_blank">Link</a></div>
-      <div class="title">"Method for Monitoring: Icon Log Listing"</div>
-      <div class="who">Yoomi Cha, Dongwon Kim, Jongjun Baik, Joobok Kim</div>
-    </div>
-
-    <div class="patent">
-      <div class="when">20 Dec 2012 — Korean Patent, No. 10-2012-0149754 · <a href="https://drive.google.com/file/d/1Jj0ws3l-GDFBLHlUMC8Mq4Pds-SZtKND/view" target="_blank">Link</a></div>
-      <div class="title">"Method for Controlling Preset"</div>
-      <div class="who">Yoomi Cha</div>
-    </div>
-  </section>
-
-  <section class="extra-section" style="padding-bottom:64px;">
-    <p class="eyebrow">Skills & Expertise</p>
-
-    <div class="skill-group">
-      <h3>Core UX</h3>
-      <p>Information Architecture, Interaction Design, End-to-End Product Design, User Research & Usability Testing, Persona & Journey Mapping, Heuristic Evaluation, Wireframing & Rapid Prototyping</p>
-    </div>
-
-    <div class="skill-group">
-      <h3>AI & Strategic UX</h3>
-      <p>AI UX/Interaction Design, Human-AI Interaction, Dashboard-driven AI Experiences, Enterprise SaaS Strategy, Data-driven Design, Lean/Agile UX Methodologies, Design Sprints</p>
-    </div>
-
-    <div class="skill-group">
-      <h3>Design & Collaboration Tools</h3>
-      <p>Figma, Miro, Jira, Confluence, Qualtrics, UserTesting.com, Adobe Creative Suite (Photoshop, Illustrator, After Effects), HTML/CSS</p>
-    </div>
-  </section>
 
 </div>
 
@@ -409,7 +366,18 @@
   <span>2026</span>
 </footer>
 
-<a class="back-to-top" href="#top">↑ Back to Top</a>
+<a class="back-to-top" id="back-to-top" href="#top">↑ Back to Top</a>
+
+<script>
+  var backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+</script>
 
 </body>
 </html>

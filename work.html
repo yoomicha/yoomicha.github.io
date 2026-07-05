@@ -92,8 +92,8 @@
   section{padding:64px 0;}
   section.rule-top{border-top:1px solid var(--rule);}
 
-  /* ---------- Highlights (large stacked cards) ---------- */
-  .Highlights{
+  /* ---------- Featured Work (large stacked cards) ---------- */
+  .featured-list{
     display:flex;
     flex-direction:column;
     gap:56px;
@@ -168,6 +168,15 @@
     color:var(--ink);
     box-shadow:0 8px 20px rgba(15,23,42,.08);
     z-index:60;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
+  }
+  .back-to-top.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
   }
   .back-to-top:hover{border-color:#d8dce1;}
 </style>
@@ -321,7 +330,18 @@
   <span>2026</span>
 </footer>
 
-<a class="back-to-top" href="#top">↑ Back to Top</a>
+<a class="back-to-top" id="back-to-top" href="#top">↑ Back to Top</a>
+
+<script>
+  var backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+</script>
 
 </body>
 </html>
