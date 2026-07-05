@@ -1,4 +1,4 @@
-		
+	
 <!DOCTYPE HTML>
 <html>
 
@@ -11,18 +11,82 @@
 	<link rel="icon" href="favicon.png" type="image/x-icon" />
 </head>
 	<head>
+<style>
+  :root{
+    --ink:#15171c;
+    --muted:#6b7280;
+    --rule:#e7e9ec;
+  }
+  nav.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  nav.site-nav .nav-inner{
+    max-width:980px; margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  nav.site-nav .brand{
+    text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);
+  }
+  nav.site-nav ul{
+    margin:0; padding:0;
+    display:flex; gap:28px; list-style:none;
+    align-items:center;
+  }
+  nav.site-nav a{
+    text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
+    transition:color .15s ease;
+  }
+  nav.site-nav a:hover{color:var(--ink);}
+
+  .back-to-top{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    padding:10px 16px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(15,23,42,.08);
+    z-index:60;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  .back-to-top.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .back-to-top:hover{border-color:#d8dce1;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
 
 							<!-- Nav -->
-              <nav id="nav">
-        				<ul class="container">
-                  <li><a href="index.html#top">Home</a></li>
-                  <li><a href="index.html#work">About</a></li>
-				  <li><a href="index.html#highlights">Highlights</a></li>
-                  <li><a href="index.html#portfolio">Projects</a></li>
-        				</ul>
-        			</nav>
+<nav id="nav" class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Yoomi Cha</a>
+    <ul>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
 						</div>
 
 
@@ -39,67 +103,124 @@
 
 					 <div class="inner">
 
-						 <h1><strong>Sales AI Assistant Proposal</strong></h1>
-             <h3><br>Cisco | 2024-2025</h3>
+						 <h1><strong>Sales AI Assistant Proposal </strong></h1>
+             <h3><br>Cisco | 2024 - 2025</h3>
+             <center><br><img src="images/files/SalesAI/SalesAI_Main.png" style="width:100%;height:auto;"></center>
+               <div style="text-align:left">
+               <h2><br><br><br><br>Framing the Problem<h2>
+               </div>
+                 <div style="text-align:justify">
+                   <ul><span style="margin:5px; list-style: none; padding-left: 0;"> </span>
+                     <li><strong>Q.</strong> What percentage of your working time do you spend looking for information?</li> 
+                     <li><strong>A.</strong> At Cisco, sellers spend nearly 20% of their time looking for accurate, holistic information about customers and solutions across 30+ internal tools.</li>
+                     <li><strong>How Might We</strong> unify fragmented customer data to enable more efficient & effective customer engagement for Cisco sellers?</li>
+                   </ul>
+                 </div>
 
-<br>
-    <div id="pdf-container" style="width: 100%; max-width: 900px; margin: 0 auto;"></div>
+				<div style="text-align:left">
+                 	<h2><br><br>Collaborators<h2>
+                 </div>
+                 <div style="text-align:justify">
+                     <ul><span style="margin:5px"> </span>
+                       <li>Business team</li>
+                       <li>Dev team</li>
+                       <li>Content designer</li>
+                       <li>UX researchers</li>
+                       <li>UX designers (Led end-to-end UX design, facilitated stakeholder workshops, synthesized user insights, defined product vision, and developed high-fidelity prototypes)</li>
+                     </ul>
+                   </div>				   
 
-    <footer>
-        <ul class="copyright" style="text-align: center;">
-            &copy; YoomiCha. All rights reserved
-        </ul>
-    </footer>
+				<div style="text-align:left">
+                 <h2><br><br>Direction<h2>
+                 </div>
+                   <div style="text-align:justify">
+                     <ul><span style="margin:5px"> </span>
+                       <li><strong>Business Vision:</strong> AI chat interface embedded across 30+ tools</li>
+                       <li><strong>Agentic Orchestration:</strong> User, customer, solution & enablement agents -> provide access to disparate data via chat</li>
+                       <li><strong>Tasks:</strong>
+    				   		<ul style="margin-left: 20px; list-style-type: circle;">
+        						<li><strong>Extract Data-Driven Insights:</strong> Uncover systemic seller pain points and workflows.</li>
+        						<li><strong>Deliver Seamless MVP Experiences:</strong> Validate core chat functionalities in high-priority environments.</li>
+        						<li><strong>Explore Advanced AI Use Cases:</strong> Identify high-impact opportunities for agentic orchestration.</li>
+        						<li><strong>Architect for Scalability:</strong> Design future-proof frameworks adaptable across 30+ internal enterprise tools.</li>
+    						</ul>
+						</li>
+                     </ul>
+                   </div>			
+					 
+                 <div style="text-align:left">
+                 <h2><br><br>Insights<h2>
+                 </div>
+                   <div style="text-align:justify">
+                     <ul><span style="margin:5px"> </span>
+                       <li>Review data-related painpoints</li>
+                       <li>Humans and the loop</li>
+                       <li>4 core use cases</li>
+					   <li>Generative Research</li>
+					   <li>Art of Possible Workshop with stakeholders</li>
+                      </ul>
+                     <div style="text-align:justify">
+         	             <br><center><img src="images/files/SalesAI/Insights.png" style="width:100%;height:auto;"></center>
+                     </div>
+                   </div>
+					 
+                   <div style="text-align:left">
+                   <h2><br><br>Solutions<h2>
+                   </div>
+ 					<div style="text-align:justify">
+                     	<ul><span style="margin:5px"> </span>
+                       		<li>Usability Testing</li>
+                       		<li>Short-Term MVP</li>
+                       		<li>Mid/Long-Term MVP</li>
+                      	</ul>
+                     	<div style="text-align:justify">
+         	             	<br><center><img src="images/files/SalesAI/Solutions.png" style="width:100%;height:auto;"></center>
+                     	</div>
+                   	</div>
 
-    </div>
-						
-</article>
+                 <div style="text-align:left">
+                 <h2><br><br>Learning<h2>
+                 </div>
+                   <div style="text-align:justify">
+                     <ul><span style="margin:5px"> </span>
+						<li><strong>The Power of Researcher Partnership:</strong> Collaborating closely with UX researchers proved essential in transforming raw data into actionable, high-impact design strategies. This cross-functional partnership allowed for deeper empathy with users and ensured that product decisions were rooted in validated insights rather than assumptions.</li>
+                        <li><strong>Embracing Diverse Perspectives for Robust UX:</strong> Synthesizing contrasting and diverse opinions from engineering, security, and product teams significantly refined the solution. Welcoming these varied viewpoints helped identify edge cases early on and led to a more balanced, compliant, and inclusive user experience.</li>
+                     </ul>
+                   </div>
+					   
+				</div>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+						<!-- Footer -->
+
+            <footer>
+  							<ul class="copyright" align="center">
+  							&copy;YoomiCha. All rights reserved
+  							</ul>
+  					</footer>
+
+		 </div>
+
+		<!-- Scripts -->
+
+      <script src="assets/js/jquery.min.js"></script>
+		  <script src="assets/js/skel.min.js"></script>
+		  <script src="assets/js/util.js"></script>
+		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+  
+<a class="back-to-top" id="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
+
 <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-    
-    // PDF 파일 경로 설정 (실제 파일 경로로 교체해주세요)
-const pdfUrl = 'images/files/SalesAI/SalesAI_Report.pdf';
-const container = document.getElementById('pdf-container');
-
-// PDF 로드 및 전체 페이지 렌더링
-pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
-    // 전체 페이지를 모두 보여주도록 설정
-    const totalPagesToShow = pdf.numPages;
-
-    // 페이지를 1페이지부터 순서대로 그리기 위한 Promise 체인
-    let chain = Promise.resolve();
-
-    for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
-        chain = chain.then(() => pdf.getPage(pageNum).then(page => {
-            const canvas = document.createElement('canvas');
-            canvas.style.display = 'block';
-            canvas.style.width = '100%';
-            canvas.style.marginBottom = '20px';
-            container.appendChild(canvas);
-
-            const context = canvas.getContext('2d');
-            const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
-
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            const renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            return page.render(renderContext).promise;
-        }));
+  var backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
     }
-}).catch(error => {
-    console.error('PDF 로딩 중 에러 발생: ', error);
-});
+  });
 </script>
 
 </body>

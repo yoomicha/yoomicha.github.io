@@ -1,4 +1,4 @@
-		
+	
 <!DOCTYPE HTML>
 <html>
 
@@ -11,95 +11,196 @@
 	<link rel="icon" href="favicon.png" type="image/x-icon" />
 </head>
 	<head>
+<style>
+  :root{
+    --ink:#15171c;
+    --muted:#6b7280;
+    --rule:#e7e9ec;
+  }
+  nav.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  nav.site-nav .nav-inner{
+    max-width:980px; margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  nav.site-nav .brand{
+    text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);
+  }
+  nav.site-nav ul{
+    margin:0; padding:0;
+    display:flex; gap:28px; list-style:none;
+    align-items:center;
+  }
+  nav.site-nav a{
+    text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
+    transition:color .15s ease;
+  }
+  nav.site-nav a:hover{color:var(--ink);}
+
+  .back-to-top{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    padding:10px 16px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(15,23,42,.08);
+    z-index:60;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  .back-to-top.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .back-to-top:hover{border-color:#d8dce1;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
 
 							<!-- Nav -->
-              <nav id="nav">
-        				<ul class="container">
-                  <li><a href="index.html#top">Home</a></li>
-                  <li><a href="index.html#work">About</a></li>
-				  <li><a href="index.html#highlights">Highlights</a></li>
-                  <li><a href="index.html#portfolio">Projects</a></li>
-        				</ul>
-        			</nav>
+<nav id="nav" class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Yoomi Cha</a>
+    <ul>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
 						</div>
 
 
 
 		<!-- Main -->
 
-    <article class="wrapper style2">
-      <div class="container">
-					<div style="text-align:left">
+<article class="wrapper style2">
+        <div class="container">
+            <div class="inner">
+                <div style="text-align:left">
+                    <h1><strong>Security MFA Bypass Request</strong></h1>
+                    <h3 style="margin-top: 10px;">Cisco | 2026</h3>
+                </div>
+                
+                <div style="text-align:center; margin: 30px 0;">
+                    <video src="images/files/MFABypass/MyRequest_Validation.mp4" style="width: 100%; height: auto;" autoplay loop muted playsinline></video>
+                </div>
 
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-            <link rel="stylesheet" href="assets/css/main.css" />
+                <div style="text-align:left; margin-top: 40px;">
+                    <h2>Framing the Problem</h2>
+                </div>
+                <div style="text-align:justify">
+                    <ul style="margin-top: 10px;">
+                        <li>Define general account & MFA bypass request life-cycle</li>
+                        <li>Define request submission process flow</li>
+                        <li>Define requirements</li>
+                    </ul>
+					<center><br><img src="images/files/MFABypass/FramingtheProblem.png" style="width:100%;height:auto;"></center>
 
-					 <div class="inner">
+                </div>
 
-						 <h1><strong>Security MFA Bypass Request</strong></h1>
-             <h3><br>Cisco | 2026</h3>
-
-<br>
-    <div id="pdf-container" style="width: 100%; max-width: 900px; margin: 0 auto;"></div>
-
-    <footer>
-        <ul class="copyright" style="text-align: center;">
-            &copy; YoomiCha. All rights reserved
-        </ul>
-    </footer>
-
-    </div>
+				<div style="text-align: left; margin-top: 40px;">
+    				<h2>Goal</h2>
+				</div>
+				<div style="text-align: justify">
+    				<ul style="margin-top: 10px;">
+        				<li>Enhancing the overall user journey for the MFA Bypass request process and improving MFA Bypass Approval form.</li>
+    				</ul>
+				</div>
+								   
+				<div style="text-align: left; margin-top: 40px;">
+    				<h2>Role</h2>
+				</div>
+				<div style="text-align: justify">
+    				<ul style="margin-top: 10px;">
+        				<li>Owned the end-to-end UX design process from discovery to high-fidelity prototyping.</li>
+        				<li>Facilitated internal design feedback sessions and cross-functional alignments with the Security Engineering team.</li>
+        				<li>Synthesized stakeholder feedback into iterative product updates.</li>
+    				</ul>
+				</div>
 						
-</article>
+				<div style="text-align: left; margin-top: 40px;">
+    				<h2>Key Impact</h2>
+				</div>
+				<div style="text-align: justify">
+    				<ul style="margin-top: 10px;">
+        				<li><strong>Optimized Governance:</strong> Balanced strict security protocols with developer velocity by implementing a secure, low-visibility entry point.</li>
+        				<li><strong>Frictionless Workflow:</strong> Eliminated manual data entry via smart automation (AD/ESP integration), substantially reducing form drop-off rates for valid use cases.</li>
+        				<li><strong>Proactive Support:</strong> Guided unqualified users to alternative authentication options instantly, preventing redundant operational support tickets.</li>
+    				</ul>
+				</div>
+					 
+					<div style="text-align:left">
+   					 <h2><br><br>Deliverables</h2> 
+					</div>
+					<div style="text-align:justify">
+   	 					<ul>
+        					<span style="margin:5px"></span>
+        					<li>Finalized the high-fidelity prototype through multiple rounds of internal and external feedback sessions</li>
+    					</ul>
+						<center><br><img src="images/files/MFABypass/Deliverables.png" style="width:100%;height:auto;"></center>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+					</div>
+					 
+					<div style="text-align:left; margin-top:40px;">
+    					<h2>Learning</h2>
+					</div>
+					<div style="text-align:justify">
+   	 					<ul style="margin-top:10px;">
+        					<li><strong>Balancing Enterprise Security with Frictionless UX:</strong> Designing the MFA Bypass workflow taught me how to strictly adhere to enterprise security compliance while minimizing user friction. I learned that clear data hierarchy in forms is critical when users are under high-stress, time-sensitive situations.</li>
+        					<li><strong>Cross-Functional Alignment in Technical Domains:</strong> Collaborating closely with the Security Engineering team highlighted the importance of translating complex technical requirements into intuitive user flows. Utilizing Jira Align and Confluence helped synchronize stakeholder feedback, ensuring the final prototype met both engineering constraints and user needs.</li>
+    					</ul>                  
+					</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+						<!-- Footer -->
+
+            <footer>
+  							<ul class="copyright" align="center">
+  							&copy;YoomiCha. All rights reserved
+  							</ul>
+  					</footer>
+
+		 </div>
+
+		<!-- Scripts -->
+
+      <script src="assets/js/jquery.min.js"></script>
+		  <script src="assets/js/skel.min.js"></script>
+		  <script src="assets/js/util.js"></script>
+		  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+  
+<a class="back-to-top" id="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
+
 <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-    
-    // PDF 파일 경로 설정 (실제 파일 경로로 교체해주세요)
-const pdfUrl = 'images/files/MFABypass/MFABypass_Report.pdf';
-const container = document.getElementById('pdf-container');
-
-// PDF 로드 및 전체 페이지 렌더링
-pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
-    // 전체 페이지를 모두 보여주도록 설정
-    const totalPagesToShow = pdf.numPages;
-
-    // 페이지를 1페이지부터 순서대로 그리기 위한 Promise 체인
-    let chain = Promise.resolve();
-
-    for (let pageNum = 1; pageNum <= totalPagesToShow; pageNum++) {
-        chain = chain.then(() => pdf.getPage(pageNum).then(page => {
-            const canvas = document.createElement('canvas');
-            canvas.style.display = 'block';
-            canvas.style.width = '100%';
-            canvas.style.marginBottom = '20px';
-            container.appendChild(canvas);
-
-            const context = canvas.getContext('2d');
-            const viewport = page.getViewport({ scale: 1.5 }); // 선명도 1.5배
-
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            const renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            return page.render(renderContext).promise;
-        }));
+  var backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
     }
-}).catch(error => {
-    console.error('PDF 로딩 중 에러 발생: ', error);
-});
+  });
 </script>
 
 </body>

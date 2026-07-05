@@ -11,18 +11,82 @@
 	<link rel="icon" href="favicon.png" type="image/x-icon" />
 </head>
 	<head>
+<style>
+  :root{
+    --ink:#15171c;
+    --muted:#6b7280;
+    --rule:#e7e9ec;
+  }
+  nav.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  nav.site-nav .nav-inner{
+    max-width:980px; margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  nav.site-nav .brand{
+    text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);
+  }
+  nav.site-nav ul{
+    margin:0; padding:0;
+    display:flex; gap:28px; list-style:none;
+    align-items:center;
+  }
+  nav.site-nav a{
+    text-decoration:none; font-size:14px; font-weight:500; color:var(--muted);
+    transition:color .15s ease;
+  }
+  nav.site-nav a:hover{color:var(--ink);}
+
+  .back-to-top{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    padding:10px 16px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(15,23,42,.08);
+    z-index:60;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease, border-color .15s ease;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  .back-to-top.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .back-to-top:hover{border-color:#d8dce1;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
 
 							<!-- Nav -->
-              <nav id="nav">
-        				<ul class="container">
-                  <li><a href="index.html#top">Home</a></li>
-                  <li><a href="index.html#work">About</a></li>
-				  <li><a href="index.html#highlights">Highlights</a></li>
-                  <li><a href="index.html#portfolio">Projects</a></li>
-        				</ul>
-        			</nav>
+<nav id="nav" class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Yoomi Cha</a>
+    <ul>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
 						</div>
 
 
@@ -100,6 +164,18 @@
     }).catch(error => {
         console.error('PDF 로딩 에러: ', error);
     });
+</script>
+<a class="back-to-top" id="back-to-top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
+
+<script>
+  var backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
 </script>
 
 </body>
