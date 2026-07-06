@@ -169,10 +169,51 @@
   .finding img{width:100%; border-radius:8px; border:1px solid var(--rule); display:block;}
   @media (max-width:800px){ .finding{grid-template-columns:1fr;} }
 
+169   .finding img {width:100%; border-radius:8px; border:1px solid var(--rule); display:block;}
+170   @media (max-width:800px) {.finding {grid-template-columns:1fr;}}
+171 
+      /* 💡 여기에 복사한 .user-quote-container 코드를 붙여넣으세요! */
+      .user-quote-container {
+        margin-top: 32px;
+        padding: 24px 28px;
+        background-color: #f8fafc;
+        border-left: 4px solid #0050e6;
+        border-radius: 0 8px 8px 0;
+        position: relative;
+      }
+      .quote-mark {
+        font-family: Georgia, serif;
+        font-size: 48px;
+        color: #0050e6;
+        line-height: 1;
+        position: absolute;
+        top: 8px;
+        left: 20px;
+        opacity: 0.15;
+      }
+      .quote-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #4a5568;
+        font-style: italic;
+        margin: 0 0 8px 0;
+      }
+      .quote-author {
+        font-size: 12px;
+        font-weight: 600;
+        color: #718096;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+172 
+173   /* IMAGE FRAME (wide, standalone) */
+174   .frame {margin:40px 0;}  
+  
   /* IMAGE FRAME (wide, standalone) */
   .frame{margin:40px 0;}
   .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
   .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+
 
   /* IMAGE COMPARISON GRID (2-3 across) */
   .compare-grid{
@@ -356,6 +397,13 @@
         <div class="tag">Senior design strategy</div>
         <p>Aiming to build trust in the risk data, I moved beyond raw numbers to prioritize model explainability — designing a framework that details how the model works, displaying specific algorithmic risk drivers combined with collaborative history (e.g., Customer Pulse) for clear visibility across all user roles.</p>
       </div>
+      <div class="user-quote-container">
+      <span class="quote-mark">“</span>
+      <p class="quote-text">
+        and that it's linked to the customer success dashboard and there is some telemetric going wrong, like taking an option and everything, but it's not that accurate. So, what I'm doing is, I just go to costumer or partner to ask..
+      </p>
+      <span class="quote-author">— Key Research Finding</span>
+    </div>
       <div class="callout">
         <div class="tag">Impact</div>
         <p>By transforming an isolated number into an explained narrative, we established immediate psychological safety and data credibility.</p>
