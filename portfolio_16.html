@@ -117,7 +117,11 @@
   section{padding:64px 0;}
   section.tight{padding:40px 0;}
   h2.section-title{
-    font-size:18px; font-weight:400; letter-spacing:-0.01em; margin:0 0 14px;
+    font-size:18px; 
+    font-weight:400; 
+    letter-spacing:-0.01em; 
+    margin:-6px 0 20px;       /* 첫 번째 값을 마이너스로 주어 위쪽 제목과 더 밀착시킵니다 */
+    color: var(--muted);      /* 글씨 색상을 회색(muted)으로 변경합니다 */
   }
   .section-lede{color:var(--muted); font-size:16px; max-width:680px; margin:0 0 32px;}
   .rule{border:none; border-top:1px solid var(--rule); margin:0;}
