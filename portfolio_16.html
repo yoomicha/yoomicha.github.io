@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Renewal Risk 2.0 — Connected Insights Popup | Yoomi Cha</title>
+<title>Renewal Risk 2.0 — Designing Trust into AI-Driven B2B Ecosystems | Yoomi Cha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -78,21 +78,6 @@
     color:var(--muted); font-size:17px; max-width:640px; margin:0 0 40px;
   }
 
-  .hero-visual{
-    background:var(--accent);
-    border-radius:16px;
-    padding:20px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-    margin-bottom:56px;
-  }
-  .hero-visual img{
-    width:100%; display:block; border-radius:6px;
-    box-shadow:0 12px 28px rgba(0,0,0,.18);
-  }
-  @media (max-width:720px){ .hero-visual{grid-template-columns:1fr;} }
-
   /* META ROW: overview / role / timeline */
   .meta-row{
     display:grid; grid-template-columns:1.6fr 1fr; gap:48px;
@@ -109,7 +94,7 @@
     border-bottom:1px solid var(--rule);
     display:grid; grid-template-columns:repeat(4,1fr);
     padding:36px 0;
-    margin-bottom:56px;
+    margin-bottom:40px;
   }
   .stat{padding:0 20px; border-left:1px solid var(--rule);}
   .stat:first-child{border-left:none; padding-left:0;}
@@ -147,24 +132,19 @@
   .prose{max-width:680px; color:var(--ink); font-size:16px;}
   .prose p{margin:0 0 20px;}
   .prose p:last-child{margin-bottom:0;}
+  .prose ul{padding-left:20px; margin:0 0 20px;}
+  .prose li{margin-bottom:10px; color:var(--ink);}
 
   /* FEEDBACK / QUOTE CALLOUT */
   .callout{
     border-left:2px solid var(--accent);
-    padding:4px 0 4px 20px; margin:28px 0;
+    padding:4px 0 4px 20px; margin:20px 0;
   }
   .callout .tag{
     font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
     color:var(--accent); margin-bottom:6px;
   }
   .callout p{margin:0; color:var(--muted); font-size:14.5px;}
-
-  .quote{
-    background:var(--navy); color:#fff; border-radius:12px;
-    padding:28px 26px; font-size:16px; line-height:1.55;
-    max-width:420px;
-  }
-  .quote .who{margin-top:16px; font-size:13px; color:#9fb0dd;}
 
   /* FINDING BLOCK (two column) */
   .finding{
@@ -175,7 +155,7 @@
   .finding h3{font-size:19px; font-weight:700; margin:0 0 4px;}
   .finding .kicker{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 8px;}
   .finding p{color:var(--muted); font-size:15px; margin:0 0 14px;}
-  .finding img{width:100%; border-radius:8px; border:1px solid var(--rule);}
+  .finding img{width:100%; border-radius:8px; border:1px solid var(--rule); display:block;}
   @media (max-width:800px){ .finding{grid-template-columns:1fr;} }
 
   /* IMAGE FRAME (wide, standalone) */
@@ -183,34 +163,49 @@
   .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
   .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
 
-  /* TABLE */
-  table.data{
-    width:100%; border-collapse:collapse; font-size:14px; margin:24px 0 8px;
+  /* IMAGE COMPARISON GRID (2-3 across) */
+  .compare-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:40px 0 10px;
   }
-  table.data th{
-    text-align:left; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--faint); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--rule);
+  .compare-grid .placeholder{
+    aspect-ratio:4/3; border-radius:10px; border:1px dashed var(--rule);
+    background:#fafafa; display:flex; align-items:center; justify-content:center;
+    color:var(--faint); font-size:13px; text-align:center; padding:16px;
   }
-  table.data td{
-    padding:10px 12px; border-bottom:1px solid var(--rule); color:var(--ink);
-  }
-  table.data tr:nth-child(even) td{background:#fafafa;}
+  @media (max-width:720px){ .compare-grid{grid-template-columns:1fr;} }
 
-  /* RECOMMENDATION TABLE */
-  .rec-table{margin-top:16px;}
-  .rec-row{
-    display:grid; grid-template-columns:.9fr 1.1fr 1.2fr; gap:24px;
-    padding:22px 0; border-top:1px solid var(--rule);
+  /* VIDEO PLACEHOLDER */
+  .video-frame{
+    position:relative;
+    background:linear-gradient(135deg,#0c1d4d 0%,#1a2a5c 50%,#0c1d4d 100%);
+    border-radius:16px;
+    aspect-ratio:16/9;
+    display:flex; align-items:center; justify-content:center;
+    margin:16px 0 40px;
+    overflow:hidden;
   }
-  .rec-row .col-label{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); margin-bottom:6px;}
-  .rec-row p{font-size:14.5px; color:var(--ink); margin:0;}
-  .rec-row .discuss{color:var(--muted); font-size:13.5px;}
-  @media (max-width:800px){ .rec-row{grid-template-columns:1fr; gap:6px;} }
+  .video-frame .play{
+    width:64px; height:64px; border-radius:50%;
+    border:2px solid rgba(255,255,255,.8);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .video-frame .play::after{
+    content:""; width:0; height:0;
+    border-top:11px solid transparent; border-bottom:11px solid transparent;
+    border-left:18px solid #fff; margin-left:5px;
+  }
+  .video-frame .cap{
+    position:absolute; bottom:16px; right:20px;
+    font-size:12px; color:rgba(255,255,255,.6);
+  }
+  .video-note{font-size:13px; color:var(--faint); margin:-28px 0 40px;}
 
-  /* RATING BAR */
-  .rating-wrap{display:flex; align-items:center; gap:24px; margin:24px 0;}
-  .rating-num{font-size:44px; font-weight:800; letter-spacing:-0.02em;}
-  .rating-sub{color:var(--muted); font-size:14px; max-width:260px;}
+  /* IMAGE PLACEHOLDER (single) */
+  .img-placeholder{
+    aspect-ratio:4/3; border-radius:8px; border:1px dashed var(--rule);
+    background:#fafafa; display:flex; align-items:center; justify-content:center;
+    color:var(--faint); font-size:13px; text-align:center; padding:16px;
+  }
 
   /* NEXT STEPS GRID */
   .grid2{display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:24px;}
@@ -234,7 +229,7 @@
   <div class="nav-inner">
     <a href="index.html" class="brand">Yoomi Cha</a>
     <ul>
-      <li><a href="work.html">Work</a></li>
+      <li><a href="work.html">Projects</a></li>
       <li><a href="resume.html">Résumé</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
@@ -242,30 +237,8 @@
 </nav>
 
 <div class="wrap hero">
-  <h1>Renewal Risk 2.0 — Connected Insights Popup</h1>
-  <p class="sub">A research study testing whether a line-item-level risk score and popup give Cisco's renewal and customer success teams enough confidence to act on renewal risk — without a training session.</p>
-
-  <div class="hero-visual">
-    <img src="images/hero-1.jpg" alt="Renewal Risk column in the Renewals Console" />
-    <img src="images/hero-2.jpg" alt="Connected Insights popup showing risk detail" />
-  </div>
-
-  <div class="meta-row">
-    <div>
-      <p class="eyebrow">Overview</p>
-      <p>Renewal Risk 2.0 predicts risk at the deal <em>and</em> line-item level using an AI/ML scoring model, surfaced through a Connected Insights popup inside the Renewals Console. Before shipping the redesign, we needed to know whether renewal and CS teams actually trusted the score — and whether they could act on it without help.</p>
-    </div>
-    <div class="meta-cols">
-      <div>
-        <p class="eyebrow">Role</p>
-        <p>UX Designer, Research Lead</p>
-      </div>
-      <div>
-        <p class="eyebrow">Timeline</p>
-        <p>Nov 2023 – Feb 2024</p>
-      </div>
-    </div>
-  </div>
+  <h1>Renewal Risk 2.0 — Designing Trust into AI-Driven B2B Ecosystems</h1>
+  <p class="sub">As UX Lead & Research Principal, my challenge wasn't just designing a dashboard — it was overcoming a deep-seated trust barrier, turning a black-box AI number into an actionable, scalable decision-making framework.</p>
 
   <div class="stat-row">
     <div class="stat">
@@ -277,7 +250,7 @@
       <div class="label">Countries</div>
     </div>
     <div class="stat">
-      <div class="num">200M+</div>
+      <div class="num">$200M+</div>
       <div class="label">Deals</div>
     </div>
     <div class="stat">
@@ -285,55 +258,78 @@
       <div class="label">ARR impact</div>
     </div>
   </div>
+
+  <div class="video-frame">
+    <video src="images/files/RenewalRisk/hero-demo.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:16px;"></video>
+  </div>
+
+  <div class="meta-row">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <p>Renewal Risk 2.0 leverages an advanced AI/ML scoring model to predict risk at both the deal and line-item levels, surfaced via a Connected Insights popup within Cisco's Renewals Console and Renewals Console Home. Renewal Sellers and Customer Success teams managing over $200M in deals across 150+ countries would simply ignore the scoring model if they didn't trust the data.</p>
+      <p style="margin-top:16px;">I led a strategic research initiative and UX redesign to transform that black-box AI number into an actionable, scalable decision-making framework — ultimately driving a 5% increase in ARR impact without requiring a single user training session, and delivering an expected 15% reduction in users' daily workload.</p>
+    </div>
+    <div class="meta-cols">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>Product Design Lead, Research Principal</p>
+      </div>
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <p>Nov 2023 – Feb 2024</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="wrap">
 
   <section class="tight">
-    <p class="eyebrow">Renewals Console</p>
-    <h2 class="section-title">What we set out to learn</h2>
+    <p class="eyebrow">Strategic Framing & Business Goals</p>
+    <h2 class="section-title">From "increase renewals" to closing the risk gap</h2>
     <div class="prose">
-      <p>Renewal Risk is scored two ways in the console — a bubble on the Renewal Risk column, and a Connected Insights popup that breaks the score down by risk factor, action plan, and contact history. Renewal and customer success teams manage renewals across 150+ countries and 200M+ deals, so a scoring model that isn't trusted just gets ignored.</p>
-      <p>We ran 40-minute sessions with 10 participants — renewal managers, customer success executives and specialists — across the Americas, EMEA, and APJC, to see how they actually used Renewal Risk today, and to test the new Connected Insights concepts against real workflows.</p>
+      <p><strong>Business goal:</strong> maximize renewal Annual Recurring Revenue (ARR) across enterprise accounts.</p>
+      <p><strong>The framing:</strong> while the initial business directive was simply "increase renewals," foundational user research revealed a major tactical gap — effectively surfacing and predicting renewal risks was the most direct lever to prevent revenue churn and drive ARR growth.</p>
+      <ul>
+        <li><strong>Phase 1 (The MVP scope):</strong> the original product requirement was limited to displaying raw risk data within a basic Renewals Console widget, simply flagging what data caused a high-risk score for each deal.</li>
+        <li><strong>Phase 2 (The senior UX pivot):</strong> after building and evaluating the initial prototype, I realized that merely displaying risk flags was insufficient to drive business value. I proactively proposed a complete framework shift — expanding the system to display not just the risk level, but the explicit root causes and prescriptive, actionable mitigation strategies.</li>
+        <li><strong>Phase 3 (Platform expansion):</strong> to ensure maximum visibility and daily engagement, I advocated for shifting and expanding the platform footprint from a hidden console widget directly onto the Renewals Console Home.</li>
+      </ul>
     </div>
   </section>
 
-  <div class="frame">
-    <img src="images/popup-detail.jpg" alt="Connected Insights popup detail view" />
-    <div class="cap">Connected Insights popup — risk factors, action plan, and contacts in one view</div>
+  <div class="compare-grid">
+    <img class="placeholder" style="border:1px solid var(--rule); object-fit:cover; padding:0;" src="images/files/RenewalRisk/compare-1.png" alt="Connected Insights popup — approach view 1">
+    <img class="placeholder" style="border:1px solid var(--rule); object-fit:cover; padding:0;" src="images/files/RenewalRisk/compare-2.png" alt="Connected Insights popup — approach view 2">
+    <img class="placeholder" style="border:1px solid var(--rule); object-fit:cover; padding:0;" src="images/files/RenewalRisk/compare-3.png" alt="Connected Insights popup — key takeaways view">
   </div>
+  <p class="video-note" style="margin-top:0;">Screens from the Connected Insights popup research deck — swap in final before/after design comparisons as needed.</p>
 
   <section>
-    <p class="eyebrow">The Approach</p>
-    <h2 class="section-title">10 users, 3 regions, one prototype</h2>
+    <p class="eyebrow">The Core Challenge</p>
+    <h2 class="section-title">The trust barrier</h2>
     <div class="prose">
-      <p>Each session covered current workflow and usage of Renewal Risk, then a walkthrough of the proposed design in Figma. Participants ranged from 2 to 26 years at Cisco, spanning renewal, customer success, and specialist roles.</p>
+      <p>As Lead UX Designer & Research Principal, my mission involved overcoming two distinct challenges. First, I negotiated a critical strategic misalignment with the PM regarding feature placement; while the initial scope was limited, I successfully advocated for integrating the Renewal Risk score not only within the Renewals Console but also directly onto the Renewals Console Home — significantly enhancing accessibility and giving users comprehensive visibility across their entire deal portfolio.</p>
+      <p>However, expanding the product's footprint was only half the battle. The second — and more formidable — challenge was ensuring that once users saw the score, they would actually act on it. Our pre-launch research with 10 global participants (with up to 26 years of tenure at Cisco) revealed a critical systemic issue: users ignored the Renewal Risk column because they defaulted to distrusting the AI model. Instead of acting on the score, they manually bypassed the ecosystem to verify data directly with customers — creating major operational inefficiencies. The design problem was clear: we needed to close the gap between what the model calculated and what a human was willing to believe.</p>
     </div>
-    <table class="data">
-      <tr><th>#</th><th>Title</th><th>Region</th><th>Years at Cisco</th></tr>
-      <tr><td>1</td><td>Renewal Manager</td><td>Americas (US)</td><td>2</td></tr>
-      <tr><td>2</td><td>Renewal Manager</td><td>EMEA</td><td>8</td></tr>
-      <tr><td>3</td><td>Customer Success Executive</td><td>Americas (US)</td><td>12</td></tr>
-      <tr><td>4</td><td>Renewal Specialist</td><td>Americas (US)</td><td>2</td></tr>
-      <tr><td>5</td><td>Customer Success Executive</td><td>Americas (US)</td><td>3</td></tr>
-      <tr><td>6</td><td>Customer Success Specialist</td><td>Americas (US)</td><td>12</td></tr>
-      <tr><td>7</td><td>Customer Success Executive</td><td>Americas (US)</td><td>3</td></tr>
-      <tr><td>8</td><td>Leader, Renewal Specialist</td><td>EMEA</td><td>26</td></tr>
-      <tr><td>9</td><td>Success Program Manager</td><td>EMEA</td><td>3</td></tr>
-      <tr><td>10</td><td>Renewal Specialist</td><td>APJC</td><td>4</td></tr>
-    </table>
   </section>
 
   <section class="tight">
-    <p class="eyebrow">Key Takeaways</p>
-    <h2 class="section-title">The popup was useful — once people got past the trust barrier</h2>
-    <div class="rating-wrap">
-      <div class="rating-num">4.6<span style="font-size:20px;color:var(--muted);">/5</span></div>
-      <div class="rating-sub">Average usefulness rating across all 10 participants, regardless of role.</div>
-    </div>
+    <p class="eyebrow">Research Integrity & Evaluative Usability Testing</p>
+    <h2 class="section-title">Owning the research lifecycle end to end</h2>
     <div class="prose">
-      <p>Most participants found the risk detail, action plan, and contacts genuinely helpful once they used it. But two habits got in the way early on: people clicked the deal link before they clicked the risk bubble, and several doubted the score's accuracy until they understood how it was calculated.</p>
+      <p>To validate the high-risk action framework and secure cross-functional buy-in, I independently proposed and spearheaded a comprehensive end-to-end usability testing initiative. Using the interactive prototypes, I owned the entire evaluative research lifecycle.</p>
+      <ul>
+        <li><strong>End-to-end research planning:</strong> authored the comprehensive testing protocol, defined core target user personas, and managed global participant recruitment.</li>
+        <li><strong>Artifact creation:</strong> developed rigorous usability testing scripts and standardized data-driven note-taking formats to ensure quantitative and qualitative alignment.</li>
+        <li><strong>Executive stakeholder alignment:</strong> synthesized the raw usability data into high-impact UX recommendations and presented findings directly to stakeholders — translating user friction into clear, actionable design recommendations, securing immediate alignment, and driving the project to design handoff.</li>
+      </ul>
     </div>
+  </section>
+
+  <section style="padding-bottom:0;">
+    <p class="eyebrow">Findings & Strategic UX Solutions</p>
+    <h2 class="section-title">Five friction points, five design decisions</h2>
   </section>
 
   <hr class="rule" />
@@ -341,148 +337,123 @@
   <div class="finding">
     <div>
       <p class="kicker">Finding 1</p>
-      <h3>Users hesitated to use Renewal Risk</h3>
-      <p>Use cases varied by role, but most participants rarely relied on Renewal Risk day to day — largely because they doubted the model's accuracy and defaulted to asking a customer or partner directly instead.</p>
+      <h3>From "black box" to explainable AI (XAI)</h3>
+      <p><strong>The friction:</strong> users hesitated to act on high-risk flags because they didn't know why the score was generated.</p>
       <div class="callout">
-        <div class="tag">Recommendation</div>
-        <p>Surface a brief explanation of how the risk model works, plus feedback or collaboration history (like Customer Pulse), so the score carries context — not just a number — regardless of role.</p>
+        <div class="tag">Senior design strategy</div>
+        <p>Aiming to build trust in the risk data, I moved beyond raw numbers to prioritize model explainability — designing a framework that details how the model works, displaying specific algorithmic risk drivers combined with collaborative history (e.g., Customer Pulse) for clear visibility across all user roles.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>By transforming an isolated number into an explained narrative, we established immediate psychological safety and data credibility.</p>
       </div>
     </div>
-    <div class="quote">
-      "It's linked to the customer success dashboard and there is some telemetry going wrong… so what I'm doing is, I just go to the customer or partner to ask."
-      <div class="who">— Participant 10, Renewal Specialist</div>
-    </div>
+    <img src="images/files/RenewalRisk/finding-1-xai.png" alt="Risk model explanation panel" style="border-radius:8px; border:1px solid var(--rule);" />
   </div>
 
   <div class="finding">
     <div>
       <p class="kicker">Finding 2</p>
-      <h3>Users clicked Deal ID instead of the risk bubble</h3>
-      <p>Faced with the Renewal Risk column, most people's first instinct was to click the deal ID or opportunity name — not the bubble that opens Connected Insights. It's the habit the console already trained them to have.</p>
+      <h3>Standardizing the interaction pattern (mental models)</h3>
+      <p><strong>The friction:</strong> in the Top Risk Factors table, users repeatedly tried to click directly on the status labels (High/Medium), which disrupted the console's existing interaction model.</p>
       <div class="callout">
-        <div class="tag">Recommendation</div>
-        <p>Introduce new functions in place, not just in training. A lightweight "what's new" popup on login teaches the new interaction the moment it matters.</p>
+        <div class="tag">Senior design strategy</div>
+        <p>Instead of forcing users to adapt to the UI, I adapted the UI to their mental model — establishing a predictable, strict interactive sequence: Status → Focus Area → Who to Contact → Actionable Guide.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>Unified the interface's behavior pattern, drastically lowering cognitive load and eliminating navigation errors during critical workflows.</p>
       </div>
     </div>
-    <div class="quote">
-      "I would click into the opportunity. I don't know, probably on the deal ID, or the opportunity name."
-      <div class="who">— Participant 1, Renewal Manager</div>
-    </div>
+    <img src="images/files/RenewalRisk/finding-2-pattern.png" alt="Behavior pattern consistency for status column" style="border-radius:8px; border:1px solid var(--rule);" />
   </div>
 
   <div class="finding">
     <div>
       <p class="kicker">Finding 3</p>
-      <h3>Users expected the status column to be clickable</h3>
-      <p>Participants tried clicking directly on the risk status (High, Medium) in the Top Risk Factors table, following the mental model set by the popup's main page — not the separate Guide links meant to explain it.</p>
-      <img src="images/recommended-steps.jpg" alt="Recommended next steps moved beside the status column" />
-    </div>
-    <div>
+      <h3>Proposing terminology standardization in the design system</h3>
+      <p><strong>The friction:</strong> the console suffered from fragmented vocabulary across different roles (e.g., "Ok"/"Good" in one section, "High"/"Highest" in another), causing user confusion.</p>
       <div class="callout">
-        <div class="tag">Recommendation</div>
-        <p>Keep the behavior pattern consistent: move Recommended Steps next to Status, or make the status column itself clickable.</p>
+        <div class="tag">Senior design strategy</div>
+        <p>Looking at the platform's long-term scalability, I partnered with a UX researcher to propose a standardized system — prioritizing user-friendly information delivery with inline tooltips and hover-states that explain complex definitions natively.</p>
       </div>
-      <div class="prose" style="margin-top:16px;">
-        <p style="font-size:14px;">"I would then probably go to status and click on it — see if it were hyperlinked or something."<br><span style="color:var(--faint);">— Participant 5, Customer Success Executive</span></p>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>Avoided costly, disruptive global training sessions by building "vocabulary standardization" directly into the design system component.</p>
       </div>
     </div>
+    <img src="images/files/RenewalRisk/finding-3-terminology.png" alt="Terminology confusion across the console" style="border-radius:8px; border:1px solid var(--rule);" />
   </div>
 
   <div class="finding">
     <div>
       <p class="kicker">Finding 4</p>
-      <h3>Terminology didn't match across the interface</h3>
-      <p>"Ok" and "Good" in Top Risk Factors status, "High" and "Highest" in Risk Summary impact — inconsistent terms across roles left people unsure what standard was actually being used.</p>
+      <h3>Workflow optimization via quick-sorting</h3>
+      <p><strong>The friction:</strong> 70% of renewal sellers prioritized their daily workflows using the same three vectors — high ATR (Amount to Renew), earliest expiration date, and Renewal Risk — but had to manually scan the table every time.</p>
       <div class="callout">
-        <div class="tag">Recommendation</div>
-        <p>Rather than force one vocabulary across every role, add info icons and tooltips that explain each term in place, and tighten definitions like "All Explanations."</p>
+        <div class="tag">Senior design strategy</div>
+        <p>Proposed introducing a localized quick-sort algorithm and custom column reordering panel directly inside both the console and the popup, mapping perfectly to users' operational priorities.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>Drastically reduced manual data scanning, driving an expected 20% efficiency gain in users' daily workflows.</p>
       </div>
     </div>
-    <img src="images/example-tooltip.jpg" alt="Tooltip explaining terminology on hover" />
+    <img src="images/files/RenewalRisk/finding-4-sorting.png" alt="Sorting option next to Deal ID in the prototype" style="border-radius:8px; border:1px solid var(--rule);" />
   </div>
 
   <div class="finding">
     <div>
       <p class="kicker">Finding 5</p>
-      <h3>Users wanted to sort by what mattered to them</h3>
-      <p>7 of 10 participants prioritized their work the same way: high ATR, earliest expiration date, high Renewal Risk. Without sorting, they had to scan manually every time.</p>
+      <h3>Closing the discovery gap</h3>
+      <p><strong>The friction:</strong> users were missing the popup entirely due to deeply ingrained habits — clicking the Deal ID instead of the risk bubble — and the product lacked a native in-app guidance framework (like WalkMe) at launch.</p>
       <div class="callout">
-        <div class="tag">Recommendation</div>
-        <p>Add a quick sort next to Deal ID for Renewal Risk, ATR, and Expiration Date — in both the console and the popup.</p>
+        <div class="tag">Senior design strategy</div>
+        <p>I led a cross-functional strategy with Product Management and Business Operations: a short-term Phased Geo-Rollout paired with targeted video micro-training, and a long-term roadmap building the business case for a permanent in-product guidance framework.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>Shipped the release without waiting on a guidance framework, while turning the friction itself into the business case for one the following quarter.</p>
       </div>
     </div>
-    <div class="quote">
-      "Is there a way to filter or order high to low? That would be helpful."
-      <div class="who">— Participant 3, Customer Success Executive</div>
-    </div>
-  </div>
-
-  <div class="band">
-    <h2>Consider the bigger picture</h2>
-    <p>All 10 participants passed UAT. The clearest risk wasn't the design — it was rollout: without WalkMe or an in-product guide, even a well-tested popup needed a plan for how people would discover it.</p>
+    <img src="images/files/RenewalRisk/finding-5-rollout.png" alt="Phased geo-rollout plan" style="border-radius:8px; border:1px solid var(--rule); background:#fafafa;" />
   </div>
 
   <section class="tight">
-    <p class="eyebrow">Findings & Recommendations</p>
-    <h2 class="section-title">What the stakeholders decided</h2>
-    <div class="rec-table">
-      <div class="rec-row">
-        <div><p class="col-label">Finding</p><p>Users doubted the risk model's accuracy.</p></div>
-        <div><p class="col-label">Recommendation</p><p>Explain how the model works; surface Customer Pulse history for added trust.</p></div>
-        <div><p class="col-label">Discussion</p><p class="discuss">Explanations exist and can ship within days. Customer Pulse integration targeted for March, aligned with the CS team.</p></div>
-      </div>
-      <div class="rec-row">
-        <div><p class="col-label">Finding</p><p>Users click Deal ID instead of the risk bubble.</p></div>
-        <div><p class="col-label">Recommendation</p><p>Introduce new functions in-product with a "what's new" style guide.</p></div>
-        <div><p class="col-label">Discussion</p><p class="discuss">No existing framework — WalkMe proposed. Video training and phased geo rollout planned alongside the Feb release.</p></div>
-      </div>
-      <div class="rec-row">
-        <div><p class="col-label">Finding</p><p>Users expect the status column to be clickable.</p></div>
-        <div><p class="col-label">Recommendation</p><p>Move Recommended Steps beside Status; keep interaction patterns consistent.</p></div>
-        <div><p class="col-label">Discussion</p><p class="discuss">Agreed on the sequence: Status → focus area → who to contact → Guide's next step.</p></div>
-      </div>
-      <div class="rec-row">
-        <div><p class="col-label">Finding</p><p>Terminology is inconsistent across roles.</p></div>
-        <div><p class="col-label">Recommendation</p><p>Add tooltips; standardize what each term and color means.</p></div>
-        <div><p class="col-label">Discussion</p><p class="discuss">95% of users don't use tooltip icons today — design fix prioritized over training. Standards to be defined with the header team.</p></div>
-      </div>
-      <div class="rec-row">
-        <div><p class="col-label">Finding</p><p>Users want high-risk, high-ATR items sorted to the top.</p></div>
-        <div><p class="col-label">Recommendation</p><p>Add sorting by Renewal Risk, ATR, and Expiration Date.</p></div>
-        <div><p class="col-label">Discussion</p><p class="discuss">Sorting targeted for the March release, alongside customizable, reorderable columns.</p></div>
-      </div>
+    <p class="eyebrow">Cross-Functional Leadership & Stakeholder Alignment</p>
+    <h2 class="section-title">Navigating constraints to drive product strategy</h2>
+    <div class="prose">
+      <p>When research revealed that users were missing the popup entirely due to deeply ingrained habits, I faced a major product constraint: no native in-app guidance framework at launch. Instead of letting the user experience suffer, I stepped up to lead a cross-functional strategy with Product Management and the Business Operations team.</p>
     </div>
-  </section>
-
-  <section>
-    <p class="eyebrow">Next Steps</p>
-    <h2 class="section-title">Where this left off</h2>
     <div class="grid2">
       <div>
-        <h4>What worked</h4>
+        <h4>Short-term mitigation</h4>
         <ul>
-          <li>10 users across multiple roles and geographies, with real product management engagement</li>
-          <li>Feedback landed with enough runway to inform design before development</li>
-          <li>Every participant passed the UAT test</li>
+          <li>Designed and negotiated a Phased Geo-Rollout Strategy</li>
+          <li>Paired the rollout with targeted video micro-training for the release</li>
         </ul>
       </div>
       <div>
-        <h4>What's next</h4>
+        <h4>Long-term roadmap</h4>
         <ul>
-          <li>Coordinate recommendations with the team already building the risk model</li>
-          <li>Build artifacts that clearly explain Renewal Risk and its inputs</li>
-          <li>Extend research to other roles using the same underlying content</li>
+          <li>Leveraged this user friction to build a business case for a permanent in-product guidance framework</li>
+          <li>Targeted for the following quarter</li>
         </ul>
       </div>
     </div>
   </section>
 
+  <div class="band">
+    <h2>Every participant passed UAT</h2>
+    <p>The true success of this project lies in its future-proofing — shifting the narrative from "how do we show a popup?" to "how do we design scalability and trust into an AI model?"</p>
+  </div>
+
   <section class="tight" style="padding-bottom:0;">
-    <p class="eyebrow">What the work required</p>
-    <h2 class="section-title">Designing trust into a number</h2>
+    <p class="eyebrow">The Bigger Picture & Design Scalability</p>
+    <h2 class="section-title">Designing scalability and trust, not just a popup</h2>
     <div class="prose">
-      <p>A risk score is only as useful as people's willingness to act on it. The real design problem here wasn't the popup's layout — it was closing the gap between what the model calculated and what a renewal manager was willing to believe. Clarity about how a number was reached turned out to matter more than the number itself.</p>
-      <p>This report fed directly into the Feb 2024 release plan, and opened a second question the team is still working through: how to keep terminology, color, and interaction patterns consistent as more risk signals get added to the console over time.</p>
+      <p>By shifting the narrative from "how do we show a popup?" to "how do we design scalability and trust into an AI model?", this project successfully shipped the initial release with a clear, validated roadmap for subsequent phases.</p>
+      <p>We successfully established an architectural foundation that allows Cisco's Renewals Console to seamlessly absorb new, complex risk signals over time — without ever breaking the core user experience or requiring expensive user retraining.</p>
     </div>
   </section>
 
