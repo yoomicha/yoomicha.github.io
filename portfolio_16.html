@@ -62,9 +62,12 @@
   nav.site-nav a:hover{color:var(--ink);}
 
   /* EYEBROW / LABELS */
-  .eyebrow{
-    font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--faint); margin:0 0 10px;
+  .eyebrow {
+    font-size: 24px;       /* 기존 크기보다 더 크게 확대 (원하는 크기로 조절 가능) */
+    font-weight: 700;      /* 완전히 굵게 (Bold) 설정 */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--indigo);  /* 기존 색상 유지 */
   }
 
   /* HERO */
@@ -114,10 +117,18 @@
   section{padding:64px 0;}
   section.tight{padding:40px 0;}
   h2.section-title{
-    font-size:26px; font-weight:800; letter-spacing:-0.01em; margin:0 0 14px;
+    font-size:18px; 
+    font-weight:400; 
+    letter-spacing:-0.01em; 
+    margin:-25px 0 15px;       /* 첫 번째 값을 마이너스로 주어 위쪽 제목과 더 밀착시킵니다 */
+    color: var(--muted);      /* 글씨 색상을 회색(muted)으로 변경합니다 */
   }
   .section-lede{color:var(--muted); font-size:16px; max-width:680px; margin:0 0 32px;}
-  .rule{border:none; border-top:1px solid var(--rule); margin:0;}
+  .rule {
+  border: none; 
+  border-top: 1px solid var(--rule); 
+  margin: 0 0 24px 0;    /* 라인 아래에 24px의 일정한 간격을 추가 */
+  }
 
   /* DARK BAND */
   .band{
@@ -158,10 +169,51 @@
   .finding img{width:100%; border-radius:8px; border:1px solid var(--rule); display:block;}
   @media (max-width:800px){ .finding{grid-template-columns:1fr;} }
 
+169   .finding img {width:100%; border-radius:8px; border:1px solid var(--rule); display:block;}
+170   @media (max-width:800px) {.finding {grid-template-columns:1fr;}}
+171 
+      /* 💡 여기에 복사한 .user-quote-container 코드를 붙여넣으세요! */
+      .user-quote-container {
+        margin-top: 32px;
+        padding: 24px 28px;
+        background-color: #f8fafc;
+        border-left: 4px solid #0050e6;
+        border-radius: 0 8px 8px 0;
+        position: relative;
+      }
+      .quote-mark {
+        font-family: Georgia, serif;
+        font-size: 48px;
+        color: #0050e6;
+        line-height: 1;
+        position: absolute;
+        top: 8px;
+        left: 20px;
+        opacity: 0.15;
+      }
+      .quote-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #4a5568;
+        font-style: italic;
+        margin: 0 0 8px 0;
+      }
+      .quote-author {
+        font-size: 12px;
+        font-weight: 600;
+        color: #718096;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+172 
+173   /* IMAGE FRAME (wide, standalone) */
+174   .frame {margin:40px 0;}  
+  
   /* IMAGE FRAME (wide, standalone) */
   .frame{margin:40px 0;}
   .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
   .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+
 
   /* IMAGE COMPARISON GRID (2-3 across) */
   .compare-grid{
@@ -238,7 +290,7 @@
 
 <div class="wrap hero">
   <h1>Renewal Risk 2.0 — Designing Trust into AI-Driven B2B Ecosystems</h1>
-  <p class="sub">As UX Lead & Research Principal, my challenge wasn't just designing a dashboard — it was overcoming a deep-seated trust barrier, turning a black-box AI number into an actionable, scalable decision-making framework.</p>
+  <p class="sub" style="max-width: none; width: 100%;">As UX Lead & Research Lead, my challenge wasn't just designing a dashboard — it was overcoming a deep-seated trust barrier, turning a black-box AI number into an actionable, scalable decision-making framework.</p>
 
   <div class="stat-row">
     <div class="stat">
@@ -259,8 +311,9 @@
     </div>
   </div>
 
-  <div class="video-frame">
-    <video src="images/files/RenewalRisk/hero-demo.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:16px;"></video>
+<!-- 비디오를 감싸는 부모 박스의 너비 제한을 완전히 풀고 visible로 설정합니다 -->
+  <div class="video-container" style="width: 100%; max-width: var(--maxw); margin: 40px auto; overflow: visible;">
+    <video src="images/files/RenewalRisk/hero-demo_after.mp4" autoplay loop muted playsinline style="width: 100%; height: auto; display: block; object-fit: contain; border-radius: 0;"></video>
   </div>
 
   <div class="meta-row">
@@ -272,11 +325,11 @@
     <div class="meta-cols">
       <div>
         <p class="eyebrow">Role</p>
-        <p>Product Design Lead, Research Principal</p>
+        <p>Product Design Lead, Research Lead</p>
       </div>
       <div>
         <p class="eyebrow">Timeline</p>
-        <p>Nov 2023 – Feb 2024</p>
+        <p>Nov 2023 – Jan 2024</p>
       </div>
     </div>
   </div>
@@ -287,6 +340,7 @@
   <section class="tight">
     <p class="eyebrow">Strategic Framing & Business Goals</p>
     <h2 class="section-title">From "increase renewals" to closing the risk gap</h2>
+    <hr class="rule" />
     <div class="prose">
       <p><strong>Business goal:</strong> maximize renewal Annual Recurring Revenue (ARR) across enterprise accounts.</p>
       <p><strong>The framing:</strong> while the initial business directive was simply "increase renewals," foundational user research revealed a major tactical gap — effectively surfacing and predicting renewal risks was the most direct lever to prevent revenue churn and drive ARR growth.</p>
@@ -307,8 +361,10 @@
   <section>
     <p class="eyebrow">The Core Challenge</p>
     <h2 class="section-title">The trust barrier</h2>
-    <div class="prose">
-      <p>As Lead UX Designer & Research Principal, my mission involved overcoming two distinct challenges. First, I negotiated a critical strategic misalignment with the PM regarding feature placement; while the initial scope was limited, I successfully advocated for integrating the Renewal Risk score not only within the Renewals Console but also directly onto the Renewals Console Home — significantly enhancing accessibility and giving users comprehensive visibility across their entire deal portfolio.</p>
+    <hr class="rule" />
+
+    <div style="width: 100%; max-width: var(--maxw); margin: 0 auto 30px;">
+      <p>As Lead UX Designer & Research Lead, my mission involved overcoming two distinct challenges. First, I negotiated a critical strategic misalignment with the PM regarding feature placement; while the initial scope was limited, I successfully advocated for integrating the Renewal Risk score not only within the Renewals Console but also directly onto the Renewals Console Home — significantly enhancing accessibility and giving users comprehensive visibility across their entire deal portfolio.</p>
       <p>However, expanding the product's footprint was only half the battle. The second — and more formidable — challenge was ensuring that once users saw the score, they would actually act on it. Our pre-launch research with 10 global participants (with up to 26 years of tenure at Cisco) revealed a critical systemic issue: users ignored the Renewal Risk column because they defaulted to distrusting the AI model. Instead of acting on the score, they manually bypassed the ecosystem to verify data directly with customers — creating major operational inefficiencies. The design problem was clear: we needed to close the gap between what the model calculated and what a human was willing to believe.</p>
     </div>
   </section>
@@ -316,6 +372,7 @@
   <section class="tight">
     <p class="eyebrow">Research Integrity & Evaluative Usability Testing</p>
     <h2 class="section-title">Owning the research lifecycle end to end</h2>
+    <hr class="rule" />
     <div class="prose">
       <p>To validate the high-risk action framework and secure cross-functional buy-in, I independently proposed and spearheaded a comprehensive end-to-end usability testing initiative. Using the interactive prototypes, I owned the entire evaluative research lifecycle.</p>
       <ul>
@@ -328,16 +385,21 @@
 
   <section style="padding-bottom:0;">
     <p class="eyebrow">Findings & Strategic UX Solutions</p>
-    <h2 class="section-title">Five friction points, five design decisions</h2>
+    <h2 class="section-title">Five friction points, Five design decisions</h2>
   </section>
-
-  <hr class="rule" />
 
   <div class="finding">
     <div>
       <p class="kicker">Finding 1</p>
       <h3>From "black box" to explainable AI (XAI)</h3>
       <p><strong>The friction:</strong> users hesitated to act on high-risk flags because they didn't know why the score was generated.</p>
+    <div class="user-quote-container">
+      <span class="quote-mark">“</span>
+        <p class="quote-text">
+          and that it's linked to the customer success dashboard and there is some telemetric going wrong, like taking an option and everything, but it's not that accurate. So, what I'm doing is, I just go to costumer or partner to ask..
+        </p>
+      <span class="quote-author">— Participant 10, RS </span>
+    </div>     
       <div class="callout">
         <div class="tag">Senior design strategy</div>
         <p>Aiming to build trust in the risk data, I moved beyond raw numbers to prioritize model explainability — designing a framework that details how the model works, displaying specific algorithmic risk drivers combined with collaborative history (e.g., Customer Pulse) for clear visibility across all user roles.</p>
@@ -355,6 +417,13 @@
       <p class="kicker">Finding 2</p>
       <h3>Standardizing the interaction pattern (mental models)</h3>
       <p><strong>The friction:</strong> in the Top Risk Factors table, users repeatedly tried to click directly on the status labels (High/Medium), which disrupted the console's existing interaction model.</p>
+    <div class="user-quote-container">
+      <span class="quote-mark">“</span>
+        <p class="quote-text">
+          I would then probably go to status and click on see if, if they were highlight hyperlinked or something to.
+        </p>
+      <span class="quote-author">— Participant 5, CSE </span>
+    </div> 
       <div class="callout">
         <div class="tag">Senior design strategy</div>
         <p>Instead of forcing users to adapt to the UI, I adapted the UI to their mental model — establishing a predictable, strict interactive sequence: Status → Focus Area → Who to Contact → Actionable Guide.</p>
@@ -367,9 +436,33 @@
     <img src="images/files/RenewalRisk/finding-2-pattern.png" alt="Behavior pattern consistency for status column" style="border-radius:8px; border:1px solid var(--rule);" />
   </div>
 
-  <div class="finding">
+    <div class="finding">
     <div>
       <p class="kicker">Finding 3</p>
+      <h3>From habit-driven navigation to contextual discovery</h3>
+      <p><strong>The friction:</strong> Users instinctively clicked the Deal ID or Opportunity Name rather than the designated status bubble to learn more about the Renewal Risk, driven by their deeply ingrained habit of accessing detailed information through traditional console pathways.</p>
+    <div class="user-quote-container">
+        <span class="quote-mark">“</span>
+          <p class="quote-text">
+            I would click into the opportunity. I don't know, probably on the deal ID, or the opportunity name.
+          </p>
+        <span class="quote-author">— Participant 1, RM </span>
+      </div> 
+      <div class="callout">
+        <div class="tag">Senior design strategy</div>
+        <p>Recognizing that users rely heavily on existing navigation habits and cannot immediately adapt to new UI elements, I advocated for an empathetic, friction-free onboarding framework. Rather than forcing users to guess or altering the core data structure, I designed an intuitive, in-system "What's New" quick-guide session triggered upon login. This context-aware guidance directly bridges the gap between familiar navigation paths and newly introduced features without disrupting their active workflows.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>Eliminated the learning curve for the new interaction model and significantly accelerated features adoption, while bypassing the need for costly and time-consuming global training sessions.</p>
+      </div>
+    </div>
+    <img src="images/files/RenewalRisk/finding-2-pattern.png" alt="Behavior pattern consistency for status column" style="border-radius:8px; border:1px solid var(--rule);" />
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Finding 4</p>
       <h3>Proposing terminology standardization in the design system</h3>
       <p><strong>The friction:</strong> the console suffered from fragmented vocabulary across different roles (e.g., "Ok"/"Good" in one section, "High"/"Highest" in another), causing user confusion.</p>
       <div class="callout">
@@ -386,9 +479,16 @@
 
   <div class="finding">
     <div>
-      <p class="kicker">Finding 4</p>
+      <p class="kicker">Finding 5</p>
       <h3>Workflow optimization via quick-sorting</h3>
       <p><strong>The friction:</strong> 70% of renewal sellers prioritized their daily workflows using the same three vectors — high ATR (Amount to Renew), earliest expiration date, and Renewal Risk — but had to manually scan the table every time.</p>
+    <div class="user-quote-container">
+        <span class="quote-mark">“</span>
+          <p class="quote-text">
+            I think that Ah.. let me see, is there a way to filter or to order the high to low? That would be helpful.
+          </p>
+        <span class="quote-author">— Participant 3, CSE </span>
+      </div> 
       <div class="callout">
         <div class="tag">Senior design strategy</div>
         <p>Proposed introducing a localized quick-sort algorithm and custom column reordering panel directly inside both the console and the popup, mapping perfectly to users' operational priorities.</p>
@@ -401,26 +501,10 @@
     <img src="images/files/RenewalRisk/finding-4-sorting.png" alt="Sorting option next to Deal ID in the prototype" style="border-radius:8px; border:1px solid var(--rule);" />
   </div>
 
-  <div class="finding">
-    <div>
-      <p class="kicker">Finding 5</p>
-      <h3>Closing the discovery gap</h3>
-      <p><strong>The friction:</strong> users were missing the popup entirely due to deeply ingrained habits — clicking the Deal ID instead of the risk bubble — and the product lacked a native in-app guidance framework (like WalkMe) at launch.</p>
-      <div class="callout">
-        <div class="tag">Senior design strategy</div>
-        <p>I led a cross-functional strategy with Product Management and Business Operations: a short-term Phased Geo-Rollout paired with targeted video micro-training, and a long-term roadmap building the business case for a permanent in-product guidance framework.</p>
-      </div>
-      <div class="callout">
-        <div class="tag">Impact</div>
-        <p>Shipped the release without waiting on a guidance framework, while turning the friction itself into the business case for one the following quarter.</p>
-      </div>
-    </div>
-    <img src="images/files/RenewalRisk/finding-5-rollout.png" alt="Phased geo-rollout plan" style="border-radius:8px; border:1px solid var(--rule); background:#fafafa;" />
-  </div>
-
   <section class="tight">
     <p class="eyebrow">Cross-Functional Leadership & Stakeholder Alignment</p>
     <h2 class="section-title">Navigating constraints to drive product strategy</h2>
+    <hr class="rule" />
     <div class="prose">
       <p>When research revealed that users were missing the popup entirely due to deeply ingrained habits, I faced a major product constraint: no native in-app guidance framework at launch. Instead of letting the user experience suffer, I stepped up to lead a cross-functional strategy with Product Management and the Business Operations team.</p>
     </div>
@@ -450,6 +534,7 @@
   <section class="tight" style="padding-bottom:0;">
     <p class="eyebrow">The Bigger Picture & Design Scalability</p>
     <h2 class="section-title">Designing scalability and trust, not just a popup</h2>
+    <hr class="rule" />
     <div class="prose">
       <p>By shifting the narrative from "how do we show a popup?" to "how do we design scalability and trust into an AI model?", this project successfully shipped the initial release with a clear, validated roadmap for subsequent phases.</p>
       <p>We successfully established an architectural foundation that allows Cisco's Renewals Console to seamlessly absorb new, complex risk signals over time — without ever breaking the core user experience or requiring expensive user retraining.</p>
@@ -461,7 +546,7 @@
 <footer>
   <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
     <span>© Yoomi Cha. All rights reserved.</span>
-    <span>2024</span>
+    <span>2026</span>
   </div>
 </footer>
 
