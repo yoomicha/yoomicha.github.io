@@ -115,6 +115,32 @@
   .feature-card p{font-size:13px; color:var(--muted); margin:0;}
   .feature-card .company{color:var(--ink); font-weight:600;}
 
+  /* ---------- Project Stats (4-metric highlight row) ---------- */
+  .stats-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
+  }
+  @media (max-width:480px){ .stats-row{grid-template-columns:repeat(2,1fr); gap:16px 8px;} }
+  .stats-row .stat{text-align:center;}
+  .stats-row .stat-num{
+    font-size:20px;
+    font-weight:800;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  .stats-row .stat-label{
+    font-size:11px;
+    font-weight:600;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-top:2px;
+  }
+
   /* ---------- Past Work (grid) ---------- */
   .grid{
     display:grid;
@@ -706,18 +732,39 @@
         <div class="thumb"><img src="images/pic16.png" alt="SFDC Renewals Console Projects"></div>
         <h3>SFDC Renewals Console Projects</h3>
         <p>UX Designer, 2022–2025 · <span class="company">Cisco</span></p>
+        <!-- Edit the numbers/labels below for this project -->
+        <div class="stats-row">
+          <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Users</div></div>
+          <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Countries</div></div>
+          <div class="stat"><div class="stat-num">$200M+</div><div class="stat-label">Deals</div></div>
+          <div class="stat"><div class="stat-num">5% ↑</div><div class="stat-label">ARR Impact</div></div>
+        </div>
       </a>
 
       <a class="feature-card" href="portfolio_18.html">
         <div class="thumb"><img src="images/pic18.png" alt="Sales AI Assistant Proposal"></div>
         <h3>Sales AI Assistant Proposal</h3>
         <p>Product Designer, 2024–2025 · <span class="company">Cisco</span></p>
+        <!-- Edit the numbers/labels below for this project -->
+        <div class="stats-row">
+          <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Users</div></div>
+          <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Countries</div></div>
+          <div class="stat"><div class="stat-num">$200M+</div><div class="stat-label">Deals</div></div>
+          <div class="stat"><div class="stat-num">5% ↑</div><div class="stat-label">ARR Impact</div></div>
+        </div>
       </a>
 
       <a class="feature-card" href="portfolio_21.html">
         <div class="thumb"><img src="images/pic21.png" alt="Security MFA Bypass Request"></div>
         <h3>Security MFA Bypass Request</h3>
         <p>Product Designer, 2026 · <span class="company">Cisco</span></p>
+        <!-- Edit the numbers/labels below for this project -->
+        <div class="stats-row">
+          <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Users</div></div>
+          <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Countries</div></div>
+          <div class="stat"><div class="stat-num">$200M+</div><div class="stat-label">Deals</div></div>
+          <div class="stat"><div class="stat-num">5% ↑</div><div class="stat-label">ARR Impact</div></div>
+        </div>
       </a>
 
     </div>
