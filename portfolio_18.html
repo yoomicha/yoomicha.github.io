@@ -306,7 +306,6 @@
     </div>
   </div>
 
-  <!-- mov_0 placeholder -->
 <div class="frame">
   <video autoplay loop muted playsinline controls width="100%" style="border-radius: 8px; border: 1px solid var(--rule);">
     <source src="images/files/SalesAI/mov_0.mov" type="video/mp4">
@@ -337,18 +336,26 @@
 <div class="wrap">
 
 
-<!-- 340번째 줄부터 356번째 줄까지 지우고 이 코드를 붙여넣으세요 -->
 <div class="compare-grid cols-2" style="align-items: flex-start; margin-bottom: 40px;">
-  <section class="tight" style="margin: 0; padding-top: 0;">
-    <p class="eyebrow" style="margin-top: 0;">Framing the Problem</p>
-    <h2 class="section-title">30+ tools, one fragmented customer picture</h2>
-    <hr class="rule" />
-    <div class="prose">
+
+<section class="tight" style="margin: 0; padding-top: 0;">
+  <p class="eyebrow" style="margin-top: 0;">Framing the Problem</p>
+  <h2 class="section-title">30+ tools, one fragmented customer picture</h2>
+  <hr class="rule" />
+  
+  <!-- 부제목과 구분선(hr) 아래에서 반반 정렬을 시작합니다 -->
+  <div class="compare-grid cols-2" style="display: flex; align-items: flex-start; gap: 40px; margin-top: 20px;">
+    <div class="prose" style="flex: 1;">
       <p>Cisco sellers spend nearly 20% of their working time looking for customer and solution information across 30+ internal tools. The initial engineering POC aimed for an AI chat interface spanning 30+ tools inside Webex, with agentic orchestration across user, customer, solution, and enablement agents.</p>
       <p><strong>Design question (HMW):</strong> How might we unify fragmented customer data to enable sellers to communicate with customers more efficiently?</p>
       <p><strong>My role:</strong> Collaborated with fellow designers to uncover use cases, helped facilitate workshops, and built interactive prototypes with future scalability in mind to share with the team.</p>
     </div>
-  </section>
+
+    <div style="flex: 1;">
+      <img src="images/files/SalesAI/img_2.png" alt="AI Assistant for Sales — Next Best Action example" style="width: 100%; border-radius: 8px; border: 1px solid var(--rule); display: block;">
+    </div>
+  </div>
+</section>
 
   <!-- 이미지를 frame 클래스 없이 넣고, 크기를 줄이고 마진을 추가합니다 -->
   <img src="images/files/SalesAI/img_2.png" alt="AI Assistant for Sales — Next Best Action example" style="width: 80%; border-radius: 8px; border: 1px solid var(--rule); display: block; margin-left: auto; margin-right: 0; margin-top: 40px;">
@@ -363,24 +370,24 @@
     </div>
   </section>
 
- <div class="compare-grid cols-2" style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px;"> <!-- display: flex로 한 줄 정렬 -->
-   <div style="flex: 1;"> <!-- 균등 비율 조절 -->
-     <img src="images/files/SalesAI/img_3.png" alt="Persona journeys across selling motion" style="height: auto; width: 100%;">
-     <p class="cap">Persona journeys across the selling motion</p>
-   </div>
-   <div style="flex: 1;"> <!-- 균등 비율 조절 -->
-     <img src="images/files/SalesAI/img_4.png" alt="Data visibility painpoints across selling motion" style="height: auto; width: 100%;">
-     <p class="cap">Data visibility pain points across the selling motion</p>
-   </div>
-   <div style="flex: 1;"> <!-- 균등 비율 조절 -->
-     <img src="images/files/SalesAI/img_5.png" alt="Humans and the loop framework" style="height: auto; width: 100%;">
-     <p class="cap">The "Humans and the loop" framework</p>
-   </div>
-   <div style="flex: 1;"> <!-- 균등 비율 조절 -->
-     <img src="images/files/SalesAI/img_6.png" alt="4 core use cases emerge" style="height: auto; width: 100%;">
-     <p class="cap">The 4 core use cases that emerged</p>
-   </div>
- </div>
+<div class="compare-grid cols-2" style="display: flex; flex-direction: row; align-items: stretch; gap: 20px; margin-top: -30px;">
+  <div style="flex: 1; display: flex; flex-direction: column;">
+    <img src="images/files/SalesAI/img_3.png" alt="Persona journeys across selling motion" style="width: 100%; height: 160px; object-fit: cover; border-radius: 6px;">
+    <p class="cap">Persona journeys across the selling motion</p>
+  </div>
+  <div style="flex: 1; display: flex; flex-direction: column;">
+    <img src="images/files/SalesAI/img_4.png" alt="Data visibility painpoints across selling motion" style="width: 100%; height: 160px; object-fit: cover; border-radius: 6px;">
+    <p class="cap">Data visibility pain points across the selling motion</p>
+  </div>
+  <div style="flex: 1; display: flex; flex-direction: column;">
+    <img src="images/files/SalesAI/img_5.png" alt="Humans and the loop framework" style="width: 100%; height: 160px; object-fit: cover; border-radius: 6px;">
+    <p class="cap">The "Humans and the loop" framework</p>
+  </div>
+  <div style="flex: 1; display: flex; flex-direction: column;">
+    <img src="images/files/SalesAI/img_6.png" alt="4 core use cases emerge" style="width: 100%; height: 160px; object-fit: cover; border-radius: 6px;">
+    <p class="cap">The 4 core use cases that emerged</p>
+  </div>
+</div>
 
   <p>Additionally, we conducted competitor analysis and the "Art of the Possible" stakeholder workshop to proactively identify business and engineering risks. This collaborative effort yielded 100+ AI use cases, which were subsequently categorized into 7 strategic themes. These insights laid a strong foundation and provided critical inspiration for our mid-to-long-term product proposals.</p>
   
