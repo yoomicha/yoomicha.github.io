@@ -93,19 +93,59 @@
 
   /* ---------- Bio ---------- */
   .bio{
-    display:grid;
-    grid-template-columns:340px 1fr;
-    gap:56px;
-    align-items:start;
+    display:block;
   }
-  @media (max-width:800px){ .bio{grid-template-columns:1fr;} }
-  .bio .thumb{
-    border-radius:10px;
+
+  /* ---------- Combined photo slideshow ---------- */
+  .hobby-slideshow{
+    position:relative;
+    border-radius:12px;
     overflow:hidden;
     background:#1b1e25;
-    aspect-ratio:4/5;
+    aspect-ratio:16/9;
+    margin-bottom:40px;
   }
-  .bio .thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .hobby-slideshow .slide{
+    position:absolute; inset:0;
+    opacity:0;
+    transition:opacity .5s ease;
+  }
+  .hobby-slideshow .slide.active{opacity:1;}
+  .hobby-slideshow .slide img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .hobby-slideshow .nav-btn{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:40px; height:40px; border-radius:50%;
+    background:rgba(13,8,24,.55);
+    border:1px solid rgba(255,255,255,.25);
+    color:#fff; font-size:18px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:background .15s ease;
+    z-index:2;
+  }
+  .hobby-slideshow .nav-btn:hover{background:rgba(13,8,24,.8);}
+  .hobby-slideshow .nav-prev{left:14px;}
+  .hobby-slideshow .nav-next{right:14px;}
+  .hobby-slideshow .dots{
+    position:absolute; bottom:14px; left:0; right:0;
+    display:flex; justify-content:center; gap:8px;
+    z-index:2;
+  }
+  .hobby-slideshow .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:rgba(255,255,255,.4);
+    cursor:pointer;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .hobby-slideshow .dot.active{background:#fff; transform:scale(1.25);}
+  @media (max-width:560px){
+    .hobby-slideshow{aspect-ratio:4/3;}
+    .hobby-slideshow .nav-btn{width:32px; height:32px; font-size:15px;}
+  }
+
+  .bio-text{max-width:760px; margin:0 auto;}
   .bio-text p{margin:0 0 20px; font-size:15px; color:var(--muted);}
   .bio-text p:last-of-type{margin-bottom: 12px;}
   .bio-text strong{color:var(--ink);}
@@ -622,9 +662,9 @@
 <div class="hero">
   <h1><a href="index.html">Yoomi Cha</a></h1>
     <p class="sub" style="color: #d9cdee; font-weight:700;"> 10+ years of Product/UX Design experience </p>
-    <p class="sub" style="color: #d9cdee; font-weight:700;"> Transforming ambiguous product strategies into scalable, data-driven </p>
-    <p class="sub" style="color: #d9cdee; font-weight:700;"> SaaS and AI experiences through user research and cross-functional leadership </p>
-    <p class="sub" style="color: #d9cdee; font-weight:700;"> Inventor of 9 security-related patents </p>
+    <p class="sub" style="color: #d9cdee; font-weight:700;"> Simplifying complex enterprise ecosystems into scalable, data-driven  </p>
+    <p class="sub" style="color: #d9cdee; font-weight:700;"> SaaS and AI experiences that drive business growth and user engagement. </p>
+    <p class="sub" style="color: #d9cdee; font-weight:700;"> 💡 Inventor of 9 security-related patents </p>
     <p class="sub"> Senior Product Designer at <a href="https://www.cisco.com" target="_blank" rel="noopener">Cisco</a> / Previously at Samsung Techwin / Poly</p>
   <nav class="hero-nav">
     <a href="work.html">Projects</a>
@@ -637,7 +677,59 @@
 
   <section style="border-top:none;">
     <div class="bio">
-      <div class="thumb"><img src="images/pic00.png" alt="Yoomi Cha"></div>
+      <div class="hobby-slideshow" id="hobbySlideshow">
+        <div class="slide active"><img src="images/pic00.png" alt="Yoomi Cha"></div>
+        <div class="slide"><img src="images/files/About/hobby_0.png" alt="Hobby photo 1"></div>
+        <div class="slide"><img src="images/files/About/hobby_1.jpeg" alt="Hobby photo 2"></div>
+        <div class="slide"><img src="images/files/About/hobby_2.jpeg" alt="Hobby photo 3"></div>
+        <div class="slide"><img src="images/files/About/hobby_3.jpeg" alt="Hobby photo 4"></div>
+        <div class="slide"><img src="images/files/About/hobby_4.jpeg" alt="Hobby photo 5"></div>
+        <div class="slide"><img src="images/files/About/hobby_5.jpg" alt="Hobby photo 6"></div>
+        <div class="slide"><img src="images/files/About/hobby_6.jpeg" alt="Hobby photo 7"></div>
+
+        <div class="nav-btn nav-prev" onclick="hobbyGo(-1)">&#8249;</div>
+        <div class="nav-btn nav-next" onclick="hobbyGo(1)">&#8250;</div>
+        <div class="dots">
+          <div class="dot active" onclick="hobbyGoTo(0)"></div>
+          <div class="dot" onclick="hobbyGoTo(1)"></div>
+          <div class="dot" onclick="hobbyGoTo(2)"></div>
+          <div class="dot" onclick="hobbyGoTo(3)"></div>
+          <div class="dot" onclick="hobbyGoTo(4)"></div>
+          <div class="dot" onclick="hobbyGoTo(5)"></div>
+          <div class="dot" onclick="hobbyGoTo(6)"></div>
+          <div class="dot" onclick="hobbyGoTo(7)"></div>
+        </div>
+      </div>
+
+      <script>
+        (function(){
+          var idx = 0;
+          var slides = document.querySelectorAll('#hobbySlideshow .slide');
+          var dots = document.querySelectorAll('#hobbySlideshow .dot');
+          var timer;
+
+          function render(){
+            slides.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
+            dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+          }
+          function resetTimer(){
+            clearInterval(timer);
+            timer = setInterval(function(){ hobbyGo(1); }, 4500);
+          }
+          window.hobbyGo = function(dir){
+            idx = (idx + dir + slides.length) % slides.length;
+            render();
+            resetTimer();
+          };
+          window.hobbyGoTo = function(i){
+            idx = i;
+            render();
+            resetTimer();
+          };
+          resetTimer();
+        })();
+      </script>
+
       <div class="bio-text">
         <p><strong>Hi, I'm Yoomi</strong> — a Senior Product Designer based in California Bay Area with 10+ years leading the simplification and integration of complex enterprise systems, contributing conversational AI and dashboard solutions that streamline user workflows and save daily operational time.</p>
         <p>Driven by my ENFJ personality, empathy is at the core of everything I do. I love deeply understanding users to uncover their true needs, and nothing gives me a greater sense of accomplishment than seeing them satisfied with the final product. What keeps me passionate about design is the thrill of transforming ambiguity into clarity through the right solutions. I also genuinely enjoy the collaborative process; navigating complex stakeholder environments and aligning cross-functional teams to turn raw ideas into a shared, high-impact solution is incredibly rewarding. My ability to deliver on this is validated by being a finalist in top 10 design hackathons and holding 9 patents.</p>
