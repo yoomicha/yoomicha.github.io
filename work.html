@@ -109,43 +109,55 @@
     border:1px solid var(--rule);
   }
   .feature-card .thumb img{width:100%; display:block;}
-  .feature-card h3{
-    font-size:16px; font-weight:700; margin:18px 0 4px;
-    text-align:center;
-  }
-  .feature-card p{font-size:13px; color:var(--muted); margin:0; text-align:center;}
   .feature-card .company{color:var(--ink); font-weight:600;}
 
-  /* ---------- Project Stats (4-metric highlight row) ---------- */
-  .stats-row{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-top:16px;
+  /* ---------- Feature meta row: text left, stats right ---------- */
+  .feature-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:24px;
+    margin-top:18px;
     padding-top:16px;
     padding-bottom:28px;
     border-top:1px solid var(--rule);
     border-bottom:1px solid var(--rule);
   }
-  @media (max-width:480px){ .stats-row{grid-template-columns:repeat(2,1fr); gap:16px 8px;} }
-  .stats-row .stat{text-align:center; padding:0 12px; border-left:1px solid var(--rule);}
-  .stats-row .stat:first-child{border-left:none; padding-left:0;}
-  @media (max-width:480px){
-    .stats-row .stat:nth-child(2n+1){border-left:none; padding-left:0;}
+  .feature-text{text-align:left;}
+  .feature-text h3{font-size:16px; font-weight:700; margin:0 0 4px;}
+  .feature-text p{font-size:13px; color:var(--muted); margin:0; text-align:left;}
+  @media (max-width:600px){
+    .feature-meta{flex-direction:column; align-items:flex-start; gap:20px;}
   }
+
+  /* ---------- Project Stats (2x2 grid, right-aligned block) ---------- */
+  .stats-row{
+    display:grid;
+    grid-template-columns:repeat(2,132px);
+    grid-template-rows:repeat(2,1fr);
+    gap:10px 36px;
+    flex-shrink:0;
+  }
+  .stats-row .stat{text-align:left;}
   .stats-row .stat-num{
-    font-size:20px;
+    font-size:18px;
     font-weight:800;
     color:var(--ink);
     letter-spacing:-0.01em;
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
   }
   .stats-row .stat-label{
-    font-size:11px;
+    font-size:10.5px;
     font-weight:600;
     color:var(--muted);
     text-transform:uppercase;
     letter-spacing:.04em;
-    margin-top:2px;
+    margin-top:1px;
+    line-height:1.4;
+  }
+  @media (max-width:600px){
+    .stats-row{grid-template-columns:repeat(2,minmax(110px,1fr)); gap:10px 20px;}
   }
 
   /* ---------- Past Work (grid) ---------- */
@@ -737,53 +749,69 @@
 
       <a class="feature-card" href="portfolio_16.html">
         <div class="thumb"><img src="images/pic16.png" alt="Salesforce Renewal Risk 2.0"></div>
-        <h3>Salesforce Renewal Risk 2.0</h3>
-        <p>Senior Product Designer, 2023–2024 · <span class="company">Cisco</span></p>
-        <!-- Edit the numbers/labels below for this project -->
-        <div class="stats-row">
-          <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Users</div></div>
-          <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Countries</div></div>
-          <div class="stat"><div class="stat-num">$200M+</div><div class="stat-label">Deals</div></div>
-          <div class="stat"><div class="stat-num">5% ↑</div><div class="stat-label">ARR Impact</div></div>
+        <div class="feature-meta">
+          <div class="feature-text">
+            <h3>Salesforce Renewal Risk 2.0</h3>
+            <p>Senior Product Designer, 2023–2024 · <span class="company">Cisco</span></p>
+          </div>
+          <!-- Edit the numbers/labels below for this project -->
+          <div class="stats-row">
+            <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Users</div></div>
+            <div class="stat"><div class="stat-num">150+</div><div class="stat-label">Countries</div></div>
+            <div class="stat"><div class="stat-num">$200M+</div><div class="stat-label">Deals</div></div>
+            <div class="stat"><div class="stat-num">5% ↑</div><div class="stat-label">ARR Impact</div></div>
+          </div>
         </div>
       </a>
 
       <a class="feature-card" href="portfolio_18.html">
         <div class="thumb"><img src="images/pic18.png" alt="Sales AI Assistant Proposal"></div>
-        <h3>Sales AI Assistant Proposal</h3>
-        <p>Senior Product Designer, 2024–2025 · <span class="company">Cisco</span></p>
-        <!-- Edit the numbers/labels below for this project -->
-        <div class="stats-row">
-          <div class="stat"><div class="stat-num">$12B</div><div class="stat-label">New Sale Revenue</div></div>
-          <div class="stat"><div class="stat-num">150,000+</div><div class="stat-label">Annual Opportunities</div></div>
-          <div class="stat"><div class="stat-num">20% ↑</div><div class="stat-label">Workflow Efficiency</div></div>
-          <div class="stat"><div class="stat-num">62,000+</div><div class="stat-label">Channel Partners</div></div>
+        <div class="feature-meta">
+          <div class="feature-text">
+            <h3>Sales AI Assistant Proposal</h3>
+            <p>Senior Product Designer, 2024–2025 · <span class="company">Cisco</span></p>
+          </div>
+          <!-- Edit the numbers/labels below for this project -->
+          <div class="stats-row">
+            <div class="stat"><div class="stat-num">$12B</div><div class="stat-label">New Sale Revenue</div></div>
+            <div class="stat"><div class="stat-num">150,000+</div><div class="stat-label">Annual Opportunities</div></div>
+            <div class="stat"><div class="stat-num">20% ↑</div><div class="stat-label">Workflow Efficiency</div></div>
+            <div class="stat"><div class="stat-num">62,000+</div><div class="stat-label">Channel Partners</div></div>
+          </div>
         </div>
       </a>
 
       <a class="feature-card" href="portfolio_20.html">
         <div class="thumb"><img src="images/pic20.png" alt="SFDC Renewals AI Support — C360, O360"></div>
-        <h3>SFDC Renewals AI Support — C360, O360</h3>
-        <p>Senior Product Designer, 2025 · <span class="company">Cisco</span></p>
-        <!-- Edit the numbers/labels below for this project -->
-        <div class="stats-row">
-          <div class="stat"><div class="stat-num">20% ↑</div><div class="stat-label">Workflow Efficiency</div></div>
-          <div class="stat"><div class="stat-num">$200M+</div><div class="stat-label">Deals</div></div>
-          <div class="stat"><div class="stat-num">5M</div><div class="stat-label">Customers</div></div>
-          <div class="stat"><div class="stat-num">$31B</div><div class="stat-label">ARR</div></div>
+        <div class="feature-meta">
+          <div class="feature-text">
+            <h3>SFDC Renewals AI Support — C360, O360</h3>
+            <p>Senior Product Designer, 2025 · <span class="company">Cisco</span></p>
+          </div>
+          <!-- Edit the numbers/labels below for this project -->
+          <div class="stats-row">
+            <div class="stat"><div class="stat-num">20% ↑</div><div class="stat-label">Workflow Efficiency</div></div>
+            <div class="stat"><div class="stat-num">$200M+</div><div class="stat-label">Deals</div></div>
+            <div class="stat"><div class="stat-num">5M</div><div class="stat-label">Customers</div></div>
+            <div class="stat"><div class="stat-num">$31B</div><div class="stat-label">ARR</div></div>
+          </div>
         </div>
       </a>
 
       <a class="feature-card" href="portfolio_21.html">
         <div class="thumb"><img src="images/pic21.png" alt="Security MFA Bypass Request"></div>
-        <h3>Security MFA Bypass Request</h3>
-        <p>Senior Product Designer, 2026 · <span class="company">Cisco</span></p>
-        <!-- Edit the numbers/labels below for this project -->
-        <div class="stats-row">
-          <div class="stat"><div class="stat-num">20,000+</div><div class="stat-label">Developers</div></div>
-          <div class="stat"><div class="stat-num">7–10 days</div><div class="stat-label">Approval Process</div></div>
+        <div class="feature-meta">
+          <div class="feature-text">
+            <h3>Security MFA Bypass Request</h3>
+            <p>Senior Product Designer, 2026 · <span class="company">Cisco</span></p>
+          </div>
+          <!-- Edit the numbers/labels below for this project -->
+          <div class="stats-row">
+            <div class="stat"><div class="stat-num">20,000+</div><div class="stat-label">Developers</div></div>
+            <div class="stat"><div class="stat-num">7–10 days</div><div class="stat-label">Approval Process</div></div>
           <div class="stat"><div class="stat-num">15%+ ↑</div><div class="stat-label">Workflow Completion</div></div>
-          <div class="stat"><div class="stat-num">25%+ ↓</div><div class="stat-label">Application Errors</div></div>
+            <div class="stat"><div class="stat-num">25%+ ↓</div><div class="stat-label">Application Errors</div></div>
+          </div>
         </div>
       </a>
 
