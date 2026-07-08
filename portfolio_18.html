@@ -337,10 +337,10 @@
 <div class="wrap">
 
 
-<!-- 340번째 줄부터 354번째 줄까지 지우고 이 코드를 붙여넣으세요 -->
-<div class="compare-grid cols-2" style="align-items: center; margin-bottom: 40px;">
-  <section class="tight" style="margin: 0;">
-    <p class="eyebrow">Framing the Problem</p>
+<!-- 340번째 줄부터 356번째 줄까지 지우고 이 코드를 붙여넣으세요 -->
+<div class="compare-grid cols-2" style="align-items: flex-start; margin-bottom: 40px;">
+  <section class="tight" style="margin: 0; padding-top: 0;">
+    <p class="eyebrow" style="margin-top: 0;">Framing the Problem</p>
     <h2 class="section-title">30+ tools, one fragmented customer picture</h2>
     <hr class="rule" />
     <div class="prose">
@@ -350,9 +350,8 @@
     </div>
   </section>
 
-  <div class="frame" style="margin: 0;">
-    <img src="images/files/SalesAI/img_2.png" alt="AI Assistant for Sales — Next Best Action example">
-  </div>
+  <!-- 이미지를 frame 클래스 없이 넣고, 크기를 줄이고 마진을 추가합니다 -->
+  <img src="images/files/SalesAI/img_2.png" alt="AI Assistant for Sales — Next Best Action example" style="width: 80%; border-radius: 8px; border: 1px solid var(--rule); display: block; margin-left: auto; margin-right: 0; margin-top: 40px;">
 </div>
 
   <section>
@@ -360,28 +359,29 @@
     <h2 class="section-title">From near-zero requirements to four core use cases</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>Design requirements were nearly non-existent, and the business was focused on complex technical requirements. To shape a stronger proposal, I focused on the questions "What specific data-related pain points exist for each sales persona?" and "Which of those may be good candidates for an AI-based solution?" I researched data-related pain points by persona and started by mapping the degree of AI-human collaboration along a "Human in / on / off the loop" framework. This led to 4 core use cases.</p>
+      <p>Design requirements were nearly non-existent, and the business was focused on complex technical requirements. To shape a stronger proposal, we focused on the questions "What specific data-related pain points exist for each sales persona?" and "Which of those may be good candidates for an AI-based solution?" we researched data-related pain points by persona and started by mapping the degree of AI-human collaboration along a "Human in / on / off the loop" framework. This led to 4 core use cases.</p>
     </div>
   </section>
 
-  <div class="compare-grid cols-2">
-    <div>
-      <img src="images/files/SalesAI/img_3.png" alt="Persona journeys across selling motion">
-      <p class="cap">img_3 — Persona journeys across the selling motion</p>
-    </div>
-    <div>
-      <img src="images/files/SalesAI/img_4.png" alt="Data visibility painpoints across selling motion">
-      <p class="cap">img_4 — Data visibility pain points across the selling motion</p>
-    </div>
-    <div>
-      <img src="images/files/SalesAI/img_5.png" alt="Humans and the loop framework">
-      <p class="cap">img_5 — The "Humans and the loop" framework</p>
-    </div>
-    <div>
-      <img src="images/files/SalesAI/img_6.png" alt="4 core use cases emerge">
-      <p class="cap">img_6 — The 4 core use cases that emerged</p>
-    </div>
-  </div>
+<!-- 366~383번째 줄을 아래와 같이 수정하세요 -->
+366 <div class="compare-grid cols-2" style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px;"> <!-- display: flex로 한 줄 정렬 -->
+367   <div style="flex: 1;"> <!-- 균등 비율 조절 -->
+368     <img src="images/files/SalesAI/img_3.png" alt="Persona journeys across selling motion" style="height: auto; width: 100%;">
+369     <p class="cap">img_3 — Persona journeys across the selling motion</p>
+370   </div>
+371   <div style="flex: 1;"> <!-- 균등 비율 조절 -->
+372     <img src="images/files/SalesAI/img_4.png" alt="Data visibility painpoints across selling motion" style="height: auto; width: 100%;">
+373     <p class="cap">img_4 — Data visibility pain points across the selling motion</p>
+374   </div>
+375   <div style="flex: 1;"> <!-- 균등 비율 조절 -->
+376     <img src="images/files/SalesAI/img_5.png" alt="Humans and the loop framework" style="height: auto; width: 100%;">
+377     <p class="cap">img_5 — The "Humans and the loop" framework</p>
+378   </div>
+379   <div style="flex: 1;"> <!-- 균등 비율 조절 -->
+380     <img src="images/files/SalesAI/img_6.png" alt="4 core use cases emerge" style="height: auto; width: 100%;">
+381     <p class="cap">img_6 — The 4 core use cases that emerged</p>
+382   </div>
+383 </div>
 
   <section class="tight">
     <div class="prose">
