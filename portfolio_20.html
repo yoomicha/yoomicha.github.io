@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -306,6 +306,16 @@
     </div>
   </div>
 
+<section style="padding-top: 20px; padding-bottom: 40px; text-align: center;">
+  <div class="video-frame" style="max-width: 100%; margin: 0 auto; background: #000; border-radius: 8px; overflow: hidden; line-height: 0;">
+    <video controls autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
+      <source src="images/files/C360,O360/C360.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="cap" style="margin-top: 12px; text-align: left;">C360 AI Assistant — Core experience walkthrough</div>
+</section> 
+  
   <div class="meta-row">
     <div>
       <p class="eyebrow">Overview</p>
@@ -371,9 +381,9 @@
       <p>Reaching a single customer's C360 record meant moving through the Renewals Console (SFDC), into the Renewals Console Home on Experience Cloud, selecting the specific customer, and only then arriving at C360 — where users could branch into Actions, Customer Assets, and other sub-views. Two more paths, Asset View and Account, ran in parallel, each requiring its own navigation. None of this was technically broken; it simply asked users to hold the map in their heads every time.</p>
     </div>
     <!-- Replace with a sanitized version of the internal workflow diagram before publishing -->
-    <div class="frame">
-      <div class="img-placeholder">Current workflow diagram<br>(Renewals Console → Renewals Console Home → Select Customer → C360 → Actions / Customer Assets)</div>
-      <p class="cap">Current-state workflow diagram — placeholder, pending a sanitized export</p>
+    <div class="frame" style="margin-top: 30px; text-align: center;">
+      <img src="images/files/C360,O360/OC_img_1.png" alt="Current-state workflow diagram" style="width: 100%; max-width: 900px; border-radius: 8px; border: 1px solid var(--rule); display: block; margin: 0 auto;">
+      <p class="cap" style="margin-top: 12px; text-align: left;">Current-state workflow diagram — Consolidating 4 distinct screens into a single view</p>
     </div>
   </section>
 
@@ -411,12 +421,16 @@
     <div class="prose">
       <p>Instead of routing users through the Renewals Console and Renewals Console Home before they could even select a customer, I proposed an AI Assistant as the new entry point — surfacing C360 information conversationally, in place, without eliminating the existing consoles users already relied on.</p>
     </div>
-    <!-- Replace with a sanitized version of the proposed-flow diagram before publishing -->
-    <div class="frame">
-      <div class="img-placeholder">Proposed workflow diagram<br>(Renewals Console / Renewals Console Home → AI Assistant → C360)</div>
-      <p class="cap">Proposed-state workflow diagram — placeholder, pending a sanitized export</p>
-    </div>
-  </section>
+    <div style="display: flex; gap: 20px; align-items: stretch; margin-top: 30px;">
+      <div class="frame" style="flex: 1; text-align: center;">
+        <img src="images/files/C360,O360/OC_img_3.png" alt="Proposed-state workflow diagram (Part A)" style="width: 100%; max-width: 900px; border-radius: 8px; border: 1px solid var(--rule); display: block; margin: 0 auto;">
+        <p class="cap" style="margin-top: 12px; text-align: left;">Proposed Part A...</p>
+      </div>
+      <div class="frame" style="flex: 1; text-align: center;">
+        <img src="images/files/C360,O360/OC_img_4.png" alt="Proposed-state workflow diagram (Part B)" style="width: 100%; max-width: 900px; border-radius: 8px; border: 1px solid var(--rule); display: block; margin: 0 auto;">
+        <p class="cap" style="margin-top: 12px; text-align: left;">Proposed Part B...</p>
+      </div>
+</div>
 
   <section class="tight">
     <p class="eyebrow">Design Language</p>
