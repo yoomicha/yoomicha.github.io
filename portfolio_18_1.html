@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>C360/O360 AI Assistant — Consolidating Customer Context in the Renewals Workflow | Yoomi Cha</title>
+<title>New Sales AI Assistant Project | Yoomi Cha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -204,7 +204,7 @@
 
   /* IMAGE FRAME (wide, standalone) */
   .frame{margin:40px 0;}
-  .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame img{width:100%; border-radius:0; border:1px solid var(--rule); display:block;}
   .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
 
   /* IMAGE COMPARISON GRID (2-3 across) */
@@ -212,10 +212,10 @@
     display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:40px 0 10px;
   }
   .compare-grid.cols-2{grid-template-columns:repeat(2,1fr);}
-  .compare-grid img{width:100%; border-radius:8px; border:1px solid var(--rule); display:block;}
+  .compare-grid img{width:100%; border-radius:0; border:1px solid var(--rule); display:block;}
   .compare-grid .cap{font-size:12.5px; color:var(--faint); margin-top:8px;}
   .compare-grid .placeholder{
-    aspect-ratio:4/3; border-radius:10px; border:1px dashed var(--rule);
+    aspect-ratio:4/3; border-radius:0; border:1px dashed var(--rule);
     background:#fafafa; display:flex; align-items:center; justify-content:center;
     color:var(--faint); font-size:13px; text-align:center; padding:16px;
   }
@@ -225,7 +225,7 @@
   .video-frame{
     position:relative;
     background:linear-gradient(135deg,#0c1d4d 0%,#1a2a5c 50%,#0c1d4d 100%);
-    border-radius:16px;
+    border-radius:0;
     aspect-ratio:16/9;
     display:flex; align-items:center; justify-content:center;
     margin:16px 0 40px;
@@ -249,7 +249,7 @@
 
   /* IMAGE PLACEHOLDER (single) */
   .img-placeholder{
-    aspect-ratio:4/3; border-radius:8px; border:1px dashed var(--rule);
+    aspect-ratio:4/3; border-radius:0; border:1px dashed var(--rule);
     background:#fafafa; display:flex; align-items:center; justify-content:center;
     color:var(--faint); font-size:13px; text-align:center; padding:16px;
   }
@@ -284,42 +284,48 @@
 </nav>
 
 <div class="wrap hero">
-  <h1>C360/O360 AI Assistant — Consolidating Customer Context in the Renewals Workflow</h1>
-  <p class="sub" style="max-width: none; width: 100%;">Renewal Managers and Customer Success teams were hunting for a single customer's information across four separate screens before every conversation. I proposed an AI Assistant that surfaces that context in place — inside the workflow they already use, instead of asking them to learn a new one.</p>
+  <h1>New Sales AI Assistant Project</h1>
+  <p class="sub" style="max-width: none; width: 100%;">Sellers spend significant time hopping between 30+ tools to find customer and solution information. Starting from a fairly ambiguous goal — unify those scattered tools through a conversational AI to save users' time — I moved through rapid usability testing and prompt-guided chat design toward a mid/long-term proposal for a fully customized, dashboard-style AI experience.</p>
 
   <div class="stat-row">
+    <div class="stat">
+      <div class="num">$12B</div>
+      <div class="label">New Sale Revenue</div>
+    </div>
+    <div class="stat">
+      <div class="num">150,000+</div>
+      <div class="label">Annual New Sale Opportunities</div>
+    </div>
     <div class="stat">
       <div class="num">20%&nbsp;↑</div>
       <div class="label">Workflow Efficiency (Projected)</div>
     </div>
     <div class="stat">
-      <div class="num">$200M+</div>
-      <div class="label">Deals</div>
+      <div class="num">62,000+</div>
+      <div class="label">Channel Partners</div>
     </div>
-    <div class="stat">
-      <div class="num">5M</div>
-      <div class="label">Customers</div>
-    </div>
-    <div class="stat">
-      <div class="num">$31B</div>
-      <div class="label">ARR</div>
-    </div>
+  </div>
+
+  <!-- mov_0 placeholder -->
+  <div class="video-frame">
+    <div class="play"></div>
+    <div class="cap">mov_0 — hero demo (placeholder)</div>
   </div>
 
   <div class="meta-row">
     <div>
       <p class="eyebrow">Overview</p>
-      <p>C360/O360 (Customer 360 / Opportunity 360) is the customer-record view inside Cisco's Renewals Console, where Renewal Managers, Account Managers, and Customer Success teams look up a customer's assets, contracts, and renewal opportunities before every deal conversation. In practice, getting to that one customer record required navigating through the Renewals Console, into the Renewals Console Home, selecting the specific customer, and finally landing on C360 — with separate detours to Asset View and Account along the way.</p>
-      <p style="margin-top:16px;">Working alongside a research partner, I gathered user feedback on this workflow, defined the underlying problem statement, and proposed consolidating that fragmented path into a single AI Assistant entry point — surfacing the same customer context sellers were manually hunting for, without adding a new tool to learn.</p>
+      <p>The New Sales Console is Cisco's enterprise system for managing sales deals. Introducing AI here meant unifying 30+ scattered tools and fragmenting customer data into one place, so sellers could communicate with customers more efficiently.</p>
+      <p style="margin-top:16px;">I identified pain points across the user's entire workflow and mapped them to features aligned with human-in-the-loop, human-on-the-loop, and human-off-the-loop use cases. Through rapid usability testing, I proposed a prompt-guided AI chatbot design as the short-term MVP, and a fully customized, dashboard-style AI experience as the mid/long-term vision. Cross-departmental collaboration was essential throughout this project.</p>
     </div>
     <div class="meta-cols">
       <div>
         <p class="eyebrow">Role</p>
-        <p>Senior Product Design Lead, Research Lead</p>
+        <p>Senior Product Designer</p>
       </div>
       <div>
         <p class="eyebrow">Timeline</p>
-        <p>Sep 2025 – Dec 2025</p>
+        <p>2024 Dec – 2025 Apr</p>
       </div>
     </div>
   </div>
@@ -327,144 +333,136 @@
 
 <div class="wrap">
 
+  <div class="frame">
+    <img src="images/files/SalesAI/img_1.png" alt="Cisco AI Assistant for Sales — dashboard overview">
+    <p class="cap">img_1 — Cisco AI Assistant for Sales dashboard overview</p>
+  </div>
+
   <section class="tight">
-    <p class="eyebrow">Research &amp; User Feedback</p>
-    <h2 class="section-title">Renewal teams were already telling us where the friction was</h2>
+    <p class="eyebrow">Framing the Problem</p>
+    <h2 class="section-title">30+ tools, one fragmented customer picture</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>Before proposing a solution, I gathered feedback directly from Renewal Managers, Account Managers, and Customer Success teams on how they actually worked with customer data day to day. A consistent pattern emerged: information sat in the right place technically, but not in a place anyone could reach quickly.</p>
-    </div>
-
-    <div class="user-quote-container">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">I must do a lot of research on my customer, so I engage informed and with confidence.</p>
-      <span class="quote-author">— Renewal Manager</span>
-    </div>
-
-    <div class="user-quote-container">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">I do not have access to all the data and/or must tap multiple sources.</p>
-      <span class="quote-author">— Renewal Manager</span>
-    </div>
-
-    <div class="user-quote-container">
-      <span class="quote-mark">"</span>
-      <p class="quote-text">I have to be well-coordinated with the account team, including knowing what opportunity they are pursuing and how we best complement our selling efforts.</p>
-      <span class="quote-author">— Renewals &amp; CS user feedback</span>
+      <p>Cisco sellers spend nearly 20% of their working time looking for customer and solution information across 30+ internal tools. The initial engineering POC aimed for an AI chat interface spanning 30+ tools inside Webex, with agentic orchestration across user, customer, solution, and enablement agents.</p>
+      <p><strong>Design question (HMW):</strong> How might we unify fragmented customer data to enable sellers to communicate with customers more efficiently?</p>
+      <p><strong>My role:</strong> Collaborated with fellow designers to uncover use cases, helped facilitate workshops, and built interactive prototypes with future scalability in mind to share with the team.</p>
     </div>
   </section>
 
-  <section class="tight">
-    <p class="eyebrow">Problem Statement</p>
-    <h2 class="section-title">A gap between what users need and what the system provides</h2>
-    <hr class="rule" />
-    <div class="prose">
-      <p>Users needed timely, accurate access to a customer's information to do their jobs effectively, but the existing system didn't provide that data or functionality in one place. The result was frustration, inefficiency, and knock-on effects on customer service and business outcomes — a gap between user needs and system capability that needed to be closed to improve information accessibility and overall satisfaction.</p>
-    </div>
-  </section>
+  <div class="frame">
+    <img src="images/files/SalesAI/img_2.png" alt="AI Assistant for Sales — Next Best Action example">
+    <p class="cap">img_2 — AI Assistant conversation surfacing Next-Best-Action recommendations</p>
+  </div>
 
   <section>
-    <p class="eyebrow">Current Workflow</p>
-    <h2 class="section-title">Four screens and multiple decisions just to reach one customer</h2>
+    <p class="eyebrow">Discovery &amp; Research</p>
+    <h2 class="section-title">From near-zero requirements to four core use cases</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>Reaching a single customer's C360 record meant moving through the Renewals Console (SFDC), into the Renewals Console Home on Experience Cloud, selecting the specific customer, and only then arriving at C360 — where users could branch into Actions, Customer Assets, and other sub-views. Two more paths, Asset View and Account, ran in parallel, each requiring its own navigation. None of this was technically broken; it simply asked users to hold the map in their heads every time.</p>
-    </div>
-    <!-- Replace with a sanitized version of the internal workflow diagram before publishing -->
-    <div class="frame">
-      <div class="img-placeholder">Current workflow diagram<br>(Renewals Console → Renewals Console Home → Select Customer → C360 → Actions / Customer Assets)</div>
-      <p class="cap">Current-state workflow diagram — placeholder, pending a sanitized export</p>
+      <p>Design requirements were nearly non-existent, and the business was focused on complex technical requirements. To shape a stronger proposal, I focused on the questions "What specific data-related pain points exist for each sales persona?" and "Which of those may be good candidates for an AI-based solution?" I researched data-related pain points by persona and started by mapping the degree of AI-human collaboration along a "Human in / on / off the loop" framework. This led to 4 core use cases.</p>
     </div>
   </section>
+
+  <div class="compare-grid cols-2">
+    <div>
+      <img src="images/files/SalesAI/img_3.png" alt="Persona journeys across selling motion">
+      <p class="cap">img_3 — Persona journeys across the selling motion</p>
+    </div>
+    <div>
+      <img src="images/files/SalesAI/img_4.png" alt="Data visibility painpoints across selling motion">
+      <p class="cap">img_4 — Data visibility pain points across the selling motion</p>
+    </div>
+    <div>
+      <img src="images/files/SalesAI/img_5.png" alt="Humans and the loop framework">
+      <p class="cap">img_5 — The "Humans and the loop" framework</p>
+    </div>
+    <div>
+      <img src="images/files/SalesAI/img_6.png" alt="4 core use cases emerge">
+      <p class="cap">img_6 — The 4 core use cases that emerged</p>
+    </div>
+  </div>
 
   <section class="tight">
-    <p class="eyebrow">Benefits of Consolidation</p>
-    <h2 class="section-title">Bringing the information to the user, instead of the reverse</h2>
-    <hr class="rule" />
     <div class="prose">
-      <p>The core idea was simple: if a customer's information lived in one place, users would stop hunting for it and start being handed it.</p>
-    </div>
-    <div class="grid2">
-      <div>
-        <h4>For the user</h4>
-        <ul>
-          <li>Improved experience — information is delivered directly, without needing to search or "hunt" for it</li>
-          <li>Consolidated access — no more switching between multiple tools to gather customer data</li>
-          <li>Reduced cognitive overload — less context-switching supports better decision-making</li>
-        </ul>
-      </div>
-      <div>
-        <h4>For the business</h4>
-        <ul>
-          <li>Time savings — no need to explore multiple sources for the same information</li>
-          <li>Increased productivity — sellers freed up to focus on activities that grow ARR</li>
-          <li>Enhanced efficiency — faster response times and stronger customer interactions</li>
-        </ul>
-      </div>
+      <p>I also ran a competitive analysis and, together with stakeholders, an "Art of the Possible" workshop to surface business and engineering risks early. This produced 100+ AI use cases, organized into 7 themes, which informed the ideas behind the mid/long-term proposal.</p>
     </div>
   </section>
+
+  <div class="compare-grid cols-2">
+    <div>
+      <img src="images/files/SalesAI/img_7.png" alt="Submit a response to customer RFP flow">
+      <p class="cap">img_7 — Customer RFP response process flow</p>
+    </div>
+    <div>
+      <img src="images/files/SalesAI/img_8.png" alt="Sales AI Pre-mortem workshop">
+      <p class="cap">img_8 — Sales AI pre-mortem workshop</p>
+    </div>
+  </div>
 
   <section>
-    <p class="eyebrow">Proposed Solution</p>
-    <h2 class="section-title">Collapsing four steps into one AI Assistant</h2>
+    <p class="eyebrow">Solution — Short-term</p>
+    <h2 class="section-title">Shipping a foundational chat MVP in 4 sprints</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>Instead of routing users through the Renewals Console and Renewals Console Home before they could even select a customer, I proposed an AI Assistant as the new entry point — surfacing C360 information conversationally, in place, without eliminating the existing consoles users already relied on.</p>
-    </div>
-    <!-- Replace with a sanitized version of the proposed-flow diagram before publishing -->
-    <div class="frame">
-      <div class="img-placeholder">Proposed workflow diagram<br>(Renewals Console / Renewals Console Home → AI Assistant → C360)</div>
-      <p class="cap">Proposed-state workflow diagram — placeholder, pending a sanitized export</p>
+      <p>Cisco's design system (Magnetic DS) happened to be exploring LLM components at the same time, so I partnered with that team to propose the foundational chat interface design.</p>
+      <p>Given a short timeline (4-sprint MVP), I adopted RITE (Rapid Iterative Testing &amp; Evaluation), running 30-minute sessions twice a week for iterative usability testing. 8 MVP features were tested: Salesforce CRM entry points, window view selection, prompt suggestions, chat history, response sources, response actions, document generation/download, and in-chat prompt/NBA buttons.</p>
     </div>
   </section>
 
-  <section class="tight">
-    <p class="eyebrow">Design Language</p>
-    <h2 class="section-title">Building on an existing pattern, not starting from zero</h2>
-    <hr class="rule" />
-    <div class="prose">
-      <p>Rather than designing a new AI interface in isolation, I combined Cisco's existing CX AI Assistant chat pattern with the data-dense panels already used elsewhere in the Renewals ecosystem — giving the proposal an interaction model users would recognize on day one.</p>
+  <div class="compare-grid">
+    <div>
+      <img src="images/files/SalesAI/img_9.png" alt="Cisco AI Assistant for Sales chat entry point">
+      <p class="cap">img_9 — Chat interface entry point</p>
     </div>
-    <!-- Replace with a sanitized version of the design-language comparison before publishing -->
-    <div class="compare-grid cols-2">
-      <div>
-        <div class="img-placeholder">CX AI Assistant chat pattern</div>
-        <p class="cap">Existing CX AI Assistant interaction pattern</p>
-      </div>
-      <div>
-        <div class="img-placeholder">Proposed C360 AI Assistant panel</div>
-        <p class="cap">Proposed panel combining chat with account-level data</p>
-      </div>
+    <div>
+      <img src="images/files/SalesAI/img_10.png" alt="Sales AI generate a document flow">
+      <p class="cap">img_10 — Document generation flow</p>
     </div>
-  </section>
+    <div>
+      <img src="images/files/SalesAI/img_11.png" alt="Cisco AI Assistant for Sales Beta home screen">
+      <p class="cap">img_11 — Beta home screen</p>
+    </div>
+  </div>
 
   <section>
-    <p class="eyebrow">Current C360 vs. Suggestion</p>
-    <h2 class="section-title">From a static snapshot to a conversational, scored view</h2>
+    <p class="eyebrow">Solution — Mid &amp; Long-term</p>
+    <h2 class="section-title">The future of AI is not (only) chat</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>The current C360 view gives users a static account snapshot — totals, buying programs, contacts — that still requires manual interpretation. The proposed AI Assistant panel surfaces the same underlying data as a scored, conversational view: current-quarter pipeline, customer sentiment summary, a customer score across support cases and deployment scale, and quick actions like "What's New," "Meet the Team," and "Mitigation Plans" — all answerable directly through the assistant.</p>
-    </div>
-    <!-- Replace with a sanitized version of the current-vs-suggestion comparison before publishing -->
-    <div class="compare-grid cols-2">
-      <div>
-        <div class="img-placeholder">Current C360 — static account snapshot</div>
-        <p class="cap">Current state</p>
-      </div>
-      <div>
-        <div class="img-placeholder">Suggested AI Assistant panel — scored, conversational view</div>
-        <p class="cap">Proposed state (prototype)</p>
-      </div>
+      <p>Beyond the short-term MVP, I built interactive prototypes focused on the features proposed for the next phase. 7 additional post-MVP features were tested separately: RFP generation/canvas editing, briefing dashboard, "project" information architecture, file uploads, settings/customization, rich content in responses, and voice chat.</p>
+      <p><strong>"The future of AI is not (only) chat."</strong> As designers, our mission is to learn, normalize, and leverage universal patterns while shaping the future of new technology. Chat is reactive, which makes it too rigid for many human-on-the-loop use cases — it needed more proactivity and flexibility.</p>
+      <p><strong>HMW:</strong> How might we re-envision AI collaboration as a structured, persistent workspace that supports a complex, multi-step selling motion?</p>
+      <ul>
+        <li>Proposed a workspace structure anchored around accounts, opportunities, and documents</li>
+        <li>Designed a canvas experience for high-risk, high-complexity, high-friction areas like RFPs</li>
+        <li>Delivered proactive insights based on Next-Best-Action (NBA) research</li>
+        <li>Leveraged Cisco's investment in MCP servers for deeper personalization and integrations, using Gen-AI-created interfaces to address unpredictable user needs</li>
+      </ul>
     </div>
   </section>
+
+  <!-- mov_1, mov_2, mov_3 placeholders -->
+  <div class="video-frame">
+    <div class="play"></div>
+    <div class="cap">mov_1 — mid/long-term prototype (placeholder)</div>
+  </div>
+  <div class="video-frame">
+    <div class="play"></div>
+    <div class="cap">mov_2 — mid/long-term prototype (placeholder)</div>
+  </div>
+  <div class="video-frame">
+    <div class="play"></div>
+    <div class="cap">mov_3 — mid/long-term prototype (placeholder)</div>
+  </div>
 
   <section class="tight" style="padding-bottom:0;">
     <p class="eyebrow">Final Thoughts</p>
-    <h2 class="section-title">A proposal grounded in what users already said they needed</h2>
+    <h2 class="section-title">Turning ambiguity into an aligned, cross-functional proposal</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>Because the starting point was direct user feedback rather than an assumed solution, the proposal had a natural argument built in: every design decision traced back to a specific quote, workflow step, or pain point a Renewal Manager or Customer Success team member had already named. Presenting the current-state workflow alongside the proposed AI Assistant flow made the case concrete for stakeholders — not "trust the AI," but "here's the exact detour we're removing."</p>
-      <p>This case study reflects the discovery-to-proposal phase of the project; validation and rollout continued beyond what's captured here.</p>
+      <p>Because this project started from a place of real ambiguity, cross-functional collaboration — with fellow designers, researchers, PM, business, and engineering teams — was essential to defining a clear goal and proposing a concrete solution. A re-org meant the mid/long-term vision was never fully realized, but the journey to get there was genuinely valuable.</p>
+      <p>What I valued most was partnering closely with researchers to surface real user pain points, and running workshops with every stakeholder to build an innovative proposal everyone could align around. I later shared this experience and ideation process with other design teams, influencing other project teams as well.</p>
+      <p>I also experimented with using AI in the prototyping process. It wasn't yet able to execute fine-grained details exactly as directed, but it still saved a meaningful amount of time.</p>
     </div>
   </section>
 
