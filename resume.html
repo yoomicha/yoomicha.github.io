@@ -905,5 +905,164 @@
   });
 </script>
 
+<style>
+  #yc-chat-launcher{
+    position:fixed; bottom:24px; left:24px; z-index:9999;
+    width:56px; height:56px; border-radius:50%;
+    background:linear-gradient(160deg,#3a2a5c,#1a1030);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 8px 24px rgba(0,0,0,.35);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:transform .15s ease;
+    font-size:24px;
+  }
+  #yc-chat-launcher:hover{transform:scale(1.06);}
+  #yc-chat-panel{
+    position:fixed; bottom:92px; left:24px; z-index:9999;
+    width:320px; max-width:calc(100vw - 48px);
+    height:420px; max-height:calc(100vh - 140px);
+    background:#1a1030;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:14px;
+    box-shadow:0 16px 48px rgba(0,0,0,.45);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  #yc-chat-panel.open{display:flex;}
+  .yc-chat-header{
+    background:linear-gradient(160deg,#3a2a5c,#1a1030);
+    color:#fff; padding:14px 16px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:14px; font-weight:700;
+  }
+  .yc-chat-header .yc-sub{font-size:11px; font-weight:400; color:#b9c3e0; margin-top:2px;}
+  .yc-chat-close{cursor:pointer; opacity:.7; font-size:16px;}
+  .yc-chat-close:hover{opacity:1;}
+  .yc-chat-messages{
+    flex:1; overflow-y:auto; padding:14px 16px;
+    display:flex; flex-direction:column; gap:10px;
+    background:#201535;
+  }
+  .yc-msg{
+    font-size:13px; line-height:1.5; padding:9px 12px; border-radius:10px;
+    max-width:86%;
+  }
+  .yc-msg.yc-bot{background:#332654; color:#e9e4f5; align-self:flex-start; border-bottom-left-radius:3px;}
+  .yc-msg.yc-user{background:var(--accent); color:#fff; align-self:flex-end; border-bottom-right-radius:3px;}
+  .yc-quick-replies{
+    display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 10px;
+  }
+  .yc-quick-replies button{
+    background:#2a2045; color:#d9cdee; border:1px solid rgba(255,255,255,.12);
+    border-radius:20px; padding:6px 12px; font-size:11.5px; cursor:pointer;
+    transition:background .15s ease;
+  }
+  .yc-quick-replies button:hover{background:#3a2a5c;}
+  .yc-chat-input-row{
+    display:flex; gap:8px; padding:12px 14px;
+    background:#201535;
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+  .yc-chat-input-row input{
+    flex:1; background:#332654; border:1px solid rgba(255,255,255,.14);
+    border-radius:20px; padding:9px 14px; font-size:12.5px; color:#fff; outline:none;
+  }
+  .yc-chat-input-row input::placeholder{color:#b8aed0;}
+  .yc-chat-input-row button{
+    background:var(--accent); color:#fff; border:none; border-radius:20px;
+    padding:9px 16px; font-size:12.5px; font-weight:600; cursor:pointer;
+  }
+  .yc-chat-input-row button:hover{filter:brightness(1.12);}
+</style>
+
+<div id="yc-chat-launcher" onclick="ycToggleChat()">💬</div>
+
+<div id="yc-chat-panel">
+  <div class="yc-chat-header">
+    <div>
+      Ask about Yoomi
+      <div class="yc-sub">Usually answers in a snap ⚡</div>
+    </div>
+    <span class="yc-chat-close" onclick="ycToggleChat()">✕</span>
+  </div>
+  <div id="yc-chat-messages" class="yc-chat-messages">
+    <div class="yc-msg yc-bot">Hi! 👋 I can answer quick questions about Yoomi's experience, projects, patents, education, or how to get in touch. Try one of the buttons below, or type your own question.</div>
+  </div>
+  <div class="yc-quick-replies">
+    <button onclick="ycAsk('experience')">Experience</button>
+    <button onclick="ycAsk('projects')">AI Projects</button>
+    <button onclick="ycAsk('patents')">Patents</button>
+    <button onclick="ycAsk('contact')">Contact</button>
+  </div>
+  <div class="yc-chat-input-row">
+    <input id="yc-chat-input" type="text" placeholder="Ask a question…" onkeydown="if(event.key==='Enter'){ycSubmit();}">
+    <button onclick="ycSubmit()">Send</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KB = [
+    { keys:['experience','years','background','senior','career','경력','연차','배경'],
+      answer:"Yoomi has 10+ years of Product/UX Design experience. She's currently a Senior Product Designer at Cisco, and previously worked at Samsung Techwin and Poly." },
+    { keys:['project','projects','ai','portfolio','work','작업','프로젝트','포트폴리오'],
+      answer:"A few highlights: Salesforce Renewal Risk 2.0, Sales AI Assistant Proposal, SFDC Renewals AI Support (C360/O360), and a Security MFA Bypass Request redesign — all at Cisco. Check the Projects page for the full case studies!" },
+    { keys:['patent','patents','특허'],
+      answer:"Yoomi holds 9 security-related patents in Security Surveillance Monitoring Systems from her time at Samsung Techwin." },
+    { keys:['contact','email','reach','linkedin','연락','이메일','컨택'],
+      answer:"You can reach Yoomi at yoomi.cha@utexas.edu, or connect on LinkedIn — both are linked on the About page." },
+    { keys:['hobby','hobbies','crochet','doll','sylvanian','취미','뜨개'],
+      answer:"Outside of work, Yoomi enjoys crocheting, collecting Sylvanian Families dolls, volunteering to teach UX design to kids, and spending time with her family." },
+    { keys:['education','school','degree','university','학력','학교','전공'],
+      answer:"Yoomi holds a Master's in Information Studies from The University of Texas at Austin, and a Bachelor's in Industrial Design from Handong Global University." },
+    { keys:['resume','cv','이력서'],
+      answer:"You can view or download her full résumé on the Résumé page!" }
+  ];
+  var FALLBACK = "I don't have a canned answer for that one — feel free to email yoomi.cha@utexas.edu, or check the Résumé / Projects pages for more detail!";
+
+  function respond(query){
+    var q = query.toLowerCase();
+    for (var i=0;i<KB.length;i++){
+      for (var j=0;j<KB[i].keys.length;j++){
+        if (q.indexOf(KB[i].keys[j]) !== -1){ return KB[i].answer; }
+      }
+    }
+    return FALLBACK;
+  }
+
+  function addMessage(text, who){
+    var wrap = document.getElementById('yc-chat-messages');
+    var div = document.createElement('div');
+    div.className = 'yc-msg ' + (who === 'user' ? 'yc-user' : 'yc-bot');
+    div.textContent = text;
+    wrap.appendChild(div);
+    wrap.scrollTop = wrap.scrollHeight;
+  }
+
+  window.ycToggleChat = function(){
+    document.getElementById('yc-chat-panel').classList.toggle('open');
+  };
+
+  window.ycAsk = function(topicKey){
+    var labelMap = {experience:'Tell me about her experience', projects:'What AI projects has she worked on?', patents:'Tell me about her patents', contact:'How can I contact her?'};
+    var label = labelMap[topicKey] || topicKey;
+    addMessage(label, 'user');
+    setTimeout(function(){ addMessage(respond(topicKey), 'bot'); }, 300);
+    document.getElementById('yc-chat-panel').classList.add('open');
+  };
+
+  window.ycSubmit = function(){
+    var input = document.getElementById('yc-chat-input');
+    var val = input.value.trim();
+    if (!val) return;
+    addMessage(val, 'user');
+    input.value = '';
+    setTimeout(function(){ addMessage(respond(val), 'bot'); }, 300);
+  };
+})();
+</script>
+
 </body>
 </html>
