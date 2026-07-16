@@ -160,15 +160,27 @@
     .stats-row{grid-template-columns:repeat(2,minmax(110px,1fr)); gap:10px 20px;}
   }
 
-  /* ---------- Past Work (grid) ---------- */
+  /* ---------- Past Work (horizontal slider) ---------- */
   .grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:32px 24px;
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:4px 4px 16px;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
   }
-  @media (max-width:600px){ .grid{grid-template-columns:1fr;} }
+  .grid::-webkit-scrollbar{height:6px;}
+  .grid::-webkit-scrollbar-track{background:transparent;}
+  .grid::-webkit-scrollbar-thumb{background:var(--rule); border-radius:3px;}
 
-  .card{display:block;}
+  .card{
+    display:block;
+    flex:0 0 86px;
+    width:86px;
+    scroll-snap-align:start;
+  }
   .card .thumb{
     aspect-ratio:4/3;
     background:#f3f4f6;
@@ -183,8 +195,17 @@
     border-color:#d8dce1;
   }
   .card .thumb img{width:100%; height:100%; object-fit:cover; display:block;}
-  .card h3{font-size:14px; font-weight:700; margin:14px 0 4px; line-height:1.35;}
-  .card p{font-size:13px; color:var(--muted); margin:0;}
+  .card h3{
+    font-size:10px;
+    font-weight:700;
+    margin:8px 0 2px;
+    line-height:1.3;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .card p{font-size:9px; color:var(--muted); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
   .card .company{color:var(--ink); font-weight:600;}
 
   /* ---------- Footer ---------- */
@@ -818,7 +839,7 @@
     </div>
   </section>
 
-  <section class="rule-top">
+  <section>
     <p class="section-heading">Past Work</p>
     <div class="grid">
 
