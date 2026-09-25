@@ -266,6 +266,12 @@
   .grid2 li{margin-bottom:10px;}
   @media (max-width:720px){ .grid2{grid-template-columns:1fr;} }
 
+  /* 3-COLUMN GRID (Design Approach) */
+  .grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; margin-top:24px;}
+  .grid3 h4{font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--faint); margin:0 0 12px;}
+  .grid3 p{color:var(--muted); font-size:15px; margin:0;}
+  @media (max-width:720px){ .grid3{grid-template-columns:1fr;} }
+
   footer{
     border-top:1px solid var(--rule); margin-top:40px;
     padding:32px 0 64px;
@@ -322,8 +328,9 @@
   <div class="meta-row">
     <div>
       <p class="eyebrow">Overview</p>
-      <p>Renewal Risk 2.0 leverages an advanced AI/ML scoring model to predict risk at both the deal and line-item levels, surfaced via a Connected Insights popup within Cisco's Renewals Console and Renewals Console Home. Renewal Sellers and Customer Success teams managing over $200M in deals across 150+ countries would simply ignore the scoring model if they didn't trust the data.</p>
-      <p style="margin-top:16px;">I led a strategic research initiative and UX redesign to transform that black-box AI number into an actionable, scalable decision-making framework — ultimately driving a 5% increase in ARR impact without requiring a single user training session, and delivering an expected 15% reduction in users' daily workload.</p>
+      <p>Renewal Risk 2.0 uses an AI/ML model to predict renewal risk at both the deal and line-item levels. I suggested the risk insights along with recommended next steps and key contacts, so users could proactively address the risks and improve renewal outcomes.</p>
+      <p style="margin-top:16px;">Initially, I focused the usability test on validating the layout. But I quickly learned that the bigger issue wasn't usability — it was whether users trusted the risk score.</p>
+      <p style="margin-top:16px;">I shared this insight with our stakeholders, and I made the score more transparent by showing its source and providing more context. This helped build trust and encouraged users to actually use the risk insights to take action.</p>
     </div>
     <div class="meta-cols">
       <div>
@@ -341,44 +348,82 @@
 <div class="wrap">
 
   <section class="tight">
-    <p class="eyebrow">Strategic Framing & Business Goals</p>
-    <h2 class="section-title">From "increase renewals" to closing the risk gap</h2>
+    <p class="eyebrow">02 · System</p>
+    <h2 class="section-title">Two platforms, one renewal risk model</h2>
     <hr class="rule" />
-    <div class="prose">
-      <p><strong>Business goal:</strong> maximize renewal Annual Recurring Revenue (ARR) across enterprise accounts.</p>
-      <p><strong>The framing:</strong> while the initial business directive was simply "increase renewals," foundational user research revealed a major tactical gap — effectively surfacing and predicting renewal risks was the most direct lever to prevent revenue churn and drive ARR growth.</p>
-      <ul>
-        <li><strong>Phase 1 (The MVP scope):</strong> the original product requirement was limited to displaying raw risk data within a basic Renewals Console widget, simply flagging what data caused a high-risk score for each deal.</li>
-        <li><strong>Phase 2 (The senior UX pivot):</strong> after building and evaluating the initial prototype, I realized that merely displaying risk flags was insufficient to drive business value. I proactively proposed a complete framework shift — expanding the system to display not just the risk level, but the explicit root causes and prescriptive, actionable mitigation strategies.</li>
-        <li><strong>Phase 3 (Platform expansion):</strong> to ensure maximum visibility and daily engagement, I advocated for shifting and expanding the platform footprint from a hidden console widget directly onto the Renewals Console Home.</li>
-      </ul>
-    </div>
-  </section>
-
-
-  <section>
-    <p class="eyebrow">The Core Challenge</p>
-    <h2 class="section-title">The trust barrier</h2>
-    <hr class="rule" />
-
-    <div style="width: 100%; max-width: var(--maxw); margin: 0 auto 30px;">
-      <p>As Lead UX Designer & Research Lead, my mission involved overcoming two distinct challenges. First, I negotiated a critical strategic misalignment with the PM regarding feature placement; while the initial scope was limited, I successfully advocated for integrating the Renewal Risk score not only within the Renewals Console but also directly onto the Renewals Console Home — significantly enhancing accessibility and giving users comprehensive visibility across their entire deal portfolio.</p>
-      <p>However, expanding the product's footprint was only half the battle. The second — and more formidable — challenge was ensuring that once users saw the score, they would actually act on it. Our pre-launch research with 10 global participants (with up to 26 years of tenure at Cisco) revealed a critical systemic issue: users ignored the Renewal Risk column because they defaulted to distrusting the AI model. Instead of acting on the score, they manually bypassed the ecosystem to verify data directly with customers — creating major operational inefficiencies. The design problem was clear: we needed to close the gap between what the model calculated and what a human was willing to believe.</p>
+    <div class="grid2">
+      <div>
+        <h4>Platform 01 — Renewals Console</h4>
+        <p style="color:var(--muted); font-size:15px; margin:0 0 16px;">Individual deal mgmt tool</p>
+        <div class="img-placeholder" style="aspect-ratio:4/3;">Renewals Console screenshot</div>
+      </div>
+      <div>
+        <h4>Platform 02 — Renewals Console Home</h4>
+        <p style="color:var(--muted); font-size:15px; margin:0 0 16px;">Overview of deals, reporting, actions</p>
+        <div class="img-placeholder" style="aspect-ratio:4/3;">Renewals Console Home screenshot</div>
+      </div>
     </div>
   </section>
 
   <section class="tight">
-    <p class="eyebrow">Research Integrity & Evaluative Usability Testing</p>
-    <h2 class="section-title">Owning the research lifecycle end to end</h2>
+    <p class="eyebrow">03 · My Role</p>
+    <h2 class="section-title">UX Designer & UX Researcher</h2>
+    <hr class="rule" />
+    <div class="grid2">
+      <div>
+        <h4>Role 01 — UX Designer</h4>
+        <ul>
+          <li>Leading end-to-end project</li>
+          <li>Creating prototypes</li>
+          <li>Analyzing usability testing</li>
+          <li>Presenting analysis report to stakeholders</li>
+          <li>Hand-off to the dev team</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Role 02 — UX Researcher</h4>
+        <ul>
+          <li>Planning the usability testing</li>
+          <li>Recruiting participants</li>
+          <li>Arranging the interview schedules</li>
+          <li>Conducting usability testings</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <p class="eyebrow">04 · Design Approach</p>
+    <h2 class="section-title">Initial Requirements → Design Iteration → Prototype</h2>
+    <hr class="rule" />
+    <div class="grid3">
+      <div>
+        <h4>Initial Requirements</h4>
+        <p>Focus on deal-level info, popup interactions, and initial design exploration.</p>
+      </div>
+      <div>
+        <h4>Design Iteration</h4>
+        <p>Expanded to dashboard-level views, clear next actions, and color-coded status indicators.</p>
+      </div>
+      <div>
+        <h4>Prototype</h4>
+        <p>Final interactive prototype featuring streamlined user flows and key UX improvements (8 tasks).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <p class="eyebrow">05 · Design Validation</p>
+    <h2 class="section-title">Key Takeaways</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>To validate the high-risk action framework and secure cross-functional buy-in, I independently proposed and spearheaded a comprehensive end-to-end usability testing initiative. Using the interactive prototypes, I owned the entire evaluative research lifecycle.</p>
       <ul>
-        <li><strong>End-to-end research planning:</strong> authored the comprehensive testing protocol, defined core target user personas, and managed global participant recruitment.</li>
-        <li><strong>Artifact creation:</strong> developed rigorous usability testing scripts and standardized data-driven note-taking formats to ensure quantitative and qualitative alignment.</li>
-        <li><strong>Executive stakeholder alignment:</strong> synthesized the raw usability data into high-impact UX recommendations and presented findings directly to stakeholders — translating user friction into clear, actionable design recommendations, securing immediate alignment, and driving the project to design handoff.</li>
+        <li>Overall, all the roles said that the Connected Insights popup is very useful even though they have different use cases. Their overall usefulness rating is 4.6.</li>
+        <li>When participants were asked how they would see more detailed information on the Renewal Risk, they mostly clicked the deal link rather than clicking the Connected Insights popup.</li>
+        <li>Most participants found Renewal Risk Detail information, Action Plan, and Contacts information helpful. However, there are still places for improvement such as labeling or connections between information.</li>
       </ul>
     </div>
+    <div class="img-placeholder" style="aspect-ratio:16/6; margin-top:8px;">Chart — "How useful do you find the Connected Insights pop-up?" (avg. rating 4.6)</div>
   </section>
 
   <section style="padding-bottom:0;">
@@ -499,43 +544,14 @@
     <img src="images/files/ConnectedInsights/rec_5.png" alt="Renewal Opportunity table with sortable Breakdown view" style="border-radius:8px; border:1px solid var(--rule);" />
   </div>
 
-  <section class="tight">
-    <p class="eyebrow">Cross-Functional Leadership & Stakeholder Alignment</p>
-    <h2 class="section-title">Navigating constraints to drive product strategy</h2>
-    <hr class="rule" />
-    <div class="prose">
-      <p>When research revealed that users were missing the popup entirely due to deeply ingrained habits, I faced a major product constraint: no native in-app guidance framework at launch. Instead of letting the user experience suffer, I stepped up to lead a cross-functional strategy with Product Management and the Business Operations team.</p>
-    </div>
-    <div class="grid2">
-      <div>
-        <h4>Short-term mitigation</h4>
-        <ul>
-          <li>Designed and negotiated a Phased Geo-Rollout Strategy</li>
-          <li>Paired the rollout with targeted video micro-training for the release</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Long-term roadmap</h4>
-        <ul>
-          <li>Leveraged this user friction to build a business case for a permanent in-product guidance framework</li>
-          <li>Targeted for the following quarter</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="band">
-    <h2>Every participant passed UAT</h2>
-    <p>The true success of this project lies in its future-proofing — shifting the narrative from "how do we show a popup?" to "how do we design scalability and trust into an AI model?"</p>
-  </div>
-
   <section class="tight" style="padding-bottom:0;">
-    <p class="eyebrow">The Bigger Picture & Design Scalability</p>
+    <p class="eyebrow">06 · Reflections — The Bigger Picture & Design Scalability</p>
     <h2 class="section-title">Designing scalability and trust, not just a popup</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>By shifting the narrative from "how do we show a popup?" to "how do we design scalability and trust into an AI model?", this project successfully shipped the initial release with a clear, validated roadmap for subsequent phases.</p>
-      <p>We successfully established an architectural foundation that allows Cisco's Renewals Console to seamlessly absorb new, complex risk signals over time — without ever breaking the core user experience or requiring expensive user retraining.</p>
+      <p>This project taught me that my role is not just to design what the PM asks for. I can also suggest a better direction for users, test it, and use the results to support my design decisions.</p>
+      <p>We also discovered a bigger user need through testing that we hadn't noticed before. That taught me how valuable even small validation sessions can be.</p>
+      <p>I also learned how to use prototypes and usability testing to get stakeholders aligned and guide the design direction.</p>
     </div>
   </section>
 
