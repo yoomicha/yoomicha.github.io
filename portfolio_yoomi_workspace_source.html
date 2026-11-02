@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Advanced AI Revenue Workspace — One Consistent Tool for Every Seller Role | Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<style>
+  :root{
+    --bg:#ffffff; --ink:#15171c; --muted:#6b7280; --faint:#9aa1ab; --rule:#e7e9ec;
+    --accent:#0c60ff; --accent-soft:#eaf1ff; --navy:#0c1d4d; --navy-2:#132a63;
+    --radius:10px; --maxw:980px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav.site-nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--rule);}
+  nav.site-nav .nav-inner{max-width:var(--maxw); margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between; height:60px;}
+  nav.site-nav .brand{text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);}
+  nav.site-nav ul{margin:0; padding:0; display:flex; gap:28px; list-style:none; align-items:center;}
+  nav.site-nav a{text-decoration:none; font-size:14px; font-weight:500; color:var(--muted); transition:color .15s ease;}
+  nav.site-nav a:hover{color:var(--ink);}
+
+  .eyebrow{font-size:24px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink); margin:0 0 8px;}
+
+  /* HERO */
+  .hero{padding:72px 0 0;}
+  .hero h1{font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.01em; margin:0 0 14px; line-height:1.15;}
+  .hero .sub{color:var(--muted); font-size:17px; width:100%; margin:0 0 40px;}
+
+  .meta-row{display:grid; grid-template-columns:1.6fr 1fr; gap:48px; padding-bottom:56px;}
+  .meta-row p{margin:0; color:var(--muted); font-size:15px;}
+  .meta-row .eyebrow{color:var(--ink); font-size:24px; margin-bottom:8px;}
+  .meta-cols{display:grid; grid-template-columns:1fr; gap:24px; align-content:start;}
+  .meta-cols div p{color:var(--ink); font-weight:500; font-size:15px;}
+  @media (max-width:720px){ .meta-row{grid-template-columns:1fr; gap:28px;} }
+
+  /* STAT ROW */
+  .stat-row{border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+    display:grid; grid-template-columns:repeat(4,1fr); padding:36px 0; margin-bottom:40px;}
+  .stat{padding:0 20px; border-left:1px solid var(--rule);}
+  .stat:first-child{border-left:none; padding-left:0;}
+  .stat .num{font-size:clamp(26px,3.4vw,34px); font-weight:800; letter-spacing:-0.02em; font-variant-numeric:tabular-nums;}
+  .stat .label{margin-top:6px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);}
+  @media (max-width:720px){ .stat-row{grid-template-columns:1fr 1fr; row-gap:24px;} .stat:nth-child(3){border-left:none; padding-left:0;} }
+
+  /* SECTIONS */
+  section{padding:64px 0;}
+  section.tight{padding:40px 0;}
+  h2.section-title{font-size:18px; font-weight:400; letter-spacing:-0.01em; margin:0 0 15px; color:var(--muted);}
+  .rule{border:none; border-top:1px solid var(--rule); margin:0 0 24px 0;}
+
+  .band{background:linear-gradient(160deg,var(--navy),var(--navy-2)); color:#fff; border-radius:16px; padding:56px 48px; margin:56px 0;}
+  .band h2{font-size:30px; font-weight:800; margin:0 0 10px;}
+  .band p{color:#c9d2ec; max-width:620px; margin:0; font-size:15px;}
+
+  .prose{width:100%; max-width:var(--maxw); color:var(--ink); font-size:16px;}
+  .prose p{margin:0 0 20px;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose ul{padding-left:20px; margin:0 0 20px;}
+  .prose li{margin-bottom:10px;}
+
+  .callout{border-left:2px solid var(--accent); padding:4px 0 4px 20px; margin:20px 0;}
+  .callout .tag{font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:6px;}
+  .callout p{margin:0; color:var(--muted); font-size:14.5px;}
+
+  /* FINDING / DESIGN POINT BLOCK */
+  .finding{display:grid; grid-template-columns:1.3fr 1fr; gap:40px; padding:44px 0; border-top:1px solid var(--rule); align-items:start;}
+  .finding h3{font-size:19px; font-weight:700; margin:0 0 4px;}
+  .finding .kicker{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 8px;}
+  .finding p{color:var(--muted); font-size:15px; margin:0 0 14px;}
+  .finding img{width:100%; border-radius:8px; border:1px solid var(--rule); display:block;}
+  @media (max-width:800px){ .finding{grid-template-columns:1fr;} }
+
+  /* IMAGES */
+  .frame{margin:32px 0;}
+  .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+  .img-placeholder{aspect-ratio:4/3; border-radius:8px; border:1px dashed #c8ccd2; background:#fafafa;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    color:var(--faint); font-size:13px; text-align:center; padding:16px;}
+  .img-placeholder b{color:var(--muted); font-weight:600;}
+  .img-placeholder.wide{aspect-ratio:16/9;}
+  .img-placeholder.pair{aspect-ratio:3/2;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:24px;}
+  .grid2 h4,.grid3 h4,.grid4 h4{font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--faint); margin:0 0 12px;}
+  .grid2 ul{margin:0; padding-left:18px; color:var(--ink); font-size:15px;}
+  .grid2 li{margin-bottom:10px;}
+  .grid2 p{color:var(--muted); font-size:15px; margin:0 0 12px;}
+  @media (max-width:720px){ .grid2{grid-template-columns:1fr;} }
+
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:24px;}
+  .grid3 p{color:var(--muted); font-size:15px; margin:0;}
+  @media (max-width:720px){ .grid3{grid-template-columns:1fr;} }
+
+  /* WORKFLOW STEPS */
+  .grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:24px; counter-reset:step;}
+  .step{border:1px solid var(--rule); border-radius:var(--radius); padding:20px 18px; position:relative; background:#fff;}
+  .step .n{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent); margin-bottom:8px; display:block;}
+  .step h4{font-size:15px; font-weight:700; color:var(--ink); text-transform:none; letter-spacing:0; margin:0 0 6px;}
+  .step p{margin:0; color:var(--muted); font-size:13.5px;}
+  @media (max-width:800px){ .grid4{grid-template-columns:1fr 1fr;} }
+  @media (max-width:480px){ .grid4{grid-template-columns:1fr;} }
+
+  /* HUMAN-IN-THE-LOOP CARDS */
+  .loop-card{border:1px solid var(--rule); border-radius:var(--radius); padding:24px;}
+  .loop-card .pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    background:var(--accent-soft); color:var(--accent); padding:4px 10px; border-radius:999px; margin-bottom:12px;}
+  .loop-card h3{font-size:17px; margin:0 0 8px;}
+  .loop-card p{margin:0; color:var(--muted); font-size:15px;}
+
+  footer{border-top:1px solid var(--rule); margin-top:40px; padding:32px 0 64px; color:var(--faint); font-size:13px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center;}
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Yoomi Cha</a>
+    <ul>
+      <li><a href="work.html">Projects</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <h1>Advanced AI Revenue Workspace — One Consistent Tool for Every Seller Role</h1>
+  <p class="sub">A side project that unifies New Sales, Renewals, Customer Success, and Leadership into a single AI-assisted workspace — with a consistent experience, specialized features for each role, and clear lines between where humans stay in the loop and where AI works on its own.</p>
+
+  <div class="stat-row">
+    <div class="stat"><div class="num">4</div><div class="label">Roles, one workspace</div></div>
+    <div class="stat"><div class="num">3</div><div class="label">Views: Account · Board · Timeline</div></div>
+    <div class="stat"><div class="num">2</div><div class="label">Themes, WCAG-reviewed</div></div>
+    <div class="stat"><div class="num">1</div><div class="label">Consistent workflow</div></div>
+  </div>
+
+  <div class="frame" style="margin-top:0;">
+    <!-- FIGMA: hero image / main workspace screen -->
+    <div class="img-placeholder wide" data-figma="hero">
+      <b>Hero image</b>
+      Main workspace screen (Figma)
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <p>This project builds on what I wished I had done differently in my earlier New Sale Assistant work, combined with insights from a separate renewal project. The result is a proposal for a unified tool that serves New Sales, Renewal Sellers, Customer Success, and the leaders who manage them.</p>
+      <p style="margin-top:16px;">Each role gets specialized features, but every role shares the same look, feel, and workflow. AI analyzes customers and products, drafts sales pitches and RFPs, and surfaces insights, while people stay in control of the decisions that matter.</p>
+      <p style="margin-top:16px;">I designed it in Figma and built a working prototype with Claude, React, and TypeScript.</p>
+    </div>
+    <div class="meta-cols">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>Product Designer — UX planning, UI design, and AI-assisted front-end build</p>
+      </div>
+      <div>
+        <p class="eyebrow">Tools</p>
+        <p>Figma, Claude, React, TypeScript</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="tight">
+    <p class="eyebrow">Problem</p>
+    <h2 class="section-title">Different consoles for different roles broke the workflow</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>Each role worked in its own console, so there was no consistent, unified workflow. Deals, customer information, and context were lost every time work was handed from one role to another, and sellers jumped between separate tools for assets, customer data, deal history, CPQ, and RFPs.</p>
+    </div>
+    <div class="grid2">
+      <div>
+        <h4>Goal</h4>
+        <p>Propose one integrated tool for new sales, renewals, customer success, and the leaders who manage them. Role-specific features differ slightly, but the experience and tooling stay consistent.</p>
+      </div>
+      <div>
+        <h4>Target users</h4>
+        <ul>
+          <li>Account Managers (new sales)</li>
+          <li>Renewal Sellers</li>
+          <li>Customer Success</li>
+          <li>Leaders of each team</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <p class="eyebrow">Workflow</p>
+    <h2 class="section-title">Log in once, pick a role, land in the right place</h2>
+    <hr class="rule" />
+    <div class="grid4">
+      <div class="step"><span class="n">01</span><h4>Log in</h4><p>SSO auto-login or manual ID and password.</p></div>
+      <div class="step"><span class="n">02</span><h4>Select role</h4><p>The role decides the starting screen and how it can be customized.</p></div>
+      <div class="step"><span class="n">03</span><h4>Set access &amp; customize</h4><p>Permissions and layout preferences.</p></div>
+      <div class="step"><span class="n">04</span><h4>Role-based home</h4><p>The role is remembered; change it anytime in Settings.</p></div>
+    </div>
+    <div class="frame">
+      <!-- FIGMA: user flow / journey map -->
+      <div class="img-placeholder wide" data-figma="workflow"><b>Workflow / journey map</b>Login → Role → Access → Role-based home (Figma)</div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <p class="eyebrow">Information Architecture</p>
+    <h2 class="section-title">One structure shared across roles</h2>
+    <hr class="rule" />
+    <div class="frame" style="margin-top:0;">
+      <!-- FIGMA: information architecture -->
+      <div class="img-placeholder wide" data-figma="ia"><b>Information architecture</b>Sitemap (Figma)</div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <p class="eyebrow">Ideation</p>
+    <h2 class="section-title">Visual management, priority, and consistency</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>I focused on how to manage deals and projects visually and how to help sellers set priorities, while keeping the look and feel of the existing tools so the new workspace would feel familiar. Merging the separate role-based tools into one gave consistent usability across the whole product cycle. I also reviewed the design against WCAG so it can be used by everyone.</p>
+    </div>
+    <div class="grid3">
+      <div><h4>Visual priority</h4><p>Board and timeline views make it clear what to do first and how far along each item is.</p></div>
+      <div><h4>Familiar yet consistent</h4><p>The look and feel of existing tools is preserved while usability is unified.</p></div>
+      <div><h4>Accessible by default</h4><p>WCAG reviewed for both design and code, in light and dark mode.</p></div>
+    </div>
+  </section>
+
+  <section style="padding-bottom:0;">
+    <p class="eyebrow">Design Points</p>
+    <h2 class="section-title">Eight decisions that shape the workspace</h2>
+  </section>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Design Point 1</p>
+      <h3>Login: two ways in, with a short explanation</h3>
+      <p>Users can sign in automatically with SSO or manually with an ID and password. A short description under each option explains what it does, so nobody has to guess which to choose.</p>
+    </div>
+    <div class="img-placeholder" data-figma="login"><b>Login screen</b>Figma</div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Design Point 2</p>
+      <h3>Role selection decides the starting point</h3>
+      <p>Role is the most important choice in the whole flow. It determines the first screen and what can be customized. After the first login the role is remembered and can be changed in Settings. Layouts are also customizable.</p>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>Users make the choice once, then every login lands them straight in their own context.</p>
+      </div>
+    </div>
+    <div class="img-placeholder" data-figma="role"><b>Role selection &amp; role-based home</b>Figma</div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Design Point 3</p>
+      <h3>Account View: every role, one customer</h3>
+      <p>Customer Success used to live in a separate tool. Bringing it into the same workspace lets every role in the product cycle communicate and see the same customer with full transparency.</p>
+      <p>Sellers can contact customers directly from the AI analysis, and update and share follow-up notes and work notes, which saves time lost in handoffs. For customers, it feels like one consistent service.</p>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>Contacts for every role are organized in one place. That gives better visibility on every deal and helps keep connections with customers who might otherwise be lost when a deal is lost.</p>
+      </div>
+    </div>
+    <div class="img-placeholder" data-figma="account"><b>Account View</b>Figma</div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Design Point 4</p>
+      <h3>Board View: the whole work process at a glance</h3>
+      <p>A Kanban board shows each seller's workflow in one view: what has priority and how far each deal or project has progressed. A default workflow template is provided, and users can build their own to fit how they work.</p>
+    </div>
+    <div class="img-placeholder" data-figma="board"><b>Board View (Kanban)</b>Figma</div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Design Point 5</p>
+      <h3>Timeline View: what needs attention first</h3>
+      <p>Seeing deal and project timelines together gives a visual cue for what to handle urgently. The timeline connects to the AI, so users can set up autonomous actions based on it. A calendar scheduling feature can be switched on or off, so meeting follow-ups can also be done in the tool.</p>
+    </div>
+    <div class="img-placeholder" data-figma="timeline"><b>Timeline View</b>Figma</div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Design Point 6</p>
+      <h3>Reporting: new for sellers and leaders</h3>
+      <p>Reporting didn't exist in the previous tools. Leaders get an at-a-glance view of attainment and can give advice, which widens their role. Individual sellers no longer spend time building separate reports, and a consistent template saves time on both sides.</p>
+      <p>Sellers stay motivated by tracking progress against goals. Incentives are visible in one place, so they can see how each deal or project contributes.</p>
+      <div class="callout">
+        <div class="tag">Impact</div>
+        <p>Clear goal setting, less report-building time for sellers, and one consolidated view of the team for leaders.</p>
+      </div>
+    </div>
+    <div class="img-placeholder" data-figma="reporting"><b>Reporting</b>Figma</div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Design Point 7</p>
+      <h3>Autonomous AI analysis, with Human-off-the-loop you can verify</h3>
+      <p>The AI provides insights for each deal and project, and a prompt-help feature lets users go deeper or look up extra information. The AI can also analyze products and prepare what a customer is likely to need, so sellers have material for their pitch.</p>
+      <div class="callout">
+        <div class="tag">Building trust</div>
+        <p>Even when the AI works on its own, people can review the results or check the underlying resources. That makes the analysis something sellers can trust.</p>
+      </div>
+    </div>
+    <div class="img-placeholder" data-figma="ai-insights"><b>AI insights &amp; prompt help</b>Figma</div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Design Point 8</p>
+      <h3>Human-in-the-loop RFPs and sales pitches</h3>
+      <p>The AI drafts RFPs and sales pitches automatically, and a person reviews and finalizes them. Human involvement is built in at key points, finding a middle ground between fully autonomous and fully manual.</p>
+      <p>Scattered assets, customer information, deal history, CPQ, and RFPs are gathered in one place, so sellers don't need to jump between tools.</p>
+    </div>
+    <div class="img-placeholder" data-figma="hitl"><b>AI-drafted RFP / pitch review</b>Figma</div>
+  </div>
+
+  <section class="tight">
+    <p class="eyebrow">Human in the Loop</p>
+    <h2 class="section-title">Clearly separating where people stay involved</h2>
+    <hr class="rule" />
+    <div class="grid2" style="margin-top:0;">
+      <div class="loop-card">
+        <span class="pill">Human in the loop</span>
+        <h3>People review and finish</h3>
+        <p>For work such as RFPs and sales pitches, AI prepares the draft and a person steps in at key points to review and complete it.</p>
+      </div>
+      <div class="loop-card">
+        <span class="pill">Human off the loop</span>
+        <h3>AI runs, people can verify</h3>
+        <p>For autonomous analysis, AI works on its own, but results can be reviewed and traced to their resources, so the analysis can be trusted.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <p class="eyebrow">Accessibility</p>
+    <h2 class="section-title">WCAG, reviewed in both design and code</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>I learned how to review WCAG from both a UX and a development perspective, and applied that review to the colors in light and dark mode as well as the built interface, so the workspace can be used by as many people as possible.</p>
+    </div>
+  </section>
+
+  <section class="tight">
+    <p class="eyebrow">Branding</p>
+    <h2 class="section-title">Yoomi — an opening door</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>The name and logo are based on the shapes of the Korean letters ㅇ and ㅁ from “yoomi.” The colors were chosen to feel trustworthy for an AI product while meeting WCAG, and I defined two variations, light mode and dark mode, and checked both against WCAG.</p>
+      <p>The intro interaction opens like a door at the last letter. Stepping through to see a bigger world represents taking in new information.</p>
+    </div>
+    <div class="grid2">
+      <div class="img-placeholder pair" data-figma="logo"><b>Logo</b>Figma</div>
+      <div class="img-placeholder pair" data-figma="colors"><b>Light &amp; dark color palettes</b>Figma</div>
+    </div>
+    <div class="frame">
+      <!-- optional: intro interaction video / gif -->
+      <div class="img-placeholder wide" data-figma="intro"><b>Intro interaction</b>Door-opening animation</div>
+    </div>
+  </section>
+
+  <div class="band">
+    <h2>One tool, every role, same experience</h2>
+    <p>The goal wasn't just to merge consoles. It was to give people across the product cycle a shared view of the customer, with AI doing the heavy lifting and humans owning the decisions.</p>
+  </div>
+
+  <section class="tight" style="padding-bottom:0;">
+    <p class="eyebrow">What I Learned</p>
+    <h2 class="section-title">Direction stays human; execution scales with AI</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>Using AI tools made it much faster to bring ideas to life. Most of my time went into UX planning: how to develop the idea, how to structure the information architecture, and which workflows to provide.</p>
+      <p>I didn't know how to code before this project, so I asked Claude to write the code. I ran it and studied just enough to know where to look when something broke.</p>
+      <p>Setting the goal and direction is the most important part of any project, and that is still the human's role. AI supported much of the execution, which let me finish in a short time.</p>
+      <p>Deep expertise in one field matters, but I also found that broad, shallow knowledge across many fields is a very useful skill when working with AI.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© Yoomi Cha. All rights reserved.</span>
+    <span>2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
