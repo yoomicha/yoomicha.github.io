@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="robots" content="noindex" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Advanced AI Revenue Workspace — One Consistent Tool for Every Seller Role | Yoomi Cha</title>
+<title>Advanced AI Revenue Workspace — One Consistent Tool for Every Seller Role</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -127,6 +127,10 @@
   footer{border-top:1px solid var(--rule); margin-top:40px; padding:32px 0 64px; color:var(--faint); font-size:13px;}
   footer .wrap{display:flex; justify-content:space-between; align-items:center;}
   /* DEMO VIDEO + PROTOTYPE LINK */
+  .proto .proto-cta--rfp{margin-top:12px;}
+  html{scroll-padding-top:72px;}
+  @media (max-width:640px){ nav.site-nav ul{display:none;} nav.site-nav .brand{font-size:14px;} }
+
   .proto{margin:0 0 56px;}
   .proto-media{width:min(1200px, calc(100vw - 48px)); margin-left:50%; transform:translateX(-50%);}
   .proto-video{display:block; width:100%; height:auto; aspect-ratio:1600/834; border:1px solid var(--rule); border-radius:var(--radius); background:#fff;}
@@ -143,15 +147,15 @@
   @media (max-width:720px){ .proto-cta{flex-direction:column; align-items:flex-start;} }
 </style>
 </head>
-<body>
+<body id="top">
 
-<nav id="nav" class="site-nav">
+<nav id="nav" class="site-nav" aria-label="Project">
   <div class="nav-inner">
-    <a href="../index.html" class="brand">Yoomi Cha</a>
+    <a href="#top" class="brand">Advanced AI Revenue Workspace</a>
     <ul>
-      <li><a href="../work.html">Projects</a></li>
-      <li><a href="../resume.html">Résumé</a></li>
-      <li><a href="../about.html">About</a></li>
+      <li><a href="#demo">Demo video</a></li>
+      <li><a href="https://www.yoomicha.com/WSprototype/" target="_blank" rel="noopener">Prototype ↗</a></li>
+      <li><a href="https://www.yoomicha.com/RFPdemo/" target="_blank" rel="noopener">RFP demo ↗</a></li>
     </ul>
   </div>
 </nav>
@@ -163,7 +167,7 @@
   <!-- PUBLIC CASE STUDY (no password), for the FIG AI Design Makeathon submission.
        The password-protected version lives at /portfolio_yoomi_workspace_password.html -->
   <!-- PROTOTYPE: demo video, with a link to the live prototype below it -->
-  <div class="proto" role="region" aria-label="Working prototype">
+  <div class="proto" id="demo" role="region" aria-label="Demo and prototype">
     <!-- DEMO VIDEO: plays on every device (muted, looping, inline on phones) -->
     <div class="proto-media">
       <video class="proto-video" src="../images/files/RevenueWS/demo.mp4" poster="../images/files/RevenueWS/demo-poster.jpg"
@@ -178,6 +182,14 @@
         <p class="proto-desc">Built with React and TypeScript. Sign in with SSO, pick a role, and explore the views, notes and notifications. Anything you change stays in your browser.</p>
       </div>
       <a class="proto-btn" href="https://www.yoomicha.com/WSprototype/" target="_blank" rel="noopener">Open in new tab <span aria-hidden="true">↗</span></a>
+    </div>
+    <!-- RFP AGENT DEMO -->
+    <div class="proto-cta proto-cta--rfp">
+      <div>
+        <p class="proto-title">RFP agent demo: AI drafts, people approve</p>
+        <p class="proto-desc">An RFP agent working on a fictional healthcare customer. It reads the RFP and the account analysis, searches a library of approved answers, checks pricing rules, and drafts every section, showing each step as it works. Each answer shows its sources and how fully the approved library covers it, and flags anything to check before sending. People ask for changes in plain language and approve each section; the response is assembled only after everything is approved, and nothing is sent to the customer from the tool. Choose “Load the example draft” to replay a saved run step by step.</p>
+      </div>
+      <a class="proto-btn" href="https://www.yoomicha.com/RFPdemo/" target="_blank" rel="noopener">Open RFP demo <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 

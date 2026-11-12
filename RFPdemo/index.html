@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex" />
+<title>RFP Agent — Yoomi Deal Workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F5F9; --surface:#FFFFFF; --surface-2:#F0EFF6; --ink:#1E1B2E; --muted:#5B5870; --line:#E1DFEA;
+    --coral:#FF6B5B; --coral-ink:#B93A2B; --coral-soft:#FFE9E5;
+    --ok:#1B7556; --ok-soft:#E1F3EC; --warn:#8F5F00; --warn-soft:#FFF1D6; --bad:#B3261E; --bad-soft:#FDE7E5;
+    --focus:#1E1B2E;
+    --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+    --body:'Figtree','Segoe UI',system-ui,-apple-system,sans-serif;
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14121F; --surface:#1E1B2E; --surface-2:#27233B; --ink:#F2F0F9; --muted:#AAA6BF; --line:#37334F;
+      --coral-ink:#FF9487; --coral-soft:#3A2230;
+      --ok:#58D2A4; --ok-soft:#173A31; --warn:#F2C25B; --warn-soft:#3B2F14; --bad:#FF8F86; --bad-soft:#40201F;
+      --focus:#F2F0F9;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14121F; --surface:#1E1B2E; --surface-2:#27233B; --ink:#F2F0F9; --muted:#AAA6BF; --line:#37334F;
+    --coral-ink:#FF9487; --coral-soft:#3A2230;
+    --ok:#58D2A4; --ok-soft:#173A31; --warn:#F2C25B; --warn-soft:#3B2F14; --bad:#FF8F86; --bad-soft:#40201F;
+    --focus:#F2F0F9;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 12px);}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+  button,textarea,input{font:inherit; color:inherit;}
+  :focus-visible{outline:2px solid var(--focus); outline-offset:2px; border-radius:6px;}
+  .wrap{max-width:1180px; margin:0 auto; padding:20px 20px 64px;}
+
+  /* top bar */
+  .topbar{display:flex; align-items:center; gap:12px; padding:4px 0 18px;}
+  .topbar svg{flex:none;}
+  .crumbs{font-size:14px; color:var(--muted);}
+  .crumbs b{color:var(--ink); font-weight:600;}
+  .topbar .sp{flex:1;}
+  .topbar .note{font-size:13px; color:var(--muted);}
+
+  /* deal strip */
+  .deal{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:22px 24px; display:grid; grid-template-columns:1.5fr 1fr; gap:28px;}
+  .deal h1{font-family:var(--display); font-weight:700; font-size:clamp(24px,3.2vw,32px); line-height:1.12; letter-spacing:-0.015em; margin:0 0 6px;}
+  .deal .sub{color:var(--muted); margin:0 0 16px; max-width:56ch;}
+  .facts{display:flex; flex-wrap:wrap; gap:8px 28px; margin:0;}
+  .facts div{min-width:92px;}
+  .facts dt{font-size:12.5px; color:var(--muted); margin:0;}
+  .facts dd{margin:0; font-weight:600;}
+  .runbox{display:flex; flex-direction:column; justify-content:center; gap:10px; border-left:1px solid var(--line); padding-left:28px;}
+  .runbox p{margin:0; color:var(--muted); font-size:13.5px;}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; border:1px solid var(--line); background:var(--surface); color:var(--ink);
+    padding:9px 15px; border-radius:9px; font-weight:600; cursor:pointer; min-height:40px;}
+  .btn:hover{background:var(--surface-2);}
+  .btn[disabled]{opacity:.5; cursor:default;}
+  .btn.primary{background:var(--coral); border-color:var(--coral); color:#1E1B2E;}
+  .btn.primary:hover{filter:brightness(.96);}
+  .btn.sm{min-height:34px; padding:6px 12px; font-size:14px;}
+  .btn.ghost{border-color:transparent; background:transparent; color:var(--muted);}
+  .btn.ghost:hover{color:var(--ink); background:var(--surface-2);}
+
+  /* layout */
+  .grid{display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:20px; margin-top:20px; align-items:start;}
+  .side{position:sticky; top:16px; display:flex; flex-direction:column; gap:16px;}
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 18px 16px;}
+  .panel h2{font-family:var(--display); font-size:17px; font-weight:700; margin:0 0 12px; letter-spacing:-0.005em;}
+
+  /* activity */
+  .steps{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  .steps li{display:grid; grid-template-columns:20px 1fr; gap:10px; font-size:14px;}
+  .steps .dot{width:18px; height:18px; border-radius:50%; border:2px solid var(--line); margin-top:2px; display:flex; align-items:center; justify-content:center;}
+  .steps li.running .dot{border-color:var(--coral); border-top-color:transparent; animation:spin .8s linear infinite;}
+  .steps li.done .dot{background:var(--ok); border-color:var(--ok); color:var(--surface);}
+  .steps li.fail .dot{background:var(--bad); border-color:var(--bad);}
+  .steps .t{font-weight:600;}
+  .steps .d{color:var(--muted); font-size:13px;}
+  .empty{color:var(--muted); font-size:14px; margin:0;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* progress */
+  .bar{height:8px; border-radius:99px; background:var(--surface-2); overflow:hidden; margin:2px 0 10px;}
+  .bar i{display:block; height:100%; width:0; background:var(--ok); border-radius:99px; transition:width .3s ease;}
+  .prog-line{display:flex; justify-content:space-between; font-size:14px; margin:0 0 12px;}
+  .prog-line b{font-weight:700;}
+  .stack{display:flex; flex-direction:column; gap:8px;}
+
+  /* sections */
+  .secs{display:flex; flex-direction:column; gap:14px;}
+  .secs-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:0 2px;}
+  .secs-head h2{font-family:var(--display); font-size:20px; margin:0; letter-spacing:-0.01em;}
+  .secs-head span{color:var(--muted); font-size:14px;}
+  .card{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--line); border-radius:12px; padding:16px 18px 14px;}
+  .card[data-status="drafting"]{border-left-color:var(--coral);}
+  .card[data-status="review"]{border-left-color:var(--warn);}
+  .card[data-status="approved"]{border-left-color:var(--ok);}
+  .card[data-status="error"]{border-left-color:var(--bad);}
+  .card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
+  .card-top h3{font-family:var(--display); font-size:17px; font-weight:700; margin:0; letter-spacing:-0.005em; line-height:1.25;}
+  .ask{margin:4px 0 12px; color:var(--muted); font-size:13.5px; max-width:78ch;}
+  .badges{display:flex; flex-wrap:wrap; gap:6px; flex:none; justify-content:flex-end;}
+  .badge{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; padding:3px 9px; border-radius:99px; background:var(--surface-2); color:var(--muted); white-space:nowrap;}
+  .badge.ok{background:var(--ok-soft); color:var(--ok);}
+  .badge.warn{background:var(--warn-soft); color:var(--warn);}
+  .badge.bad{background:var(--bad-soft); color:var(--bad);}
+  .badge svg{width:12px; height:12px;}
+  .answer{width:100%; min-height:110px; resize:vertical; background:var(--surface-2); border:1px solid transparent; border-radius:9px; padding:12px 14px; line-height:1.6; display:block;}
+  .answer:hover{border-color:var(--line);}
+  .answer:focus{border-color:var(--ink); outline:none; box-shadow:0 0 0 2px var(--coral);}
+  .answer[readonly]{background:transparent; padding-left:0; padding-right:0; resize:none;}
+  .skel{display:flex; flex-direction:column; gap:9px; padding:6px 0 4px;}
+  .skel i{display:block; height:11px; border-radius:6px; background:linear-gradient(90deg,var(--surface-2),var(--line),var(--surface-2)); background-size:200% 100%; animation:shine 1.4s linear infinite;}
+  .skel i:nth-child(2){width:92%;} .skel i:nth-child(3){width:76%;} .skel i:nth-child(4){width:48%;}
+  @keyframes shine{to{background-position:-200% 0;}}
+  .num{color:var(--coral-ink); margin-right:6px; font-variant-numeric:tabular-nums;}
+  .grp{font-family:var(--display); font-size:15px; font-weight:700; color:var(--muted); margin:14px 2px -2px; letter-spacing:0;}
+  .hint{margin:8px 0 0; font-size:13px; color:var(--muted);}
+  .idle-note{margin:0; color:var(--muted); font-size:14px;}
+
+  .flags{margin:12px 0 0; display:flex; flex-direction:column; gap:8px;}
+  .flag{display:flex; gap:10px; align-items:flex-start; background:var(--warn-soft); color:var(--ink); border-radius:9px; padding:10px 12px; font-size:14px;}
+  .flag svg{flex:none; width:16px; height:16px; margin-top:2px; color:var(--warn);}
+  .flag b{font-weight:700;}
+
+  .src-row{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:12px;}
+  .src-row .lbl{font-size:13px; color:var(--muted); margin-right:2px;}
+  .chip{border:1px solid var(--line); background:var(--surface); border-radius:99px; padding:3px 10px; font-size:13px; font-weight:600; cursor:pointer;}
+  .chip:hover{background:var(--surface-2);}
+  .chip[aria-expanded="true"]{background:var(--ink); color:var(--surface); border-color:var(--ink);}
+  .chip.bad{border-color:var(--bad); color:var(--bad);}
+  .src-detail{margin-top:8px; background:var(--surface-2); border-radius:9px; padding:10px 12px; font-size:13.5px;}
+  .src-detail b{display:block; margin-bottom:2px;}
+  .src-detail p{margin:0; color:var(--muted);}
+
+  .card-actions{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--line);}
+  .card-actions .sp{flex:1;}
+  .ack{display:flex; align-items:center; gap:8px; font-size:14px;}
+  .ack input{width:18px; height:18px; accent-color:var(--ok);}
+  .rewrite{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;}
+  .rewrite input{flex:1; min-width:200px; background:var(--surface-2); border:1px solid var(--line); border-radius:9px; padding:8px 12px;}
+
+  /* assembled */
+  .assembled{white-space:pre-wrap; background:var(--surface-2); border-radius:10px; padding:16px 18px; line-height:1.65; max-height:420px; overflow:auto; font-size:14.5px;}
+  .assembled-wrap{margin-top:14px; display:none;}
+  .assembled-wrap.show{display:block;}
+  .notice{border-radius:10px; padding:12px 14px; font-size:14px; margin:0 0 14px; background:var(--bad-soft); color:var(--ink);}
+  /* Web version: the replay note is guidance, not an error */
+  #unavailable .notice{background:var(--surface-2); color:var(--muted); border:1px solid var(--line);}
+  .notice.info{background:var(--surface-2);}
+  [hidden]{display:none !important;}
+
+  @media (max-width:900px){
+    .deal{grid-template-columns:1fr;} .runbox{border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:16px;}
+    .grid{grid-template-columns:1fr;} .side{position:static; order:-1;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .steps li.running .dot{animation:none; border-top-color:var(--coral);} .skel i{animation:none;} .bar i{transition:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="topbar">
+    <svg width="34" height="24" viewBox="0 0 512 354" role="img" aria-label="Yoomi">
+      <circle cx="176.5" cy="176.5" r="130" fill="none" stroke="#FF6B5B" stroke-width="46"/>
+      <rect x="223" y="56" width="242" height="242" rx="23" fill="none" stroke="currentColor" stroke-width="46"/>
+    </svg>
+    <div class="crumbs">Deals / <b>Harborview Health Network</b> / RFP response</div>
+    <div class="sp"></div>
+    <div class="note">Demo data — fictional customer</div>
+  </header>
+
+  <section class="deal" aria-labelledby="deal-title">
+    <div>
+      <h1 id="deal-title">Secure communications RFP</h1>
+      <p class="sub">The agent reads the RFP and the account analysis, finds approved answers, and drafts each response. You review, edit, and approve every section.</p>
+      <dl class="facts">
+        <div><dt>Customer</dt><dd>Harborview Health Network</dd></div>
+        <div><dt>Requirements</dt><dd id="f-reqs">7</dd></div>
+        <div><dt>Response due</dt><dd>Dec 12, 2026</dd></div>
+        <div><dt>Deal health</dt><dd>72 / 100</dd></div>
+      </dl>
+    </div>
+    <div class="runbox">
+      <div id="run-controls" class="stack">
+        <button id="run" class="btn primary" type="button">Draft response with agent</button>
+        <button id="stop" class="btn" type="button" hidden>Stop</button>
+        <p id="run-note">Drafting uses your Claude usage and takes about a minute.</p>
+      </div>
+      <div id="unavailable" hidden>
+        <p class="notice">This web version replays a saved run of the agent, so you can see each step, the sources behind every answer, and the review flow. You can edit answers, approve sections, assemble the response, and copy or download it. Live drafting and “Ask for changes” run when the page is opened in Claude.</p>
+        <button id="load-example" class="btn primary" type="button">Load the example draft</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <main class="secs" aria-label="RFP response sections">
+      <div class="secs-head"><h2>Response draft</h2><span id="secs-count"></span></div>
+      <div id="notice-area"></div>
+      <div id="cards" class="secs"></div>
+
+      <section class="panel assembled-wrap" id="assembled-wrap" aria-labelledby="asm-h">
+        <h2 id="asm-h">Assembled response</h2>
+        <div class="assembled" id="assembled" tabindex="0"></div>
+        <div class="stack" style="flex-direction:row; margin-top:12px; flex-wrap:wrap">
+          <button id="export" class="btn primary" type="button" hidden>Export as file</button>
+          <button id="copy" class="btn" type="button">Copy text</button>
+          <span id="export-msg" class="empty" role="status" style="align-self:center"></span>
+        </div>
+      </section>
+    </main>
+
+    <aside class="side" aria-label="Agent and review status">
+      <section class="panel">
+        <h2>Agent activity</h2>
+        <p id="steps-empty" class="empty">Nothing running. Start a draft to see each step the agent takes.</p>
+        <ol id="steps" class="steps" aria-live="polite"></ol>
+      </section>
+      <section class="panel">
+        <h2>Your review</h2>
+        <p class="prog-line"><span><b id="p-n">0</b> of <b id="p-t">7</b> approved</span><span id="p-flags"></span></p>
+        <div class="bar" aria-hidden="true"><i id="p-bar"></i></div>
+        <button id="assemble" class="btn primary" type="button" disabled>Assemble response</button>
+        <p class="empty" style="margin-top:10px">Approve every section to assemble the final response. Nothing is sent to the customer from here.</p>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<script>
+/* ============================ Demo data (fictional) ============================ */
+const GROUPS = {"2":"Executive summary","3":"Company and solution","4":"Delivery and support","5":"References","6":"Commercial terms"};
+const REQS = [
+  {id:"2.1", group:"2", kind:"summary", title:"Executive summary", ask:"Provide a one-page executive summary of your proposed solution and why it fits Harborview’s needs.", topics:[]},
+  {id:"3.1", group:"3", title:"Company overview and healthcare experience", ask:"Describe your organization and your experience supporting healthcare providers of similar size and complexity.", topics:["company overview","healthcare experience"]},
+  {id:"3.2", group:"3", title:"Data security and compliance", ask:"Describe how patient and staff communications are protected, and list the security certifications and compliance programs you hold.", topics:["security","compliance","encryption"]},
+  {id:"3.3", group:"3", title:"Availability and disaster recovery", ask:"State your uptime commitment and your recovery objectives in the event of a regional outage.", topics:["uptime sla","disaster recovery"]},
+  {id:"3.4", group:"3", title:"Integrations: identity and EHR", ask:"Explain how the solution integrates with our identity provider and with Epic.", topics:["integrations","sso","epic ehr"]},
+  {id:"4.1", group:"4", title:"Implementation plan and timeline", ask:"Provide a phased implementation plan for 14 hospitals, including a realistic timeline and customer responsibilities.", topics:["implementation","timeline"]},
+  {id:"4.2", group:"4", title:"Training and support", ask:"Describe your training approach and your support model, including hours and escalation.", topics:["training","support"]},
+  {id:"5.1", group:"5", title:"Customer references", ask:"Provide at least two references from healthcare organizations of similar size that we may contact.", topics:["references"]},
+  {id:"6.1", group:"6", title:"Pricing", ask:"Provide pricing for 4,200 users on a three-year term, with any volume discounts and assumptions.", topics:["pricing","commercial terms"]},
+  {id:"6.2", group:"6", title:"Contract terms and exceptions", ask:"State your standard contract terms and list any exceptions you request to our template agreement.", topics:["legal terms","contract"]}
+];
+
+const ACCOUNT = {
+  customer:"Harborview Health Network", segment:"Regional healthcare, 14 hospitals, about 9,800 employees",
+  situation:"Legacy on-premises phone system reaches end of life in March 2027. Clinicians struggle to reach colleagues across sites. A recent audit flagged weak access controls on messaging tools.",
+  stakeholders:[{name:"Priya Raman", role:"CIO", cares:"Clinician adoption, a single platform across sites"},{name:"Daniel Okafor", role:"CISO", cares:"Access control, audit evidence, data residency"}],
+  history:"Pilot at two hospitals in 2025 rated positively by nurse managers. Security review ran long and delayed the first decision.",
+  ai_insights:["Deal health 72/100. Main risk is the security review timeline.","Budget decision expected in the first quarter of FY27.","Customer asked twice about Epic integration during the pilot."]
+};
+
+const KB = [
+  {id:"KB-101", title:"Company overview", tags:["company overview","healthcare experience","overview","experience"], status:"approved",
+   text:"Meridian Cloud Systems has served healthcare organizations for 11 years and supports more than 340 healthcare customers, from single clinics to multi-hospital networks. Healthcare is our largest vertical."},
+  {id:"KB-204", title:"Security and compliance", tags:["security","compliance","encryption","certifications"], status:"approved",
+   text:"Data is encrypted with AES-256 at rest and TLS 1.3 in transit. We hold SOC 2 Type II and ISO 27001 certifications and sign a HIPAA Business Associate Agreement. HITRUST CSF certification is in progress and is not yet held."},
+  {id:"KB-212", title:"Data residency", tags:["security","compliance","data residency","residency"], status:"approved",
+   text:"Customer data for US customers is stored only in US regions. Role-based access control and full audit logging are included in every plan."},
+  {id:"KB-305", title:"Availability and recovery", tags:["uptime sla","disaster recovery","availability","sla"], status:"approved",
+   text:"Monthly uptime commitment is 99.95% with service credits. Disaster recovery targets are a 4-hour recovery time objective and a 15-minute recovery point objective, with automatic failover between two US regions."},
+  {id:"KB-410", title:"Integrations", tags:["integrations","sso","epic ehr","identity","epic"], status:"approved",
+   text:"SAML 2.0 single sign-on works with Okta and Microsoft Entra ID, with SCIM user provisioning. A FHIR-based API supports EHR integrations. A formal Epic marketplace listing is pending and is not yet available; integrations with Epic are delivered through the FHIR API as a services project."},
+  {id:"KB-520", title:"Implementation methodology", tags:["implementation","timeline","rollout"], status:"approved",
+   text:"We implement in waves: discovery, a pilot site, then regional waves. Typical timelines are 10 to 14 weeks for up to five sites. Larger multi-site programs are scoped individually by Professional Services and usually run six to nine months."},
+  {id:"KB-610", title:"Training and support", tags:["training","support"], status:"approved",
+   text:"24/7 support with a 15-minute response target for severity 1 issues. Customers above 2,000 users receive a named customer success manager. Training uses a train-the-trainer model, in-app guides, and role-based quick-start sessions."},
+  {id:"KB-701", title:"Reference: Lakeshore Medical Group", tags:["references","reference customers","customers"], status:"approved",
+   text:"Lakeshore Medical Group: 9 hospitals, about 3,100 users, live since 2024. Approved for reference calls."},
+  {id:"KB-702", title:"Reference: Pinecrest Health", tags:["references","reference customers","customers"], status:"restricted",
+   text:"Pinecrest Health: 5 hospitals, about 1,800 users, live since 2025. A case study is published, but reference calls are NOT approved. Do not name them as a contactable reference without Customer Marketing approval."},
+  {id:"KB-810", title:"Standard contract terms", tags:["legal terms","contract","terms"], status:"approved",
+   text:"We contract under our standard Master Services Agreement with a HIPAA Business Associate Agreement attached. Liability is capped at 12 months of fees. Any change to indemnification, liability, or data-breach terms requires Legal review before it is offered."}
+];
+
+const PRICING = {list_price_per_user_month:14, rep_discount_authority_pct:15, approval_required_above_pct:15,
+  multi_year_note:"Any multi-year incentive beyond the standard discount requires Deal Desk approval.", currency:"USD"};
+
+/* ============================ State & helpers ============================ */
+const $ = s => document.querySelector(s);
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const state = REQS.map(r => ({...r, status:"idle", answer:"", sources:[], confidence:null, flags:[], ack:false, edited:false, rewriting:false, error:""}));
+const byId = id => state.find(s => s.id === id);
+let sample = null, running = false, ctl = null;
+
+const ICON = {
+  check:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>',
+  alert:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8L14.5 13H1.5L8 1.8z"/><path d="M8 6.5v3"/><circle cx="8" cy="11.3" r=".6" fill="currentColor"/></svg>',
+  full:'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>',
+  half:'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 2.8a5.2 5.2 0 0 1 0 10.4z" fill="currentColor"/></svg>',
+  ring:'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>'
+};
+
+function h(tag, attrs, ...kids){
+  const el = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs || {})){
+    if (k === "class") el.className = v; else if (k === "html") el.innerHTML = v;
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v); else if (v !== false && v != null) el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of kids.flat()) if (kid != null) el.append(kid.nodeType ? kid : document.createTextNode(kid));
+  return el;
+}
+
+/* ============================ Agent activity ============================ */
+const stepsEl = $("#steps");
+function addStep(title, detail){
+  $("#steps-empty").hidden = true;
+  const dot = h("span",{class:"dot","aria-hidden":"true"});
+  const d = h("div",{class:"d"}, detail || "");
+  const li = h("li",{class:"running"}, dot, h("div",{}, h("div",{class:"t"}, title), d));
+  stepsEl.append(li);
+  return {li, dot, d, title};
+}
+function finishStep(st, detail, ok = true){
+  st.li.className = ok ? "done" : "fail";
+  st.dot.innerHTML = ok ? ICON.check : "";
+  if (detail != null) st.d.textContent = detail;
+  st.li.setAttribute("aria-label", st.title + (ok ? " — done" : " — failed"));
+}
+
+/* ============================ Agent tools (page functions the model can call) ============================ */
+function libSearch(topics){
+  const out = new Map();
+  for (const raw of topics){
+    const q = String(raw).toLowerCase();
+    const words = q.split(/[^a-z0-9]+/).filter(w => w.length > 2);
+    for (const e of KB){
+      let score = 0;
+      for (const t of e.tags){ if (q.includes(t) || t.includes(q)) score += 3; for (const w of words) if (t.includes(w)) score += 1; }
+      if (score > 0){ const prev = out.get(e.id); if (!prev || prev.score < score) out.set(e.id, {score, e}); }
+    }
+  }
+  return [...out.values()].sort((a,b) => b.score - a.score).map(x => ({id:x.e.id, title:x.e.title, status:x.e.status, text:x.e.text}));
+}
+
+function makeTools(){
+  return [
+    {name:"get_rfp_requirements",
+     description:"Returns every requirement in the customer's RFP as a list of {id, title, ask}. Call this first. The ask is the exact question to answer.",
+     async execute(_i, c){ const st = addStep("Reading the RFP", "Opening the requirements document"); await wait(650);
+       finishStep(st, REQS.length + " requirements found"); return REQS.map(({id,title,ask}) => ({id,title,ask})); }},
+    {name:"get_account_context",
+     description:"Returns the AI analysis of the customer account: segment, situation, stakeholders and what they care about, deal history, and insights. Use it to tailor each answer to this customer.",
+     async execute(){ const st = addStep("Reviewing the account analysis", "Customer situation, stakeholders, history"); await wait(800);
+       finishStep(st, "2 stakeholders, 3 insights"); return ACCOUNT; }},
+    {name:"search_answer_library",
+     description:"Searches the approved answer library. Pass all topics you need in one call, for example ['security','uptime sla','epic ehr']. Returns entries {id, title, status, text}. These are the only approved facts you may use.",
+     inputSchema:{type:"object", properties:{topics:{type:"array", items:{type:"string"}, description:"Short topic keywords, all in one call."}}, required:["topics"]},
+     async execute(input){ const topics = Array.isArray(input.topics) ? input.topics.map(String).slice(0,24) : [String(input.topics || "")];
+       const st = addStep("Searching approved answers", topics.length + " topics"); await wait(900);
+       const res = libSearch(topics); finishStep(st, res.length + " approved answers matched"); return res; }},
+    {name:"check_pricing",
+     description:"Returns list price per user per month and the discount rules for a seat count and term. It does not return a quote. Discounts beyond the rep's authority need Deal Desk approval.",
+     inputSchema:{type:"object", properties:{users:{type:"number"}, term_years:{type:"number"}}, required:["users","term_years"]},
+     async execute(input){ const users = Math.max(1, Number(input.users) || 4200), term = Math.max(1, Number(input.term_years) || 3);
+       const st = addStep("Checking pricing rules", users.toLocaleString("en-US") + " users, " + term + "-year term"); await wait(700);
+       const annual = users * PRICING.list_price_per_user_month * 12;
+       finishStep(st, "List price and discount limits retrieved");
+       return {...PRICING, users, term_years:term, list_annual_total:annual, list_term_total:annual * term}; }}
+  ];
+}
+
+const AGENT_PROMPT = `You are an RFP drafting agent for a seller at Meridian Cloud Systems. Draft the response to a customer's RFP.
+
+Work like this, using as few rounds as possible:
+1. Call get_rfp_requirements and get_account_context together.
+2. Then call search_answer_library ONCE with topics covering every requirement (include references and legal terms), and call check_pricing together with it.
+3. Then write the drafts.
+
+Rules:
+- Use only facts returned by the tools. Never invent numbers, certifications, customer names or dates. If something is "in progress" or "pending" in the library, say so plainly. Never present it as achieved.
+- Write in first person plural ("we"), plain professional English, at most 110 words per answer, no markdown, no bullet characters.
+- Tailor each answer to this customer using the account analysis, without repeating its internal risk notes.
+- Pricing: give only the list-price reference from check_pricing and state that final pricing is subject to approval. Do not offer discounts.
+- References: only name customers whose library entry has status "approved". Never name a customer whose status is "restricted". If fewer references are available than the RFP asks for, say so in flags.
+- Contract terms: state only the standard terms from the library, and flag that Legal must review any exception the customer requests.
+- The executive summary (kind "summary") is written LAST, in at most 150 words, from your other drafts: the customer's situation, what we propose, and why it fits. Do not add facts that are not in your other drafts.
+- "flags" are short sentences telling the reviewing person what must be verified before sending, for example an unconfirmed timeline, a pending certification, a missing reference, or approvals. Use an empty array when nothing needs checking.
+- "confidence" is "high" when the answer is fully backed by approved library entries, "medium" when you combined entries or the library only partly covers the ask, "low" when the library does not cover it.
+- "sources" lists the library ids you used (such as KB-204). Use [] if none.
+
+Final output: exactly one JSON object per requirement, one object per line, nothing else after the tool calls. Write every requirement in the order given EXCEPT the executive summary, which goes on the last line. Each line:
+{"id":"3.1","answer":"...","sources":["KB-101"],"confidence":"high","flags":[]}`;
+
+/* ============================ Cards ============================ */
+const cards = {};
+function confBadge(c){
+  if (c === "high") return h("span",{class:"badge ok", html:ICON.full + "High confidence"});
+  if (c === "medium") return h("span",{class:"badge warn", html:ICON.half + "Medium confidence"});
+  if (c === "low") return h("span",{class:"badge bad", html:ICON.ring + "Low confidence"});
+  return null;
+}
+function kbById(id){ return KB.find(k => k.id === id); }
+
+function buildCard(s){
+  const el = h("article",{class:"card", "data-status":"idle", id:"card-" + s.id, "aria-labelledby":"h-" + s.id});
+  cards[s.id] = {el, openSrc:null}; paintCard(s); return el;
+}
+
+function paintCard(s){
+  const c = cards[s.id], el = c.el;
+  if (document.activeElement && el.contains(document.activeElement) && document.activeElement.classList.contains("answer") && s.status === "review") return;  // never rebuild while typing
+  el.dataset.status = s.status;
+  const badges = h("div",{class:"badges"});
+  if (s.status === "idle") badges.append(h("span",{class:"badge"}, "Not drafted"));
+  if (s.status === "drafting") badges.append(h("span",{class:"badge"}, "Drafting"));
+  if (s.status === "error") badges.append(h("span",{class:"badge bad"}, "Needs a draft"));
+  if (s.status === "review" || s.status === "approved"){
+    const cb = confBadge(s.confidence); if (cb) badges.append(cb);
+    if (s.edited) badges.append(h("span",{class:"badge"}, "Edited"));
+    if (s.stale) badges.append(h("span",{class:"badge warn", "data-stale":"1", html:ICON.alert + "May be out of date"}));
+    if (s.status === "approved") badges.append(h("span",{class:"badge ok", html:ICON.check + "Approved"}));
+  }
+  const body = h("div",{});
+  if (s.status === "idle") body.append(h("p",{class:"idle-note"}, "The agent will draft this section from approved answers."));
+  if (s.status === "drafting") body.append(h("div",{class:"skel","aria-label":"Drafting"}, h("i"),h("i"),h("i"),h("i")));
+  if (s.status === "error") {
+    body.append(h("p",{class:"idle-note"}, s.error || "No draft was returned for this section."));
+    body.append(h("div",{class:"card-actions"}, h("button",{class:"btn sm", type:"button", onclick:() => redraft(s, "")}, "Draft this section")));
+  }
+  if (s.status === "review" || s.status === "approved"){
+    const ro = s.status === "approved";
+    const ta = h("textarea",{class:"answer", rows:"5", "aria-label":"Draft answer for " + s.title, readonly:ro});
+    ta.value = s.answer;
+    const fit = () => { ta.style.height = "auto"; ta.style.height = Math.max(110, ta.scrollHeight + 2) + "px"; };
+    ta.addEventListener("input", () => { s.answer = ta.value; s.edited = true; fit(); updateEditedBadge(s); updateAssembleState();
+      if (s.kind !== "summary"){ const sm = byId("2.1"); if (sm && (sm.status === "review" || sm.status === "approved") && !sm.stale){ sm.stale = true; markStale(sm); } } });
+    body.append(ta); requestAnimationFrame(fit);
+    if (s.kind === "summary") body.append(h("p",{class:"hint"}, "Written last, from the other sections. If you change them, refresh it."));
+
+    if (s.flags.length){
+      const fl = h("div",{class:"flags"});
+      for (const f of s.flags) fl.append(h("div",{class:"flag", html:ICON.alert}, h("span",{}, h("b",{}, "Check before sending: "), f)));
+      body.append(fl);
+    }
+    const sr = h("div",{class:"src-row"}); const detail = h("div",{class:"src-detail", hidden:true, "aria-live":"polite"});
+    sr.append(h("span",{class:"lbl"}, s.sources.length ? "Sources" : "No library sources used"));
+    s.sources.forEach(id => {
+      const k = kbById(id);
+      const chip = h("button",{class:"chip" + (k ? "" : " bad"), type:"button", "aria-expanded":"false"}, id + (k ? "" : " (not found)"));
+      chip.addEventListener("click", () => {
+        const open = chip.getAttribute("aria-expanded") === "true";
+        sr.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-expanded","false"));
+        if (open){ detail.hidden = true; return; }
+        chip.setAttribute("aria-expanded","true"); detail.hidden = false; detail.innerHTML = "";
+        detail.append(h("b",{}, k ? k.id + " · " + k.title + " (" + k.status + ")" : "Source not found in the approved library"), h("p",{}, k ? k.text : "The agent cited an id that doesn’t exist. Don’t rely on this claim until you’ve checked it."));
+      });
+      sr.append(chip);
+    });
+    body.append(sr, detail);
+
+    const act = h("div",{class:"card-actions"});
+    if (s.status === "review"){
+      if (s.flags.length){
+        const cb = h("input",{type:"checkbox", id:"ack-" + s.id}); cb.checked = s.ack;
+        act.append(h("label",{class:"ack", for:"ack-" + s.id}, cb, "I’ve checked the items above"));
+        const ap = h("button",{class:"btn primary sm", type:"button", disabled:!s.ack}, "Approve section");
+        cb.addEventListener("change", () => { s.ack = cb.checked; ap.disabled = !s.ack; });
+        ap.addEventListener("click", () => approve(s)); act.append(h("span",{class:"sp"}), ap);
+      } else {
+        act.append(h("span",{class:"sp"}), h("button",{class:"btn primary sm", type:"button", onclick:() => approve(s)}, "Approve section"));
+      }
+      const rw = h("div",{class:"rewrite", hidden:true});
+      const inp = h("input",{type:"text", "aria-label":"What should change in " + s.title, placeholder:"What should change? For example: shorter, lead with the pilot"});
+      const go = h("button",{class:"btn sm", type:"button", onclick:() => { if (inp.value.trim()) redraft(s, inp.value.trim()); }}, "Rewrite");
+      inp.addEventListener("keydown", e => { if (e.key === "Enter" && inp.value.trim()){ e.preventDefault(); redraft(s, inp.value.trim()); } });
+      rw.append(inp, go);
+      act.prepend(h("button",{class:"btn ghost sm", type:"button", disabled:s.rewriting || !sample, onclick:() => { rw.hidden = !rw.hidden; if (!rw.hidden) inp.focus(); }}, s.rewriting ? "Rewriting…" : "Ask for changes"));
+      if (s.kind === "summary") act.prepend(h("button",{class:"btn sm", type:"button", disabled:s.rewriting || !sample || !state.some(x => x.kind !== "summary" && x.answer), onclick:() => redraft(s, "")}, "Refresh from sections"));
+      body.append(act, rw);
+    } else {
+      act.append(h("span",{class:"sp"}), h("button",{class:"btn ghost sm", type:"button", onclick:() => reopen(s)}, "Reopen to edit"));
+      body.append(act);
+    }
+  }
+  el.replaceChildren(
+    h("div",{class:"card-top"}, h("h3",{id:"h-" + s.id}, h("span",{class:"num"}, s.id), " " + s.title), badges),
+    h("p",{class:"ask"}, s.ask), body
+  );
+}
+function markStale(s){
+  const b = cards[s.id].el.querySelector(".badges"); if (!b || b.querySelector("[data-stale]")) return;
+  b.append(h("span",{class:"badge warn", "data-stale":"1", html:ICON.alert + "May be out of date"}));
+}
+function updateEditedBadge(s){
+  const b = cards[s.id].el.querySelector(".badges"); if (!b || [...b.children].some(x => x.textContent === "Edited")) return;
+  b.append(h("span",{class:"badge"}, "Edited"));
+}
+
+function approve(s){ s.status = "approved"; paintCard(s); updateProgress(); }
+function reopen(s){ s.status = "review"; paintCard(s); updateProgress(); }
+
+/* ============================ Progress & assembly ============================ */
+function updateProgress(){
+  const n = state.filter(s => s.status === "approved").length, t = state.length;
+  $("#p-n").textContent = n; $("#p-t").textContent = t; $("#p-bar").style.width = (n / t * 100) + "%";
+  const open = state.filter(s => s.status === "review" && s.flags.length).length;
+  $("#p-flags").textContent = open ? open + " need checking" : "";
+  const counts = state.filter(s => s.status === "review" || s.status === "approved").length;
+  $("#secs-count").textContent = counts ? counts + " of " + t + " drafted" : "";
+  updateAssembleState();
+}
+function updateAssembleState(){ $("#assemble").disabled = !state.every(s => s.status === "approved"); }
+function assembledText(){
+  let out = "RFP response — Harborview Health Network\nPrepared by Meridian Cloud Systems (demo)\n", g = "";
+  for (const s of state){
+    if (s.group !== g){ g = s.group; out += "\n" + g + ". " + GROUPS[g].toUpperCase() + "\n"; }
+    out += "\n" + s.id + " " + s.title + "\n" + s.answer.trim() + "\n";
+  }
+  return out;
+}
+$("#assemble").addEventListener("click", () => {
+  $("#assembled").textContent = assembledText(); $("#assembled-wrap").classList.add("show");
+  $("#assembled-wrap").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+});
+$("#copy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(assembledText()); $("#export-msg").textContent = "Copied."; }
+  catch(e){ const r = document.createRange(); r.selectNodeContents($("#assembled")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); $("#export-msg").textContent = "Text selected. Press copy on your keyboard."; }
+});
+(async () => {
+  let dl = null; try { dl = (typeof claude !== "undefined" && claude.use) ? await claude.use("downloads") : null; } catch(e){ dl = null; }
+  if (!dl){
+    $("#export").hidden = false;
+    $("#export").addEventListener("click", () => {
+      const url = URL.createObjectURL(new Blob([assembledText()], {type:"text/markdown"}));
+      const a = Object.assign(document.createElement("a"), {href:url, download:"harborview-rfp-response-draft.md"});
+      document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 2000);
+      $("#export-msg").textContent = "Downloaded.";
+    });
+    return;
+  }
+  try { $("#export").hidden = false;
+    $("#export").addEventListener("click", async () => {
+      const msg = $("#export-msg"); msg.textContent = "";
+      for (const name of ["harborview-rfp-response-draft.md", "harborview-rfp-response-draft.txt"]){
+        try { await dl.save({filename:name, data:assembledText()}); msg.textContent = "Saved."; return; }
+        catch(e){ if (e && e.code === "declined") return; if (!e || (e.code !== "rejected_extension" && e.code !== "extension_not_enabled")) break; }
+      }
+      msg.textContent = "Couldn’t save a file here. Use Copy text instead.";
+    });
+  } catch(e){}
+})();
+
+/* ============================ Applying a draft returned by the model ============================ */
+function applyDraft(obj){
+  const s = obj && byId(String(obj.id)); if (!s || typeof obj.answer !== "string" || !obj.answer.trim()) return false;
+  s.answer = obj.answer.trim().replace(/\s*\n\s*/g, " ");
+  s.sources = Array.isArray(obj.sources) ? obj.sources.map(String) : [];
+  s.confidence = ["high","medium","low"].includes(obj.confidence) ? obj.confidence : "medium";
+  s.flags = Array.isArray(obj.flags) ? obj.flags.map(String).filter(Boolean) : [];
+  const unknown = s.sources.filter(id => !kbById(id));
+  if (unknown.length){ s.flags.push("The draft cites " + unknown.join(", ") + ", which isn’t in the approved library."); s.confidence = "low"; }
+  if (!s.sources.length && s.confidence === "high") s.confidence = "medium";
+  s.ack = false; s.edited = false; s.stale = false; s.rewriting = false; s.status = "review"; s.error = "";
+  paintCard(s); updateProgress(); return true;
+}
+
+function errorCopy(e){
+  const code = e && e.code;
+  if (code === "not_granted" || code === "sampling_disabled" || code === "not_declared" || code === "capability_disabled") return "Claude isn’t available for this page. Allow it when asked, or open the page in Claude.";
+  if (code === "tools_unavailable") return "This view can’t run the agent’s tools. Open the page in the Claude app or on claude.ai.";
+  if (code === "rate_limited") return "Too many requests right now, or your Claude usage limit was reached. Try again in a little while.";
+  if (code === "session_expired") return "Your session expired. Sign in to Claude again and retry.";
+  if (code === "refused") return "Claude declined this request. Try again with a changed instruction.";
+  return "Something interrupted the draft. Your approved sections are kept. Try again.";
+}
+
+/* ============================ Run the agent ============================ */
+async function runAgent(){
+  if (!sample || running) return;
+  running = true; ctl = new AbortController();
+  $("#run").hidden = true; $("#stop").hidden = false; $("#notice-area").innerHTML = "";
+  stepsEl.innerHTML = ""; $("#assembled-wrap").classList.remove("show");
+  state.forEach(s => { Object.assign(s, {status:"drafting", answer:"", sources:[], confidence:null, flags:[], ack:false, edited:false, stale:false, error:""}); paintCard(s); });
+  updateProgress();
+  const writing = addStep("Writing the drafts", "Waiting for the first section");
+  let done = 0, lineIdx = 0;
+  const feed = (text, final) => {
+    const lines = text.split("\n"); const limit = final ? lines.length : lines.length - 1;
+    for (; lineIdx < limit; lineIdx++){
+      const ln = lines[lineIdx].trim(); if (!ln.startsWith("{")) continue;
+      try { if (applyDraft(JSON.parse(ln))){ done++; writing.d.textContent = done + " of " + state.length + " sections drafted"; } } catch(e){}
+    }
+  };
+  try {
+    const res = await sample(AGENT_PROMPT, {tools:makeTools(), signal:ctl.signal, modelTier:"default", onText:({text}) => feed(text, false)});
+    feed(res.text, true);
+    finishStep(writing, done + " of " + state.length + " sections drafted", done > 0);
+  } catch(e){
+    if (e && e.text) feed(e.text, false);
+    const cancelled = e && e.code === "cancelled";
+    finishStep(writing, cancelled ? "Stopped" : "Interrupted", false);
+    if (!cancelled) $("#notice-area").append(h("p",{class:"notice", role:"alert"}, errorCopy(e)));
+    if (e && (e.code === "not_granted" || e.code === "tools_unavailable" || e.code === "sampling_disabled")) showUnavailable();
+  } finally {
+    state.forEach(s => { if (s.status === "drafting"){ s.status = "error"; s.error = "The agent didn’t return a draft for this section."; paintCard(s); } });
+    running = false; ctl = null; $("#stop").hidden = true; $("#run").hidden = false;
+    $("#run").textContent = "Draft again"; updateProgress();
+  }
+}
+
+async function redraft(s, instruction){
+  if (!sample || s.rewriting) return;
+  s.rewriting = true; const prevStatus = s.status; if (prevStatus === "error"){ s.status = "drafting"; } paintCard(s);
+  const facts = libSearch(s.topics);
+  const others = s.kind === "summary" ? state.filter(x => x.kind !== "summary" && x.answer).map(x => x.id + " " + x.title + ": " + x.answer).join("\n") : "";
+  const limit = s.kind === "summary" ? 150 : 110;
+  const prompt = `You are drafting one section of an RFP response for a seller at Meridian Cloud Systems.
+
+Requirement ${s.id}: ${s.title}
+Question: ${s.ask}
+
+Customer: ${ACCOUNT.customer}. ${ACCOUNT.segment}. ${ACCOUNT.situation}
+
+Approved library entries (the only facts you may use):
+${JSON.stringify(facts)}
+
+Pricing reference (only for pricing sections): ${JSON.stringify({...PRICING, users:4200, term_years:3, list_annual_total:4200 * PRICING.list_price_per_user_month * 12})}
+
+${others ? "Current text of the other sections. Summarize these and add no new facts:\n" + others + "\n\n" : ""}Current draft (may be empty): ${s.answer || "(none)"}
+${instruction ? "Change requested by the reviewer: " + instruction : "Write a fresh draft."}
+
+Rules: only use the facts above; never present anything "in progress" or "pending" as achieved; no discounts; first person plural; plain English; at most ${limit} words; no markdown. For references, never name a customer whose status is restricted. For contract terms, flag Legal review for exceptions.
+Reply with only one JSON object: {"id":"${s.id}","answer":"...","sources":["KB-..."],"confidence":"high|medium|low","flags":["what the reviewer must verify"]}`;
+  try {
+    const obj = await sample.json(prompt, {cache:false, modelTier:"default"});
+    if (!applyDraft(obj)) throw {code:"invalid_json"};
+  } catch(e){
+    s.rewriting = false; s.status = prevStatus === "error" ? "error" : "review";
+    s.error = errorCopy(e); paintCard(s);
+  }
+}
+
+/* ============================ Startup ============================ */
+const EXAMPLE = [
+  {id:"3.1",answer:"Meridian Cloud Systems has served healthcare organizations for 11 years and supports more than 340 healthcare customers, from single clinics to multi-hospital networks. Healthcare is our largest vertical. Our 2025 pilot at two Harborview hospitals gave nurse managers a first look at how one platform can connect clinicians across sites.",sources:["KB-101"],confidence:"high",flags:[]},
+  {id:"3.2",answer:"We encrypt data with AES-256 at rest and TLS 1.3 in transit, store US customer data only in US regions, and include role-based access control and full audit logging in every plan. We hold SOC 2 Type II and ISO 27001 certifications and sign a HIPAA Business Associate Agreement. HITRUST CSF certification is in progress and is not yet held.",sources:["KB-204","KB-212"],confidence:"high",flags:["HITRUST is in progress. Confirm the expected date with Security before promising one."]},
+  {id:"3.3",answer:"We commit to 99.95% monthly uptime with service credits. For a regional outage, our recovery time objective is 4 hours and our recovery point objective is 15 minutes, with automatic failover between two US regions.",sources:["KB-305"],confidence:"high",flags:[]},
+  {id:"3.4",answer:"We support SAML 2.0 single sign-on with Okta and Microsoft Entra ID, plus SCIM provisioning. For Epic, we integrate through our FHIR-based API, delivered as a services project. A formal Epic marketplace listing is pending and is not yet available.",sources:["KB-410"],confidence:"medium",flags:["Epic marketplace listing is pending. Confirm the services scope with Professional Services."]},
+  {id:"4.1",answer:"We would implement in waves: discovery, a pilot site, then regional waves across the 14 hospitals. Multi-site programs of this size are scoped by our Professional Services team and usually run six to nine months. We will confirm the detailed timeline and Harborview responsibilities during scoping.",sources:["KB-520"],confidence:"medium",flags:["The library has no timeline specific to 14 hospitals. Professional Services must confirm before this is sent."]},
+  {id:"4.2",answer:"We offer 24/7 support with a 15-minute response target for severity 1 issues. With more than 2,000 users, Harborview would receive a named customer success manager. Training uses a train-the-trainer model, in-app guides, and role-based quick-start sessions.",sources:["KB-610"],confidence:"high",flags:[]},
+  {id:"5.1",answer:"Lakeshore Medical Group, a 9-hospital network with about 3,100 users that has been live with us since 2024, is approved for reference calls. We will arrange the introduction on request.",sources:["KB-701"],confidence:"medium",flags:["The RFP asks for at least two references, and only one is approved. Ask Customer Marketing to approve a second."]},
+  {id:"6.1",answer:"List price is $14 per user per month, which is $705,600 per year for 4,200 users at list. Final pricing, including any volume or multi-year terms, is subject to approval and will be provided in a formal quote.",sources:[],confidence:"medium",flags:["Pricing needs Deal Desk approval before any discount is discussed.","Pricing comes from the pricing tool, not the answer library."]},
+  {id:"6.2",answer:"We contract under our standard Master Services Agreement with a HIPAA Business Associate Agreement attached. Liability is capped at 12 months of fees. We will review any exceptions Harborview proposes to its template agreement and respond through our Legal team.",sources:["KB-810"],confidence:"medium",flags:["Legal must review before any change to indemnification, liability, or data-breach terms is offered."]},
+  {id:"2.1",answer:"Harborview is replacing an end-of-life phone system while tightening access control across 14 hospitals. We propose one secure communications platform that connects clinicians across sites, with single sign-on, audit logging, and US-only data storage, backed by a 99.95% uptime commitment. Our experience with 340 healthcare customers and the 2025 pilot at two Harborview hospitals shows the approach works. We will phase the rollout and confirm timeline and pricing during scoping.",sources:["KB-101","KB-204","KB-305"],confidence:"medium",flags:["Check that this summary still matches the sections above after any edits."]}
+];
+function loadExample(){ replayExample(); }
+/* Web version: replay a saved run step by step. Clearly labelled; nothing is generated live. */
+let replaying = false;
+async function replayExample(){
+  if (replaying) return; replaying = true;
+  const btn = $("#load-example"); btn.disabled = true; btn.textContent = "Replaying…";
+  stepsEl.innerHTML = ""; $("#steps-empty").hidden = true;
+  const intro = addStep("Replaying a saved run", "Nothing is generated live on this page."); await wait(400);
+  finishStep(intro, "Saved agent run, shown step by step. Nothing is generated live.");
+  let st = addStep("Reading the RFP", "Opening the requirements document"); await wait(650);
+  finishStep(st, REQS.length + " requirements found");
+  st = addStep("Reviewing the account analysis", "Customer situation, stakeholders, history"); await wait(800);
+  finishStep(st, "2 stakeholders, 3 insights");
+  const matched = new Set(EXAMPLE.flatMap(e => e.sources || [])).size;
+  st = addStep("Searching approved answers", "Looking up approved library entries"); await wait(750);
+  finishStep(st, matched + " approved answers matched");
+  st = addStep("Checking pricing rules", "Price list and discount limits"); await wait(600);
+  finishStep(st, "List price and discount limits retrieved");
+  st = addStep("Drafting sections", "0 of " + EXAMPLE.length + " sections drafted");
+  for (let i = 0; i < EXAMPLE.length; i++){ applyDraft(EXAMPLE[i]); st.d.textContent = (i + 1) + " of " + EXAMPLE.length + " sections drafted"; await wait(280); }
+  finishStep(st, EXAMPLE.length + " sections drafted. Review and approve each one.");
+  btn.textContent = "Example draft loaded";
+}
+function showUnavailable(){ $("#unavailable").hidden = false; $("#run-controls").hidden = true; }
+
+$("#run").addEventListener("click", runAgent);
+$("#stop").addEventListener("click", () => ctl && ctl.abort());
+$("#load-example").addEventListener("click", loadExample);
+
+const cardsEl = $("#cards"); let lastGroup = "";
+state.forEach(s => { if (s.group !== lastGroup){ lastGroup = s.group; cardsEl.append(h("h3",{class:"grp"}, s.group + ". " + GROUPS[s.group])); } cardsEl.append(buildCard(s)); });
+$("#f-reqs").textContent = state.length;
+updateProgress();
+
+(async () => {
+  try { sample = (typeof claude !== "undefined" && claude.use) ? await claude.use("sample") : null; } catch(e){ sample = null; }
+  if (!sample) showUnavailable();
+  else { try { const lim = await sample.limits(); if (!lim.tools){ sample = null; showUnavailable(); } } catch(e){} }
+})();
+</script>
+</body>
+</html>
