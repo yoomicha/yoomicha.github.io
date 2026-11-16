@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Take Me to the Moon — Designing an AI-Directed VR Story | Yoomi Cha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<style>
+  /* =========================================================
+     색상 / 크기 변수 — 여기 값만 바꾸면 전체 톤이 바뀝니다
+     ========================================================= */
+  :root{
+    --bg:#ffffff;
+    --ink:#15171c;
+    --muted:#6b7280;
+    --faint:#9aa1ab;
+    --rule:#e7e9ec;
+    --accent:#0c60ff;
+    --accent-soft:#eaf1ff;
+    --navy:#0c1d4d;
+    --navy-2:#132a63;
+    --radius:10px;
+    --maxw:980px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  nav.site-nav .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  nav.site-nav .brand{text-decoration:none; font-size:15px; font-weight:700; color:var(--ink);}
+  nav.site-nav ul{margin:0; padding:0; display:flex; gap:28px; list-style:none; align-items:center;}
+  nav.site-nav a{text-decoration:none; font-size:14px; font-weight:500; color:var(--muted); transition:color .15s ease;}
+  nav.site-nav a:hover{color:var(--ink);}
+
+  /* EYEBROW (섹션 큰 제목) */
+  .eyebrow{
+    font-size:24px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink);
+  }
+
+  /* HERO */
+  .hero{padding:72px 0 0;}
+  .hero h1{
+    font-size:clamp(28px,4vw,40px);
+    font-weight:800; letter-spacing:-0.01em;
+    margin:0 0 14px; line-height:1.15;
+  }
+  .hero .sub{color:var(--muted); font-size:17px; margin:0 0 40px;}
+
+  /* META ROW: overview / role / timeline */
+  .meta-row{
+    display:grid; grid-template-columns:1.6fr 1fr; gap:48px;
+    padding-bottom:56px;
+  }
+  .meta-row p{margin:0; color:var(--muted); font-size:15px;}
+  .meta-cols{display:grid; grid-template-columns:1fr 1fr; gap:24px; align-content:start;}
+  .meta-cols div p{color:var(--ink); font-weight:500; font-size:15px;}
+  .meta-cols .full{grid-column:1 / -1;}
+  @media (max-width:720px){ .meta-row{grid-template-columns:1fr; gap:28px;} }
+
+  /* STAT ROW (강조 포인트 4개) */
+  .stat-row{
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    display:grid; grid-template-columns:repeat(4,1fr);
+    padding:36px 0;
+    margin-bottom:40px;
+  }
+  .stat{padding:0 20px; border-left:1px solid var(--rule);}
+  .stat:first-child{border-left:none; padding-left:0;}
+  .stat .num{
+    font-size:clamp(26px,3.4vw,34px); font-weight:800; letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;
+    min-height:1.3em;              /* 비워둬도 높이 유지 */
+  }
+  .stat .label{
+    margin-top:6px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+    min-height:1.6em;
+  }
+  @media (max-width:720px){
+    .stat-row{grid-template-columns:1fr 1fr; row-gap:24px;}
+    .stat:nth-child(3){border-left:none; padding-left:0;}
+  }
+
+  /* SECTION GENERAL */
+  section{padding:64px 0;}
+  section.tight{padding:40px 0;}
+  h2.section-title{
+    font-size:18px;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    margin:-25px 0 15px;
+    color:var(--muted);
+  }
+  .rule{border:none; border-top:1px solid var(--rule); margin:0 0 24px 0;}
+
+  /* DARK BAND */
+  .band{
+    background:linear-gradient(160deg,var(--navy),var(--navy-2));
+    color:#fff; border-radius:16px; padding:56px 48px;
+    margin:56px 0;
+  }
+  .band h2{font-size:30px; font-weight:800; margin:0 0 10px;}
+  .band p{color:#b9c3e0; max-width:560px; margin:0; font-size:15px;}
+
+  /* PARAGRAPH BLOCK */
+  .prose{width:100%; max-width:var(--maxw); color:var(--ink); font-size:16px;}
+  .prose p{margin:0 0 20px;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose ul{padding-left:20px; margin:0 0 20px;}
+  .prose li{margin-bottom:10px; color:var(--ink);}
+
+  /* CALLOUT (전략 / 결과) */
+  .callout{border-left:2px solid var(--accent); padding:4px 0 4px 20px; margin:20px 0;}
+  .callout .tag{
+    font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:6px;
+  }
+  .callout p{margin:0; color:var(--muted); font-size:14.5px;}
+
+  /* FINDING BLOCK (왼쪽 글 + 오른쪽 이미지) */
+  .finding{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:40px;
+    padding:44px 0; border-top:1px solid var(--rule);
+    align-items:start;
+  }
+  .finding h3{font-size:19px; font-weight:700; margin:0 0 4px;}
+  .finding .kicker{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 8px;}
+  .finding p{color:var(--muted); font-size:15px; margin:0 0 14px;}
+  .finding img{width:100%; border-radius:8px; border:1px solid var(--rule); display:block;}
+  @media (max-width:800px){ .finding{grid-template-columns:1fr;} }
+
+  /* IMAGE FRAME (단독 와이드 이미지) */
+  .frame{margin:40px 0;}
+  .frame img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .frame .cap{font-size:13px; color:var(--faint); margin-top:10px;}
+
+  /* 이미지 공통: 캡처 넣기 전에도 자리 보이게 회색 배경 */
+  img{background:#f3f4f6;}
+
+  /* GRIDS */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:24px;}
+  .grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; margin-top:24px;}
+  .grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:24px;}
+  .grid2 h4,.grid3 h4,.grid4 h4{font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--faint); margin:0 0 12px;}
+  .grid2 ul{margin:0; padding-left:18px; color:var(--ink); font-size:15px;}
+  .grid2 li{margin-bottom:10px;}
+  .grid3 p,.grid4 p{color:var(--muted); font-size:15px; margin:0;}
+  @media (max-width:720px){ .grid2,.grid3{grid-template-columns:1fr;} .grid4{grid-template-columns:1fr 1fr;} }
+
+  /* STEP (실시간 루프 단계) */
+  .step .n{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent);
+    margin-bottom:8px;
+  }
+
+  /* CHECKPOINT CARD (6개 체크포인트) */
+  .cp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:24px;}
+  .cp img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:8px; border:1px solid var(--rule); display:block; margin-bottom:12px;}
+  .cp .n{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent);}
+  .cp h4{font-size:16px; font-weight:700; margin:2px 0 4px;}
+  .cp p{color:var(--muted); font-size:14px; margin:0;}
+  @media (max-width:720px){ .cp-grid{grid-template-columns:1fr;} }
+
+  /* TYPE CHIPS (5가지 여행자 유형) */
+  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;}
+  .chip{
+    font-size:14px; font-weight:600; color:var(--accent);
+    background:var(--accent-soft); border-radius:999px; padding:8px 16px;
+  }
+
+  footer{
+    border-top:1px solid var(--rule); margin-top:40px;
+    padding:32px 0 64px;
+    color:var(--faint); font-size:13px;
+  }
+  footer a{color:var(--accent); font-weight:600; text-decoration:none; margin-right:16px;}
+</style>
+</head>
+<body>
+
+<nav id="nav" class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Yoomi Cha</a>
+    <ul>
+      <li><a href="work.html">Projects</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<div class="wrap hero">
+  <h1>Take Me to the Moon — Designing an AI-Directed Story in Immersive VR</h1>
+  <p class="sub">When extreme climate change forces humanity to flee Earth for the Moon, what choices get you there? An AI agent rewrites the story around every decision, while Visko renders each scene as live video inside a Meta Quest 3 experience.</p>
+
+  <!-- ✏️ 강조 포인트 4개: num / label 안에 직접 채워 넣으세요 -->
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num"></div>
+      <div class="label"></div>
+    </div>
+    <div class="stat">
+      <div class="num"></div>
+      <div class="label"></div>
+    </div>
+    <div class="stat">
+      <div class="num"></div>
+      <div class="label"></div>
+    </div>
+    <div class="stat">
+      <div class="num"></div>
+      <div class="label"></div>
+    </div>
+  </div>
+
+  <!-- 🎬 데모 영상: mp4 파일 경로만 바꾸면 됩니다 -->
+  <div class="video-container" style="width:100%; max-width:var(--maxw); margin:40px auto;">
+    <video src="images/files/Moon/hero-demo.mp4" autoplay loop muted playsinline style="width:100%; height:auto; display:block;"></video>
+  </div>
+  <!-- 유튜브로 넣고 싶으면 위 video 대신 아래 주석을 풀어 쓰세요
+  <div style="aspect-ratio:16/9; margin:40px 0;">
+    <iframe src="https://www.youtube.com/embed/vY6qsxJB4_M" style="width:100%; height:100%; border:0;" allowfullscreen></iframe>
+  </div>
+  -->
+
+  <div class="meta-row">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <p>Take Me to the Moon is a choice-driven VR escape story built in a weekend for Immerse the Bay 2026. You wake at 2 a.m. in a Stanford dorm to an emergency broadcast: the planet is overheating, the last rockets leave within the hour, and there aren't enough seats.</p>
+      <p style="margin-top:16px;">Most escape games ask <em>whether</em> you survive. This one asks <em>how</em>. Everyone reaches the same destination, but the person who arrives is shaped by their choices — tracked through a wellness score out of 100.</p>
+      <p style="margin-top:16px;">After the first choice, nothing is pre-rendered. An AI story director writes every scene and its two options from the player's history, and Visko streams each scene as live video onto a curved screen inside a 360° environment.</p>
+    </div>
+    <div class="meta-cols">
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>UX / VR UI Designer</p> <!-- ✏️ 본인 역할에 맞게 수정 -->
+      </div>
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <p>Nov 2026 · Hackathon weekend</p>
+      </div>
+      <div class="full">
+        <p class="eyebrow">Team</p>
+        <p>Yoomi Cha, Shreyaa Dani, Hyun-suk Bang, Cheyoung Ahn</p>
+      </div>
+      <div class="full">
+        <p class="eyebrow">Tools</p>
+        <p>Figma, Unity, Meta Quest 3, OpenAI API, Visko, Skybox, Claude</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ================= SYSTEM ================= -->
+  <section class="tight">
+    <p class="eyebrow">System</p>
+    <h2 class="section-title">One real-time loop, from choice to live video</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>The headset calls OpenAI directly. The AI acts as a story director, returning structured data every turn — the scene, two choices, their wellness costs, and video prompts. Those prompts go to Visko, and the generated video streams back into Unity. Carrying this loop through an entire playthrough was the hardest part of the build.</p>
+    </div>
+    <div class="grid4">
+      <div class="step">
+        <div class="n">01</div>
+        <h4>Player choice</h4>
+        <p>The player picks one of two options inside the VR panel.</p>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h4>AI story director</h4>
+        <p>OpenAI writes the next scene, two choices, and wellness costs from the full history.</p>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h4>Visko generation</h4>
+        <p>Video prompts are turned into a live, generated scene.</p>
+      </div>
+      <div class="step">
+        <div class="n">04</div>
+        <h4>Unity playback</h4>
+        <p>Video streams onto a curved screen wrapped in a 360° skybox.</p>
+      </div>
+    </div>
+    <div class="frame">
+      <img src="images/files/Moon/05_live-screen.jpg" alt="Live generated video on a curved screen based on the player's decision" />
+      <div class="cap">Displaying a live screen based on your decision</div>
+    </div>
+  </section>
+
+  <!-- ================= MY ROLE ================= -->
+  <section class="tight">
+    <p class="eyebrow">My Role</p>
+    <h2 class="section-title">Game flow, VR UI & demo production</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <!-- ✏️ 실제로 맡은 일에 맞게 수정하세요 -->
+      <p>I designed the game flow and UI in Figma, then worked with the team to translate them into readable VR panels in Unity. I also helped produce the showcase video — capturing in-game footage and editing it with VLLO and Figma.</p>
+    </div>
+    <div class="grid2">
+      <div>
+        <h4>Design</h4>
+        <ul>
+          <li>Mapping the six-checkpoint game flow</li>
+          <li>Designing VR UI panels in Figma</li>
+          <li>Defining panel size, distance, tilt & contrast for VR</li>
+          <li>Building layouts that survive AI text of any length</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Story & Production</h4>
+        <ul>
+          <li>Storyboarding scenarios on a whiteboard with the team</li>
+          <li>Tuning the wellness score through live testing</li>
+          <li>Capturing in-game footage</li>
+          <li>Editing the demo video (VLLO, Figma)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DESIGN APPROACH ================= -->
+  <section class="tight">
+    <p class="eyebrow">Design Approach</p>
+    <h2 class="section-title">Theme → Fixed Storyboard → Self-Writing Story</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p><strong>Starting point:</strong> this year's Immerse the Bay theme, "Take Me to the Moon." We imagined the journey beginning somewhere every player could picture — a Stanford dorm room — and focused on storytelling so anyone could pick it up and see themselves in it.</p>
+    </div>
+    <div class="grid3">
+      <div>
+        <h4>Theme</h4>
+        <p>Turn a fixed destination into a question about character: not if you escape, but who you become on the way.</p>
+      </div>
+      <div>
+        <h4>Fixed storyboard</h4>
+        <p>Lock six locations and leave the events at each one open, so the AI has guardrails without losing variety.</p>
+      </div>
+      <div>
+        <h4>Self-writing story</h4>
+        <p>Let the AI write each scene in real time, remembering earlier choices so the journey feels connected.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHECKPOINTS ================= -->
+  <section class="tight">
+    <p class="eyebrow">The Journey</p>
+    <h2 class="section-title">Six checkpoints, endless playthroughs</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>You get 15 seconds to grab three items from your room — and those items come back to matter in later emergencies.</p>
+    </div>
+    <!-- 📸 영상 캡처 이미지 경로만 바꿔 넣으세요 -->
+    <div class="cp-grid">
+      <div class="cp">
+        <img src="images/files/Moon/03_select-items.jpg" alt="Selecting three items in the dorm room" />
+        <div class="n">01</div>
+        <h4>The dorm room</h4>
+        <p>Wake your roommate, or slip out alone.</p>
+      </div>
+      <div class="cp">
+        <img src="images/files/Moon/04_select-option.jpg" alt="Selecting an option at Memorial Church" />
+        <div class="n">02</div>
+        <h4>Memorial Church</h4>
+        <p>On a burning campus: steal a motorbike, run the Caltrain tracks, or flag down an ambulance.</p>
+      </div>
+      <div class="cp">
+        <img src="images/files/Moon/06_throw-items.jpg" alt="Throwing items at the target to fuel the rocket" />
+        <div class="n">03</div>
+        <h4>The launch pad</h4>
+        <p>Fuel the rocket by hand, throwing your items into the tank.</p>
+      </div>
+      <div class="cp">
+        <img src="images/files/Moon/07_leave-shuttle.jpg" alt="Low orbit decision" />
+        <div class="n">04</div>
+        <h4>Low orbit</h4>
+        <p>The rocket is too heavy. Cut loose the strangers on your ladder, or pull them in and risk everything.</p>
+      </div>
+      <div class="cp">
+        <img src="images/files/Moon/cp5_approach.jpg" alt="Approach to the Moon" />
+        <div class="n">05</div>
+        <h4>The approach</h4>
+        <p>Your roommate returns to the story — beside you, or calling from Earth.</p>
+      </div>
+      <div class="cp">
+        <img src="images/files/Moon/08_result.jpg" alt="The game result on the Moon" />
+        <div class="n">06</div>
+        <h4>The Moon</h4>
+        <p>Your choices are judged at the colony gate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHALLENGES (finding 형식) ================= -->
+  <section style="padding-bottom:0;">
+    <p class="eyebrow">Design Challenges & Solutions</p>
+    <h2 class="section-title">Four friction points, four design decisions</h2>
+  </section>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Challenge 1</p>
+      <h3>Readable UI over moving video</h3>
+      <p><strong>The friction:</strong> flat-screen UI rules broke in VR — text over constantly changing live video became hard to read.</p>
+      <div class="callout">
+        <div class="tag">Design strategy</div>
+        <p>Rethought panel size, viewing distance, tilt, and contrast specifically for the headset, then converted the Figma panels into VR panels in Unity.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Outcome</div>
+        <p>A consistent look, feel, and navigation across every scene, readable no matter what video plays behind it.</p>
+      </div>
+    </div>
+    <img src="images/files/Moon/02_intro-warning.jpg" alt="Intro warning screen in VR" />
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Challenge 2</p>
+      <h3>Designing for unpredictable text</h3>
+      <p><strong>The friction:</strong> the AI writes every scene and option live, so we never knew how long any line of copy would be.</p>
+      <div class="callout">
+        <div class="tag">Design strategy</div>
+        <p>Designed flexible layouts that hold AI-generated text of any length without breaking, instead of designing around fixed copy.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Outcome</div>
+        <p>The UI stayed intact across playthroughs where no two scenes were ever the same.</p>
+      </div>
+    </div>
+    <img src="images/files/Moon/09_wellness-score.jpg" alt="Wellness point popups for positive and negative choices" />
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Challenge 3</p>
+      <h3>Interaction without a tutorial</h3>
+      <p><strong>The friction:</strong> we wanted players to do more than point and click, but there was no room for a tutorial in a fast-paced escape.</p>
+      <div class="callout">
+        <div class="tag">Design strategy</div>
+        <p>Built physical mini-games tied to the opening — grabbing items in 15 seconds, throwing them into the fuel tank — so actions explain themselves.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Outcome</div>
+        <p>The three items grabbed at the start carry consequences into later emergencies, linking interaction to story.</p>
+      </div>
+    </div>
+    <img src="images/files/Moon/06_throw-items.jpg" alt="Throwing items at the target" />
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Challenge 4</p>
+      <h3>Keeping a self-writing story coherent</h3>
+      <p><strong>The friction:</strong> an open-ended AI story can drift, and we had designed far more than one weekend could hold.</p>
+      <div class="callout">
+        <div class="tag">Design strategy</div>
+        <p>Mapped scenarios on a whiteboard before building, fixed six locations, and cut scope until one clear idea remained. The AI remembers earlier choices to keep the journey connected.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Outcome</div>
+        <p>The constraint of six checkpoints sparked more diverse ideas within those limits, while keeping the generated story on track.</p>
+      </div>
+    </div>
+    <img src="images/files/Moon/01_logo-start.jpg" alt="Logo and starting point" />
+  </div>
+
+  <!-- ================= BAND ================= -->
+  <div class="band">
+    <h2>Moon Citizen — or Moon Reject</h2>
+    <p>Every choice moves a wellness score out of 100, judged by how you treat others. Score 85 or more to become a Moon Citizen; anything less and you're turned away at the colony gate.</p>
+  </div>
+
+  <section class="tight" style="padding-top:0;">
+    <p class="eyebrow">Verdict</p>
+    <h2 class="section-title">Five traveler types for Moon Citizens</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>Tuning the score took several rounds of live testing, so the verdict reflects what kind of person you are under pressure.</p>
+    </div>
+    <div class="chips">
+      <span class="chip">The Guardian</span>
+      <span class="chip">The Redeemed</span>
+      <span class="chip">The Loyal One</span>
+      <span class="chip">The Ace Pilot</span>
+      <span class="chip">The Survivor</span>
+    </div>
+    <div class="frame">
+      <img src="images/files/Moon/08_result.jpg" alt="The game result screen" />
+      <div class="cap">The game result</div>
+    </div>
+  </section>
+
+  <!-- ================= LEARNINGS & NEXT ================= -->
+  <section class="tight" style="padding-bottom:0;">
+    <p class="eyebrow">Learnings & What's Next</p>
+    <h2 class="section-title">Constraints made the creativity possible</h2>
+    <hr class="rule" />
+    <div class="grid2">
+      <div>
+        <h4>What I learned</h4>
+        <ul>
+          <li>Efficient communication and frequent progress checks kept the team on schedule.</li>
+          <li>Mapping scenarios on a whiteboard first exposed missing pieces and produced a consistent storyline.</li>
+          <li>A tight scope made creative ideas more feasible.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>What's next</h4>
+        <ul>
+          <li>Classroom edition on climate — land planning and water conservation, with a hopeful tone for kids.</li>
+          <li>More journeys beyond Stanford and the Moon.</li>
+          <li>A continuous world with no cuts, as live video generation speeds up.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+    <div>
+      <a href="https://devpost.com/software/a-canv3m" target="_blank">Devpost</a>
+      <a href="https://github.com/rewhite/TakeMeToTheMoon" target="_blank">GitHub</a>
+      <a href="https://www.figma.com/design/0nLzdJRXxjuGwnTzCDVTVH/Go-to-the-Moon" target="_blank">Figma</a>
+    </div>
+    <span>© Yoomi Cha. All rights reserved. 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
