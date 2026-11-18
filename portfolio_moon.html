@@ -88,10 +88,12 @@
   .stat-row{
     border-top:1px solid var(--rule);
     border-bottom:1px solid var(--rule);
-    display:grid; grid-template-columns:repeat(4,1fr);
+    display:grid; grid-template-columns:1.6fr repeat(3,1fr);
     padding:36px 0;
     margin-bottom:40px;
   }
+  .stat-winner .num{display:flex; align-items:center; gap:8px; color:var(--accent);}
+  .stat-winner .crown{width:.9em; height:.9em; flex:none;}
   .stat{padding:0 20px; border-left:1px solid var(--rule);}
   .stat:first-child{border-left:none; padding-left:0;}
   .stat .num{
@@ -104,9 +106,27 @@
     min-height:1.6em;
   }
   @media (max-width:720px){
-    .stat-row{grid-template-columns:1fr 1fr; row-gap:24px;}
-    .stat:nth-child(3){border-left:none; padding-left:0;}
+    .stat-row{grid-template-columns:repeat(3,1fr); row-gap:24px;}
+    .stat-winner{grid-column:1 / -1;}
+    .stat:nth-child(2){border-left:none; padding-left:0;}
   }
+
+  /* DEMO VIDEO (세로 영상) */
+  .demo-video{margin:40px auto 56px; text-align:center;}
+  .demo-video video{width:100%; max-width:380px; max-height:80vh; aspect-ratio:9/16; object-fit:cover; border-radius:16px; background:#000; display:block; margin:0 auto; box-shadow:0 12px 40px rgba(12,29,77,.18);}
+  .demo-video .cap{font-size:13px; color:var(--faint); margin-top:12px;}
+
+  /* PHOTO PAIR / SPLIT */
+  .photo-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px;}
+  .photo-grid figure{margin:0;}
+  .photo-grid img{width:100%; aspect-ratio:3/2; object-fit:cover; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .photo-grid figcaption, .split figcaption{font-size:13px; color:var(--faint); margin-top:10px;}
+  .split{display:grid; grid-template-columns:1.3fr 1fr; gap:40px; align-items:center; margin-top:32px;}
+  .split figure{margin:0;}
+  .split img{width:100%; border-radius:10px; border:1px solid var(--rule); display:block;}
+  .split p{color:var(--muted); font-size:15px; margin:0 0 12px;}
+  .tall-pair{display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:520px;}
+  @media (max-width:720px){ .photo-grid,.split{grid-template-columns:1fr;} }
 
   /* SECTION GENERAL */
   section{padding:64px 0;}
@@ -221,51 +241,51 @@
   <h1>Take Me to the Moon — Designing an AI-Directed Story in Immersive VR</h1>
   <p class="sub">When extreme climate change forces humanity to flee Earth for the Moon, what choices get you there? An AI agent rewrites the story around every decision, while Visko renders each scene as live video inside a Meta Quest 3 experience.</p>
 
-  <!-- ✏️ 강조 포인트 4개: num / label 안에 직접 채워 넣으세요 -->
+  <!-- 강조 포인트 -->
   <div class="stat-row">
-    <div class="stat">
-      <div class="num"></div>
-      <div class="label"></div>
+    <div class="stat stat-winner">
+      <div class="num">
+        <svg class="crown" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5L3 7z" fill="currentColor"/><rect x="5" y="20" width="14" height="2" rx="1" fill="currentColor"/></svg>Winner
+      </div>
+      <div class="label">Best Storytelling · Visko Sponsor Prize</div>
     </div>
     <div class="stat">
-      <div class="num"></div>
-      <div class="label"></div>
+      <div class="num">51</div>
+      <div class="label">Teams</div>
     </div>
     <div class="stat">
-      <div class="num"></div>
-      <div class="label"></div>
+      <div class="num">182</div>
+      <div class="label">Hackers</div>
     </div>
     <div class="stat">
-      <div class="num"></div>
-      <div class="label"></div>
+      <div class="num">267</div>
+      <div class="label">Attendees</div>
     </div>
   </div>
 
-  <!-- 🎬 데모 영상: mp4 파일 경로만 바꾸면 됩니다 -->
-  <div class="video-container" style="width:100%; max-width:var(--maxw); margin:40px auto;">
-    <video src="images/files/Moon/hero-demo.mp4" autoplay loop muted playsinline style="width:100%; height:auto; display:block;"></video>
+  <!-- 🎬 데모 영상 (세로 9:16) -->
+  <div class="demo-video">
+    <video src="images/files/Moon/demo-video.mp4" poster="images/files/Moon/demo-poster.jpg" autoplay loop muted playsinline controls preload="metadata"></video>
+    <div class="cap">30-second demo · captured in Meta Quest 3</div>
   </div>
-  <!-- 유튜브로 넣고 싶으면 위 video 대신 아래 주석을 풀어 쓰세요
-  <div style="aspect-ratio:16/9; margin:40px 0;">
-    <iframe src="https://www.youtube.com/embed/vY6qsxJB4_M" style="width:100%; height:100%; border:0;" allowfullscreen></iframe>
-  </div>
-  -->
 
   <div class="meta-row">
     <div>
-      <p class="eyebrow">Overview</p>
-      <p>Take Me to the Moon is a choice-driven VR escape story built in a weekend for Immerse the Bay 2026. You wake at 2 a.m. in a Stanford dorm to an emergency broadcast: the planet is overheating, the last rockets leave within the hour, and there aren't enough seats.</p>
-      <p style="margin-top:16px;">Most escape games ask <em>whether</em> you survive. This one asks <em>how</em>. Everyone reaches the same destination, but the person who arrives is shaped by their choices — tracked through a wellness score out of 100.</p>
-      <p style="margin-top:16px;">After the first choice, nothing is pre-rendered. An AI story director writes every scene and its two options from the player's history, and Visko streams each scene as live video onto a curved screen inside a 360° environment.</p>
+      <p class="eyebrow">Concept</p>
+      <p>Inspired by Immerse the Bay 2026's theme, "Take Me to the Moon," we imagined a journey from a Stanford dorm all the way to the Moon. Extreme heat has made Earth unlivable, and you have to escape your dorm and get to the Moon as fast as you can.</p>
+      <p style="margin-top:16px;">Most escape games ask <em>whether</em> you survive. This one asks <em>how</em>.</p>
+      <div class="callout" style="margin:20px 0 4px;">
+        <div class="tag">Never the same journey twice</div>
+        <p style="color:var(--ink); font-size:15px;"><strong>AI writes the choices.</strong> An AI story director, guided by our prompts, writes each scene from your earlier decisions, so even at the same checkpoint the options you face are different every time.</p>
+        <p style="color:var(--ink); font-size:15px; margin-top:10px;"><strong>Visko renders the result.</strong> The live video comes from Visko.ai and is generated from the option you pick, so what you see on screen changes with every choice you make.</p>
+      </div>
+      <p style="margin-top:16px;">Along the way, interactive moments put you physically in the action, like grabbing items before you flee and throwing them to fuel the rocket.</p>
+      <p style="margin-top:16px;">At each checkpoint, your choices and mission results raise or lower your wellness points, and your final score decides whether you're welcomed as a Moon Citizen. At the end, you get a report revealing what kind of traveler you turned out to be!</p>
     </div>
     <div class="meta-cols">
-      <div>
-        <p class="eyebrow">Role</p>
-        <p>UX / VR UI Designer</p> <!-- ✏️ 본인 역할에 맞게 수정 -->
-      </div>
-      <div>
-        <p class="eyebrow">Timeline</p>
-        <p>Nov 2026 · Hackathon weekend</p>
+      <div class="full">
+        <p class="eyebrow">Award</p>
+        <p>Winner, Best Storytelling (Visko Prize) — Immerse the Bay 2026</p>
       </div>
       <div class="full">
         <p class="eyebrow">Team</p>
@@ -275,11 +295,36 @@
         <p class="eyebrow">Tools</p>
         <p>Figma, Unity, Meta Quest 3, OpenAI API, Visko, Skybox, Claude</p>
       </div>
+      <div>
+        <p class="eyebrow">Role</p>
+        <p>Project Lead · UX / VR UI Designer</p>
+      </div>
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <p>Nov 2026 · Hackathon weekend</p>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="wrap">
+
+  <!-- ================= AWARD & TEAM ================= -->
+  <section class="tight" style="padding-top:0;">
+    <p class="eyebrow">Award & Team</p>
+    <h2 class="section-title">Best Storytelling, Visko Living Worlds Track</h2>
+    <hr class="rule" />
+    <div class="photo-grid">
+      <figure>
+        <img src="images/files/Moon/award-win.jpg" alt="Team Take Me to the Moon on stage receiving the Visko Best Storytelling award" />
+        <figcaption>On stage at Immerse the Bay 2026: Visko Living Worlds Track, Best Storytelling</figcaption>
+      </figure>
+      <figure>
+        <img src="images/files/Moon/team.jpg" alt="The four-person team at their hackathon table with a Meta Quest headset" />
+        <figcaption>Our team of four: Yoomi Cha, Shreyaa Dani, Hyun-suk Bang, Cheyoung Ahn</figcaption>
+      </figure>
+    </div>
+  </section>
 
   <!-- ================= SYSTEM ================= -->
   <section class="tight">
@@ -288,6 +333,17 @@
     <hr class="rule" />
     <div class="prose">
       <p>The headset calls OpenAI directly. The AI acts as a story director, returning structured data every turn — the scene, two choices, their wellness costs, and video prompts. Those prompts go to Visko, and the generated video streams back into Unity. Carrying this loop through an entire playthrough was the hardest part of the build.</p>
+    </div>
+    <div class="split">
+      <div>
+        <p><strong style="color:var(--ink);">Built for a standalone headset.</strong> Everything runs on Meta Quest 3, with no PC or server kept running during play.</p>
+        <p>One story controller holds the inventory, choices, and wellness score, so the UI, the physical objects, and the video always agree on where the player is.</p>
+      </div>
+      <figure>
+        <!-- 📸 Meta Quest 3 이미지: Wikimedia Commons 등에서 라이선스 확인 후 저장 -->
+        <img src="images/files/Moon/meta-quest-3.jpg" alt="Meta Quest 3 headset with Touch Plus controllers" />
+        <figcaption><!-- ✏️ 이미지 출처/라이선스 표기 (예: Photo: 작성자, CC BY-SA 4.0, via Wikimedia Commons) --></figcaption>
+      </figure>
     </div>
     <div class="grid4">
       <div class="step">
@@ -315,6 +371,22 @@
       <img src="images/files/Moon/05_live-screen.jpg" alt="Live generated video on a curved screen based on the player's decision" />
       <div class="cap">Displaying a live screen based on your decision</div>
     </div>
+    <div class="grid2">
+      <div>
+        <h4>Fixed where it sets the tone</h4>
+        <ul>
+          <li>The opening emergency broadcast is prerecorded, so every player starts with the same urgent, cinematic hook.</li>
+          <li>The success and failure endings are prerecorded, so the verdict always lands cleanly.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Live where choices matter</h4>
+        <ul>
+          <li>Every story scene between the dorm and the Moon is written and rendered live from the player's history.</li>
+          <li>The lunar arrival is generated too, so the ending reflects the journey that led to it.</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <!-- ================= MY ROLE ================= -->
@@ -323,17 +395,18 @@
     <h2 class="section-title">Game flow, VR UI & demo production</h2>
     <hr class="rule" />
     <div class="prose">
-      <!-- ✏️ 실제로 맡은 일에 맞게 수정하세요 -->
-      <p>I designed the game flow and UI in Figma, then worked with the team to translate them into readable VR panels in Unity. I also helped produce the showcase video — capturing in-game footage and editing it with VLLO and Figma.</p>
+      <p>I started the project and led a team of four. I designed the game flow, the UI, and its components in Figma, and created the background and visual assets the team built from. Our developer translated those designs into readable VR panels in Unity. I also produced the showcase video, capturing in-game footage and editing it with VLLO and Figma.</p>
     </div>
     <div class="grid2">
       <div>
         <h4>Design</h4>
         <ul>
           <li>Mapping the six-checkpoint game flow</li>
-          <li>Designing VR UI panels in Figma</li>
+          <li>Designing VR UI panels and reusable components in Figma</li>
+          <li>Creating background and visual design assets</li>
           <li>Defining panel size, distance, tilt & contrast for VR</li>
           <li>Building layouts that survive AI text of any length</li>
+          <li>Designing the wellness bar and choice feedback</li>
         </ul>
       </div>
       <div>
@@ -344,6 +417,24 @@
           <li>Capturing in-game footage</li>
           <li>Editing the demo video (VLLO, Figma)</li>
         </ul>
+      </div>
+    </div>
+    <!-- 📸 Figma Components 페이지에서 export -->
+    <div class="grid3" style="margin-top:40px;">
+      <div class="cp">
+        <img src="images/files/Moon/ui-choice-cards.png" alt="Choice card component states in Figma" style="aspect-ratio:auto;" />
+        <h4>Choice cards</h4>
+        <p>Green and blue variants with default, hover, and selected states.</p>
+      </div>
+      <div class="cp">
+        <img src="images/files/Moon/ui-wellness-popup.png" alt="Wellness change popup component" style="aspect-ratio:auto;" />
+        <h4>Wellness feedback</h4>
+        <p>The +5 / −5 popup and the wellness bar's good, warning, and critical states.</p>
+      </div>
+      <div class="cp">
+        <img src="images/files/Moon/ui-launchsite.png" alt="Launch site fuel mini-game UI with target, gauge, and throws left" style="aspect-ratio:auto;" />
+        <h4>Mini-game UI</h4>
+        <p>Target, fuel gauge, and throws-left counter for the launch pad.</p>
       </div>
     </div>
   </section>
@@ -372,13 +463,49 @@
     </div>
   </section>
 
+  <!-- ================= AI GUARDRAILS ================= -->
+  <section class="tight">
+    <p class="eyebrow">Designing the AI's Rules</p>
+    <h2 class="section-title">Content rules that keep live writing readable in a headset</h2>
+    <hr class="rule" />
+    <div class="prose">
+      <p>The AI writes every line the player reads, so the copy had to be designed as a system, not as individual screens. We gave the story director a set of rules that keep each scene short enough to read at a glance over moving video, and every choice hard enough to matter.</p>
+    </div>
+    <div class="grid4">
+      <div class="step">
+        <div class="n">Choices</div>
+        <h4>Exactly two</h4>
+        <p>Every decision is a real dilemma between two grabbable objects, never something small like left or right.</p>
+      </div>
+      <div class="step">
+        <div class="n">Labels</div>
+        <h4>Verb first, ≤ 6 words</h4>
+        <p>Labels address the player as "you" and start with an action, so they read instantly in VR.</p>
+      </div>
+      <div class="step">
+        <div class="n">Narration</div>
+        <h4>≤ 20 + 30 words</h4>
+        <p>One sentence for the outcome, then two for the next scene: what's in front of you, then the problem.</p>
+      </div>
+      <div class="step">
+        <div class="n">Pacing</div>
+        <h4>One event per scene</h4>
+        <p>Each scene has one thing happening and at most one new character, so the story never outruns the player.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="tag">The tempting choice</div>
+      <p>Every decision has one good and one bad option, and the player isn't told which is which. The bad option always has to be tempting: safer, faster, or more loyal to someone the player cares about. Helping someone costs the player something, and helping yourself costs someone else.</p>
+    </div>
+  </section>
+
   <!-- ================= CHECKPOINTS ================= -->
   <section class="tight">
     <p class="eyebrow">The Journey</p>
     <h2 class="section-title">Six checkpoints, endless playthroughs</h2>
     <hr class="rule" />
     <div class="prose">
-      <p>You get 15 seconds to grab three items from your room — and those items come back to matter in later emergencies.</p>
+      <p>You get 15 seconds to grab three of five items from your room and place them in your inventory tray. Those items come back at the launch pad, where you throw them to fuel the rocket. The locations are fixed; what happens at each one is written live, and people you help or abandon can return later.</p>
     </div>
     <!-- 📸 영상 캡처 이미지 경로만 바꿔 넣으세요 -->
     <div class="cp-grid">
@@ -424,21 +551,21 @@
   <!-- ================= CHALLENGES (finding 형식) ================= -->
   <section style="padding-bottom:0;">
     <p class="eyebrow">Design Challenges & Solutions</p>
-    <h2 class="section-title">Four friction points, four design decisions</h2>
+    <h2 class="section-title">Seven friction points, seven design decisions</h2>
   </section>
 
   <div class="finding">
     <div>
       <p class="kicker">Challenge 1</p>
-      <h3>Readable UI over moving video</h3>
-      <p><strong>The friction:</strong> flat-screen UI rules broke in VR — text over constantly changing live video became hard to read.</p>
+      <h3>Designing spatial UI for the first time</h3>
+      <p><strong>The friction:</strong> this was my first VR hackathon, and I had never designed spatial UI. Flat-screen rules broke in the headset: text over constantly changing live video became hard to read.</p>
       <div class="callout">
         <div class="tag">Design strategy</div>
-        <p>Rethought panel size, viewing distance, tilt, and contrast specifically for the headset, then converted the Figma panels into VR panels in Unity.</p>
+        <p>Before the event, I studied Meta's Quest design guidelines and Apple's Vision Pro Human Interface Guidelines. During the build, I applied them to rethink panel size, viewing distance, tilt, and contrast for the headset.</p>
       </div>
       <div class="callout">
         <div class="tag">Outcome</div>
-        <p>A consistent look, feel, and navigation across every scene, readable no matter what video plays behind it.</p>
+        <p>I could make spatial layout decisions with confidence from day one, and every scene kept a consistent look, feel, and navigation, readable no matter what video played behind it.</p>
       </div>
     </div>
     <img src="images/files/Moon/02_intro-warning.jpg" alt="Intro warning screen in VR" />
@@ -447,6 +574,31 @@
   <div class="finding">
     <div>
       <p class="kicker">Challenge 2</p>
+      <h3>Keeping up with a story that kept changing</h3>
+      <p><strong>The friction:</strong> the storyline shifted constantly as the team iterated, and every change meant new components and assets, often within minutes, under tight time pressure.</p>
+      <div class="callout">
+        <div class="tag">Design strategy</div>
+        <p>I used AI throughout my workflow to generate and adapt components and assets quickly. When I found out late that the video storyboard had to be vertical, not the wide format I had started with, AI let me update every frame in a fraction of the time.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Outcome</div>
+        <p>Prototyping time dropped sharply, and design never became the bottleneck as the story evolved.</p>
+      </div>
+    </div>
+    <div class="tall-pair">
+      <img src="images/files/Moon/storyboard-vertical-01.png" alt="Vertical 9:16 storyboard frame, shot 01 cold open" />
+      <img src="images/files/Moon/storyboard-vertical-08.png" alt="Vertical 9:16 storyboard frame, shot 08 end card" />
+    </div>
+  </div>
+
+  <div class="frame" style="margin-top:0;">
+    <img src="images/files/Moon/storyboard.png" alt="30-second trailer storyboard with eight shots, each with visual, camera, caption, and sound notes" />
+    <div class="cap">The 30-second trailer storyboard: 8 shots, each with visual, camera, caption, and sound notes. It started wide, then moved to a 9:16 vertical format.</div>
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Challenge 3</p>
       <h3>Designing for unpredictable text</h3>
       <p><strong>The friction:</strong> the AI writes every scene and option live, so we never knew how long any line of copy would be.</p>
       <div class="callout">
@@ -463,7 +615,7 @@
 
   <div class="finding">
     <div>
-      <p class="kicker">Challenge 3</p>
+      <p class="kicker">Challenge 4</p>
       <h3>Interaction without a tutorial</h3>
       <p><strong>The friction:</strong> we wanted players to do more than point and click, but there was no room for a tutorial in a fast-paced escape.</p>
       <div class="callout">
@@ -472,7 +624,7 @@
       </div>
       <div class="callout">
         <div class="tag">Outcome</div>
-        <p>The three items grabbed at the start carry consequences into later emergencies, linking interaction to story.</p>
+        <p>The three items grabbed at the start come back at the launch pad, linking interaction to story.</p>
       </div>
     </div>
     <img src="images/files/Moon/06_throw-items.jpg" alt="Throwing items at the target" />
@@ -480,12 +632,12 @@
 
   <div class="finding">
     <div>
-      <p class="kicker">Challenge 4</p>
+      <p class="kicker">Challenge 5</p>
       <h3>Keeping a self-writing story coherent</h3>
       <p><strong>The friction:</strong> an open-ended AI story can drift, and we had designed far more than one weekend could hold.</p>
       <div class="callout">
         <div class="tag">Design strategy</div>
-        <p>Mapped scenarios on a whiteboard before building, fixed six locations, and cut scope until one clear idea remained. The AI remembers earlier choices to keep the journey connected.</p>
+        <p>Mapped scenarios on a whiteboard before building, fixed six locations, and cut scope until one clear idea remained. A premise document set the world, tone, and rules for the AI, and the AI remembers earlier choices to keep the journey connected.</p>
       </div>
       <div class="callout">
         <div class="tag">Outcome</div>
@@ -495,11 +647,69 @@
     <img src="images/files/Moon/01_logo-start.jpg" alt="Logo and starting point" />
   </div>
 
+  <div class="finding">
+    <div>
+      <p class="kicker">Challenge 6</p>
+      <h3>Making designs land in 3D space</h3>
+      <p><strong>The friction:</strong> a design that looks right in Figma can feel wrong once it's placed in a 3D scene, and a flat screen alone doesn't feel like a world.</p>
+      <div class="callout">
+        <div class="tag">Design strategy</div>
+        <p>I worked closely with the developers, communicating placement, scale, and positioning in detail as they built each scene in Unity. I also created 360° backgrounds that surround the player at every checkpoint.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Outcome</div>
+        <p>The designs translated into VR as intended, and the judges said the 360° environments made the experience feel more vivid and immersive.</p>
+      </div>
+    </div>
+    <img src="images/files/Moon/cp5_approach.jpg" alt="360-degree environment on the approach to the Moon" />
+  </div>
+
+  <div class="finding">
+    <div>
+      <p class="kicker">Challenge 7</p>
+      <h3>Hiding the wait for live video</h3>
+      <p><strong>The friction:</strong> generating, streaming, and decoding each scene takes time. A blank screen or a sudden cut would break immersion right after every choice.</p>
+      <div class="callout">
+        <div class="tag">Design strategy</div>
+        <p>The screen never goes empty: it holds the last frame until the next one is ready. After a choice, the current video morphs into the outcome while the next scene prepares in the background. Choices appear only after a few seconds of visible video, and a Continue button lets the player move on when they're ready.</p>
+      </div>
+      <div class="callout">
+        <div class="tag">Outcome</div>
+        <p>Transitions feel like one continuous shot. Testing in the headset caught what looked fine on a monitor: UI blocking the video, unclear interactions, and transitions that ran too long.</p>
+      </div>
+    </div>
+    <img src="images/files/Moon/05_live-screen.jpg" alt="Live video on the curved screen" />
+  </div>
+
   <!-- ================= BAND ================= -->
   <div class="band">
     <h2>Moon Citizen — or Moon Reject</h2>
-    <p>Every choice moves a wellness score out of 100, judged by how you treat others. Score 85 or more to become a Moon Citizen; anything less and you're turned away at the colony gate.</p>
+    <p>Everyone reaches the Moon. Not everyone is welcome there. Every player starts at 100 wellness, and each choice moves it up or down by 5, judged by how you treat others. Score 85 or more to become a Moon Citizen; anything less and you're turned away at the colony gate.</p>
   </div>
+
+  <section class="tight" style="padding-top:0;">
+    <p class="eyebrow">Feedback</p>
+    <h2 class="section-title">Showing the score without explaining it</h2>
+    <hr class="rule" />
+    <div class="grid3">
+      <div>
+        <h4>Choice feedback</h4>
+        <p>A +5 or −5 popup appears after each decision, so players feel the weight of a choice without being told the rules in advance.</p>
+      </div>
+      <div>
+        <h4>Wellness bar</h4>
+        <p>A bar stays in view from the first decision onward and shifts from green to orange to red as the score drops.</p>
+      </div>
+      <div>
+        <h4>The result screen</h4>
+        <p>The end screen shows the verdict, final wellness, successful throws, the full decision history, and a traveler type.</p>
+      </div>
+    </div>
+    <div class="frame">
+      <img src="images/files/Moon/ending-mission-report.png" alt="Mission report end screen with traveler type, final wellness, throws used, and choice recap" />
+      <div class="cap">The mission report: traveler type, final wellness, throws used, and every choice you made</div>
+    </div>
+  </section>
 
   <section class="tight" style="padding-top:0;">
     <p class="eyebrow">Verdict</p>
@@ -515,6 +725,32 @@
       <span class="chip">The Ace Pilot</span>
       <span class="chip">The Survivor</span>
     </div>
+    <div class="grid3" style="margin-top:28px;">
+      <div>
+        <h4>The Guardian</h4>
+        <p>Never put yourself first. Everyone you met made it because of you.</p>
+      </div>
+      <div>
+        <h4>The Redeemed</h4>
+        <p>Left your roommate in the first minute, then spent the journey making it right.</p>
+      </div>
+      <div>
+        <h4>The Loyal One</h4>
+        <p>Would do anything for your own people. Strangers had to earn it.</p>
+      </div>
+      <div>
+        <h4>The Ace Pilot</h4>
+        <p>Hit every throw at the launch pad to fuel the rocket.</p>
+      </div>
+      <div>
+        <h4>The Survivor</h4>
+        <p>Not perfect, and you knew it. You did enough good to be let in.</p>
+      </div>
+      <div>
+        <h4>Not admitted</h4>
+        <p>"You made it to the Moon. The people here know what you did to get a seat."</p>
+      </div>
+    </div>
     <div class="frame">
       <img src="images/files/Moon/08_result.jpg" alt="The game result screen" />
       <div class="cap">The game result</div>
@@ -528,19 +764,30 @@
     <hr class="rule" />
     <div class="grid2">
       <div>
-        <h4>What I learned</h4>
+        <h4>What I learned about design</h4>
         <ul>
-          <li>Efficient communication and frequent progress checks kept the team on schedule.</li>
-          <li>Mapping scenarios on a whiteboard first exposed missing pieces and produced a consistent storyline.</li>
-          <li>A tight scope made creative ideas more feasible.</li>
+          <li><strong>Preparing early paid off.</strong> Studying the Meta Quest and Vision Pro guidelines before the event turned an unfamiliar medium into one I could design for confidently under time pressure.</li>
+          <li><strong>AI is a real accelerator under pressure.</strong> It cut prototyping time dramatically and made late changes, like moving the storyboard from wide to vertical, quick instead of costly.</li>
+          <li><strong>Constraints fuel creativity.</strong> A tight scope made ideas feasible, and a smaller, complete journey was worth more than a long list of unfinished mechanics.</li>
+          <li><strong>Map before you build.</strong> Laying out scenarios on a whiteboard first exposed missing pieces and kept the storyline consistent.</li>
+          <li><strong>Test in the headset early.</strong> It caught problems a monitor hides, from UI that blocked the video to transitions that ran too long.</li>
+          <li><strong>Environment design is part of the experience.</strong> The 360° backgrounds weren't decoration; the judges called them out as what made the world feel alive.</li>
         </ul>
       </div>
       <div>
-        <h4>What's next</h4>
+        <h4>What I learned beyond design</h4>
+        <ul>
+          <li><strong>Detailed communication bridges design and engineering.</strong> Frequent progress checks kept us on schedule, and talking through exact placement and scale is what made the Figma designs work in VR.</li>
+          <li><strong>Writing for the AI is a design task.</strong> I wrote a premise document that set the world, tone, rules, and limits for the AI story director, and saw how much a clear brief and length rules shape what the AI produces.</li>
+          <li><strong>I got a hands-on look at the development side.</strong> I studied how the OpenAI API connects to the game, and how each player choice becomes the next scene, two choices, and video prompts.</li>
+          <li><strong>Sharing through GitHub brought design and code closer.</strong> I shared my design files in the team's repo so developers could pull them straight into the build, and saw how my work moved from Figma into the game.</li>
+        </ul>
+        <h4 style="margin-top:28px;">What's next</h4>
         <ul>
           <li>Classroom edition on climate — land planning and water conservation, with a hopeful tone for kids.</li>
+          <li>Clearer visual consequences, so each choice reads instantly on screen.</li>
           <li>More journeys beyond Stanford and the Moon.</li>
-          <li>A continuous world with no cuts, as live video generation speeds up.</li>
+          <li>Shorter waits between scenes, and eventually a continuous world with no cuts as live video generation speeds up.</li>
         </ul>
       </div>
     </div>
