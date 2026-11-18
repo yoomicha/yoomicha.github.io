@@ -222,8 +222,54 @@
   }
   footer a{color:var(--accent); font-weight:600; text-decoration:none; margin-right:16px;}
 </style>
+<!-- 🔒 PASSWORD GATE: 비밀번호는 아래 MOON_PASSWORD 값만 바꾸면 됩니다 -->
+<style id="pw-hide">body > *:not(#pw-gate){display:none !important;}</style>
+<style>
+  #pw-gate{position:fixed; inset:0; z-index:10000; display:flex; align-items:center; justify-content:center; padding:24px;
+    background:radial-gradient(ellipse at 30% 20%, #3a2a5c 0%, #1a1030 45%, #0d0818 100%); font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
+  #pw-gate .box{width:100%; max-width:360px; text-align:center; color:#fff;}
+  #pw-gate h2{font-size:22px; font-weight:800; margin:0 0 6px;}
+  #pw-gate p{font-size:14px; color:#d9cdee; margin:0 0 22px;}
+  #pw-gate form{display:flex; gap:8px;}
+  #pw-gate input{flex:1; min-width:0; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:#fff; font-size:15px; outline:none;}
+  #pw-gate input::placeholder{color:#b8aed0;}
+  #pw-gate button{padding:12px 18px; border:none; border-radius:10px; background:#0c60ff; color:#fff; font-size:15px; font-weight:600; cursor:pointer;}
+  #pw-gate .err{color:#ff9b9b; font-size:13px; margin-top:12px; min-height:18px;}
+  #pw-gate .back{display:inline-block; margin-top:18px; font-size:13px; color:#a996c4; text-decoration:none;}
+</style>
+<script>
+  var MOON_PASSWORD = "yoomi2026";
+  function moonUnlock(){
+    var h=document.getElementById('pw-hide'); if(h) h.remove();
+    var g=document.getElementById('pw-gate'); if(g) g.remove();
+  }
+  function moonCheck(e){
+    e.preventDefault();
+    var v=document.getElementById('pw-input').value.trim();
+    if(v===MOON_PASSWORD){ try{sessionStorage.setItem('moonUnlocked','1');}catch(_){} moonUnlock(); }
+    else { document.getElementById('pw-err').textContent='Incorrect password. Please try again.'; }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    try{ if(sessionStorage.getItem('moonUnlocked')==='1'){ moonUnlock(); return; } }catch(_){}
+    var i=document.getElementById('pw-input'); if(i) i.focus();
+  });
+</script>
 </head>
 <body>
+
+<div id="pw-gate">
+  <div class="box">
+    <h2>🔒 Take Me to the Moon</h2>
+    <p>This case study is password protected.</p>
+    <form onsubmit="moonCheck(event)">
+      <input id="pw-input" type="password" placeholder="Enter password" autocomplete="current-password" aria-label="Password" />
+      <button type="submit">View</button>
+    </form>
+    <div class="err" id="pw-err"></div>
+    <a class="back" href="work.html">← Back to Projects</a>
+  </div>
+</div>
+
 
 <nav id="nav" class="site-nav">
   <div class="nav-inner">
