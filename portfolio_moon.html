@@ -215,6 +215,13 @@
     background:var(--accent-soft); border-radius:999px; padding:8px 16px;
   }
 
+  /* TRAVELER TYPE ICONS */
+  .traveler-types{row-gap:40px;}
+  .traveler-types .type-icon{width:128px; height:128px; display:block; margin:0 0 14px; background:none;}
+  .traveler-types h4{color:var(--ink); font-size:15px;}
+  .type-icon--none{border-radius:50%; border:2px dashed var(--rule); color:var(--faint);
+    display:flex !important; align-items:center; justify-content:center; font-size:36px; box-sizing:border-box;}
+
   footer{
     border-top:1px solid var(--rule); margin-top:40px;
     padding:32px 0 64px;
@@ -782,35 +789,35 @@
     <div class="prose">
       <p>Tuning the score took several rounds of live testing, so the verdict reflects what kind of person you are under pressure.</p>
     </div>
-    <div class="chips">
-      <span class="chip">The Guardian</span>
-      <span class="chip">The Redeemed</span>
-      <span class="chip">The Loyal One</span>
-      <span class="chip">The Ace Pilot</span>
-      <span class="chip">The Survivor</span>
-    </div>
-    <div class="grid3" style="margin-top:28px;">
+    <!-- 🧭 여행자 유형 아이콘 (Figma: Ending Type Icons) -->
+    <div class="grid3 traveler-types" style="margin-top:28px;">
       <div>
+        <img class="type-icon" src="images/files/Moon/icon-the-guardian.png" alt="The Guardian icon: a cracked figure with arms spread, shielding three small figures" />
         <h4>The Guardian</h4>
         <p>Never put yourself first. Everyone you met made it because of you.</p>
       </div>
       <div>
+        <img class="type-icon" src="images/files/Moon/icon-the-redeemed.png" alt="The Redeemed icon: a stitched-up figure holding a small flame" />
         <h4>The Redeemed</h4>
         <p>Left your roommate in the first minute, then spent the journey making it right.</p>
       </div>
       <div>
+        <img class="type-icon" src="images/files/Moon/icon-the-loyal-one.png" alt="The Loyal One icon: two figures tied together by a red thread, with hands reaching in from the dark" />
         <h4>The Loyal One</h4>
         <p>Would do anything for your own people. Strangers had to earn it.</p>
       </div>
       <div>
+        <img class="type-icon" src="images/files/Moon/icon-the-prepared.png" alt="Traveler icon: a figure in a gas mask and backpack holding up a lantern" />
         <h4>The Ace Pilot</h4>
         <p>Hit every throw at the launch pad to fuel the rocket.</p>
       </div>
       <div>
+        <img class="type-icon" src="images/files/Moon/icon-the-survivor.png" alt="The Survivor icon: a battered figure walking toward a lit doorway" />
         <h4>The Survivor</h4>
         <p>Not perfect, and you knew it. You did enough good to be let in.</p>
       </div>
       <div>
+        <div class="type-icon type-icon--none" aria-hidden="true">✕</div>
         <h4>Not admitted</h4>
         <p>"You made it to the Moon. The people here know what you did to get a seat."</p>
       </div>
