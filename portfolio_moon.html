@@ -191,6 +191,7 @@
   .grid2 h4,.grid3 h4,.grid4 h4{font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--faint); margin:0 0 12px;}
   .grid2 ul{margin:0; padding-left:18px; color:var(--ink); font-size:15px;}
   .grid2 li{margin-bottom:10px;}
+  .grid2.stacked{grid-template-columns:1fr; gap:40px;}
   .grid3 p,.grid4 p{color:var(--muted); font-size:15px; margin:0;}
   @media (max-width:720px){ .grid2,.grid3{grid-template-columns:1fr;} .grid4{grid-template-columns:1fr 1fr;} }
 
@@ -833,7 +834,7 @@
     <p class="eyebrow">Learnings & What's Next</p>
     <h2 class="section-title">Constraints made the creativity possible</h2>
     <hr class="rule" />
-    <div class="grid2">
+    <div class="grid2 stacked">
       <div>
         <h4>What I learned about design</h4>
         <ul>
@@ -853,7 +854,9 @@
           <li><strong>I got a hands-on look at the development side.</strong> I studied how the OpenAI API connects to the game, and how each player choice becomes the next scene, two choices, and video prompts.</li>
           <li><strong>Sharing through GitHub brought design and code closer.</strong> I shared my design files in the team's repo so developers could pull them straight into the build, and saw how my work moved from Figma into the game.</li>
         </ul>
-        <h4 style="margin-top:28px;">What's next</h4>
+      </div>
+      <div>
+        <h4>What's next</h4>
         <ul>
           <li>Classroom edition on climate — land planning and water conservation, with a hopeful tone for kids.</li>
           <li>Clearer visual consequences, so each choice reads instantly on screen.</li>
