@@ -111,9 +111,13 @@
     .stat:nth-child(2){border-left:none; padding-left:0;}
   }
 
-  /* DEMO VIDEO (세로 영상) */
+  /* DEMO VIDEO (가로 16:9 영상) */
   .demo-video{margin:40px auto 56px; text-align:center;}
-  .demo-video video{width:100%; max-width:380px; max-height:80vh; aspect-ratio:9/16; object-fit:cover; border-radius:16px; background:#000; display:block; margin:0 auto; box-shadow:0 12px 40px rgba(12,29,77,.18);}
+  .demo-video video{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:16px; background:#000; display:block; margin:0 auto; box-shadow:0 12px 40px rgba(12,29,77,.18);}
+  .demo-video .video-box{position:relative;}
+  .sound-on{position:absolute; top:16px; right:16px; z-index:2; padding:10px 16px; border:none; border-radius:999px;
+    background:rgba(0,0,0,.65); color:#fff; font:600 14px 'Inter',sans-serif; cursor:pointer; backdrop-filter:blur(6px);}
+  .sound-on:hover{background:rgba(0,0,0,.8);}
   .demo-video .cap{font-size:13px; color:var(--faint); margin-top:12px;}
 
   /* PHOTO PAIR / SPLIT */
@@ -250,6 +254,24 @@
   function moonUnlock(){
     var h=document.getElementById('pw-hide'); if(h) h.remove();
     var g=document.getElementById('pw-gate'); if(g) g.remove();
+    playDemoWithSound();
+  }
+  /* 데모 영상: 소리 켠 상태로 재생 시도 → 브라우저가 막으면 무음 재생 + "Tap for sound" 버튼 */
+  function playDemoWithSound(){
+    var v=document.getElementById('demo-video'); if(!v) return;
+    var btn=document.getElementById('sound-on');
+    v.muted=false;
+    var p=v.play();
+    if(p && p.catch){
+      p.catch(function(){
+        v.muted=true; v.play().catch(function(){});
+        if(btn){
+          btn.hidden=false;
+          btn.onclick=function(){ v.muted=false; v.play(); btn.hidden=true; };
+        }
+      });
+    }
+    v.addEventListener('volumechange', function(){ if(!v.muted && btn) btn.hidden=true; });
   }
   function moonCheck(e){
     e.preventDefault();
@@ -317,10 +339,13 @@
     </div>
   </div>
 
-  <!-- 🎬 데모 영상 (세로 9:16) -->
+  <!-- 🎬 데모 영상 (가로 16:9) -->
   <div class="demo-video">
-    <video src="images/files/Moon/demo-video.mp4" poster="images/files/Moon/demo-poster.jpg" autoplay loop muted playsinline controls preload="metadata"></video>
-    <div class="cap">30-second demo · captured in Meta Quest 3</div>
+    <div class="video-box">
+      <video id="demo-video" src="images/files/Moon/demo-video.mp4" poster="images/files/Moon/demo-poster.jpg" loop playsinline controls preload="auto" aria-label="Take Me to the Moon demo video"></video>
+      <button type="button" id="sound-on" class="sound-on" hidden>🔊 Tap for sound</button>
+    </div>
+    <div class="cap">48-second demo · captured in Meta Quest 3</div>
   </div>
 
   <div class="meta-row">
